@@ -62,3 +62,8 @@
 ;;C-M-a beginning-of-defun
 ;;C-M-e end-of-defun
 ;;C-M-h mark-defun
+
+(global-set-key (kbd "s-l") 'goto-line)
+(global-set-key (kbd "s-s") 'save-buffer)
+(global-set-key (kbd "C-`") 'toggle-input-method)
+(setq url-show-status nil)

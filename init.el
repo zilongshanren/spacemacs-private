@@ -200,83 +200,43 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (global-company-mode t)
+
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
+
   (when (system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
   (setq powerline-default-separator 'arrow)
-  (global-set-key (kbd "s-l") 'goto-line)
 
-  (global-set-key (kbd "s-s") 'save-buffer)
-  (global-set-key (kbd "C-c SPC") 'avy-goto-char-2)
-  (global-set-key (kbd "C-`") 'toggle-input-method)
-  (setq magit-repository-directories '("~/cocos2d-x/"))
-
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
-  (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
-  (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
-  (require 'lispy)
-  (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
-  (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline)
-  (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-  (setq ycmd-request-message-level -1)
-  (setq url-show-status nil)
   ;; the solution is not perfect, maybe I should wait for the spacemacs author
   ;; to fix the issue
   (setq helm-ag-insert-at-point 'symbol)
   (eval-after-load 'racket-repl-mode
     '(progn
        (define-key racket-repl-mode-map (kbd "]") nil)
-       (define-key racket-repl-mode-map (kbd "[") nil)
-       ))
+       (define-key racket-repl-mode-map (kbd "[") nil)))
+
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
+
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
-  (evil-leader/set-key "l" 'avy-goto-line)
-  (setq deft-extension "org")
-  (setq deft-directory "~/org-notes/wiki")
+
   ;; save desktop ;unprintable entity
   ;; (desktop-save-mode t)
   (delete "*Async Shell Command*" 'popwin:special-display-config)
+
   ;; company backend should be grouped
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-ycmd
                                           company-dabbrev-code
-                                          company-dabbrev :with company-yasnippet) company-files))
-  (global-company-mode t)
+                                          company-dabbrev :with company-yasnippet)
+                                         company-files))
   (diminish 'global-whitespace-mode)
-  (require 'yasnippet)
-
   (spacemacs|hide-lighter doxymacs-mode)
-  (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-  ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
-  ;; discussion of these options.
-  (setq helm-split-window-in-side-p t
-        helm-move-to-line-cycle-in-source t
-        helm-ff-search-library-in-sexp t
-        helm-ff-file-name-history-use-recentf t)
-  (prodigy-define-tag
-    :name 'jekyll
-    :env '(("LANG" "en_US.UTF-8")
-           ("LC_ALL" "en_US.UTF-8")))
-  ;; define service
-  (prodigy-define-service
-    :name "Python app"
-    :command "python"
-    :args '("-m" "SimpleHTTPServer" "6001")
-    :cwd "~/cocos2d-x/web"
-    :tags '(work)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Octopress preview"
-    :command "rake"
-    :args '("preview")
-    :cwd "~/4gamers.cn"
-    :tags '(octopress jekyll)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+  (require 'yasnippet)
+  (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
+
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

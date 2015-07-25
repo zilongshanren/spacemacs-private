@@ -52,6 +52,7 @@
       org
       deft
       nodejs-repl
+      prodigy
       ))
 
 ;; List of packages to exclude.
@@ -89,8 +90,14 @@
   (use-package lispy
     :defer t
     :diminish (lispy-mode)
+    :config
+    (progn
+      (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
+      (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))
     :init
     (progn
+      (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
+      (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
       (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
       (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
@@ -179,6 +186,7 @@
     :defer t
     :config (progn
               (flycheck-package-setup)
+              (setq flycheck-display-errors-function 'flycheck-display-error-messages)
               (setq flycheck-display-errors-delay 0.2))))
 
 (defun zilongshanren/init-helm-make ()
@@ -186,7 +194,9 @@
     :defer t))
 
 (defun zilongshanren/post-init-ycmd ()
-  (setq ycmd-tag-files 'auto))
+  (setq ycmd-tag-files 'auto)
+  (setq ycmd-request-message-level -1)
+  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py"))))
 
 ;; configs for writing
 (defun zilongshanren/post-init-markdown-mode ()
@@ -370,8 +380,17 @@
     :defer t
     :config
     (progn
+      (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
+      (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
+      (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
+      (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
+      (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes))
+    :init
+    (progn
       ;; Githu PR settings
       ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
+      (setq magit-repository-directories '("~/cocos2d-x/"))
+
       (defun endless/visit-pull-request-url ()
         "Visit the current branch's PR on Github."
         (interactive)
@@ -407,12 +426,7 @@
 
       (ad-activate 'git-timemachine-mode)
 
-      (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
       (setq magit-process-popup-time 10)
-      (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
-      (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
-      (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
-      (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
       )))
 
 (defun zilongshanren/post-init-git-messenger ()
@@ -463,6 +477,14 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 (defun zilongshanren/post-init-helm ()
   (use-package helm
     :init
+    (progn
+      ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
+      ;; discussion of these options.
+      (setq helm-split-window-in-side-p t
+            helm-move-to-line-cycle-in-source t
+            helm-ff-search-library-in-sexp t
+            helm-ff-file-name-history-use-recentf t)
+
       (setq helm-completing-read-handlers-alist
             '((describe-function . ido)
               (describe-variable . ido)
@@ -490,8 +512,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
               (wg-load . ido)
               (rgrep . nil)
               (read-directory-name . ido)
-              ))
-      ))
+              )))))
 
 
 
@@ -514,15 +535,18 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (setq ace-pinyin-use-avy t)
       (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
       (global-set-key (kbd "M-s") 'avy-goto-char-2)
-      (evil-leader/set-key "SPC" 'avy-goto-char-2))))
+      (evil-leader/set-key "SPC" 'avy-goto-char-2)
+      (global-set-key (kbd "C-c SPC") 'avy-goto-char-2)
+      (evil-leader/set-key "l" 'avy-goto-line)
+      )))
 
 (defun zilongshanren/init-helm-ls-git ()
   (use-package helm-ls-git
     :defer t
+    :init
+    (evil-leader/set-key "pf" 'helm-ls-git-ls)
     :config
-    (progn
-      (setq helm-ls-git-show-abs-or-relative 'relative)
-      )))
+    (setq helm-ls-git-show-abs-or-relative 'relative)))
 
 
 ;;configs for EVIL mode
@@ -744,7 +768,32 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-deft ()
   (setq deft-use-filter-string-for-filename t)
-  (evil-leader/set-key-for-mode 'deft-mode
-    "mq" 'quit-window))
+  (evil-leader/set-key-for-mode 'deft-mode "mq" 'quit-window)
+  (setq deft-extension "org")
+  (setq deft-directory "~/org-notes/wiki"))
 
 
+
+(defun zilongshanren/post-init-prodigy ()
+  (prodigy-define-tag
+    :name 'jekyll
+    :env '(("LANG" "en_US.UTF-8")
+           ("LC_ALL" "en_US.UTF-8")))
+  ;; define service
+  (prodigy-define-service
+    :name "Python app"
+    :command "python"
+    :args '("-m" "SimpleHTTPServer" "6001")
+    :cwd "~/cocos2d-x/web"
+    :tags '(work)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Octopress preview"
+    :command "rake"
+    :args '("preview")
+    :cwd "~/4gamers.cn"
+    :tags '(octopress jekyll)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t))
