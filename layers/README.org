@@ -1,1 +1,20 @@
-My personal spacemacs config layers
+* 子龙山人的Emacs配置
+** 使用方法
+
+#+BEGIN_SRC sh
+  #clone spacemacs repo and use develop branch
+  git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
+  cd .emacs.d
+  git checkout --track origin/develop
+
+  #clone zilongshanren layer and checkout develop branch
+  git clone https://github.com/zilongshanren/spacemacs-private.git ~/.spacemacs.d/
+  cd ~/.spacemacs.d/
+  git checkout --track origin/develop
+#+END_SRC
+
+现在可以打开Emacs 24.5+ 开始使用我的配置了。
+
+** TODO 功能说明
+PS:有时间再写。
+
