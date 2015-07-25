@@ -236,8 +236,8 @@ layers configuration."
 
   (require 'yasnippet)
   (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-
-)
+  (setq yas-snippet-dirs "~/.spacemacs.d/snippets")
+  )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
