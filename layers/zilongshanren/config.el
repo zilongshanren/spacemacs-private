@@ -384,7 +384,8 @@ Single Capitals as you type."
   (linum-relative-toggle))
 
 ;; cleanup rencent files
-(add-hook 'kill-emacs-hook #'(lambda () (recentf-cleanup)))
+(add-hook 'kill-emacs-hook #'(lambda () (progn (recentf-cleanup)
+                                          (projectile-cleanup-known-projects))))
 
 ;; change evil initial mode state
 (menu-bar-mode t)

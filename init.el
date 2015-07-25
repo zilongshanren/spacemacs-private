@@ -28,7 +28,7 @@
      semantic                           ; too slow
      markdown
      unimpaired
-     ruby
+     (ruby :variables ruby-version-manager 'rvm)
      org
      ;; dash
      prodigy
