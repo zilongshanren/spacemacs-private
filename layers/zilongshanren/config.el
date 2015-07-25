@@ -43,11 +43,6 @@
 (defvar dired-filelist-cmd
   '(("vlc" "-L")))
 
-
-;; find Chinese filename by pingyin
-;; (require 'find-by-pinyin-dired)
-;; (define-key dired-mode-map "p" 'find-by-pinyin-dired)
-
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
 
@@ -85,9 +80,9 @@
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
 (setq frame-title-format
-      '("" " Guanghui - " (:eval (if (buffer-file-name)
-                                                    (abbreviate-file-name (buffer-file-name))
-                                   "%b"))))
+      '("" " Guanghui - "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; tramp, for sudo access
 (require 'tramp)
@@ -104,22 +99,14 @@
 ;; current subdir, instead of the current subdir of this dired buffer
 (setq dired-dwim-target t)
 
-;; (global-set-key (kbd "C-x C-b") 'ibuffer)
-(evil-leader/set-key "bi" 'ibuffer)
-;; when press c-d, the result is wrong.
-;; (defadvice ido-find-file (after find-file-sudo activate)
-;;   "Find file as root if necessary."
-;;   (unless (and buffer-file-name
-;;                (file-writable-p buffer-file-name))
-;;     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
 (require 'whitespace)
 (setq whitespace-line-column fill-column) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 
-;; (add-hook 'prog-mode-hook 'whitespace-mode)
-(global-whitespace-mode +1)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+;; (global-whitespace-mode +1)
 
 (setq auto-mode-alist
       (append
@@ -161,10 +148,6 @@
 (setq c-default-style "linux") ;; set style to "linux"
 (setq c-basic-offset 4)
 (c-set-offset 'substatement-open 0)
-;; (setq cc-other-file-alist
-;;       '(("\\.cpp"   (".h"))
-;;         ("\\.h"   (".c"".cpp"))))
-
 
 ;; (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
@@ -317,9 +300,6 @@
 
 
 (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
-
-
-;; (define-key global-map "\C-cl" 'org-insert-link)
 
 (setq org-mobile-directory "~/org-notes/org")
 

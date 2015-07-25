@@ -578,6 +578,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
       (define-key evil-insert-state-map (kbd "s-b") 'backward-word)
 
+      (evil-leader/set-key "bi" 'ibuffer)
       (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
       (define-key evil-ex-completion-map "\C-b" 'backward-char)
       (define-key evil-ex-completion-map "\C-k" 'kill-line)

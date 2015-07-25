@@ -231,7 +231,7 @@ layers configuration."
                                           company-dabbrev-code
                                           company-dabbrev :with company-yasnippet)
                                          company-files))
-  (diminish 'global-whitespace-mode)
+  (diminish 'whitespace-mode)
   (spacemacs|hide-lighter doxymacs-mode)
 
   (require 'yasnippet)
