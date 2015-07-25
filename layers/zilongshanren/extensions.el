@@ -1,10 +1,9 @@
-;;; extensions.el --- zilongshanren Layer extensions File for Spacemacs
+;;; extensions.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2012-2014 Sylvain Benner
-;; Copyright (c) 2014-2015 Sylvain Benner & Contributors
+;; Copyright (c) 2015-2016 zilongshanren 
 ;;
-;; Author: Sylvain Benner <sylvain.benner@gmail.com>
-;; URL: https://github.com/syl20bnr/spacemacs
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/spacemacs-private
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -26,15 +25,7 @@
   "Initialize doxymacs"
   (use-package doxymacs
     :init
-    (progn
-      ;; (defun my-doxymacs-font-lock-hook ()
-      ;;   (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-      ;;       (doxymacs-font-lock)))
-      ;; (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
-      (add-hook 'c-mode-common-hook 'doxymacs-mode)
-      (spacemacs|hide-lighter doxymacs-mode)
-      ))
-  )
+    (add-hook 'c-mode-common-hook 'doxymacs-mode)))
 
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
 (defun zilongshanren/init-nodejs-repl-eval ()

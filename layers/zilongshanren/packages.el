@@ -1,10 +1,9 @@
 ;;; packages.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2012-2014 Sylvain Benner
-;; Copyright (c) 2014-2015 Sylvain Benner & Contributors
+;; Copyright (c) 2015-2016 zilongshanren 
 ;;
-;; Author: Sylvain Benner <sylvain.benner@gmail.com>
-;; URL: https://github.com/syl20bnr/spacemacs
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/spacemacs-private
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -747,3 +746,5 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (setq deft-use-filter-string-for-filename t)
   (evil-leader/set-key-for-mode 'deft-mode
     "mq" 'quit-window))
+
+

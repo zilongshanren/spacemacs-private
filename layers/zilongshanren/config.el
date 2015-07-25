@@ -1,7 +1,25 @@
+;;; config.el --- zilongshanren Layer packages File for Spacemacs
+;;
+;; Copyright (c) 2015-2016 zilongshanren 
+;;
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/spacemacs-private
+;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
+
 (spacemacs|defvar-company-backends lua-mode)
 (spacemacs|defvar-company-backends markdown-mode)
 (spacemacs|defvar-company-backends org-mode)
 (spacemacs|defvar-company-backends nxml-mode)
+
+(spacemacs|add-toggle iimage
+                      :status iimage-mode
+                      :on (iimage-mode)
+                      :off (iimage-mode -1)
+                      :documentation "Enable iimage mode"
+                      :evil-leader "Ti")
 
 (require 'dired-x)
 (require 'dired-aux)
@@ -389,26 +407,11 @@ Single Capitals as you type."
 (add-hook 'kill-emacs-hook #'(lambda () (recentf-cleanup)))
 
 ;; change evil initial mode state
-(global-company-mode t)
 (menu-bar-mode t)
-(setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
-;; discussion of these options.
-(setq helm-split-window-in-side-p t
-      helm-move-to-line-cycle-in-source t
-      helm-ff-search-library-in-sexp t
-      helm-ff-file-name-history-use-recentf t)
-(diminish 'global-whitespace-mode)
-(require 'yasnippet)
 
 
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 
-(spacemacs|add-toggle iimage
-                      :status iimage-mode
-                      :on (iimage-mode)
-                      :off (iimage-mode -1)
-                      :documentation "Enable iimage mode"
-                      :evil-leader "Ti")
+

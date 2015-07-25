@@ -215,6 +215,7 @@ layers configuration."
   (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
   (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
   (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+  (require 'lispy)
   (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
   (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline)
   (setq flycheck-display-errors-function 'flycheck-display-error-messages)
@@ -223,7 +224,6 @@ layers configuration."
   ;; the solution is not perfect, maybe I should wait for the spacemacs author
   ;; to fix the issue
   (setq helm-ag-insert-at-point 'symbol)
-  (require 'lispy)
   (eval-after-load 'racket-repl-mode
     '(progn
        (define-key racket-repl-mode-map (kbd "]") nil)
@@ -243,6 +243,18 @@ layers configuration."
                                           company-ycmd
                                           company-dabbrev-code
                                           company-dabbrev :with company-yasnippet) company-files))
+  (global-company-mode t)
+  (diminish 'global-whitespace-mode)
+  (require 'yasnippet)
+
+  (spacemacs|hide-lighter doxymacs-mode)
+  (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
+  ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
+  ;; discussion of these options.
+  (setq helm-split-window-in-side-p t
+        helm-move-to-line-cycle-in-source t
+        helm-ff-search-library-in-sexp t
+        helm-ff-file-name-history-use-recentf t)
   (prodigy-define-tag
     :name 'jekyll
     :env '(("LANG" "en_US.UTF-8")
