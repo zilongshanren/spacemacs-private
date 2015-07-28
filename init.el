@@ -47,12 +47,14 @@
      emoji
      racket
      gtags
+     ranger
      ;; ess
      ;; pcre2el
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
-     ycmd
+     ;;  ycmd me is still slow..
+     ;; ycmd
      deft
      lua
      (clojure :variables clojure-enable-fancify-symbols t)
@@ -220,15 +222,18 @@ layers configuration."
 
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
-
+  (remove-hook 'c-mode-hook 'flycheck-mode)
+  (remove-hook 'c++-mode-hook 'flycheck-mode)
   ;; save desktop ;unprintable entity
   ;; (desktop-save-mode t)
   (delete "*Async Shell Command*" 'popwin:special-display-config)
 
   ;; company backend should be grouped
   (setq company-backends-c-mode-common '((company-c-headers
-                                          company-ycmd
                                           company-dabbrev-code
+                                          company-gtags
+                                          company-etags
+                                          company-keywords
                                           company-dabbrev :with company-yasnippet)
                                          company-files))
   (diminish 'whitespace-mode)

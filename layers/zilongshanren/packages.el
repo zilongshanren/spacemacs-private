@@ -26,7 +26,7 @@
       company-c-headers
       flycheck
       helm-make
-      ycmd
+      ;; ycmd ;;It's very slow and company-gtags is enough
       markdown-mode
       org-octopress
       impatient-mode
