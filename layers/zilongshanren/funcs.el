@@ -23,24 +23,6 @@ open and unsaved."
             )
           (dired-get-marked-files))))
 
-(defun jcs-retrieve-url()
-  "Retrieve URL from current Safari page"
-  (interactive)
-  (let ((result (shell-command-to-string
-                 "osascript -e 'tell application \"Safari\" to return URL of document 1'")))
-    (format "%s" result))
-  )
-
-
-;; get current safari tab link
-(defun jcs-get-link (link)
-  "Retrieve URL from current Safari page and prompt for description.
-Insert an Org link at point."
-  (interactive "sLink Description: ")
-  (let ((result (shell-command-to-string
-                 "osascript -e 'tell application \"Safari\" to return URL of document 1'")))
-    (insert (format "[[%s][%s]]" (org-trim result) link))))
-
 (defun zilongshanren/insert-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
   (interactive)
@@ -408,47 +390,6 @@ org-files and bookmarks"
       (evil-ex command-string))
       )))
 
-;; used by org-clock-sum-today-by-tags
-(defun filter-by-tags ()
-  (let ((head-tags (org-get-tags-at)))
-    (member current-tag head-tags)))
-
-(defun org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
-  (interactive "P")
-  (let* ((timerange-numeric-value (prefix-numeric-value timerange))
-         (files (org-add-archive-files (org-agenda-files)))
-         (include-tags '("WORK" "EMACS" "DREAM" "WRITING" "MEETING"
-                         "LIFE" "PROJECT" "OTHER"))
-         (tags-time-alist (mapcar (lambda (tag) `(,tag . 0)) include-tags))
-         (output-string "")
-         (tstart (or tstart
-                     (and timerange (equal timerange-numeric-value 4) (- (org-time-today) 86400))
-                     (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "Start Date/Time:"))
-                     (org-time-today)))
-         (tend (or tend
-                   (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "End Date/Time:"))
-                   (+ tstart 86400)))
-         h m file item prompt donesomething)
-    (while (setq file (pop files))
-      (setq org-agenda-buffer (if (file-exists-p file)
-                                  (org-get-agenda-file-buffer file)
-                                (error "No such file %s" file)))
-      (with-current-buffer org-agenda-buffer
-        (dolist (current-tag include-tags)
-          (org-clock-sum tstart tend 'filter-by-tags)
-          (setcdr (assoc current-tag tags-time-alist)
-                  (+ org-clock-file-total-minutes (cdr (assoc current-tag tags-time-alist)))))))
-    (while (setq item (pop tags-time-alist))
-      (unless (equal (cdr item) 0)
-        (setq donesomething t)
-        (setq h (/ (cdr item) 60)
-              m (- (cdr item) (* 60 h)))
-        (setq output-string (concat output-string (format "[-%s-] %.2d:%.2d\n" (car item) h m)))))
-    (unless donesomething
-      (setq output-string (concat output-string "[-Nothing-] Done nothing!!!\n")))
-    (unless noinsert
-      (insert output-string))
-    output-string))
 
 ;; insert date and time
 (defun zilongshanren/now ()
@@ -473,32 +414,6 @@ e.g. Sunday, September 17, 2000."
         (overlay-put overlay 'before-string (propertize "A"
                                                         'display '(left-fringe right-triangle)))))))
 
-;; http://wenshanren.org/?p=327
-;; change it to helm
-(defun zilongshanren/org-insert-src-block (src-code-type)
-  "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
-  (interactive
-   (let ((src-code-types
-          '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
-            "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
-            "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
-            "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
-            "scheme" "sqlite")))
-     (list (ido-completing-read "Source code type: " src-code-types))))
-  (progn
-    (newline-and-indent)
-    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
-    (newline-and-indent)
-    (insert "#+END_SRC\n")
-    (previous-line 2)
-    (org-edit-src-code)))
-
-(add-hook 'org-mode-hook '(lambda ()
-                            ;; keybinding for editing source code blocks
-                            ;; keybinding for inserting code blocks
-                            (local-set-key (kbd "C-c i s")
-                                           'zilongshanren/org-insert-src-block)
-                            ))
 
 ;; Screenshot
 (defun zilongshanren//insert-org-or-md-img-link (prefix imagename)

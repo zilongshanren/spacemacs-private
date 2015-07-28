@@ -233,6 +233,7 @@ layers configuration."
                                          company-files))
   (diminish 'whitespace-mode)
   (spacemacs|hide-lighter doxymacs-mode)
+  (define-key evil-insert-state-map "\C-p" 'previous-line)
 
   (require 'yasnippet)
   (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))

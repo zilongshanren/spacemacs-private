@@ -51,10 +51,6 @@
 (define-key global-map (kbd "<f1>") 'zilongshanren/hotspots)
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 
-(global-set-key (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c r") 'org-capture)
-(define-key global-map (kbd "<f9>") 'org-capture)
-(evil-leader/set-key-for-mode 'org-mode  "mt" 'org-set-tags)
 (global-set-key (kbd "C-.") 'company-capf)
 
 
@@ -66,4 +62,3 @@
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "C-`") 'toggle-input-method)
-(setq url-show-status nil)

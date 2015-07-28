@@ -552,8 +552,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 ;;configs for EVIL mode
 (defun zilongshanren/post-init-evil ()
   (use-package evil
-    :defer t
-    :config
+    :init
     (progn
       ;;mimic "nzz" behaviou in vim
       (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
@@ -573,7 +572,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
       (define-key evil-insert-state-map "\C-e" 'end-of-line)
       (define-key evil-insert-state-map "\C-n" 'next-line)
-      (define-key evil-insert-state-map "\C-p" 'previous-line)
       (define-key evil-insert-state-map "\C-k" 'kill-line)
       (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
       (define-key evil-insert-state-map (kbd "s-b") 'backward-word)
@@ -642,10 +640,133 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 (defun zilongshanren/post-init-org ()
   (progn
     (spacemacs|add-company-hook org-mode)
-    (evil-leader/set-key-for-mode 'org-mode
-      "." 'org-agenda
-      "mls" 'org-store-link
-      "mli" 'org-insert-link)
+
+    (require 'org-compat)
+    (require 'org)
+    (require 'org-install)
+    ;; (add-to-list 'org-modules "org-habit")
+    (add-to-list 'org-modules 'org-habit)
+    (require 'org-habit)
+
+    (setq org-agenda-inhibit-startup t) ;; ~50x speedup
+    (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
+    (setq org-agenda-window-setup 'current-window)
+    (setq org-log-done t)
+
+
+    (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
+
+    (setq org-mobile-directory "~/org-notes/org")
+
+
+    (setq org-todo-keywords
+          (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)"  "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Org clock
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    ;; Change task state to STARTED when clocking in
+    (setq org-clock-in-switch-to-state "STARTED")
+    ;; Save clock data and notes in the LOGBOOK drawer
+    (setq org-clock-into-drawer t)
+    ;; Removes clocked tasks with 0:00 duration
+    (setq org-clock-out-remove-zero-time-clocks t);; Show the clocked-in task - if any - in the header line
+
+
+    (setq org-default-notes-file "~/org-notes/gtd.org")
+
+    ;; the %i would copy the selected text into the template
+    ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
+    ;;add multi-file journal
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Daily Tasks")
+             "* TODO %?\n  %i\n"
+             :empty-lines 1)
+            ("w" "Todo" entry (file+headline "~/org-notes/gtd.org" "Weekly Tasks")
+             "* TODO %?\n  %i\n"
+             :empty-lines 1)
+            ("m" "Todo" entry (file+headline "~/org-notes/gtd.org" "Monthly Tasks")
+             "* TODO %?\n  %i\n"
+             :empty-lines 1)))
+    ;; (defun sanityinc/show-org-clock-in-header-line ()
+    ;;   (setq-default header-line-format '((" " org-mode-line-string " "))))
+
+    ;; (defun sanityinc/hide-org-clock-from-header-line ()
+    ;;   (setq-default header-line-format nil))
+
+    ;; (add-hook 'org-clock-in-hook 'sanityinc/show-org-clock-in-header-line)
+    ;; (add-hook 'org-clock-out-hook 'sanityinc/hide-org-clock-from-header-line)
+    ;; (add-hook 'org-clock-cancel-hook 'sanityinc/hide-org-clock-from-header-line)
+    ;; used by org-clock-sum-today-by-tags
+    (defun filter-by-tags ()
+      (let ((head-tags (org-get-tags-at)))
+        (member current-tag head-tags)))
+
+    (defun org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
+      (interactive "P")
+      (let* ((timerange-numeric-value (prefix-numeric-value timerange))
+             (files (org-add-archive-files (org-agenda-files)))
+             (include-tags '("WORK" "EMACS" "DREAM" "WRITING" "MEETING"
+                             "LIFE" "PROJECT" "OTHER"))
+             (tags-time-alist (mapcar (lambda (tag) `(,tag . 0)) include-tags))
+             (output-string "")
+             (tstart (or tstart
+                         (and timerange (equal timerange-numeric-value 4) (- (org-time-today) 86400))
+                         (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "Start Date/Time:"))
+                         (org-time-today)))
+             (tend (or tend
+                       (and timerange (equal timerange-numeric-value 16) (org-read-date nil nil nil "End Date/Time:"))
+                       (+ tstart 86400)))
+             h m file item prompt donesomething)
+        (while (setq file (pop files))
+          (setq org-agenda-buffer (if (file-exists-p file)
+                                      (org-get-agenda-file-buffer file)
+                                    (error "No such file %s" file)))
+          (with-current-buffer org-agenda-buffer
+            (dolist (current-tag include-tags)
+              (org-clock-sum tstart tend 'filter-by-tags)
+              (setcdr (assoc current-tag tags-time-alist)
+                      (+ org-clock-file-total-minutes (cdr (assoc current-tag tags-time-alist)))))))
+        (while (setq item (pop tags-time-alist))
+          (unless (equal (cdr item) 0)
+            (setq donesomething t)
+            (setq h (/ (cdr item) 60)
+                  m (- (cdr item) (* 60 h)))
+            (setq output-string (concat output-string (format "[-%s-] %.2d:%.2d\n" (car item) h m)))))
+        (unless donesomething
+          (setq output-string (concat output-string "[-Nothing-] Done nothing!!!\n")))
+        (unless noinsert
+          (insert output-string))
+        output-string))
+
+
+    ;; http://wenshanren.org/?p=327
+    ;; change it to helm
+    (defun zilongshanren/org-insert-src-block (src-code-type)
+      "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+      (interactive
+       (let ((src-code-types
+              '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
+                "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
+                "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
+                "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
+                "scheme" "sqlite")))
+         (list (ido-completing-read "Source code type: " src-code-types))))
+      (progn
+        (newline-and-indent)
+        (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+        (newline-and-indent)
+        (insert "#+END_SRC\n")
+        (previous-line 2)
+        (org-edit-src-code)))
+
+    (add-hook 'org-mode-hook '(lambda ()
+                                ;; keybinding for editing source code blocks
+                                ;; keybinding for inserting code blocks
+                                (local-set-key (kbd "C-c i s")
+                                               'zilongshanren/org-insert-src-block)
+                                ))
     (require 'ox-publish)
     (add-to-list 'org-latex-classes '("ctexart" "\\documentclass[11pt]{ctexart}
                                         [NO-DEFAULT-PACKAGES]
@@ -693,6 +814,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
                                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
                                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+    ;; {{ export org-mode in Chinese into PDF
+    ;; @see http://freizl.github.io/posts/tech/2012-04-06-export-orgmode-file-in-Chinese.html
+    ;; and you need install texlive-xetex on different platforms
+    ;; To install texlive-xetex:
+    ;;    `sudo USE="cjk" emerge texlive-xetex` on Gentoo Linux
+    ;; }}
     (setq org-latex-default-class "ctexart")
     (setq org-latex-pdf-process
           '(
@@ -715,10 +842,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (R . t)
         (ditaa . t)))
 
-    (evil-leader/set-key-for-mode 'org-mode
-      "mBc" 'org-babel-remove-result)
-    ;; config for org export
-    (require 'ox-publish)
+
     (defvar zilongshanren-website-html-preamble
       "<div class='nav'>
 <ul>
@@ -764,7 +888,16 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           '(("O" tags-todo "WORK")
             ("P" tags-todo "PROJECT")))
 
+    (global-set-key (kbd "C-c a") 'org-agenda)
+    (define-key global-map (kbd "C-c r") 'org-capture)
+    (define-key global-map (kbd "<f9>") 'org-capture)
 
+    (evil-leader/set-key-for-mode 'org-mode
+      "." 'org-agenda
+      "mls" 'org-store-link
+      "mBc" 'org-babel-remove-result
+      "mt" 'org-set-tags
+      "mli" 'org-insert-link)
     ))
 
 (defun zilongshanren/post-init-deft ()
