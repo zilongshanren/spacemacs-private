@@ -96,8 +96,8 @@
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))
     :init
     (progn
-      (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
-      (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
+      ;; (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
+      ;; (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
       (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
       (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
@@ -544,7 +544,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (use-package helm-ls-git
     :defer t
     :init
-    (evil-leader/set-key "pf" 'helm-ls-git-ls)
     :config
     (setq helm-ls-git-show-abs-or-relative 'relative)))
 
@@ -570,11 +569,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
       (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-      (define-key evil-insert-state-map "\C-e" 'end-of-line)
-      (define-key evil-insert-state-map "\C-n" 'next-line)
-      (define-key evil-insert-state-map "\C-k" 'kill-line)
-      (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
-      (define-key evil-insert-state-map (kbd "s-b") 'backward-word)
+      ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
+      ;; (define-key evil-insert-state-map "\C-n" 'next-line)
+      ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
+      (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
+      (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
 
       (evil-leader/set-key "bi" 'ibuffer)
       (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)

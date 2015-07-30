@@ -217,13 +217,14 @@ layers configuration."
     '(progn
        (define-key racket-repl-mode-map (kbd "]") nil)
        (define-key racket-repl-mode-map (kbd "[") nil)))
-
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
 
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
   (remove-hook 'c-mode-hook 'flycheck-mode)
   (remove-hook 'c++-mode-hook 'flycheck-mode)
+  (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  (setq helm-buffer-max-length 45)
   ;; save desktop ;unprintable entity
   ;; (desktop-save-mode t)
   (delete "*Async Shell Command*" 'popwin:special-display-config)
@@ -233,10 +234,21 @@ layers configuration."
                                           company-dabbrev-code
                                           company-gtags
                                           company-etags
-                                          company-keywords
-                                          company-dabbrev :with company-yasnippet)
-                                         company-files))
+                                          company-keywords :with company-yasnippet)
+                                         company-files company-dabbrev ))
+
+
+  (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
+    "Preparing the holy water flasks."
+    (evil-emacs-state))
+  (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
+  (bind-keys ("<C-[>" . evil-normal-state))
+  (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
+  (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+  
+
   (diminish 'whitespace-mode)
+  
   (spacemacs|hide-lighter doxymacs-mode)
   (define-key evil-insert-state-map "\C-p" 'previous-line)
 
