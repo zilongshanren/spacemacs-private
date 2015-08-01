@@ -591,10 +591,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       ;; in spacemacs, we always use evilify miscro state
       (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
 
-      (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
-      (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
-      (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
-      (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
+      ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
+      (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
+      ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
+      ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
+      ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
 
       ;; for emacs shell mode
       ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
@@ -603,8 +604,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         'evil-delete-backward-word)
       (define-key evil-emacs-state-map (kbd "s-p") 'projectile-switch-project)
 
-      (evil-leader/set-key "fR" 'rename-file-and-buffer)
-      )))
+      (evil-leader/set-key "fR" 'rename-file-and-buffer))))
 
 (defun zilongshanren/init-org-mac-link ()
   (use-package org-mac-link

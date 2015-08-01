@@ -28,7 +28,7 @@
      semantic                           ; too slow
      markdown
      unimpaired
-     (ruby :variables ruby-version-manager 'rvm)
+     ;; (ruby :variables ruby-version-manager 'rvm)
      org
      ;; dash
      prodigy
@@ -47,7 +47,7 @@
      emoji
      racket
      gtags
-     ranger
+     ;; ranger
      ;; ess
      ;; pcre2el
      (shell :variables
