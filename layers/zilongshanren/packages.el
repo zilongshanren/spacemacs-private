@@ -53,10 +53,14 @@
       deft
       nodejs-repl
       prodigy
+      yaml-mode
       ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
+
+(defun zilongshanren/init-yaml-mode ()
+  (use-package yaml-mode :defer t))
 
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
@@ -227,12 +231,19 @@
       (evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
-      (setq org-octopress-directory-top       "~/4gamers.cn/source")
-      (setq org-octopress-directory-posts     "~/4gamers.cn/source/_posts")
-      (setq org-octopress-directory-org-top   "~/4gamers.cn/source")
-      (setq org-octopress-directory-org-posts "~/4gamers.cn/source/blog")
-      (setq org-octopress-setup-file          "~/4gamers.cn/setupfile.org")
-      )))
+      (setq org-blog-dir "~/4gamers.cn/")
+      (setq org-octopress-directory-top       org-blog-dir)
+      (setq org-octopress-directory-posts   (concat org-blog-dir "source/_posts"))
+      (setq org-octopress-directory-org-top org-blog-dir)
+      (setq org-octopress-directory-org-posts (concat org-blog-dir "blog"))
+      (setq org-octopress-setup-file         (concat org-blog-dir "setupfile.org"))
+
+      (defun zilongshanren/org-save-and-export ()
+        (interactive)
+        (org-octopress-setup-publish-project)
+        (org-publish-project "octopress" t))
+
+      (evil-leader/set-key "op" 'zilongshanren/org-save-and-export))))
 
 (defun zilongshanren/init-impatient-mode ()
   "Initialize impatient mode"
@@ -841,7 +852,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (R . t)
         (ditaa . t)))
 
-
     (defvar zilongshanren-website-html-preamble
       "<div class='nav'>
 <ul>
@@ -919,6 +929,24 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :args '("-m" "SimpleHTTPServer" "6001")
     :cwd "~/cocos2d-x/web"
     :tags '(work)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Hexo Server"
+    :command "hexo"
+    :args '("server")
+    :cwd "~/4gamers.cn"
+    :tags '(hexo server)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Hexo Deploy"
+    :command "hexo"
+    :args '("deploy" "--generate")
+    :cwd "~/4gamers.cn"
+    :tags '(hexo deploy)
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t)
 

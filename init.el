@@ -203,7 +203,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-company-mode t)
-
+  (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
 
   (when (system-is-mac)
@@ -250,7 +250,6 @@ layers configuration."
   (diminish 'whitespace-mode)
   
   (spacemacs|hide-lighter doxymacs-mode)
-  (define-key evil-insert-state-map "\C-p" 'previous-line)
 
   (require 'yasnippet)
   (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
