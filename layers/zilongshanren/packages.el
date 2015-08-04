@@ -54,6 +54,7 @@
       nodejs-repl
       prodigy
       yaml-mode
+      js2-mode
       ))
 
 ;; List of packages to exclude.
@@ -401,6 +402,8 @@
       ;; Githu PR settings
       ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
       (setq magit-repository-directories '("~/cocos2d-x/"))
+      (add-to-list 'magit-no-confirm 'stage-all-changes)
+      (setq magit-push-always-verify nil)
 
       (defun endless/visit-pull-request-url ()
         "Visit the current branch's PR on Github."
@@ -958,3 +961,27 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :tags '(octopress jekyll)
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t))
+
+(defun zilongshanren/post-init-js2-mode ()
+  (progn
+    ;; {{ patching imenu in js2-mode
+    (setq javascript-common-imenu-regex-list
+          '(("Controller" "[. \t]controller([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Controller" "[. \t]controllerAs:[ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Filter" "[. \t]filter([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("State" "[. \t]state([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Factory" "[. \t]factory([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Service" "[. \t]service([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Module" "[. \t]module([ \t]*['\"]\\([a-zA-Z0-9_\.]+\\)" 1)
+            ("ngRoute" "[. \t]when(\\(['\"][a-zA-Z0-9_\/]+['\"]\\)" 1)
+            ("Directive" "[. \t]directive([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Event" "[. \t]\$on([ \t]*['\"]\\([^'\"]+\\)" 1)
+            ("Config" "[. \t]config([ \t]*function *( *\\([^\)]+\\)" 1)
+            ("Config" "[. \t]config([ \t]*\\[ *['\"]\\([^'\"]+\\)" 1)
+            ("OnChange" "[ \t]*\$(['\"]\\([^'\"]*\\)['\"]).*\.change *( *function" 1)
+            ("OnClick" "[ \t]*\$([ \t]*['\"]\\([^'\"]*\\)['\"]).*\.click *( *function" 1)
+            ("Watch" "[. \t]\$watch( *['\"]\\([^'\"]+\\)" 1)
+            ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
+            ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+            ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))
+    (setq js2-imenu-extra-generic-expression javascript-common-imenu-regex-list)))

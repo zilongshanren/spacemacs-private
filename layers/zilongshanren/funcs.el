@@ -446,3 +446,11 @@ e.g. Sunday, September 17, 2000."
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
       (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png"))))
   (insert "\n"))
+
+;;js2-mode enhancement
+(defun my-which-function ()
+  ;; clean the imenu cache
+  ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
+  (setq imenu--index-alist nil)
+  (which-function-mode t)
+  (which-function))

@@ -206,10 +206,12 @@ layers configuration."
   (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
 
+
   (when (system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
   (setq powerline-default-separator 'arrow)
-
+  ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
+  (setq inhibit-eol-conversion t)
   ;; the solution is not perfect, maybe I should wait for the spacemacs author
   ;; to fix the issue
   (setq helm-ag-insert-at-point 'symbol)
@@ -246,6 +248,18 @@ layers configuration."
   (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
   (define-key evil-emacs-state-map [escape] 'evil-normal-state)
   
+  (setq chinese-wbim-punc-translate-p nil)
+  (evil-leader/set-key
+    "otp" 'chinese-wbim-punc-translate-toggle)
+  (setq chinese-wbim-wb-use-gbk t)
+  (add-hook 'chinese-wbim-wb-load-hook
+            (lambda ()
+              (let ((map (chinese-wbim-mode-map)))
+                (define-key map "-" 'chinese-wbim-previous-page)
+                (define-key map "=" 'chinese-wbim-next-page))))
+  
+  
+  
 
   (diminish 'whitespace-mode)
   
@@ -254,6 +268,7 @@ layers configuration."
   (require 'yasnippet)
   (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
   (setq yas-snippet-dirs "~/.spacemacs.d/snippets")
+
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
