@@ -259,8 +259,9 @@ layers configuration."
                 (define-key map "=" 'chinese-wbim-next-page))))
   (spacemacs/toggle-hungry-delete-on)
 
+
   (diminish 'whitespace-mode)
-  
+
   (spacemacs|hide-lighter doxymacs-mode)
 
   (require 'yasnippet)
@@ -289,14 +290,12 @@ layers configuration."
  '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(magit-use-overlays nil)
  '(org-agenda-custom-commands nil)
- '(org-agenda-files (quote ("~/org-notes/gtd.org")))
  '(org-agenda-ndays 1)
  '(org-agenda-show-all-dates t)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-deadline-prewarning-if-scheduled t)
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
- '(org-agenda-text-search-extra-files (file-expand-wildcards "~/org-notes/wiki/*.org"))
  '(org-deadline-warning-days 14)
  '(org-fast-tag-selection-single-key (quote expert))
  '(org-reverse-note-order t)

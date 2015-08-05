@@ -662,6 +662,14 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (add-to-list 'org-modules 'org-habit)
     (require 'org-habit)
 
+    ;; define the refile targets
+    (setq org-agenda-files (quote ("~/org-notes" )))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
+    (setq org-refile-targets
+          '((nil :maxlevel . 4)
+            (org-agenda-files :maxlevel . 4)))
+
     (setq org-agenda-inhibit-startup t) ;; ~50x speedup
     (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
     (setq org-agenda-window-setup 'current-window)
@@ -697,12 +705,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Daily Tasks")
              "* TODO %?\n  %i\n"
              :empty-lines 1)
-            ("w" "Todo" entry (file+headline "~/org-notes/gtd.org" "Weekly Tasks")
-             "* TODO %?\n  %i\n"
-             :empty-lines 1)
-            ("m" "Todo" entry (file+headline "~/org-notes/gtd.org" "Monthly Tasks")
-             "* TODO %?\n  %i\n"
-             :empty-lines 1)))
+            ))
     ;; (defun sanityinc/show-org-clock-in-header-line ()
     ;;   (setq-default header-line-format '((" " org-mode-line-string " "))))
 
@@ -869,7 +872,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq org-publish-project-alist
           `(
             ("blog-notes"
-             :base-directory "~/org-notes/wiki"
+             :base-directory "~/org-notes"
              :base-extension "org"
              :publishing-directory "~/org-notes/public_html/"
 
@@ -878,6 +881,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :publishing-function org-html-publish-to-html
              :headline-levels 4           ; Just the default for this project.
              :auto-preamble t
+             :exclude "gtd*"
              :section-numbers nil
              :html-preamble ,zilongshanren-website-html-preamble
              :author "zilongshanren"
@@ -889,9 +893,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :sitemap-file-entry-format "%d %t"
              )
             ("blog-static"
-             :base-directory "~/org-notes/wiki"
+             :base-directory "~/org-notes"
              :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
              :publishing-directory "~/org-notes/public_html/"
+             :exclude "gtd*"
              :recursive t
              :publishing-function org-publish-attachment
              )
@@ -904,6 +909,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (global-set-key (kbd "C-c a") 'org-agenda)
     (define-key global-map (kbd "C-c r") 'org-capture)
     (define-key global-map (kbd "<f9>") 'org-capture)
+    (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
 
     (evil-leader/set-key-for-mode 'org-mode
       "." 'org-agenda
@@ -928,7 +934,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
            ("LC_ALL" "en_US.UTF-8")))
   ;; define service
   (prodigy-define-service
-    :name "Python app"
+    :name "Preview Cocos2D-HTML5"
     :command "python"
     :args '("-m" "SimpleHTTPServer" "6001")
     :cwd "~/cocos2d-x/web"
@@ -955,11 +961,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :kill-process-buffer-on-stop t)
 
   (prodigy-define-service
-    :name "Octopress preview"
-    :command "rake"
-    :args '("preview")
-    :cwd "~/4gamers.cn"
-    :tags '(octopress jekyll)
+    :name "Org wiki preview"
+    :command "python"
+    :args '("-m" "SimpleHTTPServer" "8088")
+    :cwd "~/org-notes/public_html"
+    :tags '(org-mode)
+    :init (lambda () (browse-url "http://localhost:8088"))
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t))
 
