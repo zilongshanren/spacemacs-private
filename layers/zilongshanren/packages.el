@@ -127,7 +127,8 @@
 
 
 (defun zilongshanren/post-init-company ()
-    (setq company-minimum-prefix-length 1)
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.4)
     (global-set-key (kbd "C-.") 'company-complete)
     (spacemacs|add-company-hook lua-mode)
     (spacemacs|add-company-hook nxml-mode)
@@ -392,6 +393,7 @@
     :defer t
     :config
     (progn
+      (add-to-list 'magit-no-confirm 'stage-all-changes)
       (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
       (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
       (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
@@ -402,7 +404,6 @@
       ;; Githu PR settings
       ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
       (setq magit-repository-directories '("~/cocos2d-x/"))
-      (add-to-list 'magit-no-confirm 'stage-all-changes)
       (setq magit-push-always-verify nil)
 
       (defun endless/visit-pull-request-url ()

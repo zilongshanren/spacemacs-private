@@ -323,7 +323,11 @@ Single Capitals as you type."
 ;; change evil initial mode state
 (menu-bar-mode t)
 
-(add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
-
+(add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
+ 
 (setq url-show-status nil)
+
+;;"http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
+(global-set-key "\C-t" #'transpose-lines)
+(define-key ctl-x-map "\C-t" #'transpose-chars)

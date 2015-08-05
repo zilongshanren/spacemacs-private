@@ -30,7 +30,7 @@
      unimpaired
      ;; (ruby :variables ruby-version-manager 'rvm)
      org
-     ;; dash
+     dash
      prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
@@ -233,10 +233,10 @@ layers configuration."
 
   ;; company backend should be grouped
   (setq company-backends-c-mode-common '((company-c-headers
-                                          company-dabbrev-code
-                                          company-gtags
+                                          ccompany-keywords
+                                          ompany-dabbrev-code
                                           company-etags
-                                          company-keywords :with company-yasnippet)
+                                          company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
 
 
@@ -257,9 +257,7 @@ layers configuration."
               (let ((map (chinese-wbim-mode-map)))
                 (define-key map "-" 'chinese-wbim-previous-page)
                 (define-key map "=" 'chinese-wbim-next-page))))
-  
-  
-  
+  (spacemacs/toggle-hungry-delete-on)
 
   (diminish 'whitespace-mode)
   
