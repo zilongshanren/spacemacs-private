@@ -205,7 +205,7 @@ layers configuration."
   (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
-
+  (global-set-key (kbd "C-c b") 'org-iswitchb)
 
   (when (system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
@@ -287,6 +287,7 @@ layers configuration."
  '(golden-ratio-exclude-modes
    (quote
     ("bs-mode" "calc-mode" "ediff-mode" "dired-mode" "gud-mode" "gdb-locals-mode" "gdb-registers-mode" "gdb-breakpoints-mode" "gdb-threads-mode" "gdb-frames-mode" "gdb-inferior-io-mode" "gud-mode" "gdb-inferior-io-mode" "gdb-disassembly-mode" "gdb-memory-mode" "restclient-mode" "speedbar-mode" term-mode)))
+ '(helm-ag-always-set-extra-option t)
  '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(magit-use-overlays nil)
  '(org-agenda-custom-commands nil)

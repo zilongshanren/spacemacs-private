@@ -670,11 +670,29 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           '((nil :maxlevel . 4)
             (org-agenda-files :maxlevel . 4)))
 
-    (setq org-agenda-inhibit-startup t) ;; ~50x speedup
+    (setq org-agenda-inhibit-startup t)       ;; ~50x speedup
     (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
     (setq org-agenda-window-setup 'current-window)
     (setq org-log-done t)
 
+    ;; 加密文章
+    ;; "http://coldnew.github.io/blog/2013/07/13_5b094.html"
+    ;; org-mode 設定
+    (require 'org-crypt)
+
+    ;; 當被加密的部份要存入硬碟時，自動加密回去
+    (org-crypt-use-before-save-magic)
+
+    ;; 設定要加密的 tag 標籤為 secret
+    (setq org-crypt-tag-matcher "secret")
+
+    ;; 避免 secret 這個 tag 被子項目繼承 造成重複加密
+    ;; (但是子項目還是會被加密喔)
+    (setq org-tags-exclude-from-inheritance (quote ("secret")))
+
+    ;; 用於加密的 GPG 金鑰
+    ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
+    (setq org-crypt-key nil)
 
     (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
 
@@ -684,16 +702,16 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq org-todo-keywords
           (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
                   (sequence "WAITING(w@/!)" "SOMEDAY(S)"  "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Org clock
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ;; Change task state to STARTED when clocking in
     (setq org-clock-in-switch-to-state "STARTED")
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
     ;; Removes clocked tasks with 0:00 duration
-    (setq org-clock-out-remove-zero-time-clocks t);; Show the clocked-in task - if any - in the header line
+    (setq org-clock-out-remove-zero-time-clocks t) ;; Show the clocked-in task - if any - in the header line
 
 
     (setq org-default-notes-file "~/org-notes/gtd.org")
@@ -705,7 +723,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Daily Tasks")
              "* TODO %?\n  %i\n"
              :empty-lines 1)
-            ))
+            ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+             "* %?\n  %i\n %U"
+             :empty-lines 1)
+            ("j" "Journal Entry"
+             entry (file+datetree "~/org-notes/journal.org")
+             "* %?"
+             :empty-lines 1)))
     ;; (defun sanityinc/show-org-clock-in-header-line ()
     ;;   (setq-default header-line-format '((" " org-mode-line-string " "))))
 
@@ -855,15 +879,21 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (sh . t)
         (python . t)
         (emacs-lisp . t)
+        (plantuml . t)
         (C . t)
         (R . t)
         (ditaa . t)))
+
+    (setq org-plantuml-jar-path
+          (expand-file-name "~/.spacemacs.d/plantuml.jar"))
+    (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
+
 
     (defvar zilongshanren-website-html-preamble
       "<div class='nav'>
 <ul>
 <li><a href='http://zilongshanren.com'>博客</a></li>
-<li><a href='/index.html'>笔记目录</a></li>
+<li><a href='/index.html'>Wiki目录</a></li>
 </ul>
 </div>")
     (defvar zilongshanren-website-html-blog-head
@@ -879,29 +909,28 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :recursive t
              :html-head , zilongshanren-website-html-blog-head
              :publishing-function org-html-publish-to-html
-             :headline-levels 4           ; Just the default for this project.
+             :headline-levels 4         ; Just the default for this project.
              :auto-preamble t
-             :exclude "gtd*"
+             :exclude "gtd.org"
+             :exclude-tags ("ol" "noexport")
              :section-numbers nil
              :html-preamble ,zilongshanren-website-html-preamble
              :author "zilongshanren"
              :email "guanghui8827@gmail.com"
-             :auto-sitemap t                ; Generate sitemap.org automagically...
-             :sitemap-filename "sitemap.org" ; ... call it sitemap.org (it's the default)...
-             :sitemap-title "Sitemap"        ; ... with title 'Sitemap'.
+             :auto-sitemap t               ; Generate sitemap.org automagically...
+             :sitemap-filename "index.org" ; ... call it sitemap.org (it's the default)...
+             :sitemap-title "我的wiki"     ; ... with title 'Sitemap'.
              :sitemap-sort-files anti-chronologically
-             :sitemap-file-entry-format "%d %t"
+             :sitemap-file-entry-format "%t" ; %d to output date, we don't need date here
              )
             ("blog-static"
              :base-directory "~/org-notes"
              :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
              :publishing-directory "~/org-notes/public_html/"
-             :exclude "gtd*"
              :recursive t
              :publishing-function org-publish-attachment
              )
-            ("blog" :components ("blog-notes" "blog-static"))
-            ))
+            ("blog" :components ("blog-notes" "blog-static"))))
     (setq org-agenda-custom-commands
           '(("O" tags-todo "WORK")
             ("P" tags-todo "PROJECT")))
