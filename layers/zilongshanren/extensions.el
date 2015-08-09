@@ -14,6 +14,7 @@
         ;; post extension names go here
         doxymacs
         nodejs-repl-eval
+        plain-org-wiki
         ))
 
 (setq zilongshanren-pre-extensions
@@ -38,3 +39,12 @@
       (evil-leader/set-key-for-mode 'js2-mode
         "msd" 'nodejs-repl-eval-dwim)
       )))
+
+(defun zilongshanren/init-plain-org-wiki ()
+  (use-package plain-org-wiki
+    :init
+    (progn
+      (setq pow-directory "~/org-notes")
+      (evil-leader/set-key-for-mode 'org-mode
+        "owh" 'plain-org-wiki-helm
+        "owf" 'plain-org-wiki))))

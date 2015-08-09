@@ -46,7 +46,7 @@
       evil
       ox-reveal
       org-mac-link
-      ;; worf
+      worf
       org-download
       flycheck-package
       org
@@ -55,10 +55,17 @@
       prodigy
       yaml-mode
       js2-mode
+      visual-regexp
       ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
+
+(defun zilongshanren/init-visual-regexp ()
+  (use-package visual-regexp
+    :init
+    (define-key global-map (kbd "C-c r") 'vr/replace)
+    (define-key global-map (kbd "C-c q") 'vr/query-replace)))
 
 (defun zilongshanren/init-yaml-mode ()
   (use-package yaml-mode :defer t))
@@ -636,11 +643,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js")
       )))
 
-;; (defun zilongshanren/init-worf ()
-;;   (use-package worf
-;;     :defer t
-;;     :init
-;;     (add-hook 'org-mode-hook 'worf-mode)))
+(defun zilongshanren/init-worf ()
+  (use-package worf
+    :defer t
+    :init
+    (add-hook 'org-mode-hook 'worf-mode)))
 
 (defun zilongshanren/init-org-download ()
   (use-package org-download
@@ -952,7 +959,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (setq deft-use-filter-string-for-filename t)
   (evil-leader/set-key-for-mode 'deft-mode "mq" 'quit-window)
   (setq deft-extension "org")
-  (setq deft-directory "~/org-notes/wiki"))
+  (setq deft-directory "~/org-notes"))
 
 
 
