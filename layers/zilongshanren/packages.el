@@ -56,16 +56,21 @@
       yaml-mode
       js2-mode
       visual-regexp
+      visual-regexp-steroids
       ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
 
-(defun zilongshanren/init-visual-regexp ()
-  (use-package visual-regexp
+(defun zilongshanren/init-visual-regexp-steroids ()
+  (use-package visual-regexp-steroids
     :init
     (define-key global-map (kbd "C-c r") 'vr/replace)
     (define-key global-map (kbd "C-c q") 'vr/query-replace)))
+
+(defun zilongshanren/init-visual-regexp ()
+  (use-package visual-regexp
+    :init))
 
 (defun zilongshanren/init-yaml-mode ()
   (use-package yaml-mode :defer t))
@@ -939,11 +944,27 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              )
             ("blog" :components ("blog-notes" "blog-static"))))
     (setq org-agenda-custom-commands
-          '(("O" tags-todo "WORK")
-            ("P" tags-todo "PROJECT")))
+          '(
+            ("c" . "任务安排")
+            ("ca" "#A" agenda "重要,非常紧急的任务"
+             ((org-agenda-entry-types '(:scheduled))
+              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
+                                                                   "\\[#A\\]"))))
+            ("cb" "#B" agenda "不重要,非常紧急的任务"
+             ((org-agenda-entry-types '(:scheduled))
+              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
+                                                                   "\\[#B\\]"))))
+            ("cc" "#C" agenda "重要,不紧急的任务"
+             ((org-agenda-entry-types '(:scheduled))
+              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
+                                                                   "\\[#C\\]"))))
+            ("W" tags-todo "WORK")
+            ("P" tags-todo "PROJECT")
+            ("E" tags-todo "Emacs")
+            ("O" tags-todo "OTHER")
+            ("D" tags-todo "DREAM")))
 
     (global-set-key (kbd "C-c a") 'org-agenda)
-    (define-key global-map (kbd "C-c r") 'org-capture)
     (define-key global-map (kbd "<f9>") 'org-capture)
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
 
