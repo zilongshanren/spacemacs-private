@@ -224,6 +224,7 @@ layers configuration."
        (define-key racket-repl-mode-map (kbd "[") nil)))
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
 
+  
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
   (remove-hook 'c-mode-hook 'flycheck-mode)
@@ -291,6 +292,7 @@ layers configuration."
    (quote
     ("bs-mode" "calc-mode" "ediff-mode" "dired-mode" "gud-mode" "gdb-locals-mode" "gdb-registers-mode" "gdb-breakpoints-mode" "gdb-threads-mode" "gdb-frames-mode" "gdb-inferior-io-mode" "gud-mode" "gdb-inferior-io-mode" "gdb-disassembly-mode" "gdb-memory-mode" "restclient-mode" "speedbar-mode" term-mode)))
  '(helm-ag-always-set-extra-option t)
+ '(helm-ls-git-fuzzy-match t)
  '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(magit-use-overlays nil)
  '(org-agenda-custom-commands nil)

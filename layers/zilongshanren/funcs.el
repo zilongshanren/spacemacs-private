@@ -63,6 +63,29 @@ open and unsaved."
   (interactive)
   (org-map-entries 'org-archive-subtree "/CANCELLED" 'file))
 
+;; "https://github.com/vhallac/.emacs.d/blob/master/config/customize-org-agenda.el"
+(defun bh/skip-non-stuck-projects ()
+  "Skip trees that are not stuck projects"
+  (bh/list-sublevels-for-projects-indented)
+  (save-restriction
+    (widen)
+    (let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
+      ;; VH: I changed this line from
+      ;; (if (bh/is-project-p)
+      (if (and (eq (point) (bh/find-project-task))
+               (bh/is-project-p))
+          (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
+                 (has-next ))
+            (save-excursion
+              (forward-line 1)
+              (while (and (not has-next) (< (point) subtree-end) (re-search-forward "^\\*+ NEXT " subtree-end t))
+                (unless (member "WAITING" (org-get-tags-at))
+                  (setq has-next t))))
+            (if has-next
+                next-headline
+              nil)) ; a stuck project, has subtasks but no next task
+        next-headline))))
+
 ;; when save a buffer, the directory is not exsits, it will ask you to create the directory
 (add-hook 'before-save-hook
           (lambda ()

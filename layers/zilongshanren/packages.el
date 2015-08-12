@@ -681,6 +681,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq org-refile-targets
           '((nil :maxlevel . 4)
             (org-agenda-files :maxlevel . 4)))
+    ;; config stuck project
+    (setq org-stuck-projects
+          '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:"))
 
     (setq org-agenda-inhibit-startup t)       ;; ~50x speedup
     (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
