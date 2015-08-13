@@ -25,7 +25,6 @@
       cmake-mode
       company-c-headers
       flycheck
-      helm-make
       ;; ycmd ;;It's very slow and company-gtags is enough
       markdown-mode
       org-octopress
@@ -53,7 +52,6 @@
       deft
       nodejs-repl
       prodigy
-      yaml-mode
       js2-mode
       visual-regexp
       visual-regexp-steroids
@@ -71,9 +69,6 @@
 (defun zilongshanren/init-visual-regexp ()
   (use-package visual-regexp
     :init))
-
-(defun zilongshanren/init-yaml-mode ()
-  (use-package yaml-mode :defer t))
 
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
@@ -206,10 +201,6 @@
               (flycheck-package-setup)
               (setq flycheck-display-errors-function 'flycheck-display-error-messages)
               (setq flycheck-display-errors-delay 0.2))))
-
-(defun zilongshanren/init-helm-make ()
-  (use-package helm-make
-    :defer t))
 
 (defun zilongshanren/post-init-ycmd ()
   (setq ycmd-tag-files 'auto)
@@ -543,17 +534,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 
 
-(defun zilongshanren/init-ace-window ()
+(defun zilongshanren/post-init-ace-window ()
   (use-package ace-window
     :defer t
     :init
-    (progn
-      (setq avi-keys
-            '(?a ?s ?d ?e ?f ?h ?j ?k ?l ?n ?m ?v ?r ?u))
-      (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
-      (global-set-key (kbd "C-x C-o") #'ace-window))))
+    (global-set-key (kbd "C-x C-o") #'ace-window)))
 
-(defun zilongshanren/init-avy ()
+(defun zilongshanren/post-init-avy ()
   (use-package avy
     :defer t
     :init
@@ -564,7 +551,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (global-set-key (kbd "M-s") 'avy-goto-char-2)
       (evil-leader/set-key "SPC" 'avy-goto-char-2)
       (global-set-key (kbd "C-c SPC") 'avy-goto-char-2)
-      (evil-leader/set-key "l" 'avy-goto-line)
       )))
 
 (defun zilongshanren/init-helm-ls-git ()

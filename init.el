@@ -39,6 +39,7 @@
                       auto-completion-enable-snippets-in-popup t)
      search-engine
      syntax-checking
+     yaml
      python
      html
      javascript
@@ -209,6 +210,8 @@ layers configuration."
   (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
   (global-set-key (kbd "C-c b") 'org-iswitchb)
+  (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
+
 
   (when (system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
