@@ -62,3 +62,4 @@
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "C-`") 'toggle-input-method)
+(define-key org-mode-map (kbd "s-p") 'org-priority)

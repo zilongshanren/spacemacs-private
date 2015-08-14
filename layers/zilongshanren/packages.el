@@ -125,6 +125,7 @@
       (push 'company-dabbrev company-backends-lua-mode)
       (push 'company-etags company-backends-lua-mode)
       (add-hook 'lua-mode-hook 'evil-matchit-mode)
+      (setq lua-indent-level 4)
       (evil-leader/set-key-for-mode 'lua-mode
         "mhi" 'helm-imenu
         "mhd" 'helm-gtags-dwim

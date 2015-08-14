@@ -43,8 +43,4 @@
 (defun zilongshanren/init-plain-org-wiki ()
   (use-package plain-org-wiki
     :init
-    (progn
-      (setq pow-directory "~/org-notes")
-      (evil-leader/set-key-for-mode 'org-mode
-        "owh" 'plain-org-wiki-helm
-        "owf" 'plain-org-wiki))))
+    (setq pow-directory "~/org-notes")))

@@ -211,7 +211,9 @@ layers configuration."
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
   (global-set-key (kbd "C-c b") 'org-iswitchb)
   (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
-
+  (evil-leader/set-key-for-mode 'org-mode
+    "owh" 'plain-org-wiki-helm
+    "owf" 'plain-org-wiki)
 
   (when (system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
@@ -247,6 +249,7 @@ layers configuration."
                                          company-files company-dabbrev ))
 
 
+  ;; enable hybrid editing style
   (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
     "Preparing the holy water flasks."
     (evil-emacs-state))
