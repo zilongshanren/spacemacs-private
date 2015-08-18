@@ -126,12 +126,13 @@
       (push 'company-etags company-backends-lua-mode)
       (add-hook 'lua-mode-hook 'evil-matchit-mode)
       (setq lua-indent-level 4)
+
       (evil-leader/set-key-for-mode 'lua-mode
-        "mhi" 'helm-imenu
-        "mhd" 'helm-gtags-dwim
-        "mhr" 'helm-gtags-find-rtag
-        "mhs" 'helm-gtags-find-symbol
-        "mhf" 'helm-gtags-find-files))))
+        "<tab>" 'hs-toggle-hiding
+        "mgg" 'helm-gtags-dwim
+        "mgr" 'helm-gtags-find-rtag
+        "mgs" 'helm-gtags-find-symbol
+        "mgf" 'helm-gtags-find-files))))
 
 
 (defun zilongshanren/post-init-company ()
@@ -726,6 +727,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              "* TODO %?\n  %i\n"
              :empty-lines 1)
             ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+             "* %?\n  %i\n %U"
+             :empty-lines 1)
+            ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
              "* %?\n  %i\n %U"
              :empty-lines 1)
             ("j" "Journal Entry"
