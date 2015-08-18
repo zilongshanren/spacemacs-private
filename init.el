@@ -18,10 +18,6 @@
      ;;  Guide key
      ;; --------------------------------------------------------
      better-defaults
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
-     (git :variables
-          git-magit-status-fullscreen t)
      github
      version-control
      osx
@@ -32,11 +28,6 @@
      org
      dash
      prodigy
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t)
      search-engine
      syntax-checking
      yaml
@@ -45,24 +36,28 @@
      javascript
      restclient
      emacs-lisp
-     emoji
+     ;; emoji
      racket
      gtags
-     ;; ranger
-     ;; ess
-     ;; pcre2el
+     deft
+     lua
+     ;; (clojure :variables clojure-enable-fancify-symbols t)
+     eyebrowse
+     zilongshanren
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar t)
+     (git :variables
+          git-magit-status-fullscreen t)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
-     ;;  ycmd me is still slow..
-     ;; ycmd
-     deft
-     lua
-     (clojure :variables clojure-enable-fancify-symbols t)
-     eyebrowse
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-youdao-dict t)
-     zilongshanren
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
