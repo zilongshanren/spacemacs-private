@@ -55,6 +55,7 @@
       js2-mode
       visual-regexp
       visual-regexp-steroids
+      popwin
       ))
 
 ;; List of packages to exclude.
@@ -568,6 +569,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (use-package evil
     :init
     (progn
+      ;; ;; change evil initial mode state
+      (loop for (mode . state) in
+            '((shell-mode . normal))
+            do (evil-set-initial-state mode state))
+
       ;;mimic "nzz" behaviou in vim
       (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
         (evil-scroll-line-to-center (line-number-at-pos)))
@@ -1051,3 +1057,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
             ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))
     (setq js2-imenu-extra-generic-expression javascript-common-imenu-regex-list)))
+
+(defun zilongshanren/post-init-popwin ()
+  (push "*zilongshanren/run-current-file output*" popwin:special-display-config))

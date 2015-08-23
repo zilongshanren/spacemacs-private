@@ -329,6 +329,4 @@ Single Capitals as you type."
  
 (setq url-show-status nil)
 
-;;"http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
-(global-set-key "\C-t" #'transpose-lines)
-(define-key ctl-x-map "\C-t" #'transpose-chars)
+

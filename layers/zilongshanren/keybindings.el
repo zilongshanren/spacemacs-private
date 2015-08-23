@@ -64,3 +64,9 @@
 (global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "C-`") 'toggle-input-method)
 (define-key org-mode-map (kbd "s-p") 'org-priority)
+
+(global-set-key (kbd "<f5>") 'zilongshanren/run-current-file)
+
+;;"http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
+(global-set-key "\C-t" #'transpose-lines)
+(define-key ctl-x-map "\C-t" #'transpose-chars)
