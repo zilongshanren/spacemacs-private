@@ -125,6 +125,8 @@
       (push 'company-dabbrev company-backends-lua-mode)
       (push 'company-etags company-backends-lua-mode)
       (add-hook 'lua-mode-hook 'evil-matchit-mode)
+      (add-hook 'lua-mode-hook 'hungry-delete-mode)
+      (add-hook 'lua-mode-hook 'smartparens-mode)
       (setq lua-indent-level 4)
 
       (evil-leader/set-key-for-mode 'lua-mode
@@ -550,9 +552,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (require 'ace-pinyin)
       (setq ace-pinyin-use-avy t)
       (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-      (global-set-key (kbd "M-s") 'avy-goto-char-2)
-      (evil-leader/set-key "SPC" 'avy-goto-char-2)
-      (global-set-key (kbd "C-c SPC") 'avy-goto-char-2)
+      (global-set-key (kbd "C-s-'") 'avy-goto-char-2)
       )))
 
 (defun zilongshanren/init-helm-ls-git ()
@@ -583,6 +583,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       ;; rebind g,k to gj and gk
       (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
       (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+      (define-key evil-normal-state-map (kbd "[ SPC") (lambda() (interactive)(evil-insert-newline-above) (forward-line)))
+      (define-key evil-normal-state-map (kbd "] SPC") (lambda() (interactive)(evil-insert-newline-below) (forward-line -1)))
+
+
+      (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
+      (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
 
       ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
       ;; (define-key evil-insert-state-map "\C-n" 'next-line)

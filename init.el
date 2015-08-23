@@ -23,13 +23,13 @@
      osx
      semantic                           ; too slow
      markdown
-     unimpaired
      ;; (ruby :variables ruby-version-manager 'rvm)
      org
      dash
      prodigy
      search-engine
      syntax-checking
+     spell-checking
      yaml
      python
      html
@@ -295,6 +295,7 @@ layers configuration."
  '(helm-ag-always-set-extra-option nil)
  '(helm-ls-git-fuzzy-match t)
  '(helm-ls-git-show-abs-or-relative (quote absolute))
+ '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")
  '(magit-use-overlays nil)
  '(org-agenda-custom-commands nil)
  '(org-agenda-ndays 1)

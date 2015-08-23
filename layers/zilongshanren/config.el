@@ -24,6 +24,7 @@
 (require 'dired-x)
 (require 'dired-aux)
 
+(setq dired-listing-switches "-alh")
 (setq dired-guess-shell-alist-user
       '(("\\.pdf\\'" "open")
         ("\\.docx\\'" "open")

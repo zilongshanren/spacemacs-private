@@ -58,6 +58,7 @@
 ;;C-M-a beginning-of-defun
 ;;C-M-e end-of-defun
 ;;C-M-h mark-defun
+(global-set-key (kbd "C-s-h") 'mark-defun)
 
 (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-s") 'save-buffer)
