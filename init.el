@@ -201,6 +201,9 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;; make underscore as word_motion.
+  (modify-syntax-entry ?_ "w")
+
   (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)

@@ -45,7 +45,7 @@
       evil
       ox-reveal
       org-mac-link
-      worf
+      ;; worf
       org-download
       flycheck-package
       org
@@ -740,24 +740,39 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              "* TODO %?\n  %i\n"
              :empty-lines 1)
             ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
-             "* %?\n  %i\n %U"
+             "* TODO %?\n  %i\n %U"
              :empty-lines 1)
             ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
-             "* %?\n  %i\n %U"
+             "* TODO %?\n  %i\n %U"
+             :empty-lines 1)
+            ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
+             "* TODO %?\n  %i\n %U"
              :empty-lines 1)
             ("j" "Journal Entry"
              entry (file+datetree "~/org-notes/journal.org")
              "* %?"
              :empty-lines 1)))
-    ;; (defun sanityinc/show-org-clock-in-header-line ()
-    ;;   (setq-default header-line-format '((" " org-mode-line-string " "))))
 
-    ;; (defun sanityinc/hide-org-clock-from-header-line ()
-    ;;   (setq-default header-line-format nil))
+    (setq org-tags-match-list-sublevels nil)
+    (setq org-agenda-custom-commands
+          '(
+            ("w" . "任务安排")
+            ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
+            ("wb" "重要且不紧急的任务" tags-todo "+PRIORITY=\"B\"")
+            ("p" . "项目安排")
+            ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
+            ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
+            ("W" "Weekly Review"
+             ((stuck "") ;; review stuck projects as designated by org-stuck-projects
+              (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+              ))))
 
-    ;; (add-hook 'org-clock-in-hook 'sanityinc/show-org-clock-in-header-line)
-    ;; (add-hook 'org-clock-out-hook 'sanityinc/hide-org-clock-from-header-line)
-    ;; (add-hook 'org-clock-cancel-hook 'sanityinc/hide-org-clock-from-header-line)
+    (defun org-summary-todo (n-done n-not-done)
+      "Switch entry to DONE when all subentries are done, to TODO otherwise."
+      (let (org-log-done org-log-states)   ; turn off logging
+        (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+    
+    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
     ;; used by org-clock-sum-today-by-tags
     (defun filter-by-tags ()
       (let ((head-tags (org-get-tags-at)))
@@ -950,28 +965,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :publishing-function org-publish-attachment
              )
             ("blog" :components ("blog-notes" "blog-static"))))
-    (setq org-agenda-custom-commands
-          '(
-            ("c" . "任务安排")
-            ("ca" "#A" agenda "重要,非常紧急的任务"
-             ((org-agenda-entry-types '(:scheduled))
-              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
-                                                                   "\\[#A\\]"))))
-            ("cb" "#B" agenda "不重要,非常紧急的任务"
-             ((org-agenda-entry-types '(:scheduled))
-              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
-                                                                   "\\[#B\\]"))))
-            ("cc" "#C" agenda "重要,不紧急的任务"
-             ((org-agenda-entry-types '(:scheduled))
-              (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp 
-                                                                   "\\[#C\\]"))))
-            ("W" tags-todo "WORK")
-            ("P" tags-todo "PROJECT")
-            ("E" tags-todo "Emacs")
-            ("O" tags-todo "OTHER")
-            ("D" tags-todo "DREAM")))
+
 
     (global-set-key (kbd "C-c a") 'org-agenda)
+    (define-key org-mode-map (kbd "s-p") 'org-priority)
     (define-key global-map (kbd "<f9>") 'org-capture)
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
 
