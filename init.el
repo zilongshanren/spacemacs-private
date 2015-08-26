@@ -72,6 +72,7 @@
                                     ;; remove mode for python layer
                                     nose
                                     pony-mode
+                                    evil-indent-textobject
                                     hy-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -84,6 +85,8 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
+  ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+  ;; (setq url-gateway-method 'socks)
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
@@ -201,6 +204,9 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (add-hook 'prog-mode-hook #'linum-mode)
+  (with-eval-after-load 'linum
+    (linum-relative-toggle))
   ;; make underscore as word_motion.
   (modify-syntax-entry ?_ "w")
 

@@ -670,7 +670,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
     (require 'org-compat)
     (require 'org)
-    (require 'org-install)
     ;; (add-to-list 'org-modules "org-habit")
     (add-to-list 'org-modules 'org-habit)
     (require 'org-habit)

@@ -313,9 +313,6 @@ Single Capitals as you type."
 (add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
 (setq nxml-slash-auto-complete-flag t)
 
-(add-hook 'prog-mode-hook #'linum-mode)
-(with-eval-after-load 'linum
-  (linum-relative-toggle))
 
 ;; cleanup rencent files
 (add-hook 'kill-emacs-hook #'(lambda () (progn (recentf-cleanup)
