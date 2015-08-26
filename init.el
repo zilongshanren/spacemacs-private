@@ -43,7 +43,6 @@
      lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
      eyebrowse
-     zilongshanren
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      (git :variables
@@ -58,6 +57,7 @@
             shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-youdao-dict t)
+     zilongshanren
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -72,7 +72,6 @@
                                     ;; remove mode for python layer
                                     nose
                                     pony-mode
-                                    evil-indent-textobject
                                     hy-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
