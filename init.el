@@ -270,7 +270,7 @@ layers configuration."
               (let ((map (chinese-wbim-mode-map)))
                 (define-key map "-" 'chinese-wbim-previous-page)
                 (define-key map "=" 'chinese-wbim-next-page))))
-  (spacemacs/toggle-hungry-delete-on)
+  (add-hook 'prog-mode-hook 'hungry-delete-mode)
 
 
   (diminish 'whitespace-mode)
@@ -279,8 +279,23 @@ layers configuration."
 
   (require 'yasnippet)
   (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-  (setq yas-snippet-dirs "~/.spacemacs.d/snippets")
+  (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
+                                                                    org-mode-hook
+                                                                    markdown-mode-hook))
 
+      (defun zilongshanren/load-yasnippet ()
+        (unless yas-global-mode
+          (progn
+            (yas-global-mode 1)
+            (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
+            (setq yas-snippet-dirs  my-snippet-dir)
+            (yas-load-directory my-snippet-dir)
+              (setq yas-wrap-around-region t)))
+        (yas-minor-mode 1))
+
+      (add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+                                                markdown-mode-hook
+                                                org-mode-hook))
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

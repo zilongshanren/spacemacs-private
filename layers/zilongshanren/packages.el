@@ -56,10 +56,15 @@
       visual-regexp
       visual-regexp-steroids
       popwin
+      helm-gtags
       ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
+
+(defun zilongshanren/post-init-helm-gtags ()
+  (use-package helm-gtags
+    :diminish helm-gtags-mode))
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
