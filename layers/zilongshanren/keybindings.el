@@ -9,8 +9,8 @@
 ;;
 ;;; License: GPLv3
 
-(global-set-key (kbd "C-c l") 'zilongshanren/insert-chrome-current-tab-url)
-(global-set-key (kbd "C-c o") 'spacemacs/open-in-external-app)
+(bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
+(bind-key* "C-c o" 'spacemacs/open-in-external-app)
 
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'my-dired-find-file)
@@ -69,3 +69,6 @@
 ;;"http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
 (global-set-key "\C-t" #'transpose-lines)
 (define-key ctl-x-map "\C-t" #'transpose-chars)
+
+(when (system-is-mac)
+  (evil-leader/set-key "o!" 'iterm-shell-command))

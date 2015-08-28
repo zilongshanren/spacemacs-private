@@ -84,8 +84,8 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
-  ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  ;; (setq url-gateway-method 'socks)
+  (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+  (setq url-gateway-method 'socks)
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
@@ -211,7 +211,9 @@ layers configuration."
 
   (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
-  (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
+  ;; (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
+;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
+  (bind-key* ";" 'chinese-wbim-insert-ascii)
   (global-set-key (kbd "C-c b") 'org-iswitchb)
   (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
   (evil-leader/set-key-for-mode 'org-mode
