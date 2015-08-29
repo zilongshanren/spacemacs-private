@@ -70,5 +70,5 @@
 (global-set-key "\C-t" #'transpose-lines)
 (define-key ctl-x-map "\C-t" #'transpose-chars)
 
-(when (system-is-mac)
-  (evil-leader/set-key "o!" 'iterm-shell-command))
+(when (spacemacs/system-is-mac)
+ (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))

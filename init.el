@@ -220,7 +220,7 @@ layers configuration."
     "owh" 'plain-org-wiki-helm
     "owf" 'plain-org-wiki)
 
-  (when (system-is-mac)
+  (when (spacemacs/system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
   (setq powerline-default-separator 'arrow)
   ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
@@ -295,7 +295,7 @@ layers configuration."
               (setq yas-wrap-around-region t)))
         (yas-minor-mode 1))
 
-      (add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+      (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
                                                 markdown-mode-hook
                                                 org-mode-hook))
   )

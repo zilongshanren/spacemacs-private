@@ -228,6 +228,8 @@
              ) t)
 
 ;;add abbrev mode
+;; stop aking whether to save newly added abbrev when quitting emacs
+
 (define-abbrev-table 'global-abbrev-table '(
 
                                             ;; math/unicode symbols
@@ -238,7 +240,7 @@
                                             ("8smly" "☺")
                                             ("8en" "@~english")
                                             ("8zh" "@~chinese")
-
+                                            ("8sp" "spacemacs")
                                             ;; email
                                             ("8me" "guanghui8827@gmail.com")
 
@@ -258,8 +260,6 @@
                                             ;; emacs regex
                                             ("8d" "\\([0-9]+?\\)")
                                             ("8str" "\\([^\"]+?\\)\"")))
-
-;; stop aking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs nil)
 
     ;; turn on abbrev mode globally

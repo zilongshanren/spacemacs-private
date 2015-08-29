@@ -525,13 +525,13 @@ version 2015-08-21"
         (message "No recognized program file suffix for this file.")))))
 
 ;; "http://xuchunyang.me/Opening-iTerm-From-an-Emacs-Buffer/"
-(defun iterm-shell-command (command &optional prefix)
+(defun zilongshanren/iterm-shell-command (command &optional prefix)
   "cd to `default-directory' then run COMMAND in iTerm.
 With PREFIX, cd to project root."
   (interactive (list (read-shell-command
                       "iTerm Shell Command: ")
                      current-prefix-arg))
-  (let* ((dir (if prefix (project-root)
+  (let* ((dir (if prefix (zilongshanren/project-root)
                 default-directory))
          ;; if COMMAND is empty, just change directory
          (cmd (format "cd %s ;%s" dir command)))
@@ -548,7 +548,7 @@ With PREFIX, cd to project root."
   end tell
   " cmd))))
 
-(defun project-root ()
+(defun zilongshanren/project-root ()
   "Return the project root for current buffer."
   (let ((directory default-directory))
     (or (locate-dominating-file directory ".git")
