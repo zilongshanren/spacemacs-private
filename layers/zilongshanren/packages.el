@@ -411,7 +411,14 @@
       (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
       (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
-      (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes))
+      (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
+
+      (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
+                                                                   (if (or  (eq 'untracked section-type)
+                                                                            (eq 'stashes section-type))
+                                                                       'hide))))
+      )
+    
     :init
     (progn
       ;; Githu PR settings

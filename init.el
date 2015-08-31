@@ -65,8 +65,7 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '( evil-escape
-                                    magit-gh-pulls
+   dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     magit-svn
                                     ;; remove mode for python layer
@@ -105,9 +104,9 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
+   dotspacemacs-themes '(monokai
+                         solarized-light
                          leuven
-                         ;; monokai
                          ;; sanityinc-tomorrow-day
                          ;; sanityinc-tomorrow-eighties
                          ;; spacemacs-dark
@@ -291,7 +290,7 @@ layers configuration."
             (yas-global-mode 1)
             (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
             (setq yas-snippet-dirs  my-snippet-dir)
-            (yas-load-directory my-snippet-dir)
+            ;; (yas-load-directory my-snippet-dir)
               (setq yas-wrap-around-region t)))
         (yas-minor-mode 1))
 
@@ -344,6 +343,7 @@ layers configuration."
  '(safe-local-variable-values
    (quote
     ((eval setenv "PYTHONPATH" "/Users/guanghui/cocos2d-x/tools/cocos2d-console/plugins:/Users/guanghui/cocos2d-x/tools/cocos2d-console/bin"))))
+ '(sp-show-pair-from-inside t)
  '(vc-follow-symlinks t)
  '(ycmd-extra-conf-handler (quote load))
  '(ycmd-extra-conf-whitelist (quote ("~/cocos2d-x/*"))))
@@ -352,6 +352,7 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
