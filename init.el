@@ -246,8 +246,8 @@ layers configuration."
 
   ;; company backend should be grouped
   (setq company-backends-c-mode-common '((company-c-headers
-                                          ccompany-keywords
-                                          ompany-dabbrev-code
+                                          company-dabbrev-code
+                                          company-keywords
                                           company-etags
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
