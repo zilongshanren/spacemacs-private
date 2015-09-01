@@ -68,6 +68,7 @@
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     magit-svn
+                                    evil-escape
                                     ;; remove mode for python layer
                                     nose
                                     pony-mode
@@ -211,7 +212,7 @@ layers configuration."
   (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
   ;; (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
-;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
+  ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
   (bind-key* ";" 'chinese-wbim-insert-ascii)
   (global-set-key (kbd "C-c b") 'org-iswitchb)
   (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
@@ -284,19 +285,22 @@ layers configuration."
                                                                     org-mode-hook
                                                                     markdown-mode-hook))
 
-      (defun zilongshanren/load-yasnippet ()
-        (unless yas-global-mode
-          (progn
-            (yas-global-mode 1)
-            (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
-            (setq yas-snippet-dirs  my-snippet-dir)
-            ;; (yas-load-directory my-snippet-dir)
-              (setq yas-wrap-around-region t)))
-        (yas-minor-mode 1))
+  (defun zilongshanren/load-yasnippet ()
+    (unless yas-global-mode
+      (progn
+        (yas-global-mode 1)
+        (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
+        (setq yas-snippet-dirs  my-snippet-dir)
+        ;; (yas-load-directory my-snippet-dir)
+        (setq yas-wrap-around-region t)))
+    (yas-minor-mode 1))
 
-      (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
-                                                markdown-mode-hook
-                                                org-mode-hook))
+  (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+                                                          markdown-mode-hook
+                                                          org-mode-hook))
+
+  ;;set region face for monokai theme
+  (set-face-attribute 'region nil :background "#FD971F")
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
