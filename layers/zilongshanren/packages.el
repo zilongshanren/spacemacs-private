@@ -57,10 +57,21 @@
       visual-regexp-steroids
       popwin
       helm-gtags
+      multiple-cursors
       ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
+
+(defun zilongshanren/init-multiple-cursors ()
+  (use-package multiple-cursors
+    :init
+    (progn
+      (bind-key* "C-s-f" 'mc/edit-lines)
+      (bind-key* "C-s-." 'mc/mark-next-like-this)
+      (bind-key* "C-s-," 'mc/mark-previous-like-this)
+      (bind-key* "C-c C-s-." 'mc/mark-all-like-this)
+      )))
 
 (defun zilongshanren/post-init-helm-gtags ()
   (use-package helm-gtags
