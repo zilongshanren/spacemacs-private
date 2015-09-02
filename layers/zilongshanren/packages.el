@@ -12,66 +12,64 @@
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
 (setq zilongshanren-packages
-    '(
-      ;; package names go here
-      lispy
-      lua-mode
-      company
-      discover-my-major
-      ws-butler
-      ;; rtags ;;very flow and difficult to configure
-      cmake-font-lock
-      ;; google-c-style
-      cmake-mode
-      company-c-headers
-      flycheck
-      ;; ycmd ;;It's very slow and company-gtags is enough
-      markdown-mode
-      org-octopress
-      impatient-mode
-      ;; moz-controller
-      helm-github-stars
-      elfeed
-      swiper
-      magit
-      git-messenger
-      helm-flyspell
-      helm
-      ace-window
-      avy
-      helm-ls-git
-      mwe-log-commands
-      keyfreq
-      evil
-      ox-reveal
-      org-mac-link
-      ;; worf
-      org-download
-      flycheck-package
-      org
-      deft
-      nodejs-repl
-      prodigy
-      js2-mode
-      visual-regexp
-      visual-regexp-steroids
-      popwin
-      helm-gtags
-      multiple-cursors
-      ))
+      '(
+        ;; package names go here
+        lispy
+        lua-mode
+        company
+        discover-my-major
+        ws-butler
+        ;; rtags ;;very flow and difficult to configure
+        cmake-font-lock
+        ;; google-c-style
+        cmake-mode
+        company-c-headers
+        flycheck
+        ;; ycmd ;;It's very slow and company-gtags is enough
+        markdown-mode
+        org-octopress
+        impatient-mode
+        ;; moz-controller
+        helm-github-stars
+        elfeed
+        swiper
+        magit
+        git-messenger
+        helm-flyspell
+        helm
+        ace-window
+        avy
+        helm-ls-git
+        mwe-log-commands
+        keyfreq
+        evil
+        ox-reveal
+        org-mac-link
+        ;; worf
+        org-download
+        flycheck-package
+        org
+        deft
+        nodejs-repl
+        prodigy
+        js2-mode
+        visual-regexp
+        visual-regexp-steroids
+        popwin
+        helm-gtags
+        multiple-cursors))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
 
-(defun zilongshanren/init-multiple-cursors ()
+(defun zilongshanren/post-init-multiple-cursors ()
   (use-package multiple-cursors
     :init
     (progn
       (bind-key* "C-s-f" 'mc/edit-lines)
       (bind-key* "C-s-." 'mc/mark-next-like-this)
       (bind-key* "C-s-," 'mc/mark-previous-like-this)
-      (bind-key* "C-c C-s-." 'mc/mark-all-like-this)
-      )))
+      (bind-key* "C-c C-s-." 'mc/mark-all-like-this))))
 
 (defun zilongshanren/post-init-helm-gtags ()
   (use-package helm-gtags
@@ -94,18 +92,17 @@
 (defun zilongshanren/init-flycheck-package ()
   (use-package flycheck-package))
 
-(defun zilongshanren/post-init-company-c-headers()
+(defun zilongshanren/post-init-company-c-headers ()
   (use-package company-c-headers
     :defer t
-    :init(progn
-           (setq company-c-headers-path-system
-                 (quote
-                  ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
-           (setq company-c-headers-path-user
-                 (quote
-                  ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))
-           )
-    ))
+    :init (progn
+            (setq company-c-headers-path-system
+                  (quote
+                   ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
+            (setq company-c-headers-path-user
+                  (quote
+                   ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/"))))))
+
 (defun zilongshanren/init-discover-my-major ()
   (use-package discover-my-major
     :defer t
@@ -114,7 +111,7 @@
       (evil-leader/set-key (kbd "mhm") 'discover-my-major)
       (evilify makey-key-mode makey-key-mode-get-key-map))))
 
-(defun zilongshanren/init-lispy()
+(defun zilongshanren/init-lispy ()
   "Initialize lispy"
   (use-package lispy
     :defer t
@@ -127,7 +124,7 @@
     (progn
       ;; (define-key evil-insert-state-map (kbd "C-y") 'lispy-yank)
       ;; (define-key evil-insert-state-map (kbd "C-d") 'lispy-delete)
-      (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
+      (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
@@ -139,8 +136,9 @@
     :defer t
     :config
     (progn
-      (push 'company-dabbrev company-backends-lua-mode)
-      (push 'company-etags company-backends-lua-mode)
+      (when (configuration-layer/package-usedp 'company)
+        (push 'company-dabbrev company-backends-lua-mode)
+        (push 'company-etags company-backends-lua-mode))
       (add-hook 'lua-mode-hook 'evil-matchit-mode)
       (add-hook 'lua-mode-hook 'hungry-delete-mode)
       (add-hook 'lua-mode-hook 'smartparens-mode)
@@ -157,21 +155,20 @@
 (defun zilongshanren/post-init-company ()
   (setq company-minimum-prefix-length 1
         company-idle-delay 0.4)
-    (global-set-key (kbd "C-.") 'company-complete)
+  (global-set-key (kbd "C-.") 'company-complete)
+  (when (configuration-layer/package-usedp 'company)
     (spacemacs|add-company-hook lua-mode)
-    (spacemacs|add-company-hook nxml-mode)
-    )
+    (spacemacs|add-company-hook nxml-mode)))
 
 
 (defun zilongshanren/init-ws-butler ()
-    (use-package ws-butler
-      :diminish ws-butler-mode
-      :init
-      (progn
-       (add-hook 'c-mode-common-hook 'ws-butler-mode)
-       (add-hook 'python-mode-hook 'ws-butler-mode)
-       (add-hook 'cython-mode-hook 'ws-butler-mode)
-        )))
+  (use-package ws-butler
+    :diminish ws-butler-mode
+    :init
+    (progn
+      (add-hook 'c-mode-common-hook 'ws-butler-mode)
+      (add-hook 'python-mode-hook 'ws-butler-mode)
+      (add-hook 'cython-mode-hook 'ws-butler-mode))))
 
 ;; (defun zilongshanren/init-rtags ()
 ;;   (use-package rtags
@@ -211,8 +208,7 @@
           (setq new-buffer-name (concat "cmake-" parent-dir))
           (rename-buffer new-buffer-name t)))
 
-      (add-hook 'cmake-mode-hook (function cmake-rename-buffer))
-      )))
+      (add-hook 'cmake-mode-hook (function cmake-rename-buffer)))))
 
 
 (defun zilongshanren/post-init-flycheck ()
@@ -234,21 +230,17 @@
     :defer t
     :config
     (progn
-      (spacemacs|add-company-hook markdown-mode)
+      (when (configuration-layer/package-usedp 'company)
+        (spacemacs|add-company-hook markdown-mode))
       (defun zilongshanren/markdown-to-html ()
         (interactive)
-        (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name)
-
-                       )
-        (browse-url (format  "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
+        (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
+        (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
       (evil-leader/set-key-for-mode 'gfm-mode-map
-        "mp" 'zilongshanren/markdown-to-html
-        )
+        "mp" 'zilongshanren/markdown-to-html)
       (evil-leader/set-key-for-mode 'markdown-mode
-        "mp" 'zilongshanren/markdown-to-html
-        )
-      )))
+        "mp" 'zilongshanren/markdown-to-html))))
 
 (defun zilongshanren/init-org-octopress ()
   (use-package org-octopress
@@ -258,11 +250,11 @@
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
       (setq org-blog-dir "~/4gamers.cn/")
-      (setq org-octopress-directory-top       org-blog-dir)
-      (setq org-octopress-directory-posts   (concat org-blog-dir "source/_posts"))
+      (setq org-octopress-directory-top org-blog-dir)
+      (setq org-octopress-directory-posts (concat org-blog-dir "source/_posts"))
       (setq org-octopress-directory-org-top org-blog-dir)
       (setq org-octopress-directory-org-posts (concat org-blog-dir "blog"))
-      (setq org-octopress-setup-file         (concat org-blog-dir "setupfile.org"))
+      (setq org-octopress-setup-file (concat org-blog-dir "setupfile.org"))
 
       (defun zilongshanren/org-save-and-export ()
         (interactive)
@@ -277,15 +269,13 @@
     :init
     (progn
 
-      (defun zilongshanren-mode-hook()
+      (defun zilongshanren-mode-hook ()
         "my web mode hook for HTML REPL"
         (interactive)
         (impatient-mode)
         (httpd-start))
 
-      (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
-      ))
-  )
+      (add-hook 'web-mode-hook 'zilongshanren-mode-hook))))
 
 ;; (defun zilongshanren/init-moz-controller ()
 ;;   (use-package moz-controller
@@ -299,8 +289,7 @@
     :config
     (progn
       (setq helm-github-stars-username "andyque")
-      (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache")
-      )))
+      (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache"))))
 
 
 (defun zilongshanren/init-elfeed ()
@@ -332,8 +321,7 @@
               "http://blog.devtang.com/atom.xml"
               "http://emacsnyc.org/atom.xml"
               "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
-              "http://angelic-sedition.github.io/atom.xml"
-              ))
+              "http://angelic-sedition.github.io/atom.xml"))
 
       (defun elfeed-mark-all-as-read ()
         (interactive)
@@ -346,8 +334,7 @@
         "Insert the yanked text from x-selection to kill ring"
         (kill-new (x-get-selection)))
 
-      (ad-activate 'elfeed-show-yank)
-      )))
+      (ad-activate 'elfeed-show-yank))))
 
 (defun zilongshanren/init-keyfreq ()
   (use-package keyfreq
@@ -362,9 +349,7 @@
     (progn
       (evil-leader/set-key
         "oll" 'mwe:log-keyboard-commands
-        "olf" 'mwe:open-command-log-buffer)
-      )
-    ))
+        "olf" 'mwe:open-command-log-buffer))))
 
 (defun zilongshanren/init-swiper ()
   "Initialize my package"
@@ -403,8 +388,7 @@
         :config
         (progn
           (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
-          (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)
-          ))
+          (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
       (define-key global-map (kbd "C-s") 'swiper)
       (setq ivy-use-virtual-buffers t)
@@ -425,11 +409,10 @@
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
 
       (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
-                                                                   (if (or  (eq 'untracked section-type)
-                                                                            (eq 'stashes section-type))
-                                                                       'hide))))
-      )
-    
+                                                                        (if (or (eq 'untracked section-type)
+                                                                                (eq 'stashes section-type))
+                                                                            'hide)))))
+
     :init
     (progn
       ;; Githu PR settings
@@ -459,8 +442,7 @@
         "when entering magit blame mode, change evil normal state to emacs state"
         (if (evil-normal-state-p)
             (evil-emacs-state)
-          (evil-normal-state))
-        )
+          (evil-normal-state)))
 
       (ad-activate 'magit-blame-mode)
 
@@ -472,46 +454,44 @@
 
       (ad-activate 'git-timemachine-mode)
 
-      (setq magit-process-popup-time 10)
-      )))
+      (setq magit-process-popup-time 10))))
 
 (defun zilongshanren/post-init-git-messenger ()
   (use-package git-messenger
     :defer t
     :config
     (progn
-     (defun my-vc-visit-file-revision (file rev)
-       "Visit revision REV of FILE in another window.
+      (defun my-vc-visit-file-revision (file rev)
+        "Visit revision REV of FILE in another window.
 With prefix argument, uses the current window instead.
 If the current file is named `F', the revision is named `F.~REV~'.
 If `F.~REV~' already exists, use it instead of checking it out again."
-       ;; based on `vc-revision-other-window'.
-       (interactive
-        (let ((file (expand-file-name
-                     (read-file-name
-                      (if (buffer-file-name)
-                          (format "File (%s): " (file-name-nondirectory
-                                                 (buffer-file-name)))
-                        "File: ")))))
-          (require 'vc)
-          (unless (vc-backend file)
-            (error "File %s is not under version control" file))
-          (list file (vc-read-revision
-                      "Revision to visit (default is working revision): "
-                      (list file)))))
-       (require 'vc)
-       (unless (vc-backend file)
-         (error "File %s is not under version control" file))
-       (let ((revision (if (string-equal rev "")
-                           (vc-working-revision file)
-                         rev))
-             (visit (if current-prefix-arg
-                        'switch-to-buffer
-                      'switch-to-buffer-other-window)))
-         (funcall visit (vc-find-revision file revision))))
+        ;; based on `vc-revision-other-window'.
+        (interactive
+         (let ((file (expand-file-name
+                      (read-file-name
+                       (if (buffer-file-name)
+                           (format "File (%s): " (file-name-nondirectory
+                                                  (buffer-file-name)))
+                         "File: ")))))
+           (require 'vc)
+           (unless (vc-backend file)
+             (error "File %s is not under version control" file))
+           (list file (vc-read-revision
+                       "Revision to visit (default is working revision): "
+                       (list file)))))
+        (require 'vc)
+        (unless (vc-backend file)
+          (error "File %s is not under version control" file))
+        (let ((revision (if (string-equal rev "")
+                            (vc-working-revision file)
+                          rev))
+              (visit (if current-prefix-arg
+                         'switch-to-buffer
+                       'switch-to-buffer-other-window)))
+          (funcall visit (vc-find-revision file revision))))
 
-     (define-key git-messenger-map (kbd "f") 'my-vc-visit-file-revision)
-     )))
+      (define-key git-messenger-map (kbd "f") 'my-vc-visit-file-revision))))
 
 (defun zilongshanren/post-init-helm-flyspell ()
   (use-package helm-flyspell
@@ -557,8 +537,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
                 (setq arg 0))))))
 
     (bind-key* "C-," 'zilongshanren/flyspell-goto-previous-error)
-    (global-set-key (kbd "C-c s") 'helm-flyspell-correct)
-    ))
+    (global-set-key (kbd "C-c s") 'helm-flyspell-correct)))
 
 (defun zilongshanren/post-init-helm ()
   (use-package helm
@@ -597,8 +576,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
               (c-set-offset . nil)
               (wg-load . ido)
               (rgrep . nil)
-              (read-directory-name . ido)
-              )))))
+              (read-directory-name . ido))))))
 
 
 
@@ -616,8 +594,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (require 'ace-pinyin)
       (setq ace-pinyin-use-avy t)
       (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-      (global-set-key (kbd "C-s-'") 'avy-goto-char-2)
-      )))
+      (global-set-key (kbd "C-s-'") 'avy-goto-char-2))))
 
 (defun zilongshanren/init-helm-ls-git ()
   (use-package helm-ls-git
@@ -653,8 +630,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
       (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-      (define-key evil-normal-state-map (kbd "[ SPC") (lambda() (interactive)(evil-insert-newline-above) (forward-line)))
-      (define-key evil-normal-state-map (kbd "] SPC") (lambda() (interactive)(evil-insert-newline-below) (forward-line -1)))
+      (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
+      (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
 
       (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
@@ -709,8 +686,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :defer t
     :init
     (progn
-      (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js")
-      )))
+      (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js"))))
 
 (defun zilongshanren/init-worf ()
   (use-package worf
@@ -729,7 +705,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 ;;http://stackoverflow.com/questions/21005885/export-org-mode-code-block-and-result-with-different-styles
 (defun zilongshanren/post-init-org ()
   (progn
-    (spacemacs|add-company-hook org-mode)
+    (when (configuration-layer/package-usedp 'company)
+      (spacemacs|add-company-hook org-mode))
 
     (require 'org-compat)
     (require 'org)
@@ -825,13 +802,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
             ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
             ("W" "Weekly Review"
-             ((stuck "") ;; review stuck projects as designated by org-stuck-projects
+             ((stuck "")            ;; review stuck projects as designated by org-stuck-projects
               (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
               ))))
 
     (defun org-summary-todo (n-done n-not-done)
       "Switch entry to DONE when all subentries are done, to TODO otherwise."
-      (let (org-log-done org-log-states)   ; turn off logging
+      (let (org-log-done org-log-states) ; turn off logging
         (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
     
     (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
@@ -1033,13 +1010,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (define-key org-mode-map (kbd "s-p") 'org-priority)
     (define-key global-map (kbd "<f9>") 'org-capture)
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-
-    (evil-leader/set-key-for-mode 'org-mode
-      "." 'org-agenda
-      "mls" 'org-store-link
-      "mBc" 'org-babel-remove-result
-      "mt" 'org-set-tags
-      "mli" 'org-insert-link)
     ))
 
 (defun zilongshanren/post-init-deft ()
