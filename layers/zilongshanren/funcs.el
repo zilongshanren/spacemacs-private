@@ -441,7 +441,7 @@ e.g. Sunday, September 17, 2000."
 ;; Screenshot
 (defun zilongshanren//insert-org-or-md-img-link (prefix imagename)
   (if (equal (file-name-extension (buffer-file-name)) "org")
-      (insert (format "[[%s][%s%s]]" imagename prefix imagename))
+      (insert (format "[[%s%s]]" prefix imagename))
     (insert (format "![%s](%s%s)" imagename prefix imagename))))
 
 (defun zilongshanren/capture-screenshot (basename)
@@ -463,7 +463,12 @@ e.g. Sunday, September 17, 2000."
                 ".png"))
   (if (file-exists-p (file-name-directory fullpath))
       (progn
-        (call-process "screencapture" nil nil nil "-s" (concat fullpath ".png"))
+        (setq final-image-full-path (concat fullpath ".png"))
+        (call-process "screencapture" nil nil nil "-s" final-image-full-path)
+        (if (executable-find "convert")
+            (progn
+              (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
+              (shell-command-to-string resize-command-str)))
         (zilongshanren//insert-org-or-md-img-link "http://guanghuiqu.qiniudn.com/" relativepath))
     (progn
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
