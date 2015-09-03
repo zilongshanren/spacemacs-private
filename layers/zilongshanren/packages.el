@@ -62,6 +62,7 @@
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
 
+
 (defun zilongshanren/post-init-multiple-cursors ()
   (use-package multiple-cursors
     :init
@@ -73,7 +74,12 @@
 
 (defun zilongshanren/post-init-helm-gtags ()
   (use-package helm-gtags
-    :diminish helm-gtags-mode))
+    :diminish helm-gtags-mode
+    :defer
+    :config
+    (progn
+      (evil-make-overriding-map helm-gtags-mode-map 'normal)
+      (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps))))
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
@@ -302,10 +308,8 @@
       (setq elfeed-feeds
             '("http://nullprogram.com/feed/"
               "http://z.caudate.me/rss/"
-              "http://sachachua.com/blog/feed/"
               "http://irreal.org/blog/?feed=rss2"
               "http://feeds.feedburner.com/LostInTheTriangles"
-              "http://blog.codingnow.com/atom.xml"
               "http://tonybai.com/feed/"
               "http://planet.emacsen.org/atom.xml"
               "http://feeds.feedburner.com/emacsblog"
@@ -314,14 +318,20 @@
               "http://blog.gemserk.com/feed/"
               "http://www.masteringemacs.org/feed/"
               "http://t-machine.org/index.php/feed/"
-              "http://zh.lucida.me/atom.xml"
               "http://gameenginebook.blogspot.com/feeds/posts/default"
               "http://feeds.feedburner.com/ruanyifeng"
               "http://coolshell.cn/feed"
               "http://blog.devtang.com/atom.xml"
-              "http://emacsnyc.org/atom.xml"
+              "http://emacsist.com/rss"
               "http://puntoblogspot.blogspot.com/feeds/2507074905876002529/comments/default"
               "http://angelic-sedition.github.io/atom.xml"))
+
+      ;; (evilify elfeed-search-mode elfeed-search-mode-map)
+      (spacemacs|evilify-map elfeed-search-mode-map
+        :mode elfeed-search-mode
+        :bindings
+        "G" 'elfeed-update
+        "g" 'elfeed-search-update--force)
 
       (defun elfeed-mark-all-as-read ()
         (interactive)
@@ -798,6 +808,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             ("w" . "任务安排")
             ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
             ("wb" "重要且不紧急的任务" tags-todo "+PRIORITY=\"B\"")
+            ("b" "Blog" tags-todo "BLOG")
             ("p" . "项目安排")
             ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
             ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
