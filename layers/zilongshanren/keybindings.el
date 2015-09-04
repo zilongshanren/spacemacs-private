@@ -10,7 +10,8 @@
 ;;; License: GPLv3
 
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
-(bind-key* "C-c o" 'spacemacs/open-in-external-app)
+;;This command won't change the buffer, so it should be in normal-state
+;; (bind-key* "C-c o" 'spacemacs/open-in-external-app)
 
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'my-dired-find-file)
@@ -60,15 +61,15 @@
 ;;C-M-h mark-defun
 (global-set-key (kbd "C-s-h") 'mark-defun)
 
-(global-set-key (kbd "s-l") 'goto-line)
+;; (global-set-key (kbd "s-l") 'goto-line)
 (global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "C-`") 'toggle-input-method)
 
 (global-set-key (kbd "<f5>") 'zilongshanren/run-current-file)
 
-;;"http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
-(global-set-key "\C-t" #'transpose-lines)
-(define-key ctl-x-map "\C-t" #'transpose-chars)
+;; "http://endlessparentheses.com/transposing-keybinds-in-emacs.html?source=rss"
+;; (global-set-key "\C-t" #'transpose-lines)
+;; (define-key ctl-x-map "\C-t" #'transpose-chars)
 
 (when (spacemacs/system-is-mac)
  (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))
