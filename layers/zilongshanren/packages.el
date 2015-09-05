@@ -82,6 +82,7 @@
           "
           ("p" org-priority)
           ("t" org-set-tags))
+        (require 'org)
         (define-key org-mode-map (kbd "<f2>") 'hydra-org/body)
         )
       (defhydra hydra-yasnippet (:color blue :hint nil)
@@ -489,10 +490,11 @@
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
 
-      (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
-                                                                        (if (or (eq 'untracked section-type)
-                                                                                (eq 'stashes section-type))
-                                                                            'hide)))))
+      ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
+      ;;                                                              (if (or (eq 'untracked section-type)
+      ;;                                                                      (eq 'stashes section-type))
+      ;;                                                                  'hide))))
+      )
 
     :init
     (progn
