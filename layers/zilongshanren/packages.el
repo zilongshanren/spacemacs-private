@@ -59,11 +59,19 @@
         helm-gtags
         multiple-cursors
         hydra
+        persp-mode
         ))
 
 ;; List of packages to exclude.
 (setq zilongshanren-excluded-packages '())
 
+(defun zilongshanren/post-init-persp-mode ()
+  (spacemacs|define-custom-persp "@Cocos2D-X"
+    :binding "c"
+    :body
+    (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
+    (split-window-right)
+    (find-file "~/cocos2d-x/cocos/cocos2d.cpp")))
 
 (defun zilongshanren/init-hydra ()
   (use-package hydra

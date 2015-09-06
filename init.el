@@ -44,6 +44,7 @@ values."
      deft
      lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
+     perspectives
      eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
@@ -203,8 +204,7 @@ values."
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
-   dotspacemacs-default-package-repository nil
-   )
+   dotspacemacs-default-package-repository nil)
   ;; User initialization goes here
   )
 
