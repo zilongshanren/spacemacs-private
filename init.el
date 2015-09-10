@@ -48,7 +48,7 @@ values."
      deft
      lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
-     perspectives
+     ;; perspectives
      eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
@@ -229,8 +229,9 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  (setq url-gateway-method 'socks)
+  ;; ss proxy. But it will cause anacond-mode failed.
+  ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+  ;; (setq url-gateway-method 'socks)
   )
 
 (defun dotspacemacs/user-config ()

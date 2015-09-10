@@ -1042,6 +1042,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
      '( (perl . t)
         (ruby . t)
         (sh . t)
+        (js . t)
         (python . t)
         (emacs-lisp . t)
         (plantuml . t)
