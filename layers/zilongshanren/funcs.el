@@ -560,3 +560,18 @@ With PREFIX, cd to project root."
     (or (locate-dominating-file directory ".git")
         (locate-dominating-file directory ".svn")
         (locate-dominating-file directory ".hg"))))
+
+
+(define-minor-mode
+ shadowsocks-proxy-mode
+ :global t
+ :init-value nil
+ :lighter " SS"
+ (if shadowsocks-proxy-mode
+     (setq url-gateway-method 'socks)
+   (setq url-gateway-method 'native)))
+
+
+(define-global-minor-mode
+ global-shadowsocks-proxy-mode shadowsocks-proxy-mode shadowsocks-proxy-mode
+ :group 'shadowsocks-proxy)
