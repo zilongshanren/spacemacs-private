@@ -239,12 +239,6 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   ;;add toggle for shadowsocks-mode
-  (spacemacs|add-toggle toggle-shadowsocks-proxy-mode
-    :status shadowsocks-proxy-mode
-    :on (global-shadowsocks-proxy-mode)
-    :off (global-shadowsocks-proxy-mode -1)
-    :documentation "Toggle shadowsocks proxy mode."
-    :evil-leader "toP")
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum

@@ -73,3 +73,10 @@
 
 (when (spacemacs/system-is-mac)
  (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))
+
+(spacemacs|add-toggle toggle-shadowsocks-proxy-mode
+    :status shadowsocks-proxy-mode
+    :on (global-shadowsocks-proxy-mode)
+    :off (global-shadowsocks-proxy-mode -1)
+    :documentation "Toggle shadowsocks proxy mode."
+    :evil-leader "toP")
