@@ -75,7 +75,14 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     magit-svn
-                                    evil-escape
+                                    ;;remove from spacemacs distribution
+                                    neotree
+                                    leuven-theme
+                                    evil-lisp-state
+                                    spray
+                                    evil-tutor
+                                    define-word
+                                    solarized-theme
                                     ;; remove mode for python layer
                                     nose
                                     pony-mode
