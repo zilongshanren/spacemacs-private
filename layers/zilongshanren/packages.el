@@ -343,7 +343,8 @@
       (defun zilongshanren/org-save-and-export ()
         (interactive)
         (org-octopress-setup-publish-project)
-        (org-publish-project "octopress" t))
+        (org-publish-project "octopress" t)
+        (org-publish-project "blog" t))
 
       (evil-leader/set-key "op" 'zilongshanren/org-save-and-export))))
 
@@ -796,8 +797,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 ;;http://stackoverflow.com/questions/21005885/export-org-mode-code-block-and-result-with-different-styles
 (defun zilongshanren/post-init-org ()
   (progn
-    (when (configuration-layer/package-usedp 'company)
-      (spacemacs|add-company-hook org-mode))
+    ;; https://github.com/syl20bnr/spacemacs/issues/2994#issuecomment-139737911
+    ;; (when (configuration-layer/package-usedp 'company)
+    ;;   (spacemacs|add-company-hook org-mode))
+    (spacemacs|disable-company org-mode)
 
     (require 'org-compat)
     (require 'org)
