@@ -343,10 +343,10 @@
       (defun zilongshanren/org-save-and-export ()
         (interactive)
         (org-octopress-setup-publish-project)
-        (org-publish-project "octopress" t)
-        (org-publish-project "blog" t))
+        (org-publish-project "octopress" t))
 
-      (evil-leader/set-key "op" 'zilongshanren/org-save-and-export))))
+      (evil-leader/set-key "op" 'zilongshanren/org-save-and-export)
+      )))
 
 (defun zilongshanren/init-impatient-mode ()
   "Initialize impatient mode"
@@ -880,6 +880,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :empty-lines 1)
             ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
              "* TODO %?\n  %i\n %U"
+             :empty-lines 1)
+            ("c" "Chrome" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+             "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
+             :empty-lines 1)
+            ("l" "links" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+             "* TODO %?\n  %i\n %a \n %U"
              :empty-lines 1)
             ("j" "Journal Entry"
              entry (file+datetree "~/org-notes/journal.org")
