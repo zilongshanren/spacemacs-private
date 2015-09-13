@@ -37,7 +37,7 @@ open and unsaved."
                       "set links to {}\n"
                       "copy theResult to the end of links\n"
                       "return links as string\n"))))
-        (insert result)))
+        (insert (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 (defun zilongshanren/retrieve-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
@@ -53,7 +53,7 @@ open and unsaved."
                       "set links to {}\n"
                       "copy theResult to the end of links\n"
                       "return links as string\n"))))
-        (format "%s" result)))
+        (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 (defun zilongshanren/org-archive-done-tasks ()
   (interactive)
