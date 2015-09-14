@@ -62,8 +62,6 @@
         persp-mode
         ))
 
-;; List of packages to exclude.
-(setq zilongshanren-excluded-packages '())
 
 (defun zilongshanren/post-init-persp-mode ()
   (spacemacs|define-custom-persp "@Cocos2D-X"

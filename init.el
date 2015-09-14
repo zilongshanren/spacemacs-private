@@ -345,6 +345,15 @@ layers configuration."
 
   ;;set region face for monokai theme
   (set-face-attribute 'region nil :background "#FD971F")
+  (set-face-attribute 'whitespace-tab nil
+                      :background "#Adff2f"
+                      :foreground "#00a8a8"
+                      :weight 'bold)
+  (set-face-attribute 'whitespace-trailing nil
+                      :background "#e4eeff"
+                      :foreground "#183bc8"
+                      :weight 'normal)
+
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
