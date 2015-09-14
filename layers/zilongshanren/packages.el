@@ -764,7 +764,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         'evil-delete-backward-word)
       (define-key evil-emacs-state-map (kbd "s-p") 'projectile-switch-project)
 
-      (evil-leader/set-key "fR" 'rename-file-and-buffer))))
+      (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer))))
 
 (defun zilongshanren/init-org-mac-link ()
   (use-package org-mac-link

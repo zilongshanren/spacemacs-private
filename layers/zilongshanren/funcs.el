@@ -19,25 +19,13 @@ open and unsaved."
   (save-window-excursion
     (mapc (lambda (filename)
             (find-file filename)
-            (call-interactively command)
-            )
+            (call-interactively command))
           (dired-get-marked-files))))
 
 (defun zilongshanren/insert-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
   (interactive)
-      (let ((result (do-applescript
-                     (concat
-                      "set frontmostApplication to path to frontmost application\n"
-                      "tell application \"Google Chrome\"\n"
-                      "	set theUrl to get URL of active tab of first window\n"
-                      "	set theResult to (get theUrl) \n"
-                      "end tell\n"
-                      "activate application (frontmostApplication as text)\n"
-                      "set links to {}\n"
-                      "copy theResult to the end of links\n"
-                      "return links as string\n"))))
-        (insert (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
+  (insert (zilongshanren/retrieve-chrome-current-tab-url)))
 
 (defun zilongshanren/retrieve-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
@@ -206,7 +194,7 @@ open and unsaved."
 
 (defalias 'tt 'terminal)
 
-(defun zilongshanren-comment-box (b e)
+(defun zilongshanren/comment-box (b e)
   "Draw a box comment around the region but arrange for the region
 to extend to at least the fill column. Place the point after the
 comment box."
@@ -228,7 +216,7 @@ Position the cursor at its beginning, according to the current mode."
   (newline-and-indent))
 
 
-(defun rename-file-and-buffer ()
+(defun zilongshanren/rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
   (interactive)
   (let ((filename (buffer-file-name)))
