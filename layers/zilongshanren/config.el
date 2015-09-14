@@ -107,6 +107,7 @@
 (setq whitespace-style '(face lines-tail))
 ;; show tab;  use untabify to convert tab to whitespace
 ;; (setq whitespace-style '(tabs tab-mark ))
+;; (setq spacemacs-show-trailing-whitespace nil)
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 ;; (global-whitespace-mode +1)
