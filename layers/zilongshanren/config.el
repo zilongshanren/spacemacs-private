@@ -105,6 +105,8 @@
 (require 'whitespace)
 (setq whitespace-line-column fill-column) ;; limit line length
 (setq whitespace-style '(face lines-tail))
+;; show tab;  use untabify to convert tab to whitespace
+;; (setq whitespace-style '(tabs tab-mark ))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 ;; (global-whitespace-mode +1)
