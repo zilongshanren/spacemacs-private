@@ -278,7 +278,7 @@ layers configuration."
        (define-key racket-repl-mode-map (kbd "[") nil)))
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
 
-  
+
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
   (remove-hook 'c-mode-hook 'flycheck-mode)
@@ -306,7 +306,7 @@ layers configuration."
   (bind-keys ("<C-[>" . evil-normal-state))
   (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
   (define-key evil-emacs-state-map [escape] 'evil-normal-state)
-  
+
   (setq chinese-wbim-punc-translate-p nil)
   (evil-leader/set-key
     "otp" 'chinese-wbim-punc-translate-toggle)
