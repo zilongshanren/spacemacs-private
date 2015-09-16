@@ -253,7 +253,7 @@ layers configuration."
   ;; make underscore as word_motion.
   (modify-syntax-entry ?_ "w")
 
-  ;; (global-company-mode t)
+  (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
   ;; (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
   ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
