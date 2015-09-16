@@ -297,7 +297,7 @@ layers configuration."
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
 
-
+  (setq-default tab-width 4)
   ;; enable hybrid editing style
   (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
     "Preparing the holy water flasks."
