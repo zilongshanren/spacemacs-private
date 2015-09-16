@@ -255,9 +255,6 @@ layers configuration."
 
   (global-company-mode t)
   (global-set-key (kbd "s-s") 'save-buffer)
-  ;; (global-set-key (kbd "s-;") 'chinese-wbim-insert-ascii)
-  ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
-  (bind-key* ";" 'chinese-wbim-insert-ascii)
   (global-set-key (kbd "C-c b") 'org-iswitchb)
   (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
   (evil-leader/set-key-for-mode 'org-mode
@@ -269,22 +266,24 @@ layers configuration."
   (setq powerline-default-separator 'arrow)
   ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
   (setq inhibit-eol-conversion t)
-  ;; the solution is not perfect, maybe I should wait for the spacemacs author
-  ;; to fix the issue
-  (setq helm-ag-insert-at-point 'symbol)
   (eval-after-load 'racket-repl-mode
     '(progn
        (define-key racket-repl-mode-map (kbd "]") nil)
        (define-key racket-repl-mode-map (kbd "[") nil)))
-  (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
 
 
   (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
   (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
+
+  (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
   (remove-hook 'c-mode-hook 'flycheck-mode)
   (remove-hook 'c++-mode-hook 'flycheck-mode)
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  ;; the solution is not perfect, maybe I should wait for the spacemacs author
+  ;; to fix the issue
+  (setq helm-ag-insert-at-point 'symbol)
   (setq helm-buffer-max-length 45)
+  (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  ;;beautify-helm buffer when long file name is present
   ;; save desktop ;unprintable entity
   ;; (desktop-save-mode t)
   (delete "*Async Shell Command*" 'popwin:special-display-config)
@@ -307,6 +306,8 @@ layers configuration."
   (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
   (define-key evil-emacs-state-map [escape] 'evil-normal-state)
 
+  ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
+  (bind-key* ";" 'chinese-wbim-insert-ascii)
   (setq chinese-wbim-punc-translate-p nil)
   (evil-leader/set-key
     "otp" 'chinese-wbim-punc-translate-toggle)
@@ -316,11 +317,9 @@ layers configuration."
               (let ((map (chinese-wbim-mode-map)))
                 (define-key map "-" 'chinese-wbim-previous-page)
                 (define-key map "=" 'chinese-wbim-next-page))))
+
   (add-hook 'prog-mode-hook 'hungry-delete-mode)
-
-
   (diminish 'whitespace-mode)
-
   (spacemacs|hide-lighter doxymacs-mode)
 
   (require 'yasnippet)
