@@ -60,8 +60,11 @@
         multiple-cursors
         hydra
         persp-mode
+        json-mode
         ))
 
+(defun zilongshanren/post-init-json-mode ()
+  (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode)))
 
 (defun zilongshanren/post-init-persp-mode ()
   (spacemacs|define-custom-persp "@Cocos2D-X"

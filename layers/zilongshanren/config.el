@@ -334,6 +334,7 @@ Single Capitals as you type."
 
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
+
  
 (setq url-show-status nil)
 

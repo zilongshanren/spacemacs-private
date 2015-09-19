@@ -343,7 +343,7 @@ layers configuration."
                                                           org-mode-hook))
 
   ;;set region face for monokai theme
-  (set-face-attribute 'region nil :background "#FD971F")
+  (set-face-attribute 'region nil :background "#696969")
   (set-face-attribute 'whitespace-tab nil
                       :background "#Adff2f"
                       :foreground "#00a8a8"
