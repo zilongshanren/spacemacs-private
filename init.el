@@ -251,6 +251,10 @@ layers configuration."
   (with-eval-after-load 'linum
     (linum-relative-toggle))
 
+  ;;解决org表格里面中英文对齐的问题
+  (when (spacemacs/system-is-mac)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+
   (global-company-mode t)
 
   ;;currently this key map must be put in user-config to override the defaults

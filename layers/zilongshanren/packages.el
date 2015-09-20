@@ -67,7 +67,6 @@
         youdao-dictionary
         powerline
         helm-ag
-        chinese
         cc-mode
         whitespace
         hungry-delete
@@ -96,9 +95,6 @@
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev )))
 
-(defun zilongshanren/post-init-chinese ()
-  (when (spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
 (defun zilongshanren/post-init-helm-ag ()
   ;; the solution is not perfect, maybe I should wait for the spacemacs author
