@@ -80,3 +80,5 @@
     :off (global-shadowsocks-proxy-mode -1)
     :documentation "Toggle shadowsocks proxy mode."
     :evil-leader "toP")
+
+(global-set-key (kbd "s-s") 'save-buffer)

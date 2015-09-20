@@ -1,6 +1,6 @@
 ;;; packages.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -61,7 +61,60 @@
         hydra
         persp-mode
         json-mode
+        chinese-wbim
+        racket
+        yasnippet
         ))
+
+(defun zilongshanren/post-init-yasnippet ()
+  (progn
+    (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
+    (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
+                                                                           org-mode-hook
+                                                                           markdown-mode-hook))
+
+    (defun zilongshanren/load-yasnippet ()
+      (unless yas-global-mode
+        (progn
+          (yas-global-mode 1)
+          (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
+          (setq yas-snippet-dirs  my-snippet-dir)
+          ;; (yas-load-directory my-snippet-dir)
+          (setq yas-wrap-around-region t)))
+      (yas-minor-mode 1))
+
+    (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+                                                            markdown-mode-hook
+                                                            org-mode-hook))
+    ))
+
+(defun zilongshanren/post-init-racket ()
+  (progn
+    (eval-after-load 'racket-repl-mode
+      '(progn
+         (define-key racket-repl-mode-map (kbd "]") nil)
+         (define-key racket-repl-mode-map (kbd "[") nil)))
+
+
+    (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
+    (add-hook 'racket-mode-hook (lambda () (lispy-mode 1)))
+    (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
+    ))
+
+(defun zilongshanren/post-init-chinese-wbim ()
+  (progn
+    ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
+    (bind-key* ";" 'chinese-wbim-insert-ascii)
+    (setq chinese-wbim-punc-translate-p nil)
+    (evil-leader/set-key
+      "otp" 'chinese-wbim-punc-translate-toggle)
+    (setq chinese-wbim-wb-use-gbk t)
+    (add-hook 'chinese-wbim-wb-load-hook
+              (lambda ()
+                (let ((map (chinese-wbim-mode-map)))
+                  (define-key map "-" 'chinese-wbim-previous-page)
+                  (define-key map "=" 'chinese-wbim-next-page))))
+    ))
 
 (defun zilongshanren/post-init-json-mode ()
   (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode)))
@@ -213,7 +266,6 @@
       (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
-      (add-hook 'racket-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))))
 
 (defun zilongshanren/post-init-lua-mode ()
@@ -302,7 +354,10 @@
     :config (progn
               (flycheck-package-setup)
               (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-              (setq flycheck-display-errors-delay 0.2))))
+              (setq flycheck-display-errors-delay 0.2)
+              (remove-hook 'c-mode-hook 'flycheck-mode)
+              (remove-hook 'c++-mode-hook 'flycheck-mode)
+              )))
 
 (defun zilongshanren/post-init-ycmd ()
   (setq ycmd-tag-files 'auto)
@@ -702,6 +757,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (use-package evil
     :init
     (progn
+      ;; make underscore as word_motion.
+      (modify-syntax-entry ?_ "w")
       ;; ;; change evil initial mode state
       (loop for (mode . state) in
             '((shell-mode . normal))
@@ -1112,7 +1169,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (global-set-key (kbd "C-c a") 'org-agenda)
     (define-key org-mode-map (kbd "s-p") 'org-priority)
     (define-key global-map (kbd "<f9>") 'org-capture)
+    (global-set-key (kbd "C-c b") 'org-iswitchb)
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
+    (evil-leader/set-key-for-mode 'org-mode
+      "owh" 'plain-org-wiki-helm
+      "owf" 'plain-org-wiki)
+
     ))
 
 (defun zilongshanren/post-init-deft ()
@@ -1191,4 +1253,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq js2-imenu-extra-generic-expression javascript-common-imenu-regex-list)))
 
 (defun zilongshanren/post-init-popwin ()
-  (push "*zilongshanren/run-current-file output*" popwin:special-display-config))
+  (progn
+    (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
+    (delete "*Async Shell Command*" 'popwin:special-display-config)
+    ))

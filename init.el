@@ -250,34 +250,16 @@ layers configuration."
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
     (linum-relative-toggle))
-  ;; make underscore as word_motion.
-  (modify-syntax-entry ?_ "w")
 
   (global-company-mode t)
-  (global-set-key (kbd "s-s") 'save-buffer)
-  (global-set-key (kbd "C-c b") 'org-iswitchb)
   (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
-  (evil-leader/set-key-for-mode 'org-mode
-    "owh" 'plain-org-wiki-helm
-    "owf" 'plain-org-wiki)
 
   (when (spacemacs/system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
   (setq powerline-default-separator 'arrow)
-  ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
-  (setq inhibit-eol-conversion t)
-  (eval-after-load 'racket-repl-mode
-    '(progn
-       (define-key racket-repl-mode-map (kbd "]") nil)
-       (define-key racket-repl-mode-map (kbd "[") nil)))
 
-
-  (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
-  (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
 
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
-  (remove-hook 'c-mode-hook 'flycheck-mode)
-  (remove-hook 'c++-mode-hook 'flycheck-mode)
   ;; the solution is not perfect, maybe I should wait for the spacemacs author
   ;; to fix the issue
   (setq helm-ag-insert-at-point 'symbol)
@@ -286,7 +268,6 @@ layers configuration."
   ;;beautify-helm buffer when long file name is present
   ;; save desktop ;unprintable entity
   ;; (desktop-save-mode t)
-  (delete "*Async Shell Command*" 'popwin:special-display-config)
 
   ;; company backend should be grouped
   (setq company-backends-c-mode-common '((company-c-headers
@@ -296,7 +277,6 @@ layers configuration."
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
 
-  (setq-default tab-width 4)
   ;; enable hybrid editing style
   (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
     "Preparing the holy water flasks."
@@ -306,41 +286,11 @@ layers configuration."
   (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
   (define-key evil-emacs-state-map [escape] 'evil-normal-state)
 
-  ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
-  (bind-key* ";" 'chinese-wbim-insert-ascii)
-  (setq chinese-wbim-punc-translate-p nil)
-  (evil-leader/set-key
-    "otp" 'chinese-wbim-punc-translate-toggle)
-  (setq chinese-wbim-wb-use-gbk t)
-  (add-hook 'chinese-wbim-wb-load-hook
-            (lambda ()
-              (let ((map (chinese-wbim-mode-map)))
-                (define-key map "-" 'chinese-wbim-previous-page)
-                (define-key map "=" 'chinese-wbim-next-page))))
 
   (add-hook 'prog-mode-hook 'hungry-delete-mode)
   (diminish 'whitespace-mode)
   (spacemacs|hide-lighter doxymacs-mode)
 
-  (require 'yasnippet)
-  (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-  (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
-                                                                    org-mode-hook
-                                                                    markdown-mode-hook))
-
-  (defun zilongshanren/load-yasnippet ()
-    (unless yas-global-mode
-      (progn
-        (yas-global-mode 1)
-        (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
-        (setq yas-snippet-dirs  my-snippet-dir)
-        ;; (yas-load-directory my-snippet-dir)
-        (setq yas-wrap-around-region t)))
-    (yas-minor-mode 1))
-
-  (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
-                                                          markdown-mode-hook
-                                                          org-mode-hook))
 
   ;;set region face for monokai theme
   (set-face-attribute 'region nil :background "#696969")
