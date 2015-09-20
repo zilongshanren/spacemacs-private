@@ -17,17 +17,20 @@
         plain-org-wiki
         ))
 
-(setq zilongshanren-pre-extensions
-      '())
-
 ;; For each extension, define a function zilongshanren/init-<extension-name>
 ;;
 (defun zilongshanren/init-doxymacs ()
   "Initialize doxymacs"
   (use-package doxymacs
     :init
-    (add-hook 'c-mode-common-hook 'doxymacs-mode)))
-
+    (add-hook 'c-mode-common-hook 'doxymacs-mode)
+    :config
+    (progn
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+            (doxymacs-font-lock)))
+      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+      (spacemacs|hide-lighter doxymacs-mode)))) 
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
 (defun zilongshanren/init-nodejs-repl-eval ()
   (use-package nodejs-repl-eval

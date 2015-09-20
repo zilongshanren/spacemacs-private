@@ -103,6 +103,8 @@
 
 ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
 (require 'whitespace)
+
+
 (setq whitespace-line-column fill-column) ;; limit line length
 ;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/
 (setq whitespace-display-mappings
@@ -349,3 +351,6 @@ Single Capitals as you type."
   (add-to-list 'ispell-skip-region-alist '("=" "="))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC")))
 (add-hook 'org-mode-hook #'endless/org-ispell)
+
+;;set region face for monokai theme
+(set-face-attribute 'region nil :background "#696969")

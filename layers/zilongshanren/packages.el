@@ -64,7 +64,52 @@
         chinese-wbim
         racket
         yasnippet
+        youdao-dictionary
+        powerline
+        helm-ag
+        chinese
+        cc-mode
+        whitespace
+        hungry-delete
         ))
+
+(defun zilongshanren/post-init-hungry-delete ()
+  (add-hook 'prog-mode-hook 'hungry-delete-mode))
+
+(defun zilongshanren/post-init-whitespace ()
+  (set-face-attribute 'whitespace-tab nil
+                      :background "#Adff2f"
+                      :foreground "#00a8a8"
+                      :weight 'bold)
+  (set-face-attribute 'whitespace-trailing nil
+                      :background "#e4eeff"
+                      :foreground "#183bc8"
+                      :weight 'normal)
+  (diminish 'whitespace-mode))
+
+(defun zilongshanren/post-init-cc-mode ()
+  ;; company backend should be grouped
+  (setq company-backends-c-mode-common '((company-c-headers
+                                          company-dabbrev-code
+                                          company-keywords
+                                          company-etags
+                                          company-gtags :with company-yasnippet)
+                                         company-files company-dabbrev )))
+
+(defun zilongshanren/post-init-chinese ()
+  (when (spacemacs/system-is-mac)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
+
+(defun zilongshanren/post-init-helm-ag ()
+  ;; the solution is not perfect, maybe I should wait for the spacemacs author
+  ;; to fix the issue
+  (setq helm-ag-insert-at-point 'symbol))
+
+(defun zilongshanren/post-init-powerline ()
+  (setq powerline-default-separator 'arrow))
+
+(defun zilongshanren/post-init-youdao-dictionary ()
+  (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
 
 (defun zilongshanren/post-init-yasnippet ()
   (progn
@@ -691,6 +736,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
   (use-package helm
     :init
     (progn
+      (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
       ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
       ;; discussion of these options.
       (setq helm-split-window-in-side-p t
@@ -749,7 +795,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :defer t
     :init
     :config
-    (setq helm-ls-git-show-abs-or-relative 'relative)))
+    (progn
+      ;;beautify-helm buffer when long file name is present
+      (setq helm-buffer-max-length 45)
+      (evil-leader/set-key "pf" 'helm-ls-git-ls)
+      (setq helm-ls-git-show-abs-or-relative 'relative))))
 
 
 ;;configs for EVIL mode
@@ -822,7 +872,18 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         'evil-delete-backward-word)
       (define-key evil-emacs-state-map (kbd "s-p") 'projectile-switch-project)
 
-      (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer))))
+      (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
+
+      ;; enable hybrid editing style
+      (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
+        "Preparing the holy water flasks."
+        (evil-emacs-state))
+      (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
+      (bind-keys ("<C-[>" . evil-normal-state))
+      (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
+      (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+
+      )))
 
 (defun zilongshanren/init-org-mac-link ()
   (use-package org-mac-link

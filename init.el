@@ -238,6 +238,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+  ;;I have changed this settings to shadowsocks minor mode
   ;; (setq url-gateway-method 'socks)
   )
 
@@ -245,63 +246,12 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;;add toggle for shadowsocks-mode
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
     (linum-relative-toggle))
 
   (global-company-mode t)
-  (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
-
-  (when (spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-  (setq powerline-default-separator 'arrow)
-
-
-  (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+)
-  ;; the solution is not perfect, maybe I should wait for the spacemacs author
-  ;; to fix the issue
-  (setq helm-ag-insert-at-point 'symbol)
-  (setq helm-buffer-max-length 45)
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
-  ;;beautify-helm buffer when long file name is present
-  ;; save desktop ;unprintable entity
-  ;; (desktop-save-mode t)
-
-  ;; company backend should be grouped
-  (setq company-backends-c-mode-common '((company-c-headers
-                                          company-dabbrev-code
-                                          company-keywords
-                                          company-etags
-                                          company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev ))
-
-  ;; enable hybrid editing style
-  (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
-    "Preparing the holy water flasks."
-    (evil-emacs-state))
-  (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
-  (bind-keys ("<C-[>" . evil-normal-state))
-  (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
-  (define-key evil-emacs-state-map [escape] 'evil-normal-state)
-
-
-  (add-hook 'prog-mode-hook 'hungry-delete-mode)
-  (diminish 'whitespace-mode)
-  (spacemacs|hide-lighter doxymacs-mode)
-
-
-  ;;set region face for monokai theme
-  (set-face-attribute 'region nil :background "#696969")
-  (set-face-attribute 'whitespace-tab nil
-                      :background "#Adff2f"
-                      :foreground "#00a8a8"
-                      :weight 'bold)
-  (set-face-attribute 'whitespace-trailing nil
-                      :background "#e4eeff"
-                      :foreground "#183bc8"
-                      :weight 'normal)
 
   )
 ;; Do not write anything past this comment. This is where Emacs will
