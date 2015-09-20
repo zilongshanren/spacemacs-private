@@ -798,7 +798,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (progn
       ;;beautify-helm buffer when long file name is present
       (setq helm-buffer-max-length 45)
-      (evil-leader/set-key "pf" 'helm-ls-git-ls)
       (setq helm-ls-git-show-abs-or-relative 'relative))))
 
 
@@ -882,6 +881,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (bind-keys ("<C-[>" . evil-normal-state))
       (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
       (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+
 
       )))
 

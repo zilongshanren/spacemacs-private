@@ -253,6 +253,8 @@ layers configuration."
 
   (global-company-mode t)
 
+  ;;currently this key map must be put in user-config to override the defaults
+  (evil-leader/set-key "pf" 'helm-ls-git-ls)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
