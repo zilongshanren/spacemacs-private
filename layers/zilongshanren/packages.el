@@ -62,7 +62,7 @@
         persp-mode
         json-mode
         chinese-wbim
-        racket
+        racket-mode
         yasnippet
         youdao-dictionary
         powerline
@@ -129,16 +129,15 @@
                                                             org-mode-hook))
     ))
 
-(defun zilongshanren/post-init-racket ()
+(defun zilongshanren/post-init-racket-mode ()
   (progn
     (eval-after-load 'racket-repl-mode
       '(progn
          (define-key racket-repl-mode-map (kbd "]") nil)
          (define-key racket-repl-mode-map (kbd "[") nil)))
 
-
-    (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
     (add-hook 'racket-mode-hook (lambda () (lispy-mode 1)))
+    (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
     (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
     ))
 
