@@ -307,19 +307,19 @@
       (add-hook 'python-mode-hook 'ws-butler-mode)
       (add-hook 'cython-mode-hook 'ws-butler-mode))))
 
-;; (defun zilongshanren/init-rtags ()
-;;   (use-package rtags
-;;     :init (require 'company-rtags)
-;;     :config
-;;     (progn
-;;       (evil-leader/set-key-for-mode 'c++-mode
-;;         "mtr" 'rtags-find-references
-;;         "mts" 'rtags-find-symbol
-;;         "mti" 'rtags-imenu
-;;         "mtf" 'rtags-find-file
-;;         "mtv" 'rtags-find-virtuals-at-point)
-;;       )
-;;     ))
+(defun zilongshanren/init-rtags ()
+  (use-package rtags
+    :init (require 'company-rtags)
+    :config
+    (progn
+      (evil-leader/set-key-for-mode 'c++-mode
+        "mtr" 'rtags-find-references
+        "mts" 'rtags-find-symbol
+        "mti" 'rtags-imenu
+        "mtf" 'rtags-find-file
+        "mtv" 'rtags-find-virtuals-at-point)
+      )
+    ))
 
 (defun zilongshanren/init-cmake-font-lock ()
   (use-package cmake-font-lock
@@ -418,11 +418,11 @@
 
       (add-hook 'web-mode-hook 'zilongshanren-mode-hook))))
 
-;; (defun zilongshanren/init-moz-controller ()
-;;   (use-package moz-controller
-;;     :init
-;;     (moz-controller-global-mode t)
-;;     :diminish moz-controller-mode))
+(defun zilongshanren/init-moz-controller ()
+  (use-package moz-controller
+    :init
+    (moz-controller-global-mode t)
+    :diminish moz-controller-mode))
 
 (defun zilongshanren/init-helm-github-stars ()
   (use-package helm-github-stars
