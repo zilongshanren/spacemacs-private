@@ -259,6 +259,13 @@ layers configuration."
 
   ;;currently this key map must be put in user-config to override the defaults
   (evil-leader/set-key "pf" 'helm-ls-git-ls)
+
+
+  (defun conditional-disable-modes ()
+    (when (> (buffer-size) 1000000)
+      (flycheck-mode -1)))
+
+  (add-hook 'js2-mode-hook 'conditional-disable-modes)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
