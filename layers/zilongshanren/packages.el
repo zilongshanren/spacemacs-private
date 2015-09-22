@@ -235,7 +235,7 @@
       (bind-key*  "<f4>" 'hydra-apropos/body)
       )))
 
-(defun zilongshanren/post-init-multiple-cursors ()
+(defun zilongshanren/init-multiple-cursors ()
   (use-package multiple-cursors
     :init
     (progn
@@ -397,6 +397,11 @@
               (setq flycheck-display-errors-delay 0.2)
               (remove-hook 'c-mode-hook 'flycheck-mode)
               (remove-hook 'c++-mode-hook 'flycheck-mode)
+              (spacemacs|evilify-map flycheck-error-list-mode-map
+                :mode flycheck-error-list-mode
+                :bindings
+                (kbd "RET") 'flycheck-error-list-goto-error)
+              ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
               )))
 
 (defun zilongshanren/post-init-ycmd ()
