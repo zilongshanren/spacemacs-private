@@ -34,7 +34,7 @@ values."
      dash
      prodigy
      search-engine
-     syntax-checking
+     (syntax-checking :variables syntax-checking-enable-tooltips t)
      spell-checking
      yaml
      python
