@@ -1291,6 +1291,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
+    (setq company-backends-js2-mode '((company-dabbrev-code
+                                            company-keywords
+                                            company-etags
+                                            ) company-files company-dabbrev ))
     ;; {{ patching imenu in js2-mode
     (setq javascript-common-imenu-regex-list
           '(("Controller" "[. \t]controller([ \t]*['\"]\\([^'\"]+\\)" 1)

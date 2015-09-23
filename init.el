@@ -57,8 +57,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t)
+     (auto-completion)
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
@@ -76,7 +75,7 @@ values."
                                     magit-gitflow
                                     magit-svn
                                     ;;remove from spacemacs distribution
-                                    neotree
+                                    ;; neotree
                                     leuven-theme
                                     evil-lisp-state
                                     spray
@@ -252,8 +251,9 @@ layers configuration."
     (linum-relative-toggle))
 
   ;;解决org表格里面中英文对齐的问题
-  (when (spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+  (when (configuration-layer/layer-usedp 'chinese)
+    (when (spacemacs/system-is-mac)
+      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (global-company-mode t)
 
