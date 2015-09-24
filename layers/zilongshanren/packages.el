@@ -13,6 +13,7 @@
 ;; which require an initialization must be listed explicitly in the list.
 (setq zilongshanren-packages
       '(
+        css-mode
         ;; package names go here
         lispy
         lua-mode
@@ -71,6 +72,7 @@
         whitespace
         hungry-delete
         ))
+
 
 (defun zilongshanren/post-init-hungry-delete ()
   (add-hook 'prog-mode-hook 'hungry-delete-mode))
@@ -1300,6 +1302,29 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
     (remove-hook 'js2-mode-hook 'flycheck-mode)
 
+    ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
+    (setq-default js2-allow-rhino-new-expr-initializer nil)
+    (setq-default js2-auto-indent-p nil)
+    (setq-default js2-enter-indents-newline nil)
+    (setq-default js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
+    (setq-default js2-idle-timer-delay 0.1)
+    (setq-default js2-mirror-mode nil)
+    (setq-default js2-strict-inconsistent-return-warning nil)
+    (setq-default js2-include-rhino-externs nil)
+    (setq-default js2-include-gears-externs nil)
+    (setq-default js2-concat-multiline-strings 'eol)
+    (setq-default js2-rebind-eol-bol-keys nil)
+    (setq-default js2-auto-indent-p t)
+
+
+    ;; Let flycheck handle parse errors
+    (setq-default js2-show-parse-errors nil)
+    (setq-default js2-strict-missing-semi-warning nil)
+
+    (evilify js2-error-buffer-mode js2-error-buffer-mode-map)
+
+
+
     ;; {{ patching imenu in js2-mode
     (setq javascript-common-imenu-regex-list
           '(("Controller" "[. \t]controller([ \t]*['\"]\\([^'\"]+\\)" 1)
@@ -1327,3 +1352,16 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
     (delete "*Async Shell Command*" 'popwin:special-display-config)
     ))
+
+(defun zilongshanren/post-init-css-mode ()
+  (progn
+    (dolist (hook '(css-mode-hook sass-mode-hook less-mode-hook))
+      (add-hook hook 'rainbow-mode))
+
+    (defun css-imenu-make-index ()
+      (save-excursion
+        (imenu--generic-function '((nil "^ *\\([^ ]+\\) *{ *$" 1)))))
+
+    (add-hook 'css-mode-hook
+              (lambda ()
+                (setq imenu-create-index-function 'css-imenu-make-index)))))
