@@ -334,7 +334,7 @@
 
 (defun zilongshanren/post-init-company ()
   (setq company-minimum-prefix-length 1
-        company-idle-delay 0.4)
+        company-idle-delay 0.08)
   (global-set-key (kbd "C-.") 'company-complete)
   (when (configuration-layer/package-usedp 'company)
     (spacemacs|add-company-hook lua-mode)
