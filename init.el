@@ -29,24 +29,26 @@ values."
      osx
      semantic                           ; too slow
      markdown
+     vim-empty-lines
+     vinegar
      ;; (ruby :variables ruby-version-manager 'rvm)
      org
-     dash
+     ;; dash
      prodigy
      search-engine
      (syntax-checking :variables syntax-checking-enable-tooltips t)
      spell-checking
      yaml
-     python
+     ;; python
      html
      javascript
-     restclient
+     ;; restclient
      emacs-lisp
      ;; emoji
      racket
      gtags
-     deft
-     lua
+     ;; deft
+     ;; lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
      ;; perspectives
      eyebrowse
@@ -266,6 +268,11 @@ layers configuration."
       (flycheck-mode -1)))
 
   (add-hook 'js2-mode-hook 'conditional-disable-modes)
+
+  (when (configuration-layer/layer-usedp 'vinegar)
+    (evilify dired-mode dired-mode-map
+             (kbd "C-k") 'zilongshanren/dired-up-directory))
+
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
