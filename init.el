@@ -76,6 +76,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     magit-svn
+                                    tagedit
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
@@ -285,6 +286,13 @@ layers configuration."
       (end-of-line)
       (insert ";")))
   (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
+
+  (defun zilongshanren/insert-comma-at-the-end-of-this-line ()
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (insert ",")))
+  (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
 
   )
 ;; Do not write anything past this comment. This is where Emacs will
