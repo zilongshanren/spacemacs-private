@@ -273,6 +273,19 @@ layers configuration."
     (evilify dired-mode dired-mode-map
              (kbd "C-k") 'zilongshanren/dired-up-directory))
 
+  (setq company-backends-web-mode '((company-dabbrev-code
+                                     company-keywords
+                                     company-etags)
+                                    company-files company-dabbrev))
+
+  ;; insert ; at the end of current line
+  (defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
+    (interactive)
+    (save-excursion
+      (end-of-line)
+      (insert ";")))
+  (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
+
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -288,6 +301,7 @@ layers configuration."
  '(ahs-inhibit-face-list nil)
  '(cfs--current-profile-name "profile1" t)
  '(expand-region-contract-fast-key "V")
+ '(expand-region-exclude-text-mode-expansions (quote (html-mode nxml-mode web-mode)))
  '(expand-region-reset-fast-key "r")
  '(golden-ratio-exclude-modes
    (quote

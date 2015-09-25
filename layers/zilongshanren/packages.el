@@ -71,6 +71,8 @@
         cc-mode
         whitespace
         hungry-delete
+        ;; web-mode
+        ;; tagedit
         ))
 
 
@@ -466,7 +468,9 @@
         (impatient-mode)
         (httpd-start))
 
-      (add-hook 'web-mode-hook 'zilongshanren-mode-hook))))
+      ;TODO: should add toggle options here.
+      ;;(add-hook 'web-mode-hook 'zilongshanren-mode-hook)
+      )))
 
 (defun zilongshanren/init-moz-controller ()
   (use-package moz-controller
@@ -1365,3 +1369,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (add-hook 'css-mode-hook
               (lambda ()
                 (setq imenu-create-index-function 'css-imenu-make-index)))))
+
+(defun zilongshanren/post-init-tagedit ()
+  (add-hook 'web-mode-hook (lambda () (tagedit-mode 1))))
