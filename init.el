@@ -31,25 +31,25 @@ values."
      markdown
      vim-empty-lines
      vinegar
-     ;; (ruby :variables ruby-version-manager 'rvm)
      org
-     ;; dash
      prodigy
      search-engine
      (syntax-checking :variables syntax-checking-enable-tooltips t)
      spell-checking
      yaml
+     ;; (ruby :variables ruby-version-manager 'rvm)
      ;; python
-     html
-     javascript
-     ;; restclient
-     emacs-lisp
-     ;; emoji
-     racket
-     gtags
-     ;; deft
      ;; lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
+     html
+     javascript
+     restclient
+     emacs-lisp
+     ;; dash
+     ;; emoji
+     ;; deft
+     racket
+     gtags
      ;; perspectives
      eyebrowse
      (colors :variables
@@ -75,8 +75,6 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
-                                    magit-svn
-                                    tagedit
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
