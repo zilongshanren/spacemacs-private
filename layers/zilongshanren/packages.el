@@ -738,7 +738,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
                 (message "No more miss-spelled word!")
                 (setq arg 0))))))
 
-    (bind-key* "C-," 'zilongshanren/flyspell-goto-previous-error)
+    (bind-key* "C-;" 'zilongshanren/flyspell-goto-previous-error)
     (global-set-key (kbd "C-c s") 'helm-flyspell-correct)))
 
 (defun zilongshanren/post-init-helm ()
