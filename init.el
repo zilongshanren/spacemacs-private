@@ -8,7 +8,7 @@ You should not put any user code in this function besides modifying the variable
 values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
-   ;; `!distribution'. For now available distributions are `spacemacs-core'
+   ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
@@ -30,7 +30,7 @@ values."
      semantic                           ; too slow
      markdown
      vim-empty-lines
-     vinegar
+     (vinegar :variables vinegar-reuse-dired-buffer t)
      org
      prodigy
      search-engine
@@ -270,7 +270,8 @@ layers configuration."
 
   (when (configuration-layer/layer-usedp 'vinegar)
     (evilify dired-mode dired-mode-map
-             (kbd "C-k") 'zilongshanren/dired-up-directory))
+             (kbd "C-k") 'zilongshanren/dired-up-directory
+             (kbd "C") 'dired-do-copy))
 
   (setq company-backends-web-mode '((company-dabbrev-code
                                      company-keywords
