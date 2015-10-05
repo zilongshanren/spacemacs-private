@@ -889,8 +889,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
         "Preparing the holy water flasks."
         (evil-emacs-state))
-      (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
-      (bind-keys ("<C-[>" . evil-normal-state))
+      ;; disable c-[ temporally
+      ;; (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
+      ;; (bind-keys ("<C-[>" . evil-normal-state))
       (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
       (define-key evil-emacs-state-map [escape] 'evil-normal-state)
 
