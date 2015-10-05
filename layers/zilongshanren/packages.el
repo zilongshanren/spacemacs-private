@@ -71,10 +71,13 @@
         cc-mode
         whitespace
         hungry-delete
-        ;; web-mode
+        evil-escape
+        ;; web-mode 
         ;; tagedit
         ))
 
+(defun zilongshanren/post-init-evil-escape ()
+  (setq evil-escape-delay 0.2))
 
 (defun zilongshanren/post-init-hungry-delete ()
   (add-hook 'prog-mode-hook 'hungry-delete-mode))
