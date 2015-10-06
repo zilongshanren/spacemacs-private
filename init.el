@@ -78,6 +78,7 @@ values."
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
+                                    gh-md
                                     evil-lisp-state
                                     spray
                                     evil-tutor
