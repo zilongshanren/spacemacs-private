@@ -72,9 +72,13 @@
         whitespace
         hungry-delete
         evil-escape
+        org-bullets
         ;; web-mode 
         ;; tagedit
         ))
+
+(defun zilongshanren/post-init-org-bullets ()
+  (setq org-bullets-bullet-list '("🐉" "🐠" "🐬" "🐤")))
 
 (defun zilongshanren/post-init-evil-escape ()
   (setq evil-escape-delay 0.2))
