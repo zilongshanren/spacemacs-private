@@ -223,7 +223,7 @@
         ("m" yas/minor-mode)
         ("a" yas-reload-all))
 
-      (bind-key* "<f3>" 'hydra-yasnippet/body)
+      ;; (bind-key* "<f3>" 'hydra-yasnippet/body)
 
       (defhydra hydra-apropos (:color blue)
         "Apropos"
@@ -881,7 +881,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
       (evil-define-key 'emacs term-raw-map (kbd "C-w")
         'evil-delete-backward-word)
-      (define-key evil-emacs-state-map (kbd "s-p") 'projectile-switch-project)
 
       (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
 

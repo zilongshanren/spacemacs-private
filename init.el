@@ -260,7 +260,8 @@ layers configuration."
   (global-company-mode t)
 
   ;;currently this key map must be put in user-config to override the defaults
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  ;; (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  (bind-key* "s-p" 'helm-ls-git-ls)
 
 
   (defun conditional-disable-modes ()
