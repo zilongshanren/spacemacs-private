@@ -263,6 +263,17 @@ layers configuration."
   ;; (evil-leader/set-key "pf" 'helm-ls-git-ls)
   (bind-key* "s-p" 'helm-ls-git-ls)
 
+  (evil-leader/set-key-for-mode 'js2-mode
+    "mga" 'projectile-find-other-file
+    "mgA" 'projectile-find-other-file-other-window)
+
+  (evil-leader/set-key-for-mode 'web-mode
+    "mga" 'projectile-find-other-file
+    "mgA" 'projectile-find-other-file-other-window)
+
+  (require 'projectile)
+  (add-to-list 'projectile-other-file-alist '("html" "js")) ;; switch from html -> js
+  (add-to-list 'projectile-other-file-alist '("js" "html")) ;; switch from js -> html
 
   (defun conditional-disable-modes ()
     (when (> (buffer-size) 1000000)
