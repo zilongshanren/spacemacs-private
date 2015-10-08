@@ -549,6 +549,18 @@ With PREFIX, cd to project root."
         (locate-dominating-file directory ".svn")
         (locate-dominating-file directory ".hg"))))
 
+;; https://github.com/syohex/emacs-browser-refresh/blob/master/browser-refresh.el
+(defun zilongshanren/browser-refresh--chrome-applescript ()
+  (interactive)
+  (do-applescript
+   (format
+    "
+  tell application \"Google Chrome\"
+    set winref to a reference to (first window whose title does not start with \"Developer Tools - \")
+    set winref's index to 1
+    reload active tab of winref
+  end tell
+" )))
 
 (define-minor-mode
  shadowsocks-proxy-mode
