@@ -1294,6 +1294,15 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :kill-process-buffer-on-stop t)
 
   (prodigy-define-service
+    :name "Debug Fireball"
+    :command "gulp"
+    :args '("fireball" "--path" "/Users/guanghui/workspace/fireball/HelloFireBall/")
+    :cwd "~/Github/fireball/"
+    :tags '(work)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
     :name "Org wiki preview"
     :command "python"
     :args '("-m" "SimpleHTTPServer" "8088")
