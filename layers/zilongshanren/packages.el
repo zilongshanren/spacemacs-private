@@ -472,7 +472,9 @@
         (httpd-start))
 
       ;TODO: should add toggle options here.
-      ;;(add-hook 'web-mode-hook 'zilongshanren-mode-hook)
+      (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
+      (evil-leader/set-key-for-mode 'web-mode
+        "mp" 'imp-visit-buffer)
       )))
 
 (defun zilongshanren/init-moz-controller ()
