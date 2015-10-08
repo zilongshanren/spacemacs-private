@@ -73,9 +73,13 @@
         hungry-delete
         evil-escape
         org-bullets
+        flyspell
         ;; web-mode 
         ;; tagedit
         ))
+
+(defun zilongshanren/post-init-flyspell ()
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
 (defun zilongshanren/post-init-org-bullets ()
   (setq org-bullets-bullet-list '("🐉" "🐠" "🐬" "🐤")))
