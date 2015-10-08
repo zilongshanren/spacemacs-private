@@ -117,8 +117,9 @@ values."
    ;; If the value is nil then no banner is displayed.
    dotspacemacs-startup-banner 'doge
    ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects'."
-   dotspacemacs-startup-lists '(recents projects bookmarks)
+   ;; Possible values are: `recents' `bookmarks' `projects'.
+   ;; (default '(recents projects))
+   dotspacemacs-startup-lists '(recents projects)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -247,6 +248,8 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;; https://github.com/syl20bnr/spacemacs/issues/2705
+  (setq tramp-mode nil)
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
@@ -261,6 +264,10 @@ layers configuration."
 
   ;;currently this key map must be put in user-config to override the defaults
   (evil-leader/set-key "pf" 'helm-ls-git-ls)
+
+  ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
+  (evil-leader/set-key-for-mode 'js2-mode
+    "msd" 'nodejs-repl-eval-dwim)
 
   (evil-leader/set-key-for-mode 'js2-mode
     "mga" 'projectile-find-other-file

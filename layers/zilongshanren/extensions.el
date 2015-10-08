@@ -34,14 +34,7 @@
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
 (defun zilongshanren/init-nodejs-repl-eval ()
   (use-package nodejs-repl-eval
-    :init
-    (use-package js2-mode
-      :defer t
-      :config
-      (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-      (evil-leader/set-key-for-mode 'js2-mode
-        "msd" 'nodejs-repl-eval-dwim)
-      )))
+    :init))
 
 (defun zilongshanren/init-plain-org-wiki ()
   (use-package plain-org-wiki

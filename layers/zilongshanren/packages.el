@@ -87,11 +87,10 @@
 
     ;; if the full path of current file is under SUBPROJECT1 or SUBPROJECT2
     ;; OR if I'm reading my personal issue track document,
-    (when (ffip-current-full-filename-match-pattern-p "\\(/fireball\\|/cocos2d-x\\)")
-      ;; set the root directory into "~/projs/PROJECT_DIR"
-      (setq-default ffip-project-root ("~/Github/fireball/"))
+    (when (ffip-current-full-filename-match-pattern-p "\\(/fireball\\)")
+      (setq-local ffip-project-root "~/Github/fireball/")
       ;; well, I'm not interested in concatenated BIG js file or file in dist/
-      (setq-default ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
+      (setq-local ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
       ;; do NOT search files in below directories, the default value is better.
       ;; (setq-default ffip-prune-patterns '(".git" ".hg" "*.svn" "node_modules" "bower_components" "obj"))
       )
