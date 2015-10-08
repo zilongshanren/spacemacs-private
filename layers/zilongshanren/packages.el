@@ -1034,11 +1034,14 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              :empty-lines 1)))
 
     (setq org-tags-match-list-sublevels nil)
+    ;;An entry without a cookie is treated just like priority ' B '.
+    ;;So when create new task, they are default 重要且紧急
     (setq org-agenda-custom-commands
           '(
             ("w" . "任务安排")
             ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
             ("wb" "重要且不紧急的任务" tags-todo "+PRIORITY=\"B\"")
+            ("wc" "不重要且不紧急的任务" tags-todo "+PRIORITY=\"C\"")
             ("b" "Blog" tags-todo "BLOG")
             ("p" . "项目安排")
             ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
