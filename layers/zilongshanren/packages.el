@@ -112,9 +112,13 @@
 
 
 (defun zilongshanren/post-init-helm-ag ()
-  ;; the solution is not perfect, maybe I should wait for the spacemacs author
-  ;; to fix the issue
-  (setq helm-ag-insert-at-point 'symbol))
+  (setq helm-ag-use-agignore t)
+  ;; This settings use .agignore file to ignore items, and it don't respect to .hgignore, .gitignore
+  ;; when there are some git repositories are in .gitignore file, this options is very useful.
+  ;;And the .agignore file while be searched at PROJECT_ROOT/.agignore and ~/.agignore
+  ;; Thanks to 'man ag' and 'customize-group<RET> helm-ag' for finding the solution... Always RTFM.
+  (setq helm-ag-command-option " -U" )
+  )
 
 (defun zilongshanren/post-init-powerline ()
   (setq powerline-default-separator 'arrow))
