@@ -12,9 +12,9 @@
 (setq zilongshanren-post-extensions
       '(
         ;; post extension names go here
-        doxymacs
+        ;; doxymacs
         nodejs-repl-eval
-        plain-org-wiki
+        ;; plain-org-wiki
         ))
 
 ;; For each extension, define a function zilongshanren/init-<extension-name>

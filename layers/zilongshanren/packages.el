@@ -87,8 +87,8 @@
 
     ;; if the full path of current file is under SUBPROJECT1 or SUBPROJECT2
     ;; OR if I'm reading my personal issue track document,
-    (when (ffip-current-full-filename-match-pattern-p "\\(/fireball\\)")
-      (setq-local ffip-project-root "~/Github/fireball/")
+    (when (ffip-current-full-filename-match-pattern-p "/builtin")
+      (setq-local ffip-project-root "~/Github/fireball")
       ;; well, I'm not interested in concatenated BIG js file or file in dist/
       (setq-local ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
       ;; do NOT search files in below directories, the default value is better.

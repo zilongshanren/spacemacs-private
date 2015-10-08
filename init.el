@@ -238,6 +238,10 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  ;; https://github.com/syl20bnr/spacemacs/issues/2705
+  ;; (setq tramp-mode nil)
+  (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   ;;I have changed this settings to shadowsocks minor mode
@@ -248,8 +252,6 @@ user code."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;; https://github.com/syl20bnr/spacemacs/issues/2705
-  (setq tramp-mode nil)
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
