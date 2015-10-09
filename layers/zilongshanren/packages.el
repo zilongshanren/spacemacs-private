@@ -928,6 +928,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         'evil-delete-backward-word)
 
       (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
+      (evil-leader/set-key "bms" 'bookmark-set)
 
       ;; enable hybrid editing style
       (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
