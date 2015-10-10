@@ -75,9 +75,33 @@
         org-bullets
         flyspell
         find-file-in-project
+        hl-anything
         ;; web-mode 
         ;; tagedit
         ))
+
+(defun zilongshanren/init-hl-anything ()
+  (use-package hl-anything
+    :init
+    (progn
+      (spacemacs|add-toggle toggle-hl-anything
+        :status hl-highlight-mode
+        :on (hl-highlight-mode)
+        :off (hl-highlight-mode -1)
+        :documentation "Toggle highlight anything mode."
+        :evil-leader "ths")
+      (setq-default hl-highlight-save-file
+                    (concat spacemacs-cache-directory ".hl-save"))
+      (evil-leader/set-key
+        "hc"  'hl-unhighlight-all-local
+        "hC"  'hl-unhighlight-all-global
+        "hh"  'hl-highlight-thingatpt-local
+        "hH"  'hl-highlight-thingatpt-global
+        "hn"  'hl-find-next-thing
+        "hN"  'hl-find-prev-thing
+        "hr"  'hl-restore-highlights
+        "hs"  'hl-save-highlights))
+    :config (spacemacs|hide-lighter hl-highlight-mode)))
 
 (defun zilongshanren/init-find-file-in-project ()
   (use-package find-file-in-project
@@ -929,6 +953,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
       (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
       (evil-leader/set-key "bms" 'bookmark-set)
+      (evil-leader/set-key "bmr" 'bookmark-rename)
+      (evil-leader/set-key "bmd" 'bookmark-delete)
 
       ;; enable hybrid editing style
       (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
