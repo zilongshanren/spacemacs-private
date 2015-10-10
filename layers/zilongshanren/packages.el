@@ -349,6 +349,9 @@
 
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
+    :init
+    (evil-leader/set-key-for-mode 'js2-mode
+      "meb" 'nodejs-repl-eval-buffer)
     :defer t))
 
 (defun zilongshanren/init-flycheck-package ()
