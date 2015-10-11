@@ -92,19 +92,7 @@
         :on (hl-highlight-mode)
         :off (hl-highlight-mode -1)
         :documentation "Toggle highlight anything mode."
-        :evil-leader "ths")
-      (setq-default hl-highlight-save-file
-                    (concat spacemacs-cache-directory ".hl-save"))
-      (evil-leader/set-key
-        "hc"  'hl-unhighlight-all-local
-        "hC"  'hl-unhighlight-all-global
-        "hh"  'hl-highlight-thingatpt-local
-        "hH"  'hl-highlight-thingatpt-global
-        "hn"  'hl-find-next-thing
-        "hN"  'hl-find-prev-thing
-        "hr"  'hl-restore-highlights
-        "hs"  'hl-save-highlights))
-    :config (spacemacs|hide-lighter hl-highlight-mode)))
+        :evil-leader "ths"))))
 
 (defun zilongshanren/init-find-file-in-project ()
   (use-package find-file-in-project

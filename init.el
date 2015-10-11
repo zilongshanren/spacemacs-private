@@ -34,7 +34,8 @@ values."
      org
      prodigy
      search-engine
-     (syntax-checking :variables syntax-checking-enable-tooltips t)
+     (syntax-checking :variables syntax-checking-enable-tooltips t
+                      syntax-checking-enable-by-default nil)
      spell-checking
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
