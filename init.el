@@ -39,7 +39,7 @@ values."
      spell-checking
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
-     ;; python
+     python
      ;; lua
      ;; (clojure :variables clojure-enable-fancify-symbols t)
      html
