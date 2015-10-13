@@ -1381,10 +1381,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
-    ;; (setq company-backends-js2-mode '((company-dabbrev-code
-    ;;                                    company-keywords
-    ;;                                    company-etags) company-files company-dabbrev))
-
+    (setq company-backends-js2-mode '((company-dabbrev-code
+                                       company-keywords
+                                       company-etags) company-files company-dabbrev))
+    (eval-after-load "js2-mode"
+      '(progn
+         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
+         ))
     (remove-hook 'js2-mode-hook 'flycheck-mode)
 
     ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
