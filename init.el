@@ -46,7 +46,7 @@ values."
      javascript
      restclient
      emacs-lisp
-     ;; dash
+     dash
      ;; emoji
      ;; deft
      racket
