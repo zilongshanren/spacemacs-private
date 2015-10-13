@@ -1437,7 +1437,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (defun js2-imenu-make-index ()
       (save-excursion
         ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
-        (imenu--generic-function '(("Tests" "\\s-*\\(describe\\|it\\|before\\|after\\)\(\"\\(.+\\)\",.*" 2)
+        (imenu--generic-function '(("describe" "\\s-*describe\(\"\\(.+\\)\",.*" 1)
+                                   ("it" "\\s-*it\(\"\\(.+\\)\",.*" 1)
+                                   ("before" "\\s-*before\(\"\\(.+\\)\",.*" 1)
+                                   ("after" "\\s-*after\(\"\\(.+\\)\",.*" 1)
                                    ("Controller" "[. \t]controller([ \t]*['\"]\\([^'\"]+\\)" 1)
                                    ("Controller" "[. \t]controllerAs:[ \t]*['\"]\\([^'\"]+\\)" 1)
                                    ("Filter" "[. \t]filter([ \t]*['\"]\\([^'\"]+\\)" 1)
