@@ -330,7 +330,7 @@
       (define-key endless/mc-map "a" #'mc/mark-all-like-this)
 
 ;;; Occasionally useful
-      (define-key endless/mc-map "d" #'mc/mark-all-symbols-like-this-in-defu)
+      (define-key endless/mc-map "d" #'mc/mark-all-symbols-like-this-in-defun)
       (define-key endless/mc-map "r" #'mc/reverse-regions)
       (define-key endless/mc-map "s" #'mc/sort-regions)
       (define-key endless/mc-map "l" #'mc/edit-lines)
