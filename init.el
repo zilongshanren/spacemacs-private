@@ -34,7 +34,7 @@ values."
      prodigy
      search-engine
      (syntax-checking :variables syntax-checking-enable-tooltips t
-                      syntax-checking-enable-by-default nil)
+                      syntax-checking-enable-by-default t)
      spell-checking
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
@@ -46,7 +46,8 @@ values."
      restclient
      emacs-lisp
      dash
-     ;; emoji
+     emoji
+     ycmd
      ;; deft
      racket
      gtags
@@ -271,29 +272,6 @@ layers configuration."
   (evil-leader/set-key "pf" 'helm-ls-git-ls)
 
   ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-  (evil-leader/set-key-for-mode 'js2-mode
-    "msd" 'nodejs-repl-eval-dwim)
-
-  (evil-leader/set-key-for-mode 'js2-mode
-    "mga" 'projectile-find-other-file
-    "mgA" 'projectile-find-other-file-other-window)
-
-  (evil-leader/set-key-for-mode 'web-mode
-    "mga" 'projectile-find-other-file
-    "mgA" 'projectile-find-other-file-other-window)
-
-  (require 'projectile)
-  (add-to-list 'projectile-other-file-alist '("html" "js")) ;; switch from html -> js
-  (add-to-list 'projectile-other-file-alist '("js" "html")) ;; switch from js -> html
-
-  (defun conditional-disable-modes ()
-    (when (> (buffer-size) 1000000)
-      (flycheck-mode -1)))
-
-  (add-hook 'js2-mode-hook 'conditional-disable-modes)
-
-  (evilify occur-mode occur-mode-map
-           (kbd "RET") 'occur-mode-goto-occurrence)
 
   (when (configuration-layer/layer-usedp 'vinegar)
     (evilify dired-mode dired-mode-map
@@ -305,21 +283,13 @@ layers configuration."
                                      company-etags)
                                     company-files company-dabbrev))
 
-  ;; insert ; at the end of current line
-  (defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
-    (interactive)
-    (save-excursion
-      (end-of-line)
-      (insert ";")))
-  (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 
-  (defun zilongshanren/insert-comma-at-the-end-of-this-line ()
-    (interactive)
-    (save-excursion
-      (end-of-line)
-      (insert ",")))
-  (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
-
+  (setq company-backends-c-mode-common '((company-c-headers
+                                          company-dabbrev-code
+                                          company-keywords
+                                          company-etags
+                                          company-gtags :with company-yasnippet)
+                                         company-files company-dabbrev ))
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -370,8 +340,10 @@ layers configuration."
     ((eval setenv "PYTHONPATH" "/Users/guanghui/cocos2d-x/tools/cocos2d-console/plugins:/Users/guanghui/cocos2d-x/tools/cocos2d-console/bin"))))
  '(sp-show-pair-from-inside t)
  '(vc-follow-symlinks t)
+ '(web-mode-markup-indent-offset 2)
  '(ycmd-extra-conf-handler (quote load))
- '(ycmd-extra-conf-whitelist (quote ("~/cocos2d-x/*"))))
+ '(ycmd-extra-conf-whitelist (quote ("~/cocos2d-x/*")))
+ '(ycmd-parse-conditions (quote (save new-line idle-change mode-enabled))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

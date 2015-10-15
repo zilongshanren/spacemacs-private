@@ -575,3 +575,16 @@ With PREFIX, cd to project root."
 (define-global-minor-mode
  global-shadowsocks-proxy-mode shadowsocks-proxy-mode shadowsocks-proxy-mode
  :group 'shadowsocks-proxy)
+
+;; insert ; at the end of current line
+(defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (insert ";")))
+
+(defun zilongshanren/insert-comma-at-the-end-of-this-line ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (insert ",")))

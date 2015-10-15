@@ -87,3 +87,7 @@
 (bind-key* "C-c /" 'company-files)
 
 (bind-key* "s-r" 'zilongshanren/browser-refresh--chrome-applescript)
+
+(bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
+
+(bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)

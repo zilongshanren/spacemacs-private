@@ -26,7 +26,7 @@
         cmake-mode
         company-c-headers
         flycheck
-        ;; ycmd ;;It's very slow and company-gtags is enough
+        ycmd ;;It's very slow and company-gtags is enough
         markdown-mode
         org-octopress
         impatient-mode
@@ -76,9 +76,19 @@
         flyspell
         find-file-in-project
         hl-anything
+        projectile
         ;; web-mode 
         ;; tagedit
         ))
+
+(defun zilongshanren/post-init-projectile ()
+  (use-package projectile
+    :defer t
+    :config
+    (progn
+      (add-to-list 'projectile-other-file-alist '("html" "js")) ;; switch from html -> js
+      (add-to-list 'projectile-other-file-alist '("js" "html")) ;; switch from js -> html
+      )))
 
 ;; spacemacs distribution disabled this package, because it has overlay bug.
 ;; I hack the implementation here. on default, the hl-highlight-mode is disabled.
@@ -153,12 +163,8 @@
 
 (defun zilongshanren/post-init-cc-mode ()
   ;; company backend should be grouped
-  (setq company-backends-c-mode-common '((company-c-headers
-                                          company-dabbrev-code
-                                          company-keywords
-                                          company-etags
-                                          company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev )))
+  (define-key c++-mode-map (kbd "s-.") 'company-ycmd)
+  )
 
 
 (defun zilongshanren/post-init-helm-ag ()
@@ -492,8 +498,8 @@
               (flycheck-package-setup)
               (setq flycheck-display-errors-function 'flycheck-display-error-messages)
               (setq flycheck-display-errors-delay 0.2)
-              (remove-hook 'c-mode-hook 'flycheck-mode)
-              (remove-hook 'c++-mode-hook 'flycheck-mode)
+              ;; (remove-hook 'c-mode-hook 'flycheck-mode)
+              ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
               ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
               )))
 
@@ -1425,7 +1431,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       '(progn
          (define-key js2-mode-map   (kbd "s-.") 'company-tern)
          ))
-    (remove-hook 'js2-mode-hook 'flycheck-mode)
+    ;; (remove-hook 'js2-mode-hook 'flycheck-mode)
+    (defun conditional-disable-modes ()
+      (when (> (buffer-size) 1000000)
+        (flycheck-mode -1)))
+
+    (add-hook 'js2-mode-hook 'conditional-disable-modes)
 
     ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
     (setq-default js2-allow-rhino-new-expr-initializer nil)
@@ -1447,6 +1458,18 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq-default js2-strict-missing-semi-warning nil)
 
     (evilify js2-error-buffer-mode js2-error-buffer-mode-map)
+
+
+    (evil-leader/set-key-for-mode 'js2-mode
+      "msd" 'nodejs-repl-eval-dwim)
+
+    (evil-leader/set-key-for-mode 'js2-mode
+      "mga" 'projectile-find-other-file
+      "mgA" 'projectile-find-other-file-other-window)
+
+    (evil-leader/set-key-for-mode 'web-mode
+      "mga" 'projectile-find-other-file
+      "mgA" 'projectile-find-other-file-other-window)
 
 
     (defun js2-imenu-make-index ()

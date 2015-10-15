@@ -358,3 +358,6 @@ Single Capitals as you type."
 
 ;;set region face for monokai theme
 (set-face-attribute 'region nil :background "#696969")
+
+(evilify occur-mode occur-mode-map
+         (kbd "RET") 'occur-mode-goto-occurrence)
