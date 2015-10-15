@@ -29,7 +29,6 @@ values."
      osx
      semantic                           ; too slow
      markdown
-     vim-empty-lines
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
      prodigy
@@ -258,7 +257,8 @@ layers configuration."
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
-    (linum-relative-toggle))
+    (linum-relative-mode))
+
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
@@ -291,6 +291,10 @@ layers configuration."
       (flycheck-mode -1)))
 
   (add-hook 'js2-mode-hook 'conditional-disable-modes)
+
+  (evilify occur-mode occur-mode-map
+           (kbd "RET") 'occur-mode-goto-occurrence
+           (kbd "e") 'occur-edit-mode)
 
   (when (configuration-layer/layer-usedp 'vinegar)
     (evilify dired-mode dired-mode-map
