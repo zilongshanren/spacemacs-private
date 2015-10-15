@@ -76,10 +76,15 @@
         flyspell
         find-file-in-project
         hl-anything
+        regex-tool
         ;; web-mode 
         ;; tagedit
         ))
 
+(defun zilongshanren/init-regex-tool ()
+  (use-package regex-tool
+    :init
+    :defer t))
 ;; spacemacs distribution disabled this package, because it has overlay bug.
 ;; I hack the implementation here. on default, the hl-highlight-mode is disabled.
 (defun zilongshanren/post-init-hl-anything ()
@@ -697,6 +702,7 @@
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
 
+      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
       ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
       ;;                                                              (if (or (eq 'untracked section-type)
       ;;                                                                      (eq 'stashes section-type))
@@ -723,7 +729,6 @@
         (kill-buffer)
         (jump-to-register :magit-fullscreen))
 
-      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
       (defun endless/visit-pull-request-url ()
         "Visit the current branch's PR on Github."
