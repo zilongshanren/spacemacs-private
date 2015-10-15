@@ -293,8 +293,7 @@ layers configuration."
   (add-hook 'js2-mode-hook 'conditional-disable-modes)
 
   (evilify occur-mode occur-mode-map
-           (kbd "RET") 'occur-mode-goto-occurrence
-           (kbd "e") 'occur-edit-mode)
+           (kbd "RET") 'occur-mode-goto-occurrence)
 
   (when (configuration-layer/layer-usedp 'vinegar)
     (evilify dired-mode dired-mode-map
