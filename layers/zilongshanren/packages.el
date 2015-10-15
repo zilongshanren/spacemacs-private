@@ -76,15 +76,10 @@
         flyspell
         find-file-in-project
         hl-anything
-        regex-tool
         ;; web-mode 
         ;; tagedit
         ))
 
-(defun zilongshanren/init-regex-tool ()
-  (use-package regex-tool
-    :init
-    :defer t))
 ;; spacemacs distribution disabled this package, because it has overlay bug.
 ;; I hack the implementation here. on default, the hl-highlight-mode is disabled.
 (defun zilongshanren/post-init-hl-anything ()
