@@ -283,6 +283,8 @@ layers configuration."
                                      company-etags)
                                     company-files company-dabbrev))
 
+  (spacemacs|defvar-company-backends sh-mode)
+  (spacemacs|add-company-hook sh-mode)
 
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-dabbrev-code
