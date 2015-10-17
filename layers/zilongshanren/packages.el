@@ -46,6 +46,7 @@
         evil
         ox-reveal
         org-mac-link
+        org-pomodoro
         ;; worf
         org-download
         flycheck-package
@@ -1032,6 +1033,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :init
     (org-download-enable)))
 
+(defun zilongshanren/post-init-org-pomodoro ()
+  (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro))
+
 ;;In order to export pdf to support Chinese, I should install Latex at here: https://www.tug.org/mactex/
 ;; http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
 ;;http://stackoverflow.com/questions/21005885/export-org-mode-code-block-and-result-with-different-styles
@@ -1427,10 +1431,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (setq company-backends-js2-mode '((company-dabbrev-code
                                        company-keywords
                                        company-etags) company-files company-dabbrev))
-    (eval-after-load "js2-mode"
-      '(progn
-         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
-         ))
     ;; (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
       (when (> (buffer-size) 1000000)
@@ -1438,24 +1438,41 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
     (add-hook 'js2-mode-hook 'conditional-disable-modes)
 
-    ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
-    (setq-default js2-allow-rhino-new-expr-initializer nil)
-    (setq-default js2-auto-indent-p nil)
-    (setq-default js2-enter-indents-newline nil)
-    (setq-default js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
-    (setq-default js2-idle-timer-delay 0.1)
-    (setq-default js2-mirror-mode nil)
-    (setq-default js2-strict-inconsistent-return-warning nil)
-    (setq-default js2-include-rhino-externs nil)
-    (setq-default js2-include-gears-externs nil)
-    (setq-default js2-concat-multiline-strings 'eol)
-    (setq-default js2-rebind-eol-bol-keys nil)
-    (setq-default js2-auto-indent-p t)
+    (use-package js2-mode
+      :defer t
+      :config
+      (progn
+        (define-key js2-mode-map   (kbd "s-.") 'company-tern)
+        ;; these mode related variables must be in eval-after-load
+        ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
+        (setq-default js2-allow-rhino-new-expr-initializer nil)
+        (setq-default js2-auto-indent-p nil)
+        (setq-default js2-enter-indents-newline nil)
+        (setq-default js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
+        (setq-default js2-idle-timer-delay 0.1)
+        (setq-default js2-mirror-mode nil)
+        (setq-default js2-strict-inconsistent-return-warning nil)
+        (setq-default js2-include-rhino-externs nil)
+        (setq-default js2-include-gears-externs nil)
+        (setq-default js2-concat-multiline-strings 'eol)
+        (setq-default js2-rebind-eol-bol-keys nil)
+        (setq-default js2-auto-indent-p t)
 
+        (setq-default js2-bounce-indent nil)
+        (setq-default js-indent-level 2)
+        (setq-default js2-basic-offset 2)
+        ;; Let flycheck handle parse errors
+        (setq-default js2-show-parse-errors nil)
+        (setq-default js2-strict-missing-semi-warning nil)
 
-    ;; Let flycheck handle parse errors
-    (setq-default js2-show-parse-errors nil)
-    (setq-default js2-strict-missing-semi-warning nil)
+        (autoload 'flycheck-get-checker-for-buffer "flycheck")
+        (defun sanityinc/disable-js2-checks-if-flycheck-active ()
+          (unless (flycheck-get-checker-for-buffer)
+            (set (make-local-variable 'js2-mode-show-parse-errors) t)
+            (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
+        (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
+        
+        (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))))
 
     (evilify js2-error-buffer-mode js2-error-buffer-mode-map)
 
