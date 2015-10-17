@@ -1113,7 +1113,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
              "* TODO %?\n  %i\n"
              :empty-lines 1)
             ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
-             "* TODO %?\n  %i\n %U"
+             "* TODO [#C] %?\n  %i\n %U"
              :empty-lines 1)
             ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
              "* TODO %?\n  %i\n %U"
@@ -1139,7 +1139,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           '(
             ("w" . "任务安排")
             ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-            ("wb" "重要且不紧急的任务" tags-todo "+PRIORITY=\"B\"")
+            ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
             ("wc" "不重要且不紧急的任务" tags-todo "+PRIORITY=\"C\"")
             ("b" "Blog" tags-todo "BLOG")
             ("p" . "项目安排")
