@@ -40,7 +40,7 @@ values."
      ;; (ruby :variables ruby-version-manager 'rvm)
      python
      ;; lua
-     ;; (clojure :variables clojure-enable-fancify-symbols t)
+     clojure
      html
      javascript
      restclient
@@ -76,6 +76,9 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
+                                    ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
+                                    ;; I could re-enable it again in zilongshanren layer.
+                                    ;; clj-refactor  
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
