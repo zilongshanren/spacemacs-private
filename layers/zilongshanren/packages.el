@@ -74,7 +74,7 @@
         hungry-delete
         evil-escape
         org-bullets
-        flyspell
+        ;; flyspell
         find-file-in-project
         hl-anything
         projectile
@@ -138,9 +138,6 @@
           ))
       (ad-activate 'find-file-in-project))
     ))
-
-(defun zilongshanren/post-init-flyspell ()
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
 (defun zilongshanren/post-init-org-bullets ()
   (setq org-bullets-bullet-list '("🐉" "🐠" "🐬" "🐤")))

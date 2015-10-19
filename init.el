@@ -250,7 +250,7 @@ user code."
 
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  ;;I have changed this settings to shadowsocks minor mode
+  ;;I have changed this settings to shadowsocks minor mode 
   ;; (setq url-gateway-method 'socks)
   )
 
