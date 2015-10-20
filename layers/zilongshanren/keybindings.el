@@ -91,3 +91,5 @@
 (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 
 (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
+
+(bind-key* "C-=" 'er/expand-region)

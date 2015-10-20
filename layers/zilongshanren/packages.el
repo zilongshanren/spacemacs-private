@@ -78,9 +78,23 @@
         find-file-in-project
         hl-anything
         projectile
+        wrap-region
         ;; web-mode 
         ;; tagedit
         ))
+(defun zilongshanren/init-wrap-region ()
+  (use-package wrap-region
+    :init
+    (progn
+      (wrap-region-global-mode t)
+      (wrap-region-add-wrappers
+       '(("$" "$")
+         ("{-" "-}" "#")
+         ("/" "/" nil ruby-mode)
+         ("/* " " */" "#" (java-mode javascript-mode css-mode js2-mode))
+         ("`" "`" nil (markdown-mode ruby-mode))))
+      (add-to-list 'wrap-region-except-modes 'dired-mode)
+      )))
 
 (defun zilongshanren/post-init-projectile ()
   (use-package projectile
@@ -967,8 +981,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (define-key evil-visual-state-map (kbd ">") 'prelude-shift-right-visual)
       (define-key evil-visual-state-map (kbd "<") 'prelude-shift-left-visual)
       (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
-      (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
-      (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
+      ;; (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
+      ;; (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
       (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
 
       ;; in spacemacs, we always use evilify miscro state
