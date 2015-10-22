@@ -378,8 +378,11 @@
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
-    (evil-leader/set-key-for-mode 'js2-mode
-      "meb" 'nodejs-repl-eval-buffer)
+    (progn 
+      (spacemacs/declare-prefix-for-mode 'js2-mode
+                                         "me" "evaluating")
+      (evil-leader/set-key-for-mode 'js2-mode
+        "meb" 'nodejs-repl-eval-buffer))
     :defer t))
 
 (defun zilongshanren/init-flycheck-package ()
@@ -917,7 +920,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (progn
       (require 'ace-pinyin)
       (setq ace-pinyin-use-avy t)
-      (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
       (global-set-key (kbd "C-s-'") 'avy-goto-char-2))))
 
 (defun zilongshanren/init-helm-ls-git ()
@@ -1489,7 +1491,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 
     (evil-leader/set-key-for-mode 'js2-mode
-      "msd" 'nodejs-repl-eval-dwim)
+      "med" 'nodejs-repl-eval-dwim)
 
     (evil-leader/set-key-for-mode 'js2-mode
       "mga" 'projectile-find-other-file

@@ -261,9 +261,11 @@ layers configuration."
 
   (add-hook 'prog-mode-hook #'linum-mode)
   (with-eval-after-load 'linum
-    (linum-relative-mode))
+    (progn
+      (linum-relative-mode)
+      (spacemacs|hide-lighter linum-relative-mode)))
 
-
+  (spacemacs|hide-lighter wrap-region-mode)
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (spacemacs/system-is-mac)
