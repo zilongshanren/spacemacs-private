@@ -266,7 +266,9 @@ layers configuration."
       (spacemacs|hide-lighter linum-relative-mode)))
 
   (spacemacs|hide-lighter wrap-region-mode)
+
   ;;解决org表格里面中英文对齐的问题
+  
   (when (configuration-layer/layer-usedp 'chinese)
     (when (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
@@ -296,8 +298,7 @@ layers configuration."
                                           company-keywords
                                           company-etags
                                           company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev ))
-  )
+                                         company-files company-dabbrev )))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
