@@ -18,7 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-        ;; --------------------------------------------------------
+     ;; --------------------------------------------------------
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
@@ -78,7 +78,7 @@ values."
                                     magit-gitflow
                                     ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
                                     ;; I could re-enable it again in zilongshanren layer.
-                                    ;; clj-refactor  
+                                    ;; clj-refactor
                                     ;;remove from spacemacs distribution
                                     ;; neotree
                                     leuven-theme
@@ -250,7 +250,7 @@ user code."
 
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  ;;I have changed this settings to shadowsocks minor mode 
+  ;;I have changed this settings to shadowsocks minor mode
   ;; (setq url-gateway-method 'socks)
   )
 
@@ -268,7 +268,7 @@ layers configuration."
   (spacemacs|hide-lighter wrap-region-mode)
 
   ;;解决org表格里面中英文对齐的问题
-  
+
   (when (configuration-layer/layer-usedp 'chinese)
     (when (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
@@ -279,7 +279,7 @@ layers configuration."
   (evil-leader/set-key "pf" 'helm-ls-git-ls)
 
   ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-
+  
   (when (configuration-layer/layer-usedp 'vinegar)
     (evilify dired-mode dired-mode-map
              (kbd "C-k") 'zilongshanren/dired-up-directory
@@ -364,6 +364,7 @@ layers configuration."
  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
  '(helm-ls-git-modified-and-staged-face ((t (:foreground "dark cyan"))))
  '(helm-ls-git-modified-not-staged-face ((t (:foreground "dark cyan"))))
- '(helm-ls-git-renamed-modified-face ((t (:foreground "dark cyan")))))
+ '(helm-ls-git-renamed-modified-face ((t (:foreground "dark cyan"))))
+ '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
