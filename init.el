@@ -276,7 +276,7 @@ layers configuration."
   (global-company-mode t)
 
   ;;currently this key map must be put in user-config to override the defaults
-  (evil-leader/set-key "pf" 'helm-ls-git-ls)
+  (evil-leader/set-key "pf" 'zilongshanren/open-file-with-projectile-or-lsgit)
 
   ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
   

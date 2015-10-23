@@ -588,3 +588,9 @@ With PREFIX, cd to project root."
   (save-excursion
     (end-of-line)
     (insert ",")))
+
+(defun zilongshanren/open-file-with-projectile-or-lsgit ()
+  (interactive)
+  (if (zilongshanren/project-root)
+      (helm-ls-git-ls)
+    (helm-projectile-find-file)))

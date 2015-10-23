@@ -16,7 +16,7 @@
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'my-dired-find-file)
 
-(define-key dired-mode-map "r" 'dired-start-process)
+;; (define-key dired-mode-map "r" 'dired-start-process)
 (define-key dired-mode-map "E" 'dired-toggle-read-only)
 
 (define-key dired-mode-map (kbd "`") 'dired-open-term)
