@@ -80,9 +80,23 @@
         projectile
         wrap-region
         org-tree-slide
-        ;; web-mode 
+        vinegar
+        web-mode 
         ;; tagedit
         ))
+
+(defun zilongshanren/post-init-web-mode ()
+  (setq company-backends-web-mode '((company-dabbrev-code
+                                     company-keywords
+                                     company-etags)
+                                    company-files company-dabbrev)))
+
+(defun zilongshanren/post-init-vinegar ()
+  (when (configuration-layer/layer-usedp 'vinegar)
+    (evilify dired-mode dired-mode-map
+             (kbd "C-k") 'zilongshanren/dired-up-directory
+             (kbd "C") 'dired-do-copy)))
+
 (defun zilongshanren/init-org-tree-slide ()
   (use-package org-tree-slide
     :init
@@ -100,6 +114,7 @@
          ("/* " " */" "#" (java-mode javascript-mode css-mode js2-mode))
          ("`" "`" nil (markdown-mode ruby-mode))))
       (add-to-list 'wrap-region-except-modes 'dired-mode)
+      (add-to-list 'wrap-region-except-modes 'web-mode)
       )
     :defer t
     :config
@@ -532,7 +547,13 @@
 (defun zilongshanren/post-init-ycmd ()
   (setq ycmd-tag-files 'auto)
   (setq ycmd-request-message-level -1)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py"))))
+  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+  (setq company-backends-c-mode-common '((company-c-headers
+                                          company-dabbrev-code
+                                          company-keywords
+                                          company-etags
+                                          company-gtags :with company-yasnippet)
+                                         company-files company-dabbrev )))
 
 ;; configs for writing
 (defun zilongshanren/post-init-markdown-mode ()

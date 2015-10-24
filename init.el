@@ -259,8 +259,6 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-
-
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (spacemacs/system-is-mac)
@@ -268,26 +266,8 @@ layers configuration."
 
   (global-company-mode t)
 
+  )
 
-  ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
-  
-  (when (configuration-layer/layer-usedp 'vinegar)
-    (evilify dired-mode dired-mode-map
-             (kbd "C-k") 'zilongshanren/dired-up-directory
-             (kbd "C") 'dired-do-copy))
-
-  (setq company-backends-web-mode '((company-dabbrev-code
-                                     company-keywords
-                                     company-etags)
-                                    company-files company-dabbrev))
-
-
-  (setq company-backends-c-mode-common '((company-c-headers
-                                          company-dabbrev-code
-                                          company-keywords
-                                          company-etags
-                                          company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev )))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables

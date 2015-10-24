@@ -369,3 +369,4 @@ Single Capitals as you type."
   (progn
     (linum-relative-mode)
     (spacemacs|hide-lighter linum-relative-mode)))
+
