@@ -79,9 +79,14 @@
         hl-anything
         projectile
         wrap-region
+        org-tree-slide
         ;; web-mode 
         ;; tagedit
         ))
+(defun zilongshanren/init-org-tree-slide ()
+  (use-package org-tree-slide
+    :init
+    (evil-leader/set-key "oto" 'org-tree-slide-mode)))
 
 (defun zilongshanren/init-wrap-region ()
   (use-package wrap-region
