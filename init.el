@@ -67,6 +67,7 @@ values."
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-youdao-dict t)
      zilongshanren
+     guanghui
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
