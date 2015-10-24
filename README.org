@@ -1,3 +1,9 @@
-* 子龙山人的Emacs配置
+* 子龙山人的 Emacs 配置
+Hacking 始于 2013 年。
 
-Hacking始于2013年。
+** 配置说明
+1. 我的配置主要分成两个 layer，一个 zilongshanren layer 和一个 guanghui layer。zilongshanren layer 是对
+spacemacs 本身的一些扩展，也许将来某一天会被合进去。大家如果 fork 我的仓库，可以使用这个 layer。
+
+2. 我个人的一些配置和快捷键绑定主要放到 guanghui layer 里面，大家也可以参考一下。我的这个 layer 使用了 evil。
+所以，对于 Vim 党来说会比较友好一点。
