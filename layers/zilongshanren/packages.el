@@ -82,6 +82,7 @@
         ;; web-mode 
         ;; tagedit
         ))
+
 (defun zilongshanren/init-wrap-region ()
   (use-package wrap-region
     :init
@@ -198,8 +199,8 @@
   (progn
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
-                                                                           org-mode-hook
-                                                                           markdown-mode-hook))
+                                                                      org-mode-hook
+                                                                      markdown-mode-hook))
 
     (defun zilongshanren/load-yasnippet ()
       (unless yas-global-mode
@@ -233,6 +234,7 @@
     ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
     (bind-key* ";" 'chinese-wbim-insert-ascii)
     (setq chinese-wbim-punc-translate-p nil)
+    (spacemacs/declare-prefix "ot" "Toggle")
     (evil-leader/set-key
       "otp" 'chinese-wbim-punc-translate-toggle)
     (setq chinese-wbim-wb-use-gbk t)
@@ -248,11 +250,11 @@
 
 (defun zilongshanren/post-init-persp-mode ()
   (spacemacs|define-custom-persp "@Cocos2D-X"
-    :binding "c"
-    :body
-    (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
-    (split-window-right)
-    (find-file "~/cocos2d-x/cocos/cocos2d.cpp")))
+                                 :binding "c"
+                                 :body
+                                 (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
+                                 (split-window-right)
+                                 (find-file "~/cocos2d-x/cocos/cocos2d.cpp")))
 
 (defun zilongshanren/init-hydra ()
   (use-package hydra
@@ -576,7 +578,7 @@
         (impatient-mode)
         (httpd-start))
 
-      ;TODO: should add toggle options here.
+      ;;TODO: should add toggle options here.
       (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
       (evil-leader/set-key-for-mode 'web-mode
         "mp" 'imp-visit-buffer)
@@ -656,6 +658,7 @@
   (use-package mwe-log-commands
     :init
     (progn
+      (spacemacs/declare-prefix "ol" "command log")
       (evil-leader/set-key
         "oll" 'mwe:log-keyboard-commands
         "olf" 'mwe:open-command-log-buffer))))
