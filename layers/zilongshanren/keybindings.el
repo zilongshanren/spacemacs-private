@@ -93,3 +93,6 @@
 (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
 
 (bind-key* "C-=" 'er/expand-region)
+
+;;currently this key map must be put in user-config to override the defaults
+(evil-leader/set-key "pf" 'zilongshanren/open-file-with-projectile-or-lsgit)

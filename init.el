@@ -259,13 +259,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-  (add-hook 'prog-mode-hook #'linum-mode)
-  (with-eval-after-load 'linum
-    (progn
-      (linum-relative-mode)
-      (spacemacs|hide-lighter linum-relative-mode)))
 
-  (spacemacs|hide-lighter wrap-region-mode)
 
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
@@ -274,8 +268,6 @@ layers configuration."
 
   (global-company-mode t)
 
-  ;;currently this key map must be put in user-config to override the defaults
-  (evil-leader/set-key "pf" 'zilongshanren/open-file-with-projectile-or-lsgit)
 
   ;; (define-key js2-mode-map (kbd "C-x C-e") 'nodejs-repl-eval-dwim)
   
@@ -289,8 +281,6 @@ layers configuration."
                                      company-etags)
                                     company-files company-dabbrev))
 
-  (spacemacs|defvar-company-backends sh-mode)
-  (spacemacs|add-company-hook sh-mode)
 
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-dabbrev-code

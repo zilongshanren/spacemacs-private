@@ -100,7 +100,10 @@
          ("/* " " */" "#" (java-mode javascript-mode css-mode js2-mode))
          ("`" "`" nil (markdown-mode ruby-mode))))
       (add-to-list 'wrap-region-except-modes 'dired-mode)
-      )))
+      )
+    :defer t
+    :config
+    (spacemacs|hide-lighter wrap-region-mode)))
 
 (defun zilongshanren/post-init-projectile ()
   (use-package projectile

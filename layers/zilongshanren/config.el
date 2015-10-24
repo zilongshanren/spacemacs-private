@@ -13,13 +13,15 @@
 (spacemacs|defvar-company-backends markdown-mode)
 (spacemacs|defvar-company-backends org-mode)
 (spacemacs|defvar-company-backends nxml-mode)
+(spacemacs|defvar-company-backends sh-mode)
+(spacemacs|add-company-hook sh-mode)
 
 (spacemacs|add-toggle iimage
-                      :status iimage-mode
-                      :on (iimage-mode)
-                      :off (iimage-mode -1)
-                      :documentation "Enable iimage mode"
-                      :evil-leader "Ti")
+  :status iimage-mode
+  :on (iimage-mode)
+  :off (iimage-mode -1)
+  :documentation "Enable iimage mode"
+  :evil-leader "Ti")
 
 (add-hook 'prog-mode-hook 'spacemacs/highlight-TODO-words)
 (require 'dired-x)
@@ -361,3 +363,9 @@ Single Capitals as you type."
 
 (evilify occur-mode occur-mode-map
          (kbd "RET") 'occur-mode-goto-occurrence)
+
+(add-hook 'prog-mode-hook #'linum-mode)
+(with-eval-after-load 'linum
+  (progn
+    (linum-relative-mode)
+    (spacemacs|hide-lighter linum-relative-mode)))
