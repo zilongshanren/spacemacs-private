@@ -258,8 +258,8 @@
     :defer t
     :config (progn
               (flycheck-package-setup)
-              (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-              (setq flycheck-display-errors-delay 0.2)
+              ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
+              ;; (setq flycheck-display-errors-delay 0.2)
               ;; (remove-hook 'c-mode-hook 'flycheck-mode)
               ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
               ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
