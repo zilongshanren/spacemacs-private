@@ -51,7 +51,19 @@
         org-mac-link
         ace-window
         avy
+        4clojure
         ))
+
+(defun guanghui/init-4clojure ()
+  (use-package 4clojure
+    :init
+    (progn
+      (spacemacs/declare-prefix "o4" "4clojure")
+      (evil-leader/set-key "o4q" '4clojure-open-question)
+      (evil-leader/set-key "o4n" '4clojure-next-question)
+      (evil-leader/set-key "o4p" '4clojure-previous-question)
+      (evil-leader/set-key "o4c" '4clojure-check-answers)
+      )))
 
 (defun guanghui/post-init-popwin ()
   (progn
