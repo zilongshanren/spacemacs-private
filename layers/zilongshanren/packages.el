@@ -231,6 +231,12 @@
 (defun zilongshanren/post-init-cmake-mode ()
   (use-package cmake-mode
     :defer
+    :init
+    (progn
+      (spacemacs/declare-prefix-for-mode 'cmake-mode
+                                         "mh" "docs"))
+    (evil-leader/set-key-for-mode 'cmake-mode
+      "mhd" 'cmake-help)
     :config
     (progn
       (defun cmake-rename-buffer ()

@@ -114,7 +114,18 @@
                                           company-keywords
                                           company-etags
                                           company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev )))
+                                         company-files company-dabbrev ))
+  (defun zilongshanren/toggle-ycmd-backends ()
+    (interactive)
+    (if (eq  (car company-backends) 'company-ycmd)
+        (setq-local company-backends (delete 'company-ycmd company-backends))
+      (push 'company-ycmd company-backends)))
+
+  (evil-leader/set-key-for-mode 'c-mode
+    "mtb" 'zilongshanren/toggle-ycmd-backends)
+  (evil-leader/set-key-for-mode 'c++-mode
+    "mtb" 'zilongshanren/toggle-ycmd-backends)
+  )
 
 (defun guanghui/post-init-lua-mode ()
   (use-package lua-mode
