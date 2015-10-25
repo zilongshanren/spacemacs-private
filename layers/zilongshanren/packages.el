@@ -764,9 +764,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
-    (setq company-backends-js2-mode '((company-dabbrev-code
-                                       company-keywords
-                                       company-etags) company-files company-dabbrev))
     ;; (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
       (when (> (buffer-size) 1000000)

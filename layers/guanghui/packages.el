@@ -115,17 +115,12 @@
                                           company-etags
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
-  (defun zilongshanren/toggle-ycmd-backends ()
-    (interactive)
-    (if (eq  (car company-backends) 'company-ycmd)
-        (setq-local company-backends (delete 'company-ycmd company-backends))
-      (push 'company-ycmd company-backends)))
 
+  (zilongshanren|toggle-company-backends company-ycmd)
   (evil-leader/set-key-for-mode 'c-mode
-    "mtb" 'zilongshanren/toggle-ycmd-backends)
+    "mtb" 'zilong/company-toggle-company-ycmd)
   (evil-leader/set-key-for-mode 'c++-mode
-    "mtb" 'zilongshanren/toggle-ycmd-backends)
-  )
+    "mtb" 'zilong/company-toggle-company-ycmd))
 
 (defun guanghui/post-init-lua-mode ()
   (use-package lua-mode
@@ -538,8 +533,15 @@
 
 (defun guanghui/post-init-js2-mode ()
   (progn
+    (setq company-backends-js2-mode '((company-dabbrev-code
+                                       company-keywords
+                                       company-etags) company-files company-dabbrev))
+
+    (zilongshanren|toggle-company-backends company-tern)
+
     (evil-leader/set-key-for-mode 'js2-mode
-      "med" 'nodejs-repl-eval-dwim)
+      "med" 'nodejs-repl-eval-dwim
+      "mtb" 'zilong/company-toggle-company-tern)
 
     (evil-leader/set-key-for-mode 'js2-mode
       "mga" 'projectile-find-other-file
