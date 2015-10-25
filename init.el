@@ -48,6 +48,7 @@ values."
      dash
      emoji
      ycmd
+     fasd
      ;; deft
      racket
      gtags
