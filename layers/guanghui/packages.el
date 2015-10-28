@@ -722,14 +722,17 @@
         (insert output-string))
       output-string))
 
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (define-key org-mode-map (kbd "s-p") 'org-priority)
-  (define-key global-map (kbd "<f9>") 'org-capture)
-  (global-set-key (kbd "C-c b") 'org-iswitchb)
-  (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-  (evil-leader/set-key-for-mode 'org-mode
-    "owh" 'plain-org-wiki-helm
-    "owf" 'plain-org-wiki)
+  (eval-after-load 'org
+    '(progn
+       (global-set-key (kbd "C-c a") 'org-agenda)
+       (define-key org-mode-map (kbd "s-p") 'org-priority)
+       (define-key global-map (kbd "<f9>") 'org-capture)
+       (global-set-key (kbd "C-c b") 'org-iswitchb)
+       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
+       (evil-leader/set-key-for-mode 'org-mode
+         "owh" 'plain-org-wiki-helm
+         "owf" 'plain-org-wiki)
+       ))
 
   (setq org-mobile-directory "~/org-notes/org")
   )
