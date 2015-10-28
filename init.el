@@ -267,7 +267,7 @@ layers configuration."
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (global-company-mode t)
-
+  (setq-default powerline-default-separator 'arrow)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -28,7 +28,6 @@
         whitespace
         youdao-dictionary
         chinese-wbim
-        powerline
         multiple-cursors
         visual-regexp-steroids
         nodejs-repl
@@ -451,9 +450,6 @@
       (define-key endless/mc-map "\C-a" #'mc/edit-beginnings-of-lines)
       (define-key endless/mc-map "\C-e" #'mc/edit-ends-of-lines)
       )))
-
-(defun guanghui/post-init-powerline ()
-  (setq powerline-default-separator 'arrow))
 
 (defun guanghui/post-init-persp-mode ()
   (spacemacs|define-custom-persp "@Cocos2D-X"
