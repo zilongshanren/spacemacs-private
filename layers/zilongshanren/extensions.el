@@ -13,7 +13,9 @@
       '(
         ;; post extension names go here
         ;; doxymacs
-        nodejs-repl-eval
+        ;; nodejs-repl-eval don't support es6 and js2-mode also don't support it
+        ;; so I use js-comit instead.
+        ;; nodejs-repl-eval
         ;; plain-org-wiki
         ))
 
