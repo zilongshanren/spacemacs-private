@@ -78,6 +78,7 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
+                                    evil-mc
                                     ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
                                     ;; I could re-enable it again in zilongshanren layer.
                                     ;; clj-refactor
@@ -252,8 +253,6 @@ user code."
 
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-  ;;I have changed this settings to shadowsocks minor mode
-  ;; (setq url-gateway-method 'socks)
   )
 
 (defun dotspacemacs/user-config ()
