@@ -51,7 +51,24 @@
         wrap-region
         web-mode 
         ;; tagedit
+        js-comint
         ))
+
+(defun zilongshanren/init-js-comint ()
+  (use-package js-comint
+    :init
+    (progn
+      ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
+      (setq inferior-js-mode-hook
+            (lambda ()
+              ;; We like nice colors
+              (ansi-color-for-comint-mode-on)
+              ;; Deal with some prompt nonsense
+              (add-to-list
+               'comint-preoutput-filter-functions
+               (lambda (output)
+                 (replace-regexp-in-string "\033\\[[0-9]+[GKJ]" "" output)))))
+      (setq inferior-js-program-command "node"))))
 
 (defun zilongshanren/post-init-web-mode ()
   (setq company-backends-web-mode '((company-dabbrev-code
@@ -770,6 +787,23 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (flycheck-mode -1)))
 
     (add-hook 'js2-mode-hook 'conditional-disable-modes)
+    (add-hook 'js2-mode-hook '(lambda ()
+                                (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                                (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                                (local-set-key "\C-cb" 'js-send-buffer)
+                                (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                                (local-set-key "\C-cl" 'js-load-file-and-go)
+                                ))
+
+    (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
+    (evil-leader/set-key-for-mode 'js2-mode
+      "msr" 'js-send-region
+      "msR" 'js-send-region-and-go
+      "msb" 'js-send-buffer
+      "msB" 'js-send-buffer-and-go
+      "msd" 'js-send-last-sexp
+      "msD" 'js-send-last-sexp-and-go)
+
 
     (use-package js2-mode
       :defer t
