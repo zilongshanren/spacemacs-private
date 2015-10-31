@@ -287,7 +287,6 @@ Single Capitals as you type."
 (evilify occur-mode occur-mode-map
          (kbd "RET") 'occur-mode-goto-occurrence)
 
-(add-hook 'prog-mode-hook #'linum-mode)
 (with-eval-after-load 'linum
   (progn
     (linum-relative-mode)

@@ -16,7 +16,6 @@
         css-mode
         lispy
         company
-        ws-butler
         cmake-font-lock
         cmake-mode
         flycheck
@@ -228,17 +227,6 @@
     (spacemacs|add-company-hook lua-mode)
     (spacemacs|add-company-hook nxml-mode)))
 
-
-(defun zilongshanren/init-ws-butler ()
-  (use-package ws-butler
-    :diminish ws-butler-mode
-    :init
-    (progn
-      (add-hook 'c-mode-common-hook 'ws-butler-mode)
-      (add-hook 'python-mode-hook 'ws-butler-mode)
-      (add-hook 'cython-mode-hook 'ws-butler-mode))))
-
-
 (defun zilongshanren/init-cmake-font-lock ()
   (use-package cmake-font-lock
     :defer t))
@@ -386,7 +374,7 @@
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
 
-      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+      ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
       ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
       ;;                                                              (if (or (eq 'untracked section-type)
       ;;                                                                      (eq 'stashes section-type))
@@ -399,19 +387,6 @@
       ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
       (setq magit-repository-directories '("~/cocos2d-x/"))
       (setq magit-push-always-verify nil)
-
-      ;; Don't let magit-status mess up window configurations
-      ;; http://whattheemacsd.com/setup-magit.el-01.html
-      (defadvice magit-status (around magit-fullscreen activate)
-        (window-configuration-to-register :magit-fullscreen)
-        ad-do-it
-        (delete-other-windows))
-
-      (defun magit-quit-session ()
-        "Restores the previous window configuration and kills the magit buffer"
-        (interactive)
-        (kill-buffer)
-        (jump-to-register :magit-fullscreen))
 
 
       (defun endless/visit-pull-request-url ()
