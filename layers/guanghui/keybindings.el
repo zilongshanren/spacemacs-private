@@ -29,7 +29,7 @@
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
 
-(eval-after-load 'term '(define-key term-raw-map (kbd "C-:") 'dired-jump))
+;; (eval-after-load 'term '(define-key term-raw-map (kbd "C-:") 'dired-jump))
 
 (define-key dired-mode-map (kbd "z") 'dired-get-size)
 (define-key dired-mode-map (kbd "C-c C-e") 'dired-toggle-read-only)

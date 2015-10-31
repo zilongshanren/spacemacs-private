@@ -54,7 +54,7 @@
 (setq-default fill-column 110)
 
 (setq recenter-positions '(top middle bottom))
-;; delete the selection with a keypress
+;; delete the selection with a key press
 (delete-selection-mode t)
 
 
@@ -259,7 +259,7 @@ Single Capitals as you type."
 (setq nxml-slash-auto-complete-flag t)
 
 
-;; cleanup rencent files
+;; cleanup recent files
 (add-hook 'kill-emacs-hook #'(lambda () (progn (recentf-cleanup)
                                           (projectile-cleanup-known-projects))))
 
@@ -269,7 +269,7 @@ Single Capitals as you type."
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
- 
+
 (setq url-show-status nil)
 
 (defun endless/org-ispell ()
