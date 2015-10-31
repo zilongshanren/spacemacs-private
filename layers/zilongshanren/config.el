@@ -302,7 +302,13 @@ Single Capitals as you type."
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
+
+;; return nil to write content to file
 (defun zilongshanren/untabify-buffer ()
   (interactive)
   (save-excursion
-    (untabify (point-min) (point-max))))
+    (untabify (point-min) (point-max)) nil))
+
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (add-hook 'write-contents-hooks 'zilongshanren/untabify-buffer nil t)))

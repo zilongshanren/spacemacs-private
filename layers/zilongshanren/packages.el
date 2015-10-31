@@ -182,11 +182,13 @@
 (defun zilongshanren/post-init-helm-gtags ()
   (use-package helm-gtags
     :diminish helm-gtags-mode
-    :defer
+    :defer t
     :config
     (progn
       (evil-make-overriding-map helm-gtags-mode-map 'normal)
-      (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps))))
+      (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps)
+
+      ))) 
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids

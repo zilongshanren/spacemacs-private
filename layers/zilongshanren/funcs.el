@@ -75,14 +75,6 @@ open and unsaved."
               nil)) ; a stuck project, has subtasks but no next task
         next-headline))))
 
-;; when save a buffer, the directory is not exsits, it will ask you to create the directory
-(add-hook 'before-save-hook
-          (lambda ()
-            (when buffer-file-name
-              (let ((dir (file-name-directory buffer-file-name)))
-                (when (and (not (file-exists-p dir))
-                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-                  (make-directory dir t))))))
 
 ;; remove all the duplicated emplies in current buffer
 (defun zilongshanren/single-lines-only ()
