@@ -39,7 +39,7 @@ values."
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
      python
-     ;; lua
+     lua
      clojure
      html
      javascript
