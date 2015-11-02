@@ -780,7 +780,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       "msb" 'js-send-buffer
       "msB" 'js-send-buffer-and-go
       "msd" 'js-send-last-sexp
-      "msD" 'js-send-last-sexp-and-go)
+      "msD" 'js-send-last-sexp-and-go
+      "mgd" 'helm-etags-select)
 
 
     (use-package js2-mode
@@ -803,8 +804,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (setq-default js2-auto-indent-p t)
 
         (setq-default js2-bounce-indent nil)
-        (setq-default js-indent-level 2)
-        (setq-default js2-basic-offset 2)
+        (setq-default js-indent-level 4)
+        (setq-default js2-basic-offset 4)
         ;; Let flycheck handle parse errors
         (setq-default js2-show-parse-errors nil)
         (setq-default js2-strict-missing-semi-warning nil)
