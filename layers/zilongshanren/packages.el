@@ -51,7 +51,22 @@
         web-mode 
         ;; tagedit
         js-comint
+        ctags-update
         ))
+
+(defun zilongshanren/init-ctags-update ()
+  (use-package ctags-update
+    :init
+    (progn
+      (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
+      (define-key evil-normal-state-map (kbd "gf")
+        (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
+
+      (define-key evil-normal-state-map (kbd "gb") 'pop-tag-mark)
+
+      (define-key evil-normal-state-map (kbd "gn")
+        (lambda () (interactive) (find-tag last-tag t)))
+      )))
 
 (defun zilongshanren/init-js-comint ()
   (use-package js-comint
@@ -822,6 +837,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 
     (defun js2-imenu-make-index ()
+      (interactive)
       (save-excursion
         ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
         (imenu--generic-function '(("describe" "\\s-*describe\\s-*([\"']\\(.+\\)[\"']\\s-*,.*" 1)
@@ -845,6 +861,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
                                    ("Watch" "[. \t]\$watch( *['\"]\\([^'\"]+\\)" 1)
                                    ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
                                    ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
                                    ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)
                                    ))))
 
