@@ -278,6 +278,7 @@
     :defer t
     :config
     (progn
+      (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
       (when (configuration-layer/package-usedp 'company)
         (spacemacs|add-company-hook markdown-mode))
       (defun zilongshanren/markdown-to-html ()
@@ -758,7 +759,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
-    ;; (remove-hook 'js2-mode-hook 'flycheck-mode)
+    (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
       (when (> (buffer-size) 1000000)
         (flycheck-mode -1)))

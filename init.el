@@ -61,7 +61,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-snippets-in-popup t)
+     auto-completion
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
@@ -274,6 +274,7 @@ layers configuration."
 
   (global-company-mode t)
   (setq-default powerline-default-separator 'arrow)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

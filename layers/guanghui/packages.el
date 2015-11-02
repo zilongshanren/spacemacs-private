@@ -740,10 +740,19 @@
            ("LC_ALL" "en_US.UTF-8")))
   ;; define service
   (prodigy-define-service
-    :name "Preview Cocos2D-HTML5"
+    :name "Preview cocos2d-x web"
     :command "python"
     :args '("-m" "SimpleHTTPServer" "6001")
     :cwd "~/cocos2d-x/web"
+    :tags '(work)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Preview cocos2d-html5"
+    :command "python"
+    :args '("-m" "SimpleHTTPServer" "6004")
+    :cwd "~/Github/cocos2d-html5"
     :tags '(work)
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t)
