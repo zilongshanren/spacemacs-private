@@ -79,6 +79,8 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
+                                    chinese-wbim
+                                    chinese-pyim
                                     ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
                                     ;; I could re-enable it again in zilongshanren layer.
                                     ;; clj-refactor
