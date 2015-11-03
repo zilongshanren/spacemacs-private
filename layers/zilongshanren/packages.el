@@ -831,6 +831,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         ;; Let flycheck handle parse errors
         (setq-default js2-show-parse-errors nil)
         (setq-default js2-strict-missing-semi-warning nil)
+        (setq-default js2-highlight-external-variables t)
 
         (defun js2-toggle-indent ()
           (interactive)

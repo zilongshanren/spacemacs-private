@@ -287,11 +287,6 @@ Single Capitals as you type."
 (evilify occur-mode occur-mode-map
          (kbd "RET") 'occur-mode-goto-occurrence)
 
-(with-eval-after-load 'linum
-  (progn
-    (linum-relative-mode)
-    (spacemacs|hide-lighter linum-relative-mode)))
-
 ;;Don’t ask me when close emacs with process is running
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
   "Prevent annoying \"Active processes exist\" query when you quit Emacs."
