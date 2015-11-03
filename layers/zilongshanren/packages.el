@@ -52,7 +52,13 @@
         ;; tagedit
         js-comint
         ctags-update
+        evil-vimish-fold
         ))
+
+(defun zilongshanren/init-evil-vimish-fold ()
+  (use-package evil-vimish-fold
+    :init
+    (vimish-fold-global-mode 1)))
 
 (defun zilongshanren/init-ctags-update ()
   (use-package ctags-update
