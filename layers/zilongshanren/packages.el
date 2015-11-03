@@ -780,6 +780,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
+    
     (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
       (when (> (buffer-size) 1000000)
@@ -830,6 +831,18 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         ;; Let flycheck handle parse errors
         (setq-default js2-show-parse-errors nil)
         (setq-default js2-strict-missing-semi-warning nil)
+
+        (defun js2-toggle-indent ()
+          (interactive)
+          (setq js-indent-level (if (= js-indent-level 2) 4 2))
+          (setq js2-indent-level (if (= js-indent-level 2) 4 2))
+          (setq js2-basic-offset (if (= js-indent-level 2) 4 2))
+          (message "js-indent-level, js2-indent-level, and js2-basic-offset set to %d"
+                   js2-basic-offset))
+
+        (evil-leader/set-key-for-mode 'js2-mode
+          "moj" 'js2-toggle-indent)
+        (spacemacs/declare-prefix-for-mode 'js2-mode "mo" "toggle")
 
         (autoload 'flycheck-get-checker-for-buffer "flycheck")
         (defun sanityinc/disable-js2-checks-if-flycheck-active ()
