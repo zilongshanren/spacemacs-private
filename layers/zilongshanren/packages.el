@@ -53,7 +53,33 @@
         js-comint
         ctags-update
         evil-vimish-fold
+        fcitx
         ))
+
+(defun zilongshanren/init-fcitx ()
+  (use-package fcitx
+    :init
+    (progn
+      (defun zilongshanren/fcitx-evil-turn-on ()
+        (interactive)
+        (eval-after-load "evil"
+          '(progn
+             (add-hook 'evil-emacs-state-exit-hook
+                       #'fcitx--evil-insert-maybe-deactivate)
+             (add-hook 'evil-emacs-state-entry-hook
+                       #'fcitx--evil-insert-maybe-activate)
+             (if (fboundp 'advice-add)
+                 (progn
+                   (advice-add 'switch-to-buffer :around
+                               #'fcitx--evil-switch-buffer)
+                   (advice-add 'other-window :around
+                               #'fcitx--evil-switch-buffer))
+               (ad-enable-advice 'switch-to-buffer 'around 'fcitx--evil-switch-buffer-1)
+               (ad-activate 'switch-to-buffer)
+               (ad-enable-advice 'other-window 'around 'fcitx--evil-switch-buffer-2)
+               (ad-activate 'other-window)))))
+      (zilongshanren/fcitx-evil-turn-on)
+      (fcitx-aggressive-setup))))
 
 (defun zilongshanren/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
@@ -64,7 +90,7 @@
   (use-package ctags-update
     :init
     (progn
-      (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
+      ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
       (define-key evil-normal-state-map (kbd "gf")
         (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
 
