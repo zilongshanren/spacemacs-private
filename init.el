@@ -27,7 +27,7 @@ values."
      github
      version-control
      osx
-     semantic                           ; too slow
+     ;; semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -300,7 +300,7 @@ layers configuration."
    (quote
     ("bs-mode" "calc-mode" "ediff-mode" "dired-mode" "gud-mode" "gdb-locals-mode" "gdb-registers-mode" "gdb-breakpoints-mode" "gdb-threads-mode" "gdb-frames-mode" "gdb-inferior-io-mode" "gud-mode" "gdb-inferior-io-mode" "gdb-disassembly-mode" "gdb-memory-mode" "restclient-mode" "speedbar-mode" term-mode)))
  '(helm-ag-always-set-extra-option nil)
- '(helm-gtags-update-interval-second 5)
+ '(helm-gtags-update-interval-second 35)
  '(helm-ls-git-fuzzy-match t)
  '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")

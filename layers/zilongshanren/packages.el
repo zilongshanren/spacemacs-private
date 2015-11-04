@@ -90,7 +90,7 @@
   (use-package ctags-update
     :init
     (progn
-      ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
+      (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
       (define-key evil-normal-state-map (kbd "gf")
         (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
 

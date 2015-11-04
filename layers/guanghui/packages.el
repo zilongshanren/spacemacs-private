@@ -123,7 +123,6 @@
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-dabbrev-code
                                           company-keywords
-                                          company-etags
                                           company-gtags :with company-yasnippet)
                                          company-files company-dabbrev ))
 
