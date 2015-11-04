@@ -54,7 +54,22 @@
         ctags-update
         evil-vimish-fold
         fcitx
+        beacon
         ))
+
+(defun zilongshanren/init-beacon ()
+  (use-package beacon
+    :init
+    (progn
+      (spacemacs|add-toggle beacon
+        :status beacon-mode
+        :on (beacon-mode)
+        :off (beacon-mode -1)
+        :documentation "Enable point highlighting after scrolling"
+        :evil-leader "otb")
+
+      (spacemacs/toggle-beacon-on))
+    :config (spacemacs|hide-lighter beacon-mode)))
 
 (defun zilongshanren/init-fcitx ()
   (use-package fcitx
@@ -173,7 +188,9 @@
 
 
 (defun zilongshanren/post-init-hungry-delete ()
-  (add-hook 'prog-mode-hook 'hungry-delete-mode))
+  ;; (add-hook 'prog-mode-hook 'hungry-delete-mode)
+  (global-hungry-delete-mode t)
+  )
 
 
 (defun zilongshanren/post-init-helm-ag ()

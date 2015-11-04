@@ -14,11 +14,9 @@
 ;; which require an initialization must be listed explicitly in the list.
 (setq guanghui-packages
       '(
-        ;; package names go here
         projectile
         org
         prodigy
-        ;; vinegar
         org-tree-slide
         js2-mode
         find-file-in-project
@@ -40,7 +38,6 @@
         deft
         elfeed
         lua-mode
-        ;; moz-controller
         ycmd
         mwe-log-commands
         org-pomodoro
@@ -141,7 +138,6 @@
         (push 'company-dabbrev company-backends-lua-mode)
         (push 'company-etags company-backends-lua-mode))
       (add-hook 'lua-mode-hook 'evil-matchit-mode)
-      (add-hook 'lua-mode-hook 'hungry-delete-mode)
       (add-hook 'lua-mode-hook 'smartparens-mode)
       (setq lua-indent-level 4)
 

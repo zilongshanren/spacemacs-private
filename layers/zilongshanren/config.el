@@ -16,6 +16,8 @@
 (spacemacs|defvar-company-backends sh-mode)
 (spacemacs|add-company-hook sh-mode)
 
+(spacemacs/declare-prefix "ot" "Toggle")
+
 (spacemacs|add-toggle iimage
   :status iimage-mode
   :on (iimage-mode)

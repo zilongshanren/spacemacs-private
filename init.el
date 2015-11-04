@@ -33,8 +33,7 @@ values."
      org
      prodigy
      search-engine
-     (syntax-checking :variables syntax-checking-enable-tooltips t
-                      syntax-checking-enable-by-default t)
+     syntax-checking
      (spell-checking :variables spell-checking-enable-by-default nil)
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
@@ -57,7 +56,13 @@ values."
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      (git :variables
-          git-magit-status-fullscreen t)
+          git-magit-status-fullscreen t
+          magit-push-always-verify nil
+          magit-save-repository-buffers 'dontask
+          magit-revert-buffers 'silent
+          magit-refs-show-commit-count 'all
+          ;; This is really creepy magit
+          magit-revision-show-gravatars nil)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
@@ -81,6 +86,7 @@ values."
                                     evil-mc
                                     chinese-wbim
                                     chinese-pyim
+                                    yasnippet
                                     ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
                                     ;; I could re-enable it again in zilongshanren layer.
                                     ;; clj-refactor
