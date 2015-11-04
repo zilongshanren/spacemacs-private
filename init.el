@@ -87,6 +87,9 @@ values."
                                     chinese-wbim
                                     chinese-pyim
                                     yasnippet
+                                    ;; disable it for lispy-mode
+                                    ;;https://github.com/abo-abo/lispy/issues/137
+                                    evil-escape
                                     ;;At first, I should disable hydra in zilongshanren layer and install clj-refactor, after it is installed.
                                     ;; I could re-enable it again in zilongshanren layer.
                                     ;; clj-refactor
@@ -283,7 +286,6 @@ layers configuration."
 
   (global-company-mode t)
   (setq-default powerline-default-separator 'arrow)
-
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
