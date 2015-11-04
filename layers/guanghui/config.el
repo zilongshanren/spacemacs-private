@@ -90,3 +90,6 @@
                                             ("8str" "\\([^\"]+?\\)\"")))
 
 
+(evilify dired-mode dired-mode-map
+         (kbd "C-k") 'zilongshanren/dired-up-directory
+         (kbd "C") 'dired-do-copy)

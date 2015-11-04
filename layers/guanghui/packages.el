@@ -18,7 +18,7 @@
         projectile
         org
         prodigy
-        vinegar
+        ;; vinegar
         org-tree-slide
         js2-mode
         find-file-in-project
@@ -566,12 +566,6 @@
   (use-package org-tree-slide
     :init
     (evil-leader/set-key "oto" 'org-tree-slide-mode)))
-
-(defun guanghui/post-init-vinegar ()
-  (when (configuration-layer/layer-usedp 'vinegar)
-    (evilify dired-mode dired-mode-map
-             (kbd "C-k") 'zilongshanren/dired-up-directory
-             (kbd "C") 'dired-do-copy)))
 
 
 (defun guanghui/post-init-projectile ()

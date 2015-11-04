@@ -22,9 +22,9 @@
 (define-key dired-mode-map (kbd "`") 'dired-open-term)
 
 
-(eval-after-load 'dired-mode
-  (progn
-    (define-key dired-mode-map (kbd "C-k") 'zilongshanren/dired-up-directory)))
+;; (eval-after-load 'dired-mode
+;;   (progn
+;;     (define-key dired-mode-map (kbd "C-k") 'zilongshanren/dired-up-directory)))
 
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
