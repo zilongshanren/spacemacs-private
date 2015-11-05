@@ -66,8 +66,8 @@
       (global-set-key (kbd "C-h f") 'counsel-describe-function)
       (evil-leader/set-key "hdv" 'counsel-describe-variable)
       (evil-leader/set-key "hdf" 'counsel-describe-function)
-      (evil-leader/set-key ":" 'counsel-M-x)
-      (global-set-key (kbd "M-x") 'counsel-M-x)
+      (bind-key* "M-x" 'counsel-M-x)
+      (evil-leader/set-key dotspacemacs-command-key 'counsel-M-x)
       )))
 
 (defun zilongshanren/init-beacon ()
