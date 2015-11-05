@@ -101,6 +101,8 @@ values."
                                     spray
                                     evil-tutor
                                     define-word
+                                    doc-view
+                                    lorem-ipsum
                                     solarized-theme
                                     ;; remove mode for python layer
                                     nose

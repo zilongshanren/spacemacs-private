@@ -22,6 +22,7 @@
         markdown-mode
         impatient-mode
         swiper
+        counsel
         magit
         git-messenger
         helm-flyspell
@@ -56,6 +57,18 @@
         fcitx
         beacon
         ))
+
+(defun zilongshanren/init-counsel ()
+  (use-package counsel
+    :init
+    (progn
+      (global-set-key (kbd "C-h v") 'counsel-describe-variable)
+      (global-set-key (kbd "C-h f") 'counsel-describe-function)
+      (evil-leader/set-key "hdv" 'counsel-describe-variable)
+      (evil-leader/set-key "hdf" 'counsel-describe-function)
+      (evil-leader/set-key ":" 'counsel-M-x)
+      (global-set-key (kbd "M-x") 'counsel-M-x)
+      )))
 
 (defun zilongshanren/init-beacon ()
   (use-package beacon
