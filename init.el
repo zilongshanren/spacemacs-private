@@ -39,7 +39,7 @@ values."
      ;; (ruby :variables ruby-version-manager 'rvm)
      python
      lua
-     clojure
+     (clojure :variables clojure-enable-fancify-symbols t)
      html
      javascript
      restclient

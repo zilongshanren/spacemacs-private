@@ -96,18 +96,8 @@
                        #'fcitx--evil-insert-maybe-deactivate)
              (add-hook 'evil-emacs-state-entry-hook
                        #'fcitx--evil-insert-maybe-activate)
-             (if (fboundp 'advice-add)
-                 (progn
-                   (advice-add 'switch-to-buffer :around
-                               #'fcitx--evil-switch-buffer)
-                   (advice-add 'other-window :around
-                               #'fcitx--evil-switch-buffer))
-               (ad-enable-advice 'switch-to-buffer 'around 'fcitx--evil-switch-buffer-1)
-               (ad-activate 'switch-to-buffer)
-               (ad-enable-advice 'other-window 'around 'fcitx--evil-switch-buffer-2)
-               (ad-activate 'other-window)))))
-      (zilongshanren/fcitx-evil-turn-on)
-      (fcitx-aggressive-setup))))
+             )))
+      (zilongshanren/fcitx-evil-turn-on))))
 
 (defun zilongshanren/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
