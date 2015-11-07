@@ -10,7 +10,7 @@
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(beacon-blink-delay 0.4)
+ '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
  '(expand-region-contract-fast-key "V")
  '(expand-region-exclude-text-mode-expansions (quote (html-mode nxml-mode web-mode)))

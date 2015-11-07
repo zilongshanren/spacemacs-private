@@ -48,6 +48,7 @@
         ace-window
         avy
         4clojure
+        persp-mode
         ))
 
 (defun guanghui/init-4clojure ()

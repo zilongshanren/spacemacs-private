@@ -56,7 +56,21 @@
         evil-vimish-fold
         fcitx
         beacon
+        evil-visual-mark-mode
         ))
+
+(defun zilongshanren/init-evil-visual-mark-mode ()
+  (use-package evil-visual-mark-mode
+    :init
+    (progn
+      (spacemacs|add-toggle evil-visual-mark-mode
+        :status evil-visual-mark-mode
+        :on (evil-visual-mark-mode)
+        :off (evil-visual-mark-mode -1)
+        :documentation "Show evil marks"
+        :evil-leader "otm")
+
+      (evil-visual-mark-mode))))
 
 (defun zilongshanren/init-counsel ()
   (use-package counsel

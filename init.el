@@ -49,9 +49,10 @@ values."
      ycmd
      fasd
      ;; deft
+     ranger
      racket
      gtags
-     ;; perspectives
+     perspectives
      eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
