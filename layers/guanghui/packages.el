@@ -124,6 +124,9 @@
                                          company-files company-dabbrev ))
 
   (zilongshanren|toggle-company-backends company-ycmd)
+  (eval-after-load 'ycmd
+    '(spacemacs|hide-lighter ycmd-mode))
+
   (evil-leader/set-key-for-mode 'c-mode
     "mtb" 'zilong/company-toggle-company-ycmd)
   (evil-leader/set-key-for-mode 'c++-mode
