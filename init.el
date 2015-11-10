@@ -309,8 +309,8 @@ layers configuration."
 
   (add-hook 'text-mode-hook 'auto-fill-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
-  
 
+  (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
