@@ -536,7 +536,16 @@
   (setq deft-directory "~/org-notes"))
 
 (defun guanghui/post-init-org-pomodoro ()
-  (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro))
+  (use-package org-pomodoro
+    :init
+    (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
+    :defer t
+    :config
+    (progn
+      (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro finished" t)))
+      (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro short break" t)))
+      (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro long break" t)))
+      )))
 
 (defun guanghui/post-init-js2-mode ()
   (progn
