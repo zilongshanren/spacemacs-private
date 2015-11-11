@@ -542,9 +542,9 @@
     :defer t
     :config
     (progn
-      (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro finished" t)))
-      (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro short break" t)))
-      (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Alert" "Org pomodoro long break" t)))
+      (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
+      (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
+      (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t)))
       )))
 
 (defun guanghui/post-init-js2-mode ()
