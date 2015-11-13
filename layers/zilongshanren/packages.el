@@ -638,7 +638,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     :config
     (progn
       ;;beautify-helm buffer when long file name is present
-      (setq helm-buffer-max-length 45)
+      (eval-after-load 'helm-buffer
+        '(setq helm-buffer-max-length 45))
+
       (setq helm-ls-git-show-abs-or-relative 'relative))))
 
 
