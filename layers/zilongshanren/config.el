@@ -262,9 +262,8 @@ Single Capitals as you type."
 
 
 ;; cleanup recent files
-(add-hook 'kill-emacs-hook #'(lambda () (progn (recentf-cleanup)
-                                          (projectile-cleanup-known-projects)
-                                          (persp-autosave))))
+(add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
+                                          (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
 
 ;; change evil initial mode state
 (menu-bar-mode t)
