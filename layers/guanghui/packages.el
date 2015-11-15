@@ -87,8 +87,6 @@
     :defer t
     :init
     (progn
-      (require 'ace-pinyin)
-      (setq ace-pinyin-use-avy t)
       (global-set-key (kbd "C-s-'") 'avy-goto-char-2))))
 
 (defun guanghui/post-init-ace-window ()
