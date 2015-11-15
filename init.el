@@ -314,7 +314,7 @@ layers configuration."
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file)
 
-  (add-hook 'focus-out-hook 'save-buffer)
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
