@@ -52,7 +52,8 @@ values."
      ranger
      racket
      gtags
-     spacemacs-layouts
+     (spacemacs-layouts :variables layouts-enable-autosave t
+                        layouts-autosave-delay 300)
      eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
