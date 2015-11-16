@@ -600,7 +600,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (setq helm-split-window-in-side-p t
             helm-move-to-line-cycle-in-source t
             helm-ff-search-library-in-sexp t
-            helm-ff-file-name-history-use-recentf t)
+            helm-ff-file-name-history-use-recentf t
+            helm-buffer-max-length 45)
 
       (setq helm-completing-read-handlers-alist
             '((describe-function . ido)
@@ -633,14 +634,9 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/init-helm-ls-git ()
   (use-package helm-ls-git
-    :defer t
     :init
-    :config
     (progn
       ;;beautify-helm buffer when long file name is present
-      (eval-after-load 'helm-buffer
-        '(setq helm-buffer-max-length 45))
-
       (setq helm-ls-git-show-abs-or-relative 'relative))))
 
 
