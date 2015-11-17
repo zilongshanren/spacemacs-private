@@ -73,7 +73,8 @@ values."
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
-              chinese-enable-youdao-dict t)
+              chinese-enable-youdao-dict t
+              chinese-enable-fcitx t)
      zilongshanren
      guanghui
      )
@@ -314,7 +315,10 @@ layers configuration."
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file)
 
-
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (when (> (buffer-size) 100000)
+                (turn-off-show-smartparens-mode))))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

@@ -98,20 +98,18 @@
       (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)))
 
-(defun zilongshanren/init-fcitx ()
-  (use-package fcitx
-    :init
-    (progn
-      (defun zilongshanren/fcitx-evil-turn-on ()
-        (interactive)
-        (eval-after-load "evil"
-          '(progn
-             (add-hook 'evil-emacs-state-exit-hook
-                       #'fcitx--evil-insert-maybe-deactivate)
-             (add-hook 'evil-emacs-state-entry-hook
-                       #'fcitx--evil-insert-maybe-activate)
-             )))
-      (zilongshanren/fcitx-evil-turn-on))))
+(defun zilongshanren/post-init-fcitx ()
+  (progn
+    (defun zilongshanren/fcitx-evil-turn-on ()
+      (interactive)
+      (eval-after-load "evil"
+        '(progn
+           (add-hook 'evil-emacs-state-exit-hook
+                     #'fcitx--evil-insert-maybe-deactivate)
+           (add-hook 'evil-emacs-state-entry-hook
+                     #'fcitx--evil-insert-maybe-activate)
+           )))
+    (zilongshanren/fcitx-evil-turn-on)))
 
 (defun zilongshanren/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
@@ -841,7 +839,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     
     (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
-      (when (> (buffer-size) 1000000)
+      (when (> (buffer-size) 100000)
         (flycheck-mode -1)))
 
     (add-hook 'js2-mode-hook 'conditional-disable-modes)
