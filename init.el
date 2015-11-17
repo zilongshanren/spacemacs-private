@@ -23,6 +23,7 @@ values."
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
      ;; --------------------------------------------------------
+     erc
      better-defaults
      github
      version-control
