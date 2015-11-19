@@ -331,6 +331,7 @@ layers configuration."
        )))
 
   (add-hook 'erc-text-matched-hook 'my-erc-hook)
+  (spaceline-toggle-erc-track-off)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

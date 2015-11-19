@@ -12,7 +12,7 @@
 (setq zilongshanren-post-extensions
       '(
         ;; post extension names go here
-        ;; doxymacs
+        doxymacs
         ;; nodejs-repl-eval don't support es6 and js2-mode also don't support it
         ;; so I use js-comit instead.
         ;; nodejs-repl-eval
