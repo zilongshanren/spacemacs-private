@@ -839,7 +839,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     
     (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
-      (when (> (buffer-size) 100000)
+      (when (> (buffer-size) 50000)
         (flycheck-mode -1)))
 
     (add-hook 'js2-mode-hook 'conditional-disable-modes)

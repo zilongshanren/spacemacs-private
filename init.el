@@ -318,7 +318,7 @@ layers configuration."
 
   (add-hook 'prog-mode-hook
             (lambda ()
-              (when (> (buffer-size) 100000)
+              (when (> (buffer-size) 10000)
                 (turn-off-show-smartparens-mode))))
 
   (defun my-erc-hook (match-type nick message)
