@@ -49,7 +49,14 @@
         avy
         4clojure
         persp-mode
+        (gulpjs :location (recipe :fetcher github :repo "stevenremot/emacs-gulpjs"))
         ))
+
+(defun guanghui/init-gulpjs ()
+  (use-package gulpjs
+    :init
+    (evil-leader/set-key "ags" 'gulpjs-start-task)
+    (evil-leader/set-key "agr" 'gulpjs-restart-task)))
 
 (defun guanghui/init-4clojure ()
   (use-package 4clojure
@@ -552,23 +559,6 @@
                                        company-etags) company-files company-dabbrev))
 
     (zilongshanren|toggle-company-backends company-tern)
-
-    (defun zilongshanren/build-h5-tests ()
-      (interactive)
-      (let ((default-directory (locate-dominating-file
-                                default-directory ".git")))
-        (async-shell-command "gulp build-test" "gulp build result")))
-
-    (defhydra hydra-javascript (:color blue :hint nil)
-      "
-              ^JS2 Mode^
---------------------------------------------
-          _b_uild
-          "
-      ("b" zilongshanren/build-h5-tests))
-
-    (evil-leader/set-key-for-mode 'js2-mode
-      "." 'hydra-javascript/body)
 
 
     (evil-leader/set-key-for-mode 'js2-mode
