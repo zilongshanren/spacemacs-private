@@ -553,6 +553,24 @@
 
     (zilongshanren|toggle-company-backends company-tern)
 
+    (defun zilongshanren/build-h5-tests ()
+      (interactive)
+      (let ((default-directory (locate-dominating-file
+                                default-directory ".git")))
+        (async-shell-command "gulp build-test" "gulp build result")))
+
+    (defhydra hydra-javascript (:color blue :hint nil)
+      "
+              ^JS2 Mode^
+--------------------------------------------
+          _b_uild
+          "
+      ("b" zilongshanren/build-h5-tests))
+
+    (evil-leader/set-key-for-mode 'js2-mode
+      "." 'hydra-javascript/body)
+
+
     (evil-leader/set-key-for-mode 'js2-mode
       "med" 'nodejs-repl-eval-dwim
       "mtb" 'zilong/company-toggle-company-tern)
