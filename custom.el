@@ -12,6 +12,7 @@
  '(ahs-inhibit-face-list nil)
  '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
+ '(ctags-update-delay-seconds 1024)
  '(erc-nick "zilongshanren")
  '(erc-port 6666)
  '(expand-region-contract-fast-key "V")
@@ -52,6 +53,8 @@
    (quote
     ((eval setenv "PYTHONPATH" "/Users/guanghui/cocos2d-x/tools/cocos2d-console/plugins:/Users/guanghui/cocos2d-x/tools/cocos2d-console/bin"))))
  '(sp-show-pair-from-inside t)
+ '(tags-add-tables nil)
+ '(tags-revert-without-query t)
  '(vc-follow-symlinks t)
  '(web-mode-markup-indent-offset 2)
  '(ycmd-extra-conf-handler (quote load))
@@ -69,6 +72,8 @@
  '(helm-ls-git-modified-and-staged-face ((t (:foreground "dark cyan"))))
  '(helm-ls-git-modified-not-staged-face ((t (:foreground "dark cyan"))))
  '(helm-ls-git-renamed-modified-face ((t (:foreground "dark cyan"))))
+ '(js2-error ((t (:foreground "light sea green"))))
+ '(js2-external-variable ((t (:foreground "gray52"))))
  '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

@@ -55,8 +55,10 @@
 (defun guanghui/init-gulpjs ()
   (use-package gulpjs
     :init
-    (evil-leader/set-key "ags" 'gulpjs-start-task)
-    (evil-leader/set-key "agr" 'gulpjs-restart-task)))
+    (progn
+      (require 'gulpjs-helm)
+      (evil-leader/set-key "ags" 'gulpjs-start-task)
+      (evil-leader/set-key "agr" 'gulpjs-restart-task))))
 
 (defun guanghui/init-4clojure ()
   (use-package 4clojure

@@ -120,7 +120,7 @@
   (use-package ctags-update
     :init
     (progn
-      (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
+      ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
       (define-key evil-normal-state-map (kbd "gf")
         (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
 
@@ -128,7 +128,10 @@
 
       (define-key evil-normal-state-map (kbd "gn")
         (lambda () (interactive) (find-tag last-tag t)))
-      )))
+      )
+    :defer t
+    :config
+    (spacemacs|hide-lighter ctags-auto-update-mode)))
 
 (defun zilongshanren/init-js-comint ()
   (use-package js-comint
@@ -907,6 +910,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             (set (make-local-variable 'js2-mode-show-parse-errors) t)
             (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
         (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
+        (spacemacs|hide-lighter tern-mode)
         ))
 
     (evilify js2-error-buffer-mode js2-error-buffer-mode-map)
