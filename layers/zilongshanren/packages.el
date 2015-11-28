@@ -59,7 +59,18 @@
         evil-visual-mark-mode
         (occur-mode :location built-in)
         (dired-mode :location built-in)
+        js-doc
         ))
+
+(defun zilongshanren/post-init-js-doc ()
+  (use-package js-doc
+    :defer t
+    :config
+    (setq js-doc-mail-address "guanghui8827@gmail.com"
+          js-doc-author (format "Guanghui Qu <%s>" js-doc-mail-address)
+          js-doc-url "http://www.zilongshanren.com"
+          js-doc-license "MIT")
+    ))
 
 (defun zilongshanren/init-dired-mode ()
   (use-package dired-mode
@@ -995,6 +1006,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (setq-default js2-show-parse-errors nil)
         (setq-default js2-strict-missing-semi-warning nil)
         (setq-default js2-highlight-external-variables t)
+
+        (add-hook 'js2-mode-hook
+                  #'(lambda ()
+                      (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+                      (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
         (defun js2-toggle-indent ()
           (interactive)
