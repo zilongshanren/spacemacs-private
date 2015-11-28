@@ -429,7 +429,7 @@ open and unsaved."
       (spacemacs/declare-prefix-for-mode 'cmake-mode
                                          "mh" "docs"))
     (evil-leader/set-key-for-mode 'cmake-mode
-      "mhd" 'cmake-help)
+      "hd" 'cmake-help)
     :config
     (progn
       (defun cmake-rename-buffer ()
@@ -473,9 +473,9 @@ open and unsaved."
         (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
       (evil-leader/set-key-for-mode 'gfm-mode-map
-        "mp" 'zilongshanren/markdown-to-html)
+        "p" 'zilongshanren/markdown-to-html)
       (evil-leader/set-key-for-mode 'markdown-mode
-        "mp" 'zilongshanren/markdown-to-html))))
+        "p" 'zilongshanren/markdown-to-html))))
 
 (defun zilongshanren/init-impatient-mode ()
   "Initialize impatient mode"
@@ -491,7 +491,7 @@ open and unsaved."
 
       (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
       (evil-leader/set-key-for-mode 'web-mode
-        "mp" 'imp-visit-buffer)
+        "p" 'imp-visit-buffer)
       )))
 
 
@@ -960,13 +960,13 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
     (evil-leader/set-key-for-mode 'js2-mode
-      "msr" 'js-send-region
-      "msR" 'js-send-region-and-go
-      "msb" 'js-send-buffer
-      "msB" 'js-send-buffer-and-go
-      "msd" 'js-send-last-sexp
-      "msD" 'js-send-last-sexp-and-go
-      "mgd" 'helm-etags-select)
+      "sr" 'js-send-region
+      "sR" 'js-send-region-and-go
+      "sb" 'js-send-buffer
+      "sB" 'js-send-buffer-and-go
+      "sd" 'js-send-last-sexp
+      "sD" 'js-send-last-sexp-and-go
+      "gd" 'helm-etags-select)
 
 
     (use-package js2-mode
@@ -1005,7 +1005,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
                    js2-basic-offset))
 
         (evil-leader/set-key-for-mode 'js2-mode
-          "moj" 'js2-toggle-indent)
+          "oj" 'js2-toggle-indent)
         (spacemacs/declare-prefix-for-mode 'js2-mode "mo" "toggle")
 
         (autoload 'flycheck-get-checker-for-buffer "flycheck")

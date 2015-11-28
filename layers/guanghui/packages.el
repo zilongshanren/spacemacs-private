@@ -137,9 +137,9 @@
     '(spacemacs|hide-lighter ycmd-mode))
 
   (evil-leader/set-key-for-mode 'c-mode
-    "mtb" 'zilong/company-toggle-company-ycmd)
+    "tb" 'zilong/company-toggle-company-ycmd)
   (evil-leader/set-key-for-mode 'c++-mode
-    "mtb" 'zilong/company-toggle-company-ycmd))
+    "tb" 'zilong/company-toggle-company-ycmd))
 
 (defun guanghui/post-init-lua-mode ()
   (use-package lua-mode
@@ -155,10 +155,10 @@
 
       (evil-leader/set-key-for-mode 'lua-mode
         "<tab>" 'hs-toggle-hiding
-        "mgg" 'helm-gtags-dwim
-        "mgr" 'helm-gtags-find-rtag
-        "mgs" 'helm-gtags-find-symbol
-        "mgf" 'helm-gtags-find-files))))
+        "gg" 'helm-gtags-dwim
+        "gr" 'helm-gtags-find-rtag
+        "gs" 'helm-gtags-find-symbol
+        "gf" 'helm-gtags-find-files))))
 
 (defun guanghui/init-elfeed ()
   (use-package elfeed
@@ -337,25 +337,10 @@
   (use-package hydra
     :init
     (progn
-      (when (configuration-layer/package-usedp 'org)
-        ;; major mode hydra is really cool, don't need to switch mode anymore
-        ;; C-c [a-z] and s-[a-z] is very quick to pressed even in emacs-state and F1-F9 is also the same
-        ;; If the command will change the buffer, they should be put in these groups.
-        ;; otherwise, use which-key + spacems + user defined key mappings in evil normal mode
-        (defhydra hydra-org (:color blue :hint nil)
-          "
-              ^Org Mode^
---------------------------------------------
-          _t_ags   _p_riority _P_roperty
-          "
-          ("p" org-priority)
-          ("t" org-set-tags)
-          ("P" org-set-property))
-        (require 'org)
-        (define-key org-mode-map (kbd "<f2>") 'hydra-org/body)
-        (evil-leader/set-key-for-mode 'org-mode
-          "." 'hydra-org/body)
-        )
+      ;; major mode hydra is really cool, don't need to switch mode anymore
+      ;; C-c [a-z] and s-[a-z] is very quick to pressed even in emacs-state and F1-F9 is also the same
+      ;; If the command will change the buffer, they should be put in these groups.
+      ;; otherwise, use which-key + spacems + user defined key mappings in evil normal mode
       (defhydra hydra-yasnippet (:color blue :hint nil)
         "
               ^YASnippets^
@@ -420,7 +405,7 @@
     (spacemacs/declare-prefix-for-mode 'js2-mode
                                        "me" "evaluating")
     (evil-leader/set-key-for-mode 'js2-mode
-      "meb" 'nodejs-repl-eval-buffer)))
+      "eb" 'nodejs-repl-eval-buffer)))
 
 (defun guanghui/post-init-visual-regexp-steroids ()
   (progn
@@ -539,7 +524,7 @@
 
 (defun zilongshanren/post-init-deft ()
   (setq deft-use-filter-string-for-filename t)
-  (evil-leader/set-key-for-mode 'deft-mode "mq" 'quit-window)
+  (evil-leader/set-key-for-mode 'deft-mode "q" 'quit-window)
   (setq deft-extension "org")
   (setq deft-directory "~/org-notes"))
 
@@ -565,16 +550,16 @@
 
 
     (evil-leader/set-key-for-mode 'js2-mode
-      "med" 'nodejs-repl-eval-dwim
-      "mtb" 'zilong/company-toggle-company-tern)
+      "ed" 'nodejs-repl-eval-dwim
+      "tb" 'zilong/company-toggle-company-tern)
 
     (evil-leader/set-key-for-mode 'js2-mode
-      "mga" 'projectile-find-other-file
-      "mgA" 'projectile-find-other-file-other-window)
+      "ga" 'projectile-find-other-file
+      "gA" 'projectile-find-other-file-other-window)
 
     (evil-leader/set-key-for-mode 'web-mode
-      "mga" 'projectile-find-other-file
-      "mgA" 'projectile-find-other-file-other-window)
+      "ga" 'projectile-find-other-file
+      "gA" 'projectile-find-other-file-other-window)
     (eval-after-load 'js2-mode
       '(progn
          (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
