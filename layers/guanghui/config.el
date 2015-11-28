@@ -87,8 +87,3 @@
                                             ("8str" "\\([^\"]+?\\)\"")))
 
 
-;(evilified-state-evilify-map dired-mode-map
-;  :mode dired-mode
- ; :bindings
-  ;(kbd "C-k") 'zilongshanren/dired-up-directory
-;  "C" 'dired-do-copy)

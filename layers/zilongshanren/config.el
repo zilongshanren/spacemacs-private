@@ -286,8 +286,6 @@ Single Capitals as you type."
 ;;set region face for monokai theme
 (set-face-attribute 'region nil :background "#696969")
 
-;(evilified-state-evilify occur-mode occur-mode-map
-;  "RET" 'occur-mode-goto-occurrence)
 
 ;;Don’t ask me when close emacs with process is running
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)

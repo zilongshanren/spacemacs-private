@@ -57,7 +57,21 @@
         fcitx
         beacon
         evil-visual-mark-mode
+        (occur-mode :location built-in)
+        (dired-mode :location built-in)
         ))
+
+(defun zilongshanren/init-dired-mode ()
+  (evilified-state-evilify-map dired-mode-map
+    :mode dired-mode
+    :bindings
+    (kbd "C-k") 'zilongshanren/dired-up-directory
+    "C" 'dired-do-copy)
+  )
+
+(defun zilongshanren/init-occur-mode ()
+  (evilified-state-evilify occur-mode occur-mode-map
+    "RET" 'occur-mode-goto-occurrence))
 
 (defun zilongshanren/init-evil-visual-mark-mode ()
   (use-package evil-visual-mark-mode
