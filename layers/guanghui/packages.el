@@ -110,7 +110,8 @@
     :init
     (progn
       (evil-leader/set-key (kbd "mhm") 'discover-my-major)
-      (evilify makey-key-mode makey-key-mode-get-key-map))))
+
+      (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
 
 (defun guanghui/init-mwe-log-commands ()
   (use-package mwe-log-commands
@@ -189,7 +190,7 @@
               "http://angelic-sedition.github.io/atom.xml"))
 
       ;; (evilify elfeed-search-mode elfeed-search-mode-map)
-      (spacemacs|evilify-map elfeed-search-mode-map
+      (evilified-state-evilify-map elfeed-search-mode-map
         :mode elfeed-search-mode
         :bindings
         "G" 'elfeed-update
@@ -306,7 +307,7 @@
   (use-package org-octopress
     :init
     (progn
-      (evilify org-octopress-summary-mode org-octopress-summary-mode-map)
+      (evilified-state-evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
       (setq org-blog-dir "~/4gamers.cn/")
@@ -508,7 +509,7 @@
 
 (defun guanghui/post-init-find-file-in-project ()
   (progn
-    
+
     ;; If you use other VCS (subversion, for example), enable the following option
     ;;(setq ffip-project-file ".svn")
     ;; in MacOS X, the search file command is CMD+p
@@ -684,7 +685,7 @@
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)  ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-  
+
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   ;; used by org-clock-sum-today-by-tags
   (defun filter-by-tags ()

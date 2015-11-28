@@ -1,6 +1,6 @@
 ;;; config.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -286,10 +286,8 @@ Single Capitals as you type."
 ;;set region face for monokai theme
 (set-face-attribute 'region nil :background "#696969")
 
-(spacemacs|evilify-map occur-mode-map
-  :mode occur-mode
-  :bindings
-  "RET" 'occur-mode-goto-occurrence)
+;(evilified-state-evilify occur-mode occur-mode-map
+;  "RET" 'occur-mode-goto-occurrence)
 
 ;;Don’t ask me when close emacs with process is running
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)

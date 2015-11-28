@@ -1,6 +1,6 @@
 ;;; config.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -87,6 +87,8 @@
                                             ("8str" "\\([^\"]+?\\)\"")))
 
 
-(evilify dired-mode dired-mode-map
-         (kbd "C-k") 'zilongshanren/dired-up-directory
-         (kbd "C") 'dired-do-copy)
+;(evilified-state-evilify-map dired-mode-map
+;  :mode dired-mode
+ ; :bindings
+  ;(kbd "C-k") 'zilongshanren/dired-up-directory
+;  "C" 'dired-do-copy)

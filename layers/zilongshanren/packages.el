@@ -49,7 +49,7 @@
         hl-anything
         projectile
         wrap-region
-        web-mode 
+        web-mode
         ;; tagedit
         js-comint
         ctags-update
@@ -269,7 +269,7 @@
       (evil-make-overriding-map helm-gtags-mode-map 'normal)
       (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps)
 
-      ))) 
+      )))
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
@@ -348,7 +348,7 @@
     :config (progn
               (flycheck-package-setup)
               ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-              ;; (setq flycheck-display-errors-delay 0.2)
+              (setq flycheck-display-errors-delay 0.2)
               ;; (remove-hook 'c-mode-hook 'flycheck-mode)
               ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
               ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
@@ -839,7 +839,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
-    
+
     (remove-hook 'js2-mode-hook 'flycheck-mode)
     (defun conditional-disable-modes ()
       (when (> (buffer-size) 50000)
@@ -910,10 +910,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             (set (make-local-variable 'js2-mode-show-parse-errors) t)
             (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
         (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
-        (spacemacs|hide-lighter tern-mode)
+        (eval-after-load 'tern-mode
+          '(spacemacs|hide-lighter tern-mode))
         ))
 
-    (evilify js2-error-buffer-mode js2-error-buffer-mode-map)
+    (evilified-state-evilify js2-error-buffer-mode js2-error-buffer-mode-map)
 
 
     (defun js2-imenu-make-index ()
