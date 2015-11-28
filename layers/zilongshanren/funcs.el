@@ -11,17 +11,6 @@
 (require 'cl)
 (require 'ido)
 
-;; do command on all marked file in dired mode
-(defun zilongshanren/dired-do-command (command)
-  "Run COMMAND on marked files. Any files not already open will be opened.
-After this command has been run, any buffers it's modified will remain
-open and unsaved."
-  (interactive "CRun on marked files M-x ")
-  (save-window-excursion
-    (mapc (lambda (filename)
-            (find-file filename)
-            (call-interactively command))
-          (dired-get-marked-files))))
 
 (defun zilongshanren/insert-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
@@ -86,94 +75,28 @@ open and unsaved."
     (forward-char 1)))
 
 
-(defun dired-get-size ()
-  (interactive)
-  (let ((files (dired-get-marked-files)))
-    (with-temp-buffer
-      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
-      (message
-       "Size of all marked files: %s"
-       (progn
-         (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
-         (match-string 1))))))
 
-(defun dired-start-process (cmd &optional file-list)
-  (interactive
-   (let ((files (dired-get-marked-files
-                 t current-prefix-arg)))
-     (list
-      (dired-read-shell-command "& on %s: "
-                                current-prefix-arg files)
-      files)))
-  (let (list-switch)
-    (start-process
-     cmd nil shell-file-name
-     shell-command-switch
-     (format
-      "nohup 1>/dev/null 2>/dev/null %s \"%s\""
-      (if (and (> (length file-list) 1)
-               (setq list-switch
-                     (cadr (assoc cmd dired-filelist-cmd))))
-          (format "%s %s" cmd list-switch)
-        cmd)
-      (mapconcat #'expand-file-name file-list "\" \"")))))
-
-(defun dired-open-term ()
-  "Open an `ansi-term' that corresponds to current directory."
-  (interactive)
-  (let* ((current-dir (dired-current-directory))
-         (buffer (if (get-buffer "*zshell*")
-                     (switch-to-buffer "*zshell*")
-                   (ansi-term "/bin/zsh" "zshell")))
-         (proc (get-buffer-process buffer)))
-    (term-send-string
-     proc
-     (if (file-remote-p current-dir)
-         (let ((v (tramp-dissect-file-name current-dir t)))
-           (format "ssh %s@%s\n"
-                   (aref v 1) (aref v 2)))
-       (format "cd '%s'\n" current-dir)))))
-
-(defun dired-copy-file-here (file)
-  (interactive "fCopy file: ")
-  (copy-file file default-directory))
-(eval-after-load "dired"
-  '(define-key dired-mode-map "c" 'dired-copy-file-here))
-
-;;dired find alternate file in other buffer
-(defun my-dired-find-file ()
-  "Open buffer in another window"
-  (interactive)
-  (let ((filename (dired-get-filename nil t)))
-    (if (car (file-attributes filename))
-        (dired-find-alternate-file)
-      (dired-find-file-other-window))))
 
 ;; for running long run ansi-term
 (defun named-term (name)
   (interactive "sName: ")
   (ansi-term "/bin/zsh" name))
 
-(defun zilongshanren/dired-up-directory()
-  "goto up directory and resue buffer"
-  (interactive)
-  (find-alternate-file "..")
-  )
 
- (defun ash-term-hooks ()
-      ;; dabbrev-expand in term
-      (define-key term-raw-escape-map "/"
-        (lambda ()
-          (interactive)
-          (let ((beg (point)))
-            (dabbrev-expand nil)
-            (kill-region beg (point)))
-          (term-send-raw-string (substring-no-properties (current-kill 0)))))
-      ;; yank in term (bound to C-c C-y)
-      (define-key term-raw-escape-map "\C-y"
-        (lambda ()
-          (interactive)
-          (term-send-raw-string (current-kill 0)))))
+(defun ash-term-hooks ()
+  ;; dabbrev-expand in term
+  (define-key term-raw-escape-map "/"
+    (lambda ()
+      (interactive)
+      (let ((beg (point)))
+        (dabbrev-expand nil)
+        (kill-region beg (point)))
+      (term-send-raw-string (substring-no-properties (current-kill 0)))))
+  ;; yank in term (bound to C-c C-y)
+  (define-key term-raw-escape-map "\C-y"
+    (lambda ()
+      (interactive)
+      (term-send-raw-string (current-kill 0)))))
 
 (defun terminal ()
   "Switch to terminal. Launch if nonexistent."
