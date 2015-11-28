@@ -88,6 +88,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
+                                    emmet-mode
                                     chinese-wbim
                                     chinese-pyim
                                     yasnippet
@@ -333,6 +334,15 @@ layers configuration."
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file)
+
+  ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
+  ;; when editing js file, this feature is very useful
+  (setq-default header-line-format
+                '((which-func-mode ("" which-func-format " "))))
+  (setq mode-line-misc-info
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
 
   (add-hook 'prog-mode-hook
             (lambda ()
