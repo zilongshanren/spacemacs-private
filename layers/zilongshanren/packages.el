@@ -1002,9 +1002,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
         (setq-default js2-bounce-indent nil)
         (setq-default js-indent-level 4)
         (setq-default js2-basic-offset 4)
+        (setq-default js2-indent-switch-body t)
         ;; Let flycheck handle parse errors
         (setq-default js2-show-parse-errors nil)
-        (setq-default js2-strict-missing-semi-warning nil)
+        (setq-default js2-strict-missing-semi-warning t)
         (setq-default js2-highlight-external-variables t)
 
         (add-hook 'js2-mode-hook

@@ -21,11 +21,11 @@
         js2-mode
         find-file-in-project
         org-bullets
-        evil-escape
+        ;; evil-escape
         cc-mode
         whitespace
         youdao-dictionary
-        chinese-wbim
+        ;; chinese-wbim
         multiple-cursors
         visual-regexp-steroids
         nodejs-repl
@@ -748,7 +748,7 @@
     :name "Preview cocos2d-html5"
     :command "python"
     :args '("-m" "SimpleHTTPServer" "6004")
-    :cwd "~/Github/cocos2d-html5"
+    :cwd "~/Github/fireball/cocos2d/cocos2d-html5"
     :tags '(work)
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t)
@@ -774,7 +774,7 @@
   (prodigy-define-service
     :name "Debug Fireball"
     :command "gulp"
-    :args '("fireball" "--path" "/Users/guanghui/workspace/fireball/HelloFireBall/")
+    :args '("fireball" "--path" "/Users/guanghui/workspace/fireball/HelloWorld/")
     :cwd "~/Github/fireball/"
     :tags '(work)
     :kill-signal 'sigkill
