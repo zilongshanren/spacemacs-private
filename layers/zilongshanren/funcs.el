@@ -382,7 +382,7 @@ With PREFIX, cd to project root."
 (defun zilongshanren/open-file-with-projectile-or-lsgit ()
   (interactive)
   (if (zilongshanren/project-root)
-      (helm-ls-git-ls)
+      (counsel-git)
     (helm-projectile-find-file)))
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/

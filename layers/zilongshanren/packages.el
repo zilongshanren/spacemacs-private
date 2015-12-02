@@ -308,6 +308,7 @@ open and unsaved."
     :defer t
     :config
     (progn
+      (setq projectile-completion-system 'ivy)
       (add-to-list 'projectile-other-file-alist '("html" "js")) ;; switch from html -> js
       (add-to-list 'projectile-other-file-alist '("js" "html")) ;; switch from js -> html
       )))
@@ -531,44 +532,26 @@ open and unsaved."
   (use-package swiper
     :init
     (progn
+      (setq ivy-use-virtual-buffers t)
       (setq ivy-display-style 'fancy)
+      (use-package recentf
+        :config
+        (setq recentf-exclude
+              '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
+                ".*png$"))
+        (setq recentf-max-saved-items 60))
 
-      ;; http://oremacs.com/2015/04/16/ivy-mode/
-      ;; (ivy-mode -1)
-      ;; (setq magit-completing-read-function 'ivy-completing-read)
-
-      ;; http://oremacs.com/2015/04/19/git-grep-ivy/
-      (defun counsel-git-grep-function (string &optional _pred &rest _u)
-        "Grep in the current git repository for STRING."
-        (split-string
-         (shell-command-to-string
-          (format
-           "git --no-pager grep --full-name -n --no-color -i -e \"%s\""
-           string))
-         "\n"
-         t))
-
-      (defun counsel-git-grep ()
-        "Grep for a string in the current git repository."
-        (interactive)
-        (let ((default-directory (locate-dominating-file
-                                  default-directory ".git"))
-              (val (ivy-read "pattern: " 'counsel-git-grep-function))
-              lst)
-          (when val
-            (setq lst (split-string val ":"))
-            (find-file (car lst))
-            (goto-char (point-min))
-            (forward-line (1- (string-to-number (cadr lst)))))))
       (use-package ivy
         :defer t
         :config
         (progn
+          (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
           (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
           (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
       (define-key global-map (kbd "C-s") 'swiper)
-      (setq ivy-use-virtual-buffers t)
+      (ivy-mode t)
+      (evil-leader/set-key (kbd "bb") 'ivy-switch-buffer)
       (global-set-key (kbd "C-c C-r") 'ivy-resume)
       (global-set-key (kbd "C-c j") 'counsel-git-grep))))
 
@@ -584,6 +567,7 @@ open and unsaved."
       (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
+      (setq magit-completing-read-function 'ivy-completing-read)
 
       ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
       ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
@@ -794,7 +778,8 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     ;; (when (configuration-layer/package-usedp 'company)
     ;;   (spacemacs|add-company-hook org-mode))
     (spacemacs|disable-company org-mode)
-
+    (evil-leader/set-key-for-mode 'org-mode
+      "," 'org-priority)
     (require 'org-compat)
     (require 'org)
     ;; (add-to-list 'org-modules "org-habit")
