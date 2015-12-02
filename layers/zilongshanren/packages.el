@@ -540,11 +540,12 @@ open and unsaved."
               '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
                 ".*png$"))
         (setq recentf-max-saved-items 60))
-
+      (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
       (use-package ivy
         :defer t
         :config
         (progn
+          (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
           (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
           (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
           (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
