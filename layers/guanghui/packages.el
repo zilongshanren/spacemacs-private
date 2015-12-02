@@ -50,7 +50,21 @@
         4clojure
         persp-mode
         (gulpjs :location (recipe :fetcher github :repo "stevenremot/emacs-gulpjs"))
+        osx-dictionary
+        github-notifier
         ))
+(defun guanghui/init-github-notifier ()
+  (use-package github-notifier
+    :init))
+
+(defun guanghui/init-osx-dictionary ()
+  (use-package osx-dictionary
+    :init
+    (progn
+      (evilified-state-evilify osx-dictionary-mode osx-dictionary-mode-map)
+      (setq osx-dictionary-use-chinese-text-segmentation t)
+      (global-set-key (kbd "C-c d") 'osx-dictionary-search-pointer)
+      )))
 
 (defun guanghui/init-gulpjs ()
   (use-package gulpjs
