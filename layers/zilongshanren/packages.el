@@ -568,7 +568,7 @@ open and unsaved."
       (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
       (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
-      (setq magit-completing-read-function 'ivy-completing-read)
+      (setq magit-completing-read-function 'magit-builtin-completing-read)
 
       ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
       ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))

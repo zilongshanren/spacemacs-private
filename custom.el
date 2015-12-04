@@ -26,6 +26,7 @@
  '(helm-gtags-update-interval-second 35)
  '(helm-ls-git-fuzzy-match t)
  '(helm-ls-git-show-abs-or-relative (quote absolute))
+ '(ivy-height 18)
  '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")
  '(magit-use-overlays nil)
  '(org-agenda-custom-commands nil)
