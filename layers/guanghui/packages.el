@@ -508,6 +508,10 @@
 
 (defun guanghui/post-init-find-file-in-project ()
   (progn
+    (defun zilongshanren/search-in-fireball ()
+      (interactive)
+      (helm-do-ag (expand-file-name "~/Github/fireball/")))
+    (evil-leader/set-key "os" 'zilongshanren/search-in-fireball)
 
     ;; If you use other VCS (subversion, for example), enable the following option
     ;;(setq ffip-project-file ".svn")
