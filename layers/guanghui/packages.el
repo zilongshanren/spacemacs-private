@@ -51,11 +51,7 @@
         persp-mode
         (gulpjs :location (recipe :fetcher github :repo "stevenremot/emacs-gulpjs"))
         osx-dictionary
-        github-notifier
         ))
-(defun guanghui/init-github-notifier ()
-  (use-package github-notifier
-    :init))
 
 (defun guanghui/init-osx-dictionary ()
   (use-package osx-dictionary
