@@ -1,6 +1,9 @@
 * 子龙山人的 Emacs 配置
 Hacking 始于 2013 年。
 
+** Emacs 爱好者交流平台
+https://emacs-cn.slack.com/signup
+
 ** 使用方法
 
 #+BEGIN_SRC sh
