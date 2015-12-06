@@ -76,6 +76,30 @@
   (use-package dired-mode
     :init
     (progn
+      (require 'dired-x)
+      (require 'dired-aux)
+      (setq dired-listing-switches "-alh")
+      (setq dired-guess-shell-alist-user
+            '(("\\.pdf\\'" "open")
+              ("\\.docx\\'" "open")
+              ("\\.\\(?:djvu\\|eps\\)\\'" "open")
+              ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" "open")
+              ("\\.\\(?:xcf\\)\\'" "open")
+              ("\\.csv\\'" "open")
+              ("\\.tex\\'" "open")
+              ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
+               "open")
+              ("\\.\\(?:mp3\\|flac\\)\\'" "open")
+              ("\\.html?\\'" "open")
+              ("\\.md\\'" "open")))
+
+      ;; always delete and copy recursively
+      (setq dired-recursive-deletes 'always)
+      (setq dired-recursive-copies 'always)
+
+      (defvar dired-filelist-cmd
+        '(("vlc" "-L")))
+
       (defun dired-get-size ()
         (interactive)
         (let ((files (dired-get-marked-files)))
@@ -158,7 +182,7 @@ open and unsaved."
         :mode dired-mode
         :bindings
         (kbd "C-k") 'zilongshanren/dired-up-directory
-        "RET" 'dired-find-alternate-file
+        "<RET>" 'dired-find-alternate-file
         "E" 'dired-toggle-read-only
         "C" 'dired-do-copy
         "<mouse-2>" 'my-dired-find-file

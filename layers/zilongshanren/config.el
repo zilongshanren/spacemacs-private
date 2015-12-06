@@ -26,28 +26,6 @@
   :evil-leader "Ti")
 
 (add-hook 'prog-mode-hook 'spacemacs/highlight-TODO-words)
-(require 'dired-x)
-(require 'dired-aux)
-
-(setq dired-listing-switches "-alh")
-(setq dired-guess-shell-alist-user
-      '(("\\.pdf\\'" "open")
-        ("\\.docx\\'" "open")
-        ("\\.\\(?:djvu\\|eps\\)\\'" "open")
-        ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" "open")
-        ("\\.\\(?:xcf\\)\\'" "open")
-        ("\\.csv\\'" "open")
-        ("\\.tex\\'" "open")
-        ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
-         "open")
-        ("\\.\\(?:mp3\\|flac\\)\\'" "open")
-        ("\\.html?\\'" "open")
-        ("\\.md\\'" "open")))
-
-
-
-(defvar dired-filelist-cmd
-  '(("vlc" "-L")))
 
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
@@ -93,13 +71,6 @@
 
 (set-default 'imenu-auto-rescan t)
 
-;; always delete and copy recursively
-(setq dired-recursive-deletes 'always)
-(setq dired-recursive-copies 'always)
-
-;; if there is a dired buffer displayed in the next window, use its
-;; current subdir, instead of the current subdir of this dired buffer
-(setq dired-dwim-target t)
 
 
 ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
