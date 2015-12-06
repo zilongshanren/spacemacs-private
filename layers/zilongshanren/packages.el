@@ -33,7 +33,7 @@
         org-download
         flycheck-package
         org
-        ;; nodejs-repl
+        nodejs-repl
         js2-mode
         visual-regexp
         visual-regexp-steroids
