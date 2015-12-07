@@ -611,22 +611,26 @@ open and unsaved."
       (setq magit-push-always-verify nil)
 
 
-      (defun endless/visit-pull-request-url ()
-        "Visit the current branch's PR on Github."
+      (defun zilongshanren/magit-visit-pull-request ()
+        "Visit the current branch's PR on GitHub."
         (interactive)
-        (browse-url
-         (format "https://github.com/%s/pull/new/%s"
-                 (replace-regexp-in-string
-                  "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-                  (magit-get "remote"
-                             (magit-get-remote)
-                             "url"))
-                 (cdr (magit-get-remote-branch)))))
-
+        (let ((remote-branch (magit-get-current-branch)))
+          (cond
+           ((null remote-branch)
+            (message "No remote branch"))
+           (t
+            (browse-url
+             (format "https://github.com/%s/pull/new/%s"
+                     (replace-regexp-in-string
+                      "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+                      (magit-get "remote"
+                                 (magit-get-remote)
+                                 "url"))
+                     remote-branch))))))
 
       (eval-after-load 'magit
         '(define-key magit-mode-map (kbd "s-g")
-           #'endless/visit-pull-request-url))
+           #'zilongshanren/magit-visit-pull-request))
 
 
       (defadvice magit-blame-mode (after magit-blame-change-to-emacs-state activate compile)
