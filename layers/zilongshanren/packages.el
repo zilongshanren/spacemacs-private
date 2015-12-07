@@ -536,6 +536,7 @@ open and unsaved."
         "my web mode hook for HTML REPL"
         (interactive)
         (impatient-mode)
+        (spacemacs|hide-lighter impatient-mode)
         (httpd-start))
 
       (add-hook 'web-mode-hook 'zilongshanren-mode-hook)

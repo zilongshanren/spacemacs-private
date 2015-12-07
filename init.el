@@ -47,7 +47,7 @@ values."
      emacs-lisp
      dash
      emoji
-     ycmd
+     ;; ycmd
      fasd
      ;; deft
      ranger
