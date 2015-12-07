@@ -23,10 +23,10 @@ values."
      ;; Uncomment a layer name and press C-c C-c to install it
      ;;  Guide key
      ;; --------------------------------------------------------
-     erc
+     ;; erc
      better-defaults
      github
-     version-control
+     ;; version-control
      osx
      semantic                           ; too slow
      markdown
@@ -43,15 +43,15 @@ values."
      (clojure :variables clojure-enable-fancify-symbols t)
      html
      javascript
-     restclient
+     ;; restclient
      emacs-lisp
-     dash
-     emoji
+     ;; dash
+     ;; emoji
      ;; ycmd
-     fasd
+     ;; fasd
      ;; deft
      ranger
-     racket
+     ;; racket
      gtags
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
@@ -92,6 +92,10 @@ values."
                                     chinese-wbim
                                     chinese-pyim
                                     yasnippet
+                                    srefactor
+                                    org-download
+                                    org-timer
+                                    org-tree-slide
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
