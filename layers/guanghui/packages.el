@@ -413,9 +413,11 @@
 (defun guanghui/post-init-nodejs-repl ()
   (progn
     (spacemacs/declare-prefix-for-mode 'js2-mode
-                                       "me" "evaluating")
+                                       "ms" "REPL")
     (evil-leader/set-key-for-mode 'js2-mode
-      "eb" 'nodejs-repl-eval-buffer)))
+      "sb" 'nodejs-repl-eval-buffer
+      "sf" 'nodejs-repl-eval-function
+      "sd" 'nodejs-repl-eval-dwim)))
 
 (defun guanghui/post-init-visual-regexp-steroids ()
   (progn
@@ -564,7 +566,6 @@
 
 
     (evil-leader/set-key-for-mode 'js2-mode
-      "ed" 'nodejs-repl-eval-dwim
       "tb" 'zilong/company-toggle-company-tern)
 
     (evil-leader/set-key-for-mode 'js2-mode

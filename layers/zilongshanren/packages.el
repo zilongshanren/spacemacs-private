@@ -51,7 +51,7 @@
         wrap-region
         web-mode
         ;; tagedit
-        js-comint
+        ;; js-comint
         ctags-update
         evil-vimish-fold
         fcitx
@@ -285,21 +285,22 @@ open and unsaved."
     :config
     (spacemacs|hide-lighter ctags-auto-update-mode)))
 
-(defun zilongshanren/init-js-comint ()
-  (use-package js-comint
-    :init
-    (progn
-      ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
-      (setq inferior-js-mode-hook
-            (lambda ()
-              ;; We like nice colors
-              (ansi-color-for-comint-mode-on)
-              ;; Deal with some prompt nonsense
-              (add-to-list
-               'comint-preoutput-filter-functions
-               (lambda (output)
-                 (replace-regexp-in-string "\033\\[[0-9]+[GKJ]" "" output)))))
-      (setq inferior-js-program-command "node"))))
+;; nodejs-repl is much better now.
+;; (defun zilongshanren/init-js-comint ()
+;;   (use-package js-comint
+;;     :init
+;;     (progn
+;;       ;; http://stackoverflow.com/questions/13862471/using-node-js-with-js-comint-in-emacs
+;;       (setq inferior-js-mode-hook
+;;             (lambda ()
+;;               ;; We like nice colors
+;;               (ansi-color-for-comint-mode-on)
+;;               ;; Deal with some prompt nonsense
+;;               (add-to-list
+;;                'comint-preoutput-filter-functions
+;;                (lambda (output)
+;;                  (replace-regexp-in-string "\033\\[[0-9]+[GKJ]" "" output)))))
+;;       (setq inferior-js-program-command "node"))))
 
 (defun zilongshanren/post-init-web-mode ()
   (setq company-backends-web-mode '((company-dabbrev-code
@@ -1001,12 +1002,12 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
     (evil-leader/set-key-for-mode 'js2-mode
-      "sr" 'js-send-region
-      "sR" 'js-send-region-and-go
-      "sb" 'js-send-buffer
-      "sB" 'js-send-buffer-and-go
-      "sd" 'js-send-last-sexp
-      "sD" 'js-send-last-sexp-and-go
+      ;; "sr" 'js-send-region
+      ;; "sR" 'js-send-region-and-go
+      ;; "sb" 'js-send-buffer
+      ;; "sB" 'js-send-buffer-and-go
+      ;; "sd" 'js-send-last-sexp
+      ;; "sD" 'js-send-last-sexp-and-go
       "gd" 'helm-etags-select)
 
 
