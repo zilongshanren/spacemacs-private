@@ -60,6 +60,12 @@
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
+        ;; post extension names go here
+        (doxymacs :location local)
+        ;; nodejs-repl-eval don't support es6 and js2-mode also don't support it
+        ;; so I use js-comit instead.
+        (nodejs-repl-eval :location local)
+        ;; plain-org-wiki
         ))
 
 (defun zilongshanren/post-init-js-doc ()
@@ -1119,3 +1125,28 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-tagedit ()
   (add-hook 'web-mode-hook (lambda () (tagedit-mode 1))))
+
+;; For each extension, define a function zilongshanren/init-<extension-name>
+;;
+(defun zilongshanren/init-doxymacs ()
+  "Initialize doxymacs"
+  (use-package doxymacs
+    :init
+    (add-hook 'c-mode-common-hook 'doxymacs-mode)
+    :config
+    (progn
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+            (doxymacs-font-lock)))
+      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+      (spacemacs|hide-lighter doxymacs-mode))))
+
+;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
+(defun zilongshanren/init-nodejs-repl-eval ()
+  (use-package nodejs-repl-eval
+    :init))
+
+(defun zilongshanren/init-plain-org-wiki ()
+  (use-package plain-org-wiki
+    :init
+    (setq pow-directory "~/org-notes")))
