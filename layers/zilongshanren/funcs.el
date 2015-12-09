@@ -35,11 +35,19 @@
 
 (defun zilongshanren/org-archive-done-tasks ()
   (interactive)
-  (org-map-entries 'org-archive-subtree "/DONE" 'file))
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'file))
 
 (defun zilongshanren/org-archive-cancel-tasks ()
   (interactive)
-  (org-map-entries 'org-archive-subtree "/CANCELLED" 'file))
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/CANCELLED" 'file))
 
 ;; "https://github.com/vhallac/.emacs.d/blob/master/config/customize-org-agenda.el"
 (defun bh/skip-non-stuck-projects ()

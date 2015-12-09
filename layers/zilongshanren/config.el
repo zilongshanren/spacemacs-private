@@ -25,8 +25,6 @@
   :documentation "Enable iimage mode"
   :evil-leader "Ti")
 
-(add-hook 'prog-mode-hook 'spacemacs/highlight-TODO-words)
-
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
 
