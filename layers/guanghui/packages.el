@@ -65,7 +65,6 @@
   (use-package gulpjs
     :init
     (progn
-      (require 'gulpjs-helm)
       (evil-leader/set-key "ags" 'gulpjs-start-task)
       (evil-leader/set-key "agr" 'gulpjs-restart-task))))
 
@@ -481,7 +480,7 @@
 (defun guanghui/post-init-youdao-dictionary ()
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
 
-(defun guanghui/init-cc-mode ()
+(defun guanghui/post-init-cc-mode ()
   (use-package cc-mode
     :init
 

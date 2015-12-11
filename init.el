@@ -26,7 +26,7 @@ values."
      ;; erc
      better-defaults
      github
-     ;; version-control
+     version-control
      osx
      semantic                           ; too slow
      markdown
@@ -96,6 +96,7 @@ values."
                                     org-download
                                     org-timer
                                     org-tree-slide
+                                    git-gutter+
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape

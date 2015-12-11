@@ -66,7 +66,6 @@
         ;; so I use js-comit instead.
         (nodejs-repl-eval :location local)
         ;; plain-org-wiki
-        (org-babel :location built-in)
         (whitespace :location built-in)
         erc
         ))
@@ -85,7 +84,7 @@
   (spaceline-toggle-erc-track-off)
   )
 
-(defun zilongshanren/init-whitespace ()
+(defun zilongshanren/post-init-whitespace ()
   (use-package whitespace
     :init
     (progn
@@ -122,22 +121,6 @@
                               :weight 'normal)))
       ))
   (diminish 'whitespace-mode))
-
-(defun zilongshanren/init-org-babel ()
-  (use-package org-babel
-    :init
-    ;; improve org babel
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((perl . t)
-       (ruby . t)
-       (sh . t)
-       (js . t)
-       (python . t)
-       (emacs-lisp . t)
-       (plantuml . t)
-       (C . t)
-       (ditaa . t)))))
 
 (defun zilongshanren/post-init-js-doc ()
   (use-package js-doc
@@ -1042,6 +1025,17 @@ If `F.~REV~' already exists, use it instead of checking it out again."
             (expand-file-name "~/.spacemacs.d/plantuml.jar"))
       (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((perl . t)
+         (ruby . t)
+         (sh . t)
+         (js . t)
+         (python . t)
+         (emacs-lisp . t)
+         (plantuml . t)
+         (C . t)
+         (ditaa . t)))
       )))
 
 
