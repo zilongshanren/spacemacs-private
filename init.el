@@ -353,19 +353,6 @@ layers configuration."
               (when (> (buffer-size) 1000000)
                 (turn-off-show-smartparens-mode))))
 
-  (defun my-erc-hook (match-type nick message)
-    "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
-    (unless (posix-string-match "^\\** *Users on #" message)
-      (zilongshanren/growl-notification
-       (concat "ERC: : " (buffer-name (current-buffer)))
-       message
-       t
-       )))
-
-  (add-hook 'erc-text-matched-hook 'my-erc-hook)
-  (spaceline-toggle-erc-track-off)
-
-  (spacemacs/set-leader-keys "sl" 'helm-semantic-or-imenu)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
