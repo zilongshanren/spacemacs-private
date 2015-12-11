@@ -28,8 +28,8 @@
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
 
-;; (global-prettify-symbols-mode 1)
-;; (setq-default fill-column 110)
+(global-prettify-symbols-mode 1)
+(setq-default fill-column 110)
 
 (setq recenter-positions '(top middle bottom))
 ;; delete the selection with a key press
