@@ -44,7 +44,7 @@ values."
      javascript
      ;; restclient
      emacs-lisp
-     ;; (clojure :variables clojure-enable-fancify-symbols t)
+     (clojure :variables clojure-enable-fancify-symbols t)
      ;; dash
      ;; emoji
      ;; ycmd

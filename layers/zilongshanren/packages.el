@@ -122,7 +122,6 @@
        (emacs-lisp . t)
        (plantuml . t)
        (C . t)
-       (R . t)
        (ditaa . t)))))
 
 (defun zilongshanren/post-init-js-doc ()

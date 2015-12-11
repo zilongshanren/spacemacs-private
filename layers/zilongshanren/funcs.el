@@ -153,6 +153,16 @@ Position the cursor at its beginning, according to the current mode."
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
+
+;;add count for chinese, mainly used for writing chinese blog post
+;; http://kuanyui.github.io/2014/01/18/count-chinese-japanese-and-english-words-in-emacs/
+(defvar wc-regexp-chinese-char-and-punc
+  (rx (category chinese)))
+(defvar wc-regexp-chinese-punc
+  "[。，！？；：「」『』（）、【】《》〈〉※—]")
+(defvar wc-regexp-english-word
+  "[a-zA-Z0-9-]+")
+
 (defun zilongshanren/word-count-for-chinese ()
   "「較精確地」統計中/日/英文字數。
 - 文章中的註解不算在字數內。

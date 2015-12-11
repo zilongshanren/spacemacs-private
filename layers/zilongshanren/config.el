@@ -31,33 +31,33 @@
 ;; (global-prettify-symbols-mode 1)
 ;; (setq-default fill-column 110)
 
-;; (setq recenter-positions '(top middle bottom))
-;; ;; delete the selection with a key press
-;; (delete-selection-mode t)
+(setq recenter-positions '(top middle bottom))
+;; delete the selection with a key press
+(delete-selection-mode t)
 
 
-;; ;;add auto format paste code
-;; (dolist (command '(yank yank-pop))
-;;   (eval
-;;    `(defadvice ,command (after indent-region activate)
-;;       (and (not current-prefix-arg)
-;;            (member major-mode
-;;                    '(emacs-lisp-mode
-;;                      lisp-mode
-;;                      clojure-mode
-;;                      scheme-mode
-;;                      haskell-mode
-;;                      ruby-mode
-;;                      rspec-mode
-;;                      python-mode
-;;                      c-mode
-;;                      c++-mode
-;;                      objc-mode
-;;                      latex-mode
-;;                      js-mode
-;;                      plain-tex-mode))
-;;            (let ((mark-even-if-inactive transient-mark-mode))
-;;              (indent-region (region-beginning) (region-end) nil))))))
+;;add auto format paste code
+(dolist (command '(yank yank-pop))
+  (eval
+   `(defadvice ,command (after indent-region activate)
+      (and (not current-prefix-arg)
+           (member major-mode
+                   '(emacs-lisp-mode
+                     lisp-mode
+                     clojure-mode
+                     scheme-mode
+                     haskell-mode
+                     ruby-mode
+                     rspec-mode
+                     python-mode
+                     c-mode
+                     c++-mode
+                     objc-mode
+                     latex-mode
+                     js-mode
+                     plain-tex-mode))
+           (let ((mark-even-if-inactive transient-mark-mode))
+             (indent-region (region-beginning) (region-end) nil))))))
 
 
 ;; tramp, for sudo access
@@ -72,124 +72,71 @@
 
 
 
-;; (setq auto-mode-alist
-;;       (append
-;;        '(("\\.mak\\'" . makefile-mode))
-;;        auto-mode-alist))
+(setq auto-mode-alist
+      (append
+       '(("\\.mak\\'" . makefile-mode))
+       auto-mode-alist))
 
-;; (setq large-file-warning-threshold 100000000)
-;; ;;http://batsov.com/emacsredux/blog/2015/05/09/emacs-on-os-x/
-;; ;;need to install coreutils at first
-
-
-;; ;;add count for chinese, mainly used for writing chinese blog post
-;; ;; http://kuanyui.github.io/2014/01/18/count-chinese-japanese-and-english-words-in-emacs/
-;; (defvar wc-regexp-chinese-char-and-punc
-;;   (rx (category chinese)))
-;; (defvar wc-regexp-chinese-punc
-;;   "[。，！？；：「」『』（）、【】《》〈〉※—]")
-;; (defvar wc-regexp-english-word
-;;   "[a-zA-Z0-9-]+")
+(setq large-file-warning-threshold 100000000)
+;;http://batsov.com/emacsredux/blog/2015/05/09/emacs-on-os-x/
+;;need to install coreutils at first
 
 
 
+(setq save-abbrevs nil)
 
-;; (require 'font-lock)
-
-;; (defun --copy-face (new-face face)
-;;   "Define NEW-FACE from existing FACE."
-;;   (copy-face face new-face)
-;;   (eval `(defvar ,new-face nil))
-;;   (set new-face new-face))
-
-;; (--copy-face 'font-lock-label-face  ; labels, case, public, private, proteced, namespace-tags
-;;              'font-lock-keyword-face)
-;; (--copy-face 'font-lock-doc-markup-face ; comment markups such as Javadoc-tags
-;;              'font-lock-doc-face)
-;; (--copy-face 'font-lock-doc-string-face ; comment markups
-;;              'font-lock-comment-face)
-
-;; (global-font-lock-mode t)
-;; (setq font-lock-maximum-decoration t)
+;; turn on abbrev mode globally
+(setq-default abbrev-mode t)
 
 
-;; (add-hook 'c++-mode-hook
-;;           '(lambda()
-;;              (font-lock-add-keywords
-;;               nil '(;; complete some fundamental keywords
-;;                     ("\\<\\(void\\|unsigned\\|signed\\|char\\|short\\|bool\\|int\\|long\\|float\\|double\\)\\>" . font-lock-keyword-face)
-;;                     ;; add the new C++11 keywords
-;;                     ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>" . font-lock-keyword-face)
-;;                     ("\\<\\(char[0-9]+_t\\)\\>" . font-lock-keyword-face)
-;;                     ;; PREPROCESSOR_CONSTANT
-;;                     ("\\<[A-Z]+[A-Z_]+\\>" . font-lock-constant-face)
-;;                     ;; hexadecimal numbers
-;;                     ("\\<0[xX][0-9A-Fa-f]+\\>" . font-lock-constant-face)
-;;                     ;; integer/float/scientific numbers
-;;                     ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face)
-;;                     ;; user-types (customize!)
-;;                     ("\\<[A-Za-z_]+[A-Za-z_0-9]*_\\(t\\|type\\|ptr\\)\\>" . font-lock-type-face)
-;;                     ("\\<\\(xstring\\|xchar\\)\\>" . font-lock-type-face)
-;;                     ))
-;;              ) t)
 
-;; (setq save-abbrevs nil)
+;; reformat your json file, it requires python
+(defun beautify-json ()
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+                             "python -mjson.tool" (current-buffer) t)))
 
-;;     ;; turn on abbrev mode globally
-;; (setq-default abbrev-mode t)
+;; when save a buffer, the directory is not exsits, it will ask you to create the directory
+(add-hook 'before-save-hook
+          (lambda ()
+            (when buffer-file-name
+              (let ((dir (file-name-directory buffer-file-name)))
+                (when (and (not (file-exists-p dir))
+                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                  (make-directory dir t))))))
 
 
-;; (setq ispell-program-name "aspell" ; use aspell instead of ispell
-;;       ispell-extra-args '("--sug-mode=ultra"))
+;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
+(defun dcaps-to-scaps ()
+  "Convert word in DOuble CApitals to Single Capitals."
+  (interactive)
+  (and (= ?w (char-syntax (char-before)))
+       (save-excursion
+         (and (if (called-interactively-p)
+                  (skip-syntax-backward "w")
+                (= -3 (skip-syntax-backward "w")))
+              (let (case-fold-search)
+                (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
+              (capitalize-word 1)))))
+
+(define-minor-mode dubcaps-mode
+  "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
+Single Capitals as you type."
+  :init-value nil
+  :lighter (" DC")
+  (if dubcaps-mode
+      (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
+    (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
+
+(add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
+(setq nxml-slash-auto-complete-flag t)
 
 
-;; ;; reformat your json file, it requires python
-;; (defun beautify-json ()
-;;   (interactive)
-;;   (let ((b (if mark-active (min (point) (mark)) (point-min)))
-;;         (e (if mark-active (max (point) (mark)) (point-max))))
-;;     (shell-command-on-region b e
-;;      "python -mjson.tool" (current-buffer) t)))
-
-;; ;; when save a buffer, the directory is not exsits, it will ask you to create the directory
-;; (add-hook 'before-save-hook
-;;           (lambda ()
-;;             (when buffer-file-name
-;;               (let ((dir (file-name-directory buffer-file-name)))
-;;                 (when (and (not (file-exists-p dir))
-;;                            (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-;;                   (make-directory dir t))))))
-
-
-;; ;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
-;; (defun dcaps-to-scaps ()
-;;   "Convert word in DOuble CApitals to Single Capitals."
-;;   (interactive)
-;;   (and (= ?w (char-syntax (char-before)))
-;;        (save-excursion
-;;          (and (if (called-interactively-p)
-;;                   (skip-syntax-backward "w")
-;;                 (= -3 (skip-syntax-backward "w")))
-;;               (let (case-fold-search)
-;;                 (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
-;;               (capitalize-word 1)))))
-
-;; (define-minor-mode dubcaps-mode
-;;   "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
-;; Single Capitals as you type."
-;;   :init-value nil
-;;   :lighter (" DC")
-;;   (if dubcaps-mode
-;;       (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
-;;     (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
-
-;; (add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
-;; (setq nxml-slash-auto-complete-flag t)
-
-
-;; ;; cleanup recent files
-;; (add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
-;;                                           (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
+;; cleanup recent files
+(add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
+                                               (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
 
 ;; change evil initial mode state
 (menu-bar-mode t)
