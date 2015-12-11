@@ -15,22 +15,21 @@
 (setq guanghui-packages
       '(
         projectile
-        org
+        (org :location built-in)
         prodigy
         org-tree-slide
         js2-mode
         find-file-in-project
         org-bullets
         ;; evil-escape
-        cc-mode
-        whitespace
+        (cc-mode :location built-in)
         youdao-dictionary
         ;; chinese-wbim
         multiple-cursors
         visual-regexp-steroids
         nodejs-repl
         company-c-headers
-        hydra
+        ;; hydra
         lispy
         org-octopress
         helm-github-stars
@@ -487,16 +486,6 @@
   (define-key c++-mode-map (kbd "s-.") 'company-ycmd)
   )
 
-(defun guanghui/post-init-whitespace ()
-  (set-face-attribute 'whitespace-tab nil
-                      :background "#Adff2f"
-                      :foreground "#00a8a8"
-                      :weight 'bold)
-  (set-face-attribute 'whitespace-trailing nil
-                      :background "#e4eeff"
-                      :foreground "#183bc8"
-                      :weight 'normal)
-  (diminish 'whitespace-mode))
 
 (defun guanghui/post-init-evil-escape ()
   (setq evil-escape-delay 0.2))
@@ -547,7 +536,6 @@
 (defun guanghui/post-init-org-pomodoro ()
   (use-package org-pomodoro
     :init
-    (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
     :defer t
     :config
     (progn
@@ -596,6 +584,8 @@
       (setq org-agenda-files (quote ("~/org-notes" )))
       (setq org-default-notes-file "~/org-notes/gtd.org")
 
+      (with-eval-after-load 'org-agenda
+        (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro))
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
       ;;add multi-file journal

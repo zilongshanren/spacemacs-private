@@ -40,7 +40,6 @@ values."
      ;; (ruby :variables ruby-version-manager 'rvm)
      python
      lua
-     (clojure :variables clojure-enable-fancify-symbols t)
      html
      javascript
      ;; restclient
@@ -78,6 +77,7 @@ values."
               chinese-enable-fcitx t)
      zilongshanren
      guanghui
+     ;; (clojure :variables clojure-enable-fancify-symbols t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -364,6 +364,8 @@ layers configuration."
 
   (add-hook 'erc-text-matched-hook 'my-erc-hook)
   (spaceline-toggle-erc-track-off)
+
+  (spacemacs/set-leader-keys "sl" 'helm-semantic-or-imenu)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

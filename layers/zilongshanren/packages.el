@@ -66,7 +66,41 @@
         ;; so I use js-comit instead.
         (nodejs-repl-eval :location local)
         ;; plain-org-wiki
+        (org-babel :location built-in)
+        (whitespace :location built-in)
         ))
+
+(defun zilongshanren/post-init-whitespace ()
+  (use-package whitespace
+    :init
+    (progn
+      (set-face-attribute 'whitespace-tab nil
+                          :background "#Adff2f"
+                          :foreground "#00a8a8"
+                          :weight 'bold)
+      (set-face-attribute 'whitespace-trailing nil
+                          :background "#e4eeff"
+                          :foreground "#183bc8"
+                          :weight 'normal)
+      ))
+  (diminish 'whitespace-mode))
+
+(defun zilongshanren/init-org-babel ()
+  (use-package org-babel
+    :init
+    ;; improve org babel
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((perl . t)
+       (ruby . t)
+       (sh . t)
+       (js . t)
+       (python . t)
+       (emacs-lisp . t)
+       (plantuml . t)
+       (C . t)
+       (R . t)
+       (ditaa . t)))))
 
 (defun zilongshanren/post-init-js-doc ()
   (use-package js-doc
@@ -966,20 +1000,6 @@ If `F.~REV~' already exists, use it instead of checking it out again."
               "rm -fr %b.out %b.log %b.tex auto"))
 
       (setq org-latex-listings t)
-      ;; improve org babel
-
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '( (perl . t)
-          (ruby . t)
-          (sh . t)
-          (js . t)
-          (python . t)
-          (emacs-lisp . t)
-          (plantuml . t)
-          (C . t)
-          (R . t)
-          (ditaa . t)))
 
       (setq org-plantuml-jar-path
             (expand-file-name "~/.spacemacs.d/plantuml.jar"))
