@@ -44,6 +44,7 @@ values."
      javascript
      ;; restclient
      emacs-lisp
+     ;; (clojure :variables clojure-enable-fancify-symbols t)
      ;; dash
      ;; emoji
      ;; ycmd
@@ -77,7 +78,6 @@ values."
               chinese-enable-fcitx t)
      zilongshanren
      guanghui
-     ;; (clojure :variables clojure-enable-fancify-symbols t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

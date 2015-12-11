@@ -482,8 +482,11 @@
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
 
 (defun guanghui/post-init-cc-mode ()
+  (use-package cc-mode
+    :init
+    (define-key c++-mode-map (kbd "s-.") 'company-ycmd)
+    )
   ;; company backend should be grouped
-  (define-key c++-mode-map (kbd "s-.") 'company-ycmd)
   )
 
 
