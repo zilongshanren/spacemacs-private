@@ -28,36 +28,36 @@
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
 
-(global-prettify-symbols-mode 1)
-(setq-default fill-column 110)
+;; (global-prettify-symbols-mode 1)
+;; (setq-default fill-column 110)
 
-(setq recenter-positions '(top middle bottom))
-;; delete the selection with a key press
-(delete-selection-mode t)
+;; (setq recenter-positions '(top middle bottom))
+;; ;; delete the selection with a key press
+;; (delete-selection-mode t)
 
 
-;;add auto format paste code
-(dolist (command '(yank yank-pop))
-  (eval
-   `(defadvice ,command (after indent-region activate)
-      (and (not current-prefix-arg)
-           (member major-mode
-                   '(emacs-lisp-mode
-                     lisp-mode
-                     clojure-mode
-                     scheme-mode
-                     haskell-mode
-                     ruby-mode
-                     rspec-mode
-                     python-mode
-                     c-mode
-                     c++-mode
-                     objc-mode
-                     latex-mode
-                     js-mode
-                     plain-tex-mode))
-           (let ((mark-even-if-inactive transient-mark-mode))
-             (indent-region (region-beginning) (region-end) nil))))))
+;; ;;add auto format paste code
+;; (dolist (command '(yank yank-pop))
+;;   (eval
+;;    `(defadvice ,command (after indent-region activate)
+;;       (and (not current-prefix-arg)
+;;            (member major-mode
+;;                    '(emacs-lisp-mode
+;;                      lisp-mode
+;;                      clojure-mode
+;;                      scheme-mode
+;;                      haskell-mode
+;;                      ruby-mode
+;;                      rspec-mode
+;;                      python-mode
+;;                      c-mode
+;;                      c++-mode
+;;                      objc-mode
+;;                      latex-mode
+;;                      js-mode
+;;                      plain-tex-mode))
+;;            (let ((mark-even-if-inactive transient-mark-mode))
+;;              (indent-region (region-beginning) (region-end) nil))))))
 
 
 ;; tramp, for sudo access
@@ -71,168 +71,125 @@
 
 
 
-;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
-(require 'whitespace)
+
+;; (setq auto-mode-alist
+;;       (append
+;;        '(("\\.mak\\'" . makefile-mode))
+;;        auto-mode-alist))
+
+;; (setq large-file-warning-threshold 100000000)
+;; ;;http://batsov.com/emacsredux/blog/2015/05/09/emacs-on-os-x/
+;; ;;need to install coreutils at first
 
 
-(setq whitespace-line-column fill-column) ;; limit line length
-;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/
-(setq whitespace-display-mappings
-      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-      '(
-        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-        (newline-mark 10 [182 10]) ; 10 LINE FEED
-        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-        ))
-(setq whitespace-style '(face tabs trailing tab-mark ))
-;; (setq whitespace-style '(face lines-tail))
-;; show tab;  use untabify to convert tab to whitespace
-;; (setq spacemacs-show-trailing-whitespace nil)
-
-(setq-default tab-width 4)
-;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
-(setq inhibit-eol-conversion t)
-(add-hook 'prog-mode-hook 'whitespace-mode)
-;; (global-whitespace-mode +1)
-
-(setq auto-mode-alist
-      (append
-       '(("\\.mak\\'" . makefile-mode))
-       auto-mode-alist))
-
-(setq large-file-warning-threshold 100000000)
-;;http://batsov.com/emacsredux/blog/2015/05/09/emacs-on-os-x/
-;;need to install coreutils at first
+;; ;;add count for chinese, mainly used for writing chinese blog post
+;; ;; http://kuanyui.github.io/2014/01/18/count-chinese-japanese-and-english-words-in-emacs/
+;; (defvar wc-regexp-chinese-char-and-punc
+;;   (rx (category chinese)))
+;; (defvar wc-regexp-chinese-punc
+;;   "[。，！？；：「」『』（）、【】《》〈〉※—]")
+;; (defvar wc-regexp-english-word
+;;   "[a-zA-Z0-9-]+")
 
 
-;;add count for chinese, mainly used for writing chinese blog post
-;; http://kuanyui.github.io/2014/01/18/count-chinese-japanese-and-english-words-in-emacs/
-(defvar wc-regexp-chinese-char-and-punc
-  (rx (category chinese)))
-(defvar wc-regexp-chinese-punc
-  "[。，！？；：「」『』（）、【】《》〈〉※—]")
-(defvar wc-regexp-english-word
-  "[a-zA-Z0-9-]+")
 
 
-(require 'cc-mode)
+;; (require 'font-lock)
 
-;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
-(defadvice c-lineup-arglist (around my activate)
-  "Improve indentation of continued C++11 lambda function opened as argument."
-  (setq ad-return-value
-        (if (and (equal major-mode 'c++-mode)
-                 (ignore-errors
-                   (save-excursion
-                     (goto-char (c-langelem-pos langelem))
-                     ;; Detect "[...](" or "[...]{". preceded by "," or "(",
-                     ;;   and with unclosed brace.
-                     (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
-            0                           ; no additional indent
-          ad-do-it)))                   ; default behavior
+;; (defun --copy-face (new-face face)
+;;   "Define NEW-FACE from existing FACE."
+;;   (copy-face face new-face)
+;;   (eval `(defvar ,new-face nil))
+;;   (set new-face new-face))
 
+;; (--copy-face 'font-lock-label-face  ; labels, case, public, private, proteced, namespace-tags
+;;              'font-lock-keyword-face)
+;; (--copy-face 'font-lock-doc-markup-face ; comment markups such as Javadoc-tags
+;;              'font-lock-doc-face)
+;; (--copy-face 'font-lock-doc-string-face ; comment markups
+;;              'font-lock-comment-face)
 
-(setq c-default-style "linux") ;; set style to "linux"
-(setq c-basic-offset 4)
-(c-set-offset 'substatement-open 0)
+;; (global-font-lock-mode t)
+;; (setq font-lock-maximum-decoration t)
 
 
-(require 'font-lock)
+;; (add-hook 'c++-mode-hook
+;;           '(lambda()
+;;              (font-lock-add-keywords
+;;               nil '(;; complete some fundamental keywords
+;;                     ("\\<\\(void\\|unsigned\\|signed\\|char\\|short\\|bool\\|int\\|long\\|float\\|double\\)\\>" . font-lock-keyword-face)
+;;                     ;; add the new C++11 keywords
+;;                     ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>" . font-lock-keyword-face)
+;;                     ("\\<\\(char[0-9]+_t\\)\\>" . font-lock-keyword-face)
+;;                     ;; PREPROCESSOR_CONSTANT
+;;                     ("\\<[A-Z]+[A-Z_]+\\>" . font-lock-constant-face)
+;;                     ;; hexadecimal numbers
+;;                     ("\\<0[xX][0-9A-Fa-f]+\\>" . font-lock-constant-face)
+;;                     ;; integer/float/scientific numbers
+;;                     ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face)
+;;                     ;; user-types (customize!)
+;;                     ("\\<[A-Za-z_]+[A-Za-z_0-9]*_\\(t\\|type\\|ptr\\)\\>" . font-lock-type-face)
+;;                     ("\\<\\(xstring\\|xchar\\)\\>" . font-lock-type-face)
+;;                     ))
+;;              ) t)
 
-(defun --copy-face (new-face face)
-  "Define NEW-FACE from existing FACE."
-  (copy-face face new-face)
-  (eval `(defvar ,new-face nil))
-  (set new-face new-face))
+;; (setq save-abbrevs nil)
 
-(--copy-face 'font-lock-label-face  ; labels, case, public, private, proteced, namespace-tags
-             'font-lock-keyword-face)
-(--copy-face 'font-lock-doc-markup-face ; comment markups such as Javadoc-tags
-             'font-lock-doc-face)
-(--copy-face 'font-lock-doc-string-face ; comment markups
-             'font-lock-comment-face)
-
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
-
-
-(add-hook 'c++-mode-hook
-          '(lambda()
-             (font-lock-add-keywords
-              nil '(;; complete some fundamental keywords
-                    ("\\<\\(void\\|unsigned\\|signed\\|char\\|short\\|bool\\|int\\|long\\|float\\|double\\)\\>" . font-lock-keyword-face)
-                    ;; add the new C++11 keywords
-                    ("\\<\\(alignof\\|alignas\\|constexpr\\|decltype\\|noexcept\\|nullptr\\|static_assert\\|thread_local\\|override\\|final\\)\\>" . font-lock-keyword-face)
-                    ("\\<\\(char[0-9]+_t\\)\\>" . font-lock-keyword-face)
-                    ;; PREPROCESSOR_CONSTANT
-                    ("\\<[A-Z]+[A-Z_]+\\>" . font-lock-constant-face)
-                    ;; hexadecimal numbers
-                    ("\\<0[xX][0-9A-Fa-f]+\\>" . font-lock-constant-face)
-                    ;; integer/float/scientific numbers
-                    ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face)
-                    ;; user-types (customize!)
-                    ("\\<[A-Za-z_]+[A-Za-z_0-9]*_\\(t\\|type\\|ptr\\)\\>" . font-lock-type-face)
-                    ("\\<\\(xstring\\|xchar\\)\\>" . font-lock-type-face)
-                    ))
-             ) t)
-
-(setq save-abbrevs nil)
-
-    ;; turn on abbrev mode globally
-(setq-default abbrev-mode t)
+;;     ;; turn on abbrev mode globally
+;; (setq-default abbrev-mode t)
 
 
-(setq ispell-program-name "aspell" ; use aspell instead of ispell
-      ispell-extra-args '("--sug-mode=ultra"))
+;; (setq ispell-program-name "aspell" ; use aspell instead of ispell
+;;       ispell-extra-args '("--sug-mode=ultra"))
 
 
-;; reformat your json file, it requires python
-(defun beautify-json ()
-  (interactive)
-  (let ((b (if mark-active (min (point) (mark)) (point-min)))
-        (e (if mark-active (max (point) (mark)) (point-max))))
-    (shell-command-on-region b e
-     "python -mjson.tool" (current-buffer) t)))
+;; ;; reformat your json file, it requires python
+;; (defun beautify-json ()
+;;   (interactive)
+;;   (let ((b (if mark-active (min (point) (mark)) (point-min)))
+;;         (e (if mark-active (max (point) (mark)) (point-max))))
+;;     (shell-command-on-region b e
+;;      "python -mjson.tool" (current-buffer) t)))
 
-;; when save a buffer, the directory is not exsits, it will ask you to create the directory
-(add-hook 'before-save-hook
-          (lambda ()
-            (when buffer-file-name
-              (let ((dir (file-name-directory buffer-file-name)))
-                (when (and (not (file-exists-p dir))
-                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-                  (make-directory dir t))))))
-
-
-;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
-(defun dcaps-to-scaps ()
-  "Convert word in DOuble CApitals to Single Capitals."
-  (interactive)
-  (and (= ?w (char-syntax (char-before)))
-       (save-excursion
-         (and (if (called-interactively-p)
-                  (skip-syntax-backward "w")
-                (= -3 (skip-syntax-backward "w")))
-              (let (case-fold-search)
-                (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
-              (capitalize-word 1)))))
-
-(define-minor-mode dubcaps-mode
-  "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
-Single Capitals as you type."
-  :init-value nil
-  :lighter (" DC")
-  (if dubcaps-mode
-      (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
-    (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
-
-(add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
-(setq nxml-slash-auto-complete-flag t)
+;; ;; when save a buffer, the directory is not exsits, it will ask you to create the directory
+;; (add-hook 'before-save-hook
+;;           (lambda ()
+;;             (when buffer-file-name
+;;               (let ((dir (file-name-directory buffer-file-name)))
+;;                 (when (and (not (file-exists-p dir))
+;;                            (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+;;                   (make-directory dir t))))))
 
 
-;; cleanup recent files
-(add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
-                                          (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
+;; ;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
+;; (defun dcaps-to-scaps ()
+;;   "Convert word in DOuble CApitals to Single Capitals."
+;;   (interactive)
+;;   (and (= ?w (char-syntax (char-before)))
+;;        (save-excursion
+;;          (and (if (called-interactively-p)
+;;                   (skip-syntax-backward "w")
+;;                 (= -3 (skip-syntax-backward "w")))
+;;               (let (case-fold-search)
+;;                 (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
+;;               (capitalize-word 1)))))
+
+;; (define-minor-mode dubcaps-mode
+;;   "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
+;; Single Capitals as you type."
+;;   :init-value nil
+;;   :lighter (" DC")
+;;   (if dubcaps-mode
+;;       (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
+;;     (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
+
+;; (add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
+;; (setq nxml-slash-auto-complete-flag t)
+
+
+;; ;; cleanup recent files
+;; (add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
+;;                                           (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
 
 ;; change evil initial mode state
 (menu-bar-mode t)
