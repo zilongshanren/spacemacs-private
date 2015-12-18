@@ -771,7 +771,7 @@
     :name "Preview cocos2d-html5"
     :command "python"
     :args '("-m" "SimpleHTTPServer" "6004")
-    :cwd "~/Github/fireball/cocos2d/cocos2d-html5"
+    :cwd "~/Github/fireball/engine"
     :tags '(work)
     :kill-signal 'sigkill
     :kill-process-buffer-on-stop t)
