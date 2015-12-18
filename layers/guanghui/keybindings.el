@@ -71,3 +71,5 @@
 
 (bind-key* "C-=" 'er/expand-region)
 
+
+(bind-key* "M--" 'zilongshanren/goto-match-paren)
