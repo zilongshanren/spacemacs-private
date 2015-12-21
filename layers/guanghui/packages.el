@@ -50,7 +50,12 @@
         persp-mode
         (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
         osx-dictionary
+        litable
         ))
+
+(defun guanghui/init-litable ()
+  (use-package litable
+    :init))
 
 (defun guanghui/init-osx-dictionary ()
   (use-package osx-dictionary

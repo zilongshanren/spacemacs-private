@@ -349,6 +349,12 @@ layers configuration."
   (bb/define-key company-active-map
     (kbd "C-w") 'evil-delete-backward-word)
 
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
+
+  (with-eval-after-load 'helm-swoop
+    (define-key helm-swoop-map (kbd "C-w") 'evil-delete-backward-word))
+
   (add-hook 'text-mode-hook 'auto-fill-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
 
