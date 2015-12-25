@@ -226,6 +226,8 @@
   (use-package evil
     :init
     (progn
+      (push "TAGS" spacemacs-useless-buffers-regexp)
+
       ;; make underscore as word_motion.
       (modify-syntax-entry ?_ "w")
       ;; ;; change evil initial mode state
