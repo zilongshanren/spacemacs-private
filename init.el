@@ -74,8 +74,7 @@ values."
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
-              chinese-enable-youdao-dict t
-              chinese-enable-fcitx t)
+              chinese-enable-youdao-dict t)
      zilongshanren
      guanghui
      )
@@ -380,7 +379,7 @@ layers configuration."
   (defun spacemacs/check-large-file ()
     (when (> (buffer-size) 100000)
       (progn (fundamental-mode)
-             (global-hl-line-mode -1))))
+             (hl-line-mode -1))))
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
 

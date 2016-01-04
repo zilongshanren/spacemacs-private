@@ -307,7 +307,7 @@ open and unsaved."
         :documentation "Enable point highlighting after scrolling"
         :evil-leader "otb")
 
-      (spacemacs/toggle-beacon-off))
+      (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)))
 
 (defun zilongshanren/post-init-fcitx ()
