@@ -307,7 +307,7 @@ open and unsaved."
         :documentation "Enable point highlighting after scrolling"
         :evil-leader "otb")
 
-      (spacemacs/toggle-beacon-on))
+      (spacemacs/toggle-beacon-off))
     :config (spacemacs|hide-lighter beacon-mode)))
 
 (defun zilongshanren/post-init-fcitx ()
@@ -1042,20 +1042,14 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
-    ;; (remove-hook 'js2-mode-hook 'flycheck-mode)
-    (defun conditional-disable-modes ()
-      (when (> (buffer-size) 50000)
-        (flycheck-mode -1)))
-
     (add-hook 'js2-mode-hook 'which-function-mode)
-    (add-hook 'js2-mode-hook 'conditional-disable-modes)
-    (add-hook 'js2-mode-hook '(lambda ()
-                                (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-                                (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-                                (local-set-key "\C-cb" 'js-send-buffer)
-                                (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-                                (local-set-key "\C-cl" 'js-load-file-and-go)
-                                ))
+    ;; (add-hook 'js2-mode-hook '(lambda ()
+    ;;                             (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+    ;;                             (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+    ;;                             (local-set-key "\C-cb" 'js-send-buffer)
+    ;;                             (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+    ;;                             (local-set-key "\C-cl" 'js-load-file-and-go)
+    ;;                             ))
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
     (evil-leader/set-key-for-mode 'js2-mode
