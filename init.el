@@ -55,7 +55,7 @@ values."
      gtags
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
-     ;; eyebrowse
+     eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      (git :variables
