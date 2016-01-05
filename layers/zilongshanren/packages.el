@@ -649,6 +649,7 @@ open and unsaved."
     :defer t
     :config
     (progn
+      (define-key magit-mode-map (kbd "<tab>") 'magit-section-toggle)
       (add-to-list 'magit-no-confirm 'stage-all-changes)
       (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
       (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
