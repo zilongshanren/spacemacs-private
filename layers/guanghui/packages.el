@@ -235,7 +235,8 @@
       (push "TAGS" spacemacs-useless-buffers-regexp)
 
       ;; make underscore as word_motion.
-      (modify-syntax-entry ?_ "w")
+      (with-eval-after-load 'python
+        (modify-syntax-entry ?_ "w" python-mode-syntax-table))
       ;; ;; change evil initial mode state
       (loop for (mode . state) in
             '((shell-mode . normal))
