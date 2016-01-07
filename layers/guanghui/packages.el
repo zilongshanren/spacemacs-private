@@ -51,7 +51,13 @@
         (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
         osx-dictionary
         litable
+        pangu-spacing
         ))
+
+(defun guanghui/post-init-pangu-spacing ()
+  (add-hook 'markdown-mode-hook
+            '(lambda ()
+               (set (make-local-variable 'pangu-spacing-real-insert-separtor) t))))
 
 (defun guanghui/init-litable ()
   (use-package litable

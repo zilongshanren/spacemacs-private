@@ -71,13 +71,13 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      auto-completion
      (shell :variables
+            shell-default-position 'full
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-youdao-dict t)
      zilongshanren
-     guanghui
-     )
+     guanghui)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
