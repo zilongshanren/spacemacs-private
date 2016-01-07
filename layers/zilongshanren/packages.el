@@ -657,6 +657,9 @@ open and unsaved."
       (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
       (setq magit-completing-read-function 'magit-builtin-completing-read)
 
+      ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
+      (magit-define-popup-switch 'magit-push-popup ?u
+        "Set upstream" "--set-upstream")
       ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
       ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
       ;;                                                              (if (or (eq 'untracked section-type)
