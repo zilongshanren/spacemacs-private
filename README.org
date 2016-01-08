@@ -2,8 +2,8 @@
 Hacking 始于 2013 年。
 
 ** Emacs 爱好者交流平台
-https://emacs-cn.slack.com/signup
-(目前采用的是邀请制，需要加入的同学可以给我发邮件，邮件主题注明  “加入 Slack 群组”即可。）
+https://slackin-emacs-cn.herokuapp.com/
+(邀请制限制已解除，欢迎大家加入，一起Happy Hacking Emacs :smile:）
 
 ** 使用方法
 
