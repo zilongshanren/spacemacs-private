@@ -3,7 +3,7 @@ Hacking 始于 2013 年。
 
 ** Emacs 爱好者交流平台
 https://slackin-emacs-cn.herokuapp.com/
-(邀请制限制已解除，欢迎大家加入，一起Happy Hacking Emacs :smile:）
+(邀请制限制已解除，欢迎大家加入，一起 Happy Hacking Emacs :smile:）
 
 ** 使用方法
 
@@ -15,8 +15,6 @@ https://slackin-emacs-cn.herokuapp.com/
 
   #clone zilongshanren layer and checkout develop branch
   git clone https://github.com/zilongshanren/spacemacs-private.git ~/.spacemacs.d/
-  cd ~/.spacemacs.d/
-  git checkout --track origin/develop
 #+END_SRC
 
 现在可以打开 Emacs 24.5+ 开始使用我的配置了。
