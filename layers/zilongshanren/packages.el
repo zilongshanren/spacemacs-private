@@ -572,11 +572,13 @@ open and unsaved."
 (defun zilongshanren/post-init-markdown-mode ()
   (use-package markdown-mode
     :defer t
+    :init
+    (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
     :config
     (progn
-      (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
       (when (configuration-layer/package-usedp 'company)
         (spacemacs|add-company-hook markdown-mode))
+
       (defun zilongshanren/markdown-to-html ()
         (interactive)
         (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
@@ -585,7 +587,10 @@ open and unsaved."
       (evil-leader/set-key-for-mode 'gfm-mode-map
         "p" 'zilongshanren/markdown-to-html)
       (evil-leader/set-key-for-mode 'markdown-mode
-        "p" 'zilongshanren/markdown-to-html))))
+        "p" 'zilongshanren/markdown-to-html)
+
+      (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
+      )))
 
 (defun zilongshanren/init-impatient-mode ()
   "Initialize impatient mode"
