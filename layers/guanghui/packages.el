@@ -468,12 +468,13 @@
       )))
 
 (defun guanghui/post-init-persp-mode ()
-  (spacemacs|define-custom-layout "@Cocos2D-X"
-    :binding "c"
-    :body
-    (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
-    (split-window-right)
-    (find-file "~/cocos2d-x/cocos/cocos2d.cpp")))
+  (when (fboundp 'spacemacs|define-custom-layout)
+    (spacemacs|define-custom-layout "@Cocos2D-X"
+      :binding "c"
+      :body
+      (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
+      (split-window-right)
+      (find-file "~/cocos2d-x/cocos/cocos2d.cpp"))))
 
 (defun guanghui/post-init-chinese-wbim ()
   (progn
