@@ -111,17 +111,11 @@
                 (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))))
 
 (defun guanghui/post-init-avy ()
-  (use-package avy
-    :defer t
-    :init
-    (progn
-      (global-set-key (kbd "C-s-'") 'avy-goto-char-2))))
+  (progn
+    (global-set-key (kbd "C-s-'") 'avy-goto-char-2)))
 
 (defun guanghui/post-init-ace-window ()
-  (use-package ace-window
-    :defer t
-    :init
-    (global-set-key (kbd "C-x C-o") #'ace-window)))
+  (global-set-key (kbd "C-x C-o") #'ace-window))
 
 (defun guanghui/init-discover-my-major ()
   (use-package discover-my-major
@@ -142,42 +136,40 @@
         "olf" 'mwe:open-command-log-buffer))))
 
 (defun guanghui/post-init-ycmd ()
-  (setq ycmd-tag-files 'auto)
-  (setq ycmd-request-message-level -1)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
-  (setq company-backends-c-mode-common '((company-c-headers
-                                          company-dabbrev-code
-                                          company-keywords
-                                          company-gtags :with company-yasnippet)
-                                         company-files company-dabbrev ))
+  (progn
+    (setq ycmd-tag-files 'auto)
+    (setq ycmd-request-message-level -1)
+    (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+    (setq company-backends-c-mode-common '((company-c-headers
+                                            company-dabbrev-code
+                                            company-keywords
+                                            company-gtags :with company-yasnippet)
+                                           company-files company-dabbrev ))
 
-  (zilongshanren|toggle-company-backends company-ycmd)
-  (eval-after-load 'ycmd
-    '(spacemacs|hide-lighter ycmd-mode))
+    (zilongshanren|toggle-company-backends company-ycmd)
+    (eval-after-load 'ycmd
+      '(spacemacs|hide-lighter ycmd-mode))
 
-  (evil-leader/set-key-for-mode 'c-mode
-    "tb" 'zilong/company-toggle-company-ycmd)
-  (evil-leader/set-key-for-mode 'c++-mode
-    "tb" 'zilong/company-toggle-company-ycmd))
+    (evil-leader/set-key-for-mode 'c-mode
+      "tb" 'zilong/company-toggle-company-ycmd)
+    (evil-leader/set-key-for-mode 'c++-mode
+      "tb" 'zilong/company-toggle-company-ycmd)))
 
 (defun guanghui/post-init-lua-mode ()
-  (use-package lua-mode
-    :defer t
-    :config
-    (progn
-      (when (configuration-layer/package-usedp 'company)
-        (push 'company-dabbrev company-backends-lua-mode)
-        (push 'company-etags company-backends-lua-mode))
-      (add-hook 'lua-mode-hook 'evil-matchit-mode)
-      (add-hook 'lua-mode-hook 'smartparens-mode)
-      (setq lua-indent-level 4)
+  (progn
+    (when (configuration-layer/package-usedp 'company)
+      (push 'company-dabbrev company-backends-lua-mode)
+      (push 'company-etags company-backends-lua-mode))
+    (add-hook 'lua-mode-hook 'evil-matchit-mode)
+    (add-hook 'lua-mode-hook 'smartparens-mode)
+    (setq lua-indent-level 4)
 
-      (evil-leader/set-key-for-mode 'lua-mode
-        "<tab>" 'hs-toggle-hiding
-        "gg" 'helm-gtags-dwim
-        "gr" 'helm-gtags-find-rtag
-        "gs" 'helm-gtags-find-symbol
-        "gf" 'helm-gtags-find-files))))
+    (evil-leader/set-key-for-mode 'lua-mode
+      "<tab>" 'hs-toggle-hiding
+      "gg" 'helm-gtags-dwim
+      "gr" 'helm-gtags-find-rtag
+      "gs" 'helm-gtags-find-symbol
+      "gf" 'helm-gtags-find-files)))
 
 (defun guanghui/init-elfeed ()
   (use-package elfeed
@@ -229,93 +221,89 @@
       (ad-activate 'elfeed-show-yank))))
 
 (defun guanghui/post-init-evil ()
-  (use-package evil
-    :init
-    (progn
-      (push "TAGS" spacemacs-useless-buffers-regexp)
+  (progn
+    (push "TAGS" spacemacs-useless-buffers-regexp)
 
-      ;; make underscore as word_motion.
-      (with-eval-after-load 'python
-        (modify-syntax-entry ?_ "w" python-mode-syntax-table))
-      ;; ;; change evil initial mode state
-      (loop for (mode . state) in
-            '((shell-mode . normal))
-            do (evil-set-initial-state mode state))
+    ;; make underscore as word_motion.
+    (with-eval-after-load 'python
+      (modify-syntax-entry ?_ "w" python-mode-syntax-table))
+    ;; ;; change evil initial mode state
+    (loop for (mode . state) in
+          '((shell-mode . normal))
+          do (evil-set-initial-state mode state))
 
-      ;;mimic "nzz" behaviou in vim
-      (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
-        (evil-scroll-line-to-center (line-number-at-pos)))
+    ;;mimic "nzz" behaviou in vim
+    (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
+      (evil-scroll-line-to-center (line-number-at-pos)))
 
-      (defadvice evil-ex-search-previous (after advice-for-evil-search-previous activate)
-        (evil-scroll-line-to-center (line-number-at-pos)))
+    (defadvice evil-ex-search-previous (after advice-for-evil-search-previous activate)
+      (evil-scroll-line-to-center (line-number-at-pos)))
 
-      (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+    (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
 
-      (define-key evil-normal-state-map
-        (kbd "Y") 'zilongshanren/yank-to-end-of-line)
+    (define-key evil-normal-state-map
+      (kbd "Y") 'zilongshanren/yank-to-end-of-line)
 
-      ;; rebind g,k to gj and gk
-      (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-      (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+    ;; rebind g,k to gj and gk
+    (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+    (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-      (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
-      (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
+    (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
+    (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
 
-      (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
-      (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
+    (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
+    (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
 
-      ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
-      ;; (define-key evil-insert-state-map "\C-n" 'next-line)
-      ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
-      (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
-      (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
+    ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
+    ;; (define-key evil-insert-state-map "\C-n" 'next-line)
+    ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
+    (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
+    (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
 
-      (evil-leader/set-key "bi" 'ibuffer)
-      (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
-      (define-key evil-ex-completion-map "\C-b" 'backward-char)
-      (define-key evil-ex-completion-map "\C-k" 'kill-line)
-      (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
+    (evil-leader/set-key "bi" 'ibuffer)
+    (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
+    (define-key evil-ex-completion-map "\C-b" 'backward-char)
+    (define-key evil-ex-completion-map "\C-k" 'kill-line)
+    (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
 
-      (define-key evil-visual-state-map (kbd ">") 'prelude-shift-right-visual)
-      (define-key evil-visual-state-map (kbd "<") 'prelude-shift-left-visual)
-      (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
-      ;; (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
-      ;; (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
-      (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
+    (define-key evil-visual-state-map (kbd ">") 'prelude-shift-right-visual)
+    (define-key evil-visual-state-map (kbd "<") 'prelude-shift-left-visual)
+    (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
+    ;; (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
+    ;; (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
+    (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
 
-      ;; in spacemacs, we always use evilify miscro state
-      (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+    ;; in spacemacs, we always use evilify miscro state
+    (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
 
-      ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
-      (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
-      ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
-      ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
-      ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
+    ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
+    (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
+    ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
+    ;; (define-key evil-emacs-state-map (kbd "C-w k") 'evil-window-up)
+    ;; (define-key evil-emacs-state-map (kbd "C-w l") 'evil-window-right)
 
-      ;; for emacs shell mode
-      ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
-      ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
-      (evil-define-key 'emacs term-raw-map (kbd "C-w")
-        'evil-delete-backward-word)
+    ;; for emacs shell mode
+    ;; (define-key evil-emacs-state-map (kbd "s-b") 'ido-switch-buffer)
+    ;; (define-key evil-emacs-state-map (kbd "s-f") 'ido-find-file)
+    (evil-define-key 'emacs term-raw-map (kbd "C-w")
+      'evil-delete-backward-word)
 
-      (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
-      (evil-leader/set-key "bms" 'bookmark-set)
-      (evil-leader/set-key "bmr" 'bookmark-rename)
-      (evil-leader/set-key "bmd" 'bookmark-delete)
+    (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
+    (evil-leader/set-key "bms" 'bookmark-set)
+    (evil-leader/set-key "bmr" 'bookmark-rename)
+    (evil-leader/set-key "bmd" 'bookmark-delete)
 
-      ;; enable hybrid editing style
-      (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
-        "Preparing the holy water flasks."
-        (evil-emacs-state))
-      ;; disable c-[ temporally
-      ;; (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
-      ;; (bind-keys ("<C-[>" . evil-normal-state))
-      ;; (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
-      (define-key evil-emacs-state-map [escape] 'evil-normal-state)
-
-
-      )))
+    ;; enable hybrid editing style
+    (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
+      "Preparing the holy water flasks."
+      (evil-emacs-state))
+    ;; disable c-[ temporally
+    ;; (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
+    ;; (bind-keys ("<C-[>" . evil-normal-state))
+    ;; (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
+    (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+    ))
 
 (defun guanghui/init-helm-github-stars ()
   (use-package helm-github-stars
@@ -348,9 +336,7 @@
       )))
 
 (defun guanghui/post-init-lispy ()
-  (use-package lispy
-    :defer t
-    :config
+  (with-eval-after-load 'lispy
     (progn
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
@@ -412,15 +398,13 @@
       )))
 
 (defun guanghui/post-init-company-c-headers ()
-  (use-package company-c-headers
-    :defer t
-    :init (progn
-            (setq company-c-headers-path-system
-                  (quote
-                   ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
-            (setq company-c-headers-path-user
-                  (quote
-                   ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/"))))))
+  (progn
+    (setq company-c-headers-path-system
+          (quote
+           ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
+    (setq company-c-headers-path-user
+          (quote
+           ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))))
 
 (defun guanghui/post-init-nodejs-repl ()
   (progn
@@ -496,8 +480,7 @@
   (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
 
 (defun guanghui/post-init-cc-mode ()
-  (use-package cc-mode
-    :init
+  (progn
 
     ;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
     (defadvice c-lineup-arglist (around my activate)
@@ -510,8 +493,8 @@
                          ;; Detect "[...](" or "[...]{". preceded by "," or "(",
                          ;;   and with unclosed brace.
                          (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
-                0                           ; no additional indent
-              ad-do-it)))                   ; default behavior
+                0                       ; no additional indent
+              ad-do-it)))               ; default behavior
 
 
     (setq c-default-style "linux") ;; set style to "linux"
@@ -563,22 +546,19 @@
         ))
     (ad-activate 'find-file-in-project)))
 
-(defun zilongshanren/post-init-deft ()
-  (setq deft-use-filter-string-for-filename t)
-  (evil-leader/set-key-for-mode 'deft-mode "q" 'quit-window)
-  (setq deft-extension "org")
-  (setq deft-directory "~/org-notes"))
+(defun guanghui/post-init-deft ()
+  (progn
+    (setq deft-use-filter-string-for-filename t)
+    (evil-leader/set-key-for-mode 'deft-mode "q" 'quit-window)
+    (setq deft-extension "org")
+    (setq deft-directory "~/org-notes")))
 
 (defun guanghui/post-init-org-pomodoro ()
-  (use-package org-pomodoro
-    :init
-    :defer t
-    :config
-    (progn
-      (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
-      (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
-      (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t)))
-      )))
+  (progn
+    (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
+    (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
+    (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t)))
+    ))
 
 (defun guanghui/post-init-js2-mode ()
   (progn
@@ -768,65 +748,66 @@
       )))
 
 (defun guanghui/post-init-prodigy ()
-  (prodigy-define-tag
-    :name 'jekyll
-    :env '(("LANG" "en_US.UTF-8")
-           ("LC_ALL" "en_US.UTF-8")))
-  ;; define service
-  (prodigy-define-service
-    :name "Preview cocos2d-x web"
-    :command "python"
-    :args '("-m" "SimpleHTTPServer" "6001")
-    :cwd "~/cocos2d-x/web"
-    :tags '(work)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+  (progn
+    (prodigy-define-tag
+      :name 'jekyll
+      :env '(("LANG" "en_US.UTF-8")
+             ("LC_ALL" "en_US.UTF-8")))
+    ;; define service
+    (prodigy-define-service
+      :name "Preview cocos2d-x web"
+      :command "python"
+      :args '("-m" "SimpleHTTPServer" "6001")
+      :cwd "~/cocos2d-x/web"
+      :tags '(work)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Preview cocos2d-html5"
-    :command "python"
-    :args '("-m" "SimpleHTTPServer" "6004")
-    :cwd "~/Github/fireball/engine"
-    :tags '(work)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Preview cocos2d-html5"
+      :command "python"
+      :args '("-m" "SimpleHTTPServer" "6004")
+      :cwd "~/Github/fireball/engine"
+      :tags '(work)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Hexo Server"
-    :command "hexo"
-    :args '("server")
-    :cwd "~/4gamers.cn"
-    :tags '(hexo server)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Hexo Server"
+      :command "hexo"
+      :args '("server")
+      :cwd "~/4gamers.cn"
+      :tags '(hexo server)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Hexo Deploy"
-    :command "hexo"
-    :args '("deploy" "--generate")
-    :cwd "~/4gamers.cn"
-    :tags '(hexo deploy)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Hexo Deploy"
+      :command "hexo"
+      :args '("deploy" "--generate")
+      :cwd "~/4gamers.cn"
+      :tags '(hexo deploy)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Debug Fireball"
-    :command "gulp"
-    :args '("fireball" "--path" "/Users/guanghui/workspace/fireball/HelloWorld/")
-    :cwd "~/Github/fireball/"
-    :tags '(work)
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Debug Fireball"
+      :command "gulp"
+      :args '("fireball" "--path" "/Users/guanghui/workspace/fireball/HelloWorld/")
+      :cwd "~/Github/fireball/"
+      :tags '(work)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Org wiki preview"
-    :command "python"
-    :args '("-m" "SimpleHTTPServer" "8088")
-    :cwd "~/org-notes/public_html"
-    :tags '(org-mode)
-    :init (lambda () (browse-url "http://localhost:8088"))
-    :kill-signal 'sigkill
-    :kill-process-buffer-on-stop t))
+    (prodigy-define-service
+      :name "Org wiki preview"
+      :command "python"
+      :args '("-m" "SimpleHTTPServer" "8088")
+      :cwd "~/org-notes/public_html"
+      :tags '(org-mode)
+      :init (lambda () (browse-url "http://localhost:8088"))
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)))
 
 (defun guanghui/init-moz-controller ()
   (use-package moz-controller

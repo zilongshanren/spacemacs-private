@@ -71,66 +71,60 @@
         ))
 
 (defun zilongshanren/post-init-erc ()
-  (defun my-erc-hook (match-type nick message)
-    "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
-    (unless (posix-string-match "^\\** *Users on #" message)
-      (zilongshanren/growl-notification
-       (concat "ERC: : " (buffer-name (current-buffer)))
-       message
-       t
-       )))
+  (progn
+    (defun my-erc-hook (match-type nick message)
+      "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
+      (unless (posix-string-match "^\\** *Users on #" message)
+        (zilongshanren/growl-notification
+         (concat "ERC: : " (buffer-name (current-buffer)))
+         message
+         t
+         )))
 
-  (add-hook 'erc-text-matched-hook 'my-erc-hook)
-  (spaceline-toggle-erc-track-off)
-  )
+    (add-hook 'erc-text-matched-hook 'my-erc-hook)
+    (spaceline-toggle-erc-track-off)))
 
 (defun zilongshanren/post-init-whitespace ()
-  (use-package whitespace
-    :init
-    (progn
-      ;; ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
-      (setq whitespace-line-column fill-column) ;; limit line length
-      ;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/
-      (setq whitespace-display-mappings
-            ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-            '(
-              (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-              (newline-mark 10 [182 10]) ; 10 LINE FEED
-              (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-              ))
-      (setq whitespace-style '(face tabs trailing tab-mark ))
-      ;; (setq whitespace-style '(face lines-tail))
-      ;; show tab;  use untabify to convert tab to whitespace
-      ;; (setq spacemacs-show-trailing-whitespace nil)
+  (progn
+    ;; ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
+    (setq whitespace-line-column fill-column) ;; limit line length
+    ;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/
+    (setq whitespace-display-mappings
+          ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+          '(
+            (space-mark 32 [183] [46])           ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+            (newline-mark 10 [182 10])           ; 10 LINE FEED
+            (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+            ))
+    (setq whitespace-style '(face tabs trailing tab-mark ))
+    ;; (setq whitespace-style '(face lines-tail))
+    ;; show tab;  use untabify to convert tab to whitespace
+    ;; (setq spacemacs-show-trailing-whitespace nil)
 
-      (setq-default tab-width 4)
-      ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
-      (setq inhibit-eol-conversion t)
-      (add-hook 'prog-mode-hook 'whitespace-mode)
-      ;; (global-whitespace-mode +1)
+    (setq-default tab-width 4)
+    ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
+    (setq inhibit-eol-conversion t)
+    (add-hook 'prog-mode-hook 'whitespace-mode)
+    ;; (global-whitespace-mode +1)
 
-      (with-eval-after-load 'whitespace
-        (progn
-          (set-face-attribute 'whitespace-tab nil
-                              :background "#Adff2f"
-                              :foreground "#00a8a8"
-                              :weight 'bold)
-          (set-face-attribute 'whitespace-trailing nil
-                              :background "#e4eeff"
-                              :foreground "#183bc8"
-                              :weight 'normal)))
-      ))
-  (diminish 'whitespace-mode))
+    (with-eval-after-load 'whitespace
+      (progn
+        (set-face-attribute 'whitespace-tab nil
+                            :background "#Adff2f"
+                            :foreground "#00a8a8"
+                            :weight 'bold)
+        (set-face-attribute 'whitespace-trailing nil
+                            :background "#e4eeff"
+                            :foreground "#183bc8"
+                            :weight 'normal)))
+
+    (diminish 'whitespace-mode)))
 
 (defun zilongshanren/post-init-js-doc ()
-  (use-package js-doc
-    :defer t
-    :config
-    (setq js-doc-mail-address "guanghui8827@gmail.com"
-          js-doc-author (format "Guanghui Qu <%s>" js-doc-mail-address)
-          js-doc-url "http://www.zilongshanren.com"
-          js-doc-license "MIT")
-    ))
+  (setq js-doc-mail-address "guanghui8827@gmail.com"
+        js-doc-author (format "Guanghui Qu <%s>" js-doc-mail-address)
+        js-doc-url "http://www.zilongshanren.com"
+        js-doc-license "MIT"))
 
 (defun zilongshanren/init-dired-mode ()
   (use-package dired-mode
@@ -389,9 +383,7 @@ open and unsaved."
     (spacemacs|hide-lighter wrap-region-mode)))
 
 (defun zilongshanren/post-init-projectile ()
-  (use-package projectile
-    :defer t
-    :config
+  (with-eval-after-load 'projectile
     (progn
       (setq projectile-completion-system 'ivy)
       (add-to-list 'projectile-other-file-alist '("html" "js")) ;; switch from html -> js
@@ -401,16 +393,14 @@ open and unsaved."
 ;; spacemacs distribution disabled this package, because it has overlay bug.
 ;; I hack the implementation here. on default, the hl-highlight-mode is disabled.
 (defun zilongshanren/post-init-hl-anything ()
-  (use-package hl-anything
-    :init
-    (progn
-      (hl-highlight-mode -1)
-      (spacemacs|add-toggle toggle-hl-anything
-        :status hl-highlight-mode
-        :on (hl-highlight-mode)
-        :off (hl-highlight-mode -1)
-        :documentation "Toggle highlight anything mode."
-        :evil-leader "ths"))))
+  (progn
+    (hl-highlight-mode -1)
+    (spacemacs|add-toggle toggle-hl-anything
+      :status hl-highlight-mode
+      :on (hl-highlight-mode)
+      :off (hl-highlight-mode -1)
+      :documentation "Toggle highlight anything mode."
+      :evil-leader "ths")))
 
 (defun zilongshanren/init-find-file-in-project ()
   (use-package find-file-in-project
@@ -426,12 +416,13 @@ open and unsaved."
 
 
 (defun zilongshanren/post-init-helm-ag ()
-  (setq helm-ag-use-agignore t)
-  ;; This settings use .agignore file to ignore items, and it don't respect to .hgignore, .gitignore
-  ;; when there are some git repositories are in .gitignore file, this options is very useful.
-  ;;And the .agignore file while be searched at PROJECT_ROOT/.agignore and ~/.agignore
-  ;; Thanks to 'man ag' and 'customize-group<RET> helm-ag' for finding the solution... Always RTFM.
-  (setq helm-ag-command-option " -U" )
+  (progn
+    (setq helm-ag-use-agignore t)
+    ;; This settings use .agignore file to ignore items, and it don't respect to .hgignore, .gitignore
+    ;; when there are some git repositories are in .gitignore file, this options is very useful.
+    ;;And the .agignore file while be searched at PROJECT_ROOT/.agignore and ~/.agignore
+    ;; Thanks to 'man ag' and 'customize-group<RET> helm-ag' for finding the solution... Always RTFM.
+    (setq helm-ag-command-option " -U" ))
   )
 
 
@@ -475,15 +466,10 @@ open and unsaved."
 
 
 (defun zilongshanren/post-init-helm-gtags ()
-  (use-package helm-gtags
-    :diminish helm-gtags-mode
-    :defer t
-    :config
+  (with-eval-after-load 'helm-gtags
     (progn
       (evil-make-overriding-map helm-gtags-mode-map 'normal)
-      (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps)
-
-      )))
+      (add-hook 'helm-gtags-mode-hook #'evil-normalize-keymaps))))
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
@@ -517,11 +503,12 @@ open and unsaved."
 
 
 (defun zilongshanren/post-init-company ()
-  (setq company-minimum-prefix-length 1
-        company-idle-delay 0.08)
-  (when (configuration-layer/package-usedp 'company)
-    (spacemacs|add-company-hook lua-mode)
-    (spacemacs|add-company-hook nxml-mode)))
+  (progn
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.08)
+    (when (configuration-layer/package-usedp 'company)
+      (spacemacs|add-company-hook lua-mode)
+      (spacemacs|add-company-hook nxml-mode))))
 
 (defun zilongshanren/init-cmake-font-lock ()
   (use-package cmake-font-lock
@@ -532,65 +519,59 @@ open and unsaved."
     :init (add-hook 'c-mode-common-hook 'google-set-c-style)))
 
 (defun zilongshanren/post-init-cmake-mode ()
-  (use-package cmake-mode
-    :defer
-    :init
-    (progn
-      (spacemacs/declare-prefix-for-mode 'cmake-mode
-                                         "mh" "docs"))
+  (progn
+    (spacemacs/declare-prefix-for-mode 'cmake-mode
+                                       "mh" "docs")
     (evil-leader/set-key-for-mode 'cmake-mode
       "hd" 'cmake-help)
-    :config
-    (progn
-      (defun cmake-rename-buffer ()
-        "Renames a CMakeLists.txt buffer to cmake-<directory name>."
-        (interactive)
-        (when (and (buffer-file-name)
-                   (string-match "CMakeLists.txt" (buffer-name)))
-          (setq parent-dir (file-name-nondirectory
-                            (directory-file-name
-                             (file-name-directory (buffer-file-name)))))
-          (setq new-buffer-name (concat "cmake-" parent-dir))
-          (rename-buffer new-buffer-name t)))
+    (defun cmake-rename-buffer ()
+      "Renames a CMakeLists.txt buffer to cmake-<directory name>."
+      (interactive)
+      (when (and (buffer-file-name)
+                 (string-match "CMakeLists.txt" (buffer-name)))
+        (setq parent-dir (file-name-nondirectory
+                          (directory-file-name
+                           (file-name-directory (buffer-file-name)))))
+        (setq new-buffer-name (concat "cmake-" parent-dir))
+        (rename-buffer new-buffer-name t)))
 
-      (add-hook 'cmake-mode-hook (function cmake-rename-buffer)))))
+    (add-hook 'cmake-mode-hook (function cmake-rename-buffer))))
 
 
 (defun zilongshanren/post-init-flycheck ()
-  (use-package flycheck
-    :defer t
-    :config (progn
-              (flycheck-package-setup)
-              ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-              (setq flycheck-display-errors-delay 0.2)
-              ;; (remove-hook 'c-mode-hook 'flycheck-mode)
-              ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
-              ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
-              )))
+  (with-eval-after-load 'flycheck
+    (progn
+      (flycheck-package-setup)
+      ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
+      (setq flycheck-display-errors-delay 0.2)
+      ;; (remove-hook 'c-mode-hook 'flycheck-mode)
+      ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
+      ;; (evilify flycheck-error-list-mode flycheck-error-list-mode-map)
+      )))
 
 ;; configs for writing
 (defun zilongshanren/post-init-markdown-mode ()
-  (use-package markdown-mode
-    :defer t
-    :init
+  (progn
     (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
-    :config
-    (progn
-      (when (configuration-layer/package-usedp 'company)
-        (spacemacs|add-company-hook markdown-mode))
 
-      (defun zilongshanren/markdown-to-html ()
-        (interactive)
-        (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
-        (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
+    (with-eval-after-load 'markdown-mode
+      (progn
+        (when (configuration-layer/package-usedp 'company)
+          (spacemacs|add-company-hook markdown-mode))
 
-      (evil-leader/set-key-for-mode 'gfm-mode-map
-        "p" 'zilongshanren/markdown-to-html)
-      (evil-leader/set-key-for-mode 'markdown-mode
-        "p" 'zilongshanren/markdown-to-html)
+        (defun zilongshanren/markdown-to-html ()
+          (interactive)
+          (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
+          (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
-      (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
-      )))
+        (evil-leader/set-key-for-mode 'gfm-mode-map
+          "p" 'zilongshanren/markdown-to-html)
+        (evil-leader/set-key-for-mode 'markdown-mode
+          "p" 'zilongshanren/markdown-to-html)
+
+        (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
+        ))
+    ))
 
 (defun zilongshanren/init-impatient-mode ()
   "Initialize impatient mode"
@@ -650,75 +631,72 @@ open and unsaved."
 
 
 (defun zilongshanren/post-init-magit ()
-  (use-package magit
-    :defer t
-    :config
-    (progn
-      (add-to-list 'magit-no-confirm 'stage-all-changes)
-      (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
-      (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
-      (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
-      (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
-      (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
-      (setq magit-completing-read-function 'magit-builtin-completing-read)
+  (progn
+    (with-eval-after-load 'magit
+      (progn
+        (add-to-list 'magit-no-confirm 'stage-all-changes)
+        (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
+        (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
+        (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
+        (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
+        (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
+        (setq magit-completing-read-function 'magit-builtin-completing-read)
 
-      ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
-      (magit-define-popup-switch 'magit-push-popup ?u
-        "Set upstream" "--set-upstream")
-      ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
-      ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
-      ;;                                                              (if (or (eq 'untracked section-type)
-      ;;                                                                      (eq 'stashes section-type))
-      ;;                                                                  'hide))))
-      )
+        ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
+        (magit-define-popup-switch 'magit-push-popup ?u
+          "Set upstream" "--set-upstream")
+        ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+        ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
+        ;;                                                              (if (or (eq 'untracked section-type)
+        ;;                                                                      (eq 'stashes section-type))
+        ;;                                                                  'hide))))
+        ))
 
-    :init
-    (progn
-      ;; Githu PR settings
-      ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
-      (setq magit-repository-directories '("~/cocos2d-x/"))
-      (setq magit-push-always-verify nil)
+    ;; Githu PR settings
+    ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
+    (setq magit-repository-directories '("~/cocos2d-x/"))
+    (setq magit-push-always-verify nil)
 
 
-      (defun zilongshanren/magit-visit-pull-request ()
-        "Visit the current branch's PR on GitHub."
-        (interactive)
-        (let ((remote-branch (magit-get-current-branch)))
-          (cond
-           ((null remote-branch)
-            (message "No remote branch"))
-           (t
-            (browse-url
-             (format "https://github.com/%s/pull/new/%s"
-                     (replace-regexp-in-string
-                      "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-                      (magit-get "remote"
-                                 (magit-get-remote)
-                                 "url"))
-                     remote-branch))))))
+    (defun zilongshanren/magit-visit-pull-request ()
+      "Visit the current branch's PR on GitHub."
+      (interactive)
+      (let ((remote-branch (magit-get-current-branch)))
+        (cond
+         ((null remote-branch)
+          (message "No remote branch"))
+         (t
+          (browse-url
+           (format "https://github.com/%s/pull/new/%s"
+                   (replace-regexp-in-string
+                    "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+                    (magit-get "remote"
+                               (magit-get-remote)
+                               "url"))
+                   remote-branch))))))
 
-      (eval-after-load 'magit
-        '(define-key magit-mode-map (kbd "s-g")
-           #'zilongshanren/magit-visit-pull-request))
+    (eval-after-load 'magit
+      '(define-key magit-mode-map (kbd "s-g")
+         #'zilongshanren/magit-visit-pull-request))
 
 
-      (defadvice magit-blame-mode (after magit-blame-change-to-emacs-state activate compile)
-        "when entering magit blame mode, change evil normal state to emacs state"
-        (if (evil-normal-state-p)
-            (evil-emacs-state)
-          (evil-normal-state)))
+    (defadvice magit-blame-mode (after magit-blame-change-to-emacs-state activate compile)
+      "when entering magit blame mode, change evil normal state to emacs state"
+      (if (evil-normal-state-p)
+          (evil-emacs-state)
+        (evil-normal-state)))
 
-      (ad-activate 'magit-blame-mode)
+    (ad-activate 'magit-blame-mode)
 
-      (defadvice git-timemachine-mode (after git-timemachine-change-to-emacs-state activate compile)
-        "when entering git-timemachine mode, change evil normal state to emacs state"
-        (if (evil-normal-state-p)
-            (evil-emacs-state)
-          (evil-normal-state)))
+    (defadvice git-timemachine-mode (after git-timemachine-change-to-emacs-state activate compile)
+      "when entering git-timemachine mode, change evil normal state to emacs state"
+      (if (evil-normal-state-p)
+          (evil-emacs-state)
+        (evil-normal-state)))
 
-      (ad-activate 'git-timemachine-mode)
+    (ad-activate 'git-timemachine-mode)
 
-      (setq magit-process-popup-time 10))))
+    (setq magit-process-popup-time 10)))
 
 (defun zilongshanren/post-init-git-messenger ()
   (use-package git-messenger
@@ -758,9 +736,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (define-key git-messenger-map (kbd "f") 'my-vc-visit-file-revision))))
 
 (defun zilongshanren/post-init-helm-flyspell ()
-  (use-package helm-flyspell
-    :commands helm-flyspell-correct
-    :init
+  (progn
     ;; "http://emacs.stackexchange.com/questions/14909/how-to-use-flyspell-to-efficiently-correct-previous-word/14912#14912"
     (defun zilongshanren/flyspell-goto-previous-error (arg)
       "Go to arg previous spelling error."
@@ -804,45 +780,43 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (global-set-key (kbd "C-c s") 'helm-flyspell-correct)))
 
 (defun zilongshanren/post-init-helm ()
-  (use-package helm
-    :init
-    (progn
-      (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
-      ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
-      ;; discussion of these options.
-      (setq helm-split-window-in-side-p t
-            helm-move-to-line-cycle-in-source t
-            helm-ff-search-library-in-sexp t
-            helm-ff-file-name-history-use-recentf t
-            helm-buffer-max-length 45)
+  (progn
+    (global-set-key (kbd "C-s-y") 'helm-show-kill-ring)
+    ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
+    ;; discussion of these options.
+    (setq helm-split-window-in-side-p t
+          helm-move-to-line-cycle-in-source t
+          helm-ff-search-library-in-sexp t
+          helm-ff-file-name-history-use-recentf t
+          helm-buffer-max-length 45)
 
-      (setq helm-completing-read-handlers-alist
-            '((describe-function . ido)
-              (describe-variable . ido)
-              (debug-on-entry . helm-completing-read-symbols)
-              (find-function . helm-completing-read-symbols)
-              (find-tag . helm-completing-read-with-cands-in-buffer)
-              (ffap-alternate-file . nil)
-              (tmm-menubar . nil)
-              (dired-do-copy . nil)
-              (dired-do-rename . nil)
-              (dired-create-directory . nil)
-              (find-file . ido)
-              (copy-file-and-rename-buffer . nil)
-              (rename-file-and-buffer . nil)
-              (w3m-goto-url . nil)
-              (ido-find-file . nil)
-              (ido-edit-input . nil)
-              (mml-attach-file . ido)
-              (read-file-name . nil)
-              (yas/compile-directory . ido)
-              (execute-extended-command . ido)
-              (minibuffer-completion-help . nil)
-              (minibuffer-complete . nil)
-              (c-set-offset . nil)
-              (wg-load . ido)
-              (rgrep . nil)
-              (read-directory-name . ido))))))
+    (setq helm-completing-read-handlers-alist
+          '((describe-function . ido)
+            (describe-variable . ido)
+            (debug-on-entry . helm-completing-read-symbols)
+            (find-function . helm-completing-read-symbols)
+            (find-tag . helm-completing-read-with-cands-in-buffer)
+            (ffap-alternate-file . nil)
+            (tmm-menubar . nil)
+            (dired-do-copy . nil)
+            (dired-do-rename . nil)
+            (dired-create-directory . nil)
+            (find-file . ido)
+            (copy-file-and-rename-buffer . nil)
+            (rename-file-and-buffer . nil)
+            (w3m-goto-url . nil)
+            (ido-find-file . nil)
+            (ido-edit-input . nil)
+            (mml-attach-file . ido)
+            (read-file-name . nil)
+            (yas/compile-directory . ido)
+            (execute-extended-command . ido)
+            (minibuffer-completion-help . nil)
+            (minibuffer-complete . nil)
+            (c-set-offset . nil)
+            (wg-load . ido)
+            (rgrep . nil)
+            (read-directory-name . ido)))))
 
 
 (defun zilongshanren/init-helm-ls-git ()
@@ -1070,9 +1044,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       "gd" 'helm-etags-select)
 
 
-    (use-package js2-mode
-      :defer t
-      :config
+    (with-eval-after-load 'js2-mode
       (progn
         ;; these mode related variables must be in eval-after-load
         ;; https://github.com/magnars/.emacs.d/blob/master/settings/setup-js2-mode.el
