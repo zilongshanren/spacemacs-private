@@ -150,9 +150,9 @@
     (eval-after-load 'ycmd
       '(spacemacs|hide-lighter ycmd-mode))
 
-    (evil-leader/set-key-for-mode 'c-mode
+    (spacemacs/set-leader-keys-for-major-mode 'c-mode
       "tb" 'zilong/company-toggle-company-ycmd)
-    (evil-leader/set-key-for-mode 'c++-mode
+    (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "tb" 'zilong/company-toggle-company-ycmd)))
 
 (defun guanghui/post-init-lua-mode ()
@@ -164,7 +164,7 @@
     (add-hook 'lua-mode-hook 'smartparens-mode)
     (setq lua-indent-level 4)
 
-    (evil-leader/set-key-for-mode 'lua-mode
+    (spacemacs/set-leader-keys-for-major-mode 'lua-mode
       "<tab>" 'hs-toggle-hiding
       "gg" 'helm-gtags-dwim
       "gr" 'helm-gtags-find-rtag
@@ -410,7 +410,7 @@
   (progn
     (spacemacs/declare-prefix-for-mode 'js2-mode
                                        "ms" "REPL")
-    (evil-leader/set-key-for-mode 'js2-mode
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "sb" 'nodejs-repl-eval-buffer
       "sf" 'nodejs-repl-eval-function
       "sd" 'nodejs-repl-eval-dwim)))
@@ -549,7 +549,7 @@
 (defun guanghui/post-init-deft ()
   (progn
     (setq deft-use-filter-string-for-filename t)
-    (evil-leader/set-key-for-mode 'deft-mode "q" 'quit-window)
+    (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
     (setq deft-extension "org")
     (setq deft-directory "~/org-notes")))
 
@@ -569,14 +569,14 @@
     (zilongshanren|toggle-company-backends company-tern)
 
 
-    (evil-leader/set-key-for-mode 'js2-mode
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)
 
-    (evil-leader/set-key-for-mode 'js2-mode
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "ga" 'projectile-find-other-file
       "gA" 'projectile-find-other-file-other-window)
 
-    (evil-leader/set-key-for-mode 'web-mode
+    (spacemacs/set-leader-keys-for-major-mode 'web-mode
       "ga" 'projectile-find-other-file
       "gA" 'projectile-find-other-file-other-window)
     (eval-after-load 'js2-mode
@@ -741,7 +741,7 @@
       (define-key global-map (kbd "<f9>") 'org-capture)
       (global-set-key (kbd "C-c b") 'org-iswitchb)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-      (evil-leader/set-key-for-mode 'org-mode
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "owh" 'plain-org-wiki-helm
         "owf" 'plain-org-wiki)
       (setq org-mobile-directory "~/org-notes/org")

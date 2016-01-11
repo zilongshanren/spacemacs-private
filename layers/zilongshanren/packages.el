@@ -522,7 +522,7 @@ open and unsaved."
   (progn
     (spacemacs/declare-prefix-for-mode 'cmake-mode
                                        "mh" "docs")
-    (evil-leader/set-key-for-mode 'cmake-mode
+    (spacemacs/set-leader-keys-for-major-mode 'cmake-mode
       "hd" 'cmake-help)
     (defun cmake-rename-buffer ()
       "Renames a CMakeLists.txt buffer to cmake-<directory name>."
@@ -564,9 +564,9 @@ open and unsaved."
           (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
           (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
-        (evil-leader/set-key-for-mode 'gfm-mode-map
+        (spacemacs/set-leader-keys-for-major-mode 'gfm-mode-map
           "p" 'zilongshanren/markdown-to-html)
-        (evil-leader/set-key-for-mode 'markdown-mode
+        (spacemacs/set-leader-keys-for-major-mode 'markdown-mode
           "p" 'zilongshanren/markdown-to-html)
 
         (evil-define-key 'normal markdown-mode-map (kbd "TAB") 'markdown-cycle)
@@ -587,7 +587,7 @@ open and unsaved."
         (httpd-start))
 
       (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
-      (evil-leader/set-key-for-mode 'web-mode
+      (spacemacs/set-leader-keys-for-major-mode 'web-mode
         "p" 'imp-visit-buffer)
       )))
 
@@ -853,7 +853,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       ;; (when (configuration-layer/package-usedp 'company)
       ;;   (spacemacs|add-company-hook org-mode))
       (spacemacs|disable-company org-mode)
-      (evil-leader/set-key-for-mode 'org-mode
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "," 'org-priority)
       (require 'org-compat)
       (require 'org)
@@ -1034,7 +1034,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     ;;                             ))
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
-    (evil-leader/set-key-for-mode 'js2-mode
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       ;; "sr" 'js-send-region
       ;; "sR" 'js-send-region-and-go
       ;; "sb" 'js-send-buffer
@@ -1084,7 +1084,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
           (message "js-indent-level, js2-indent-level, and js2-basic-offset set to %d"
                    js2-basic-offset))
 
-        (evil-leader/set-key-for-mode 'js2-mode
+        (spacemacs/set-leader-keys-for-major-mode 'js2-mode
           "oj" 'js2-toggle-indent)
         (spacemacs/declare-prefix-for-mode 'js2-mode "mo" "toggle")
 
