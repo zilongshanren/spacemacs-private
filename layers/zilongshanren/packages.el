@@ -284,10 +284,10 @@ open and unsaved."
     (progn
       (global-set-key (kbd "C-h v") 'counsel-describe-variable)
       (global-set-key (kbd "C-h f") 'counsel-describe-function)
-      (evil-leader/set-key "hdv" 'counsel-describe-variable)
-      (evil-leader/set-key "hdf" 'counsel-describe-function)
+      (spacemacs/set-leader-keys "hdv" 'counsel-describe-variable)
+      (spacemacs/set-leader-keys "hdf" 'counsel-describe-function)
       (bind-key* "M-x" 'counsel-M-x)
-      (evil-leader/set-key dotspacemacs-command-key 'counsel-M-x)
+      (spacemacs/set-leader-keys dotspacemacs-command-key 'counsel-M-x)
       )))
 
 (defun zilongshanren/init-beacon ()
@@ -625,7 +625,7 @@ open and unsaved."
 
       (define-key global-map (kbd "C-s") 'swiper)
       (ivy-mode t)
-      (evil-leader/set-key (kbd "bb") 'ivy-switch-buffer)
+      (spacemacs/set-leader-keys (kbd "bb") 'ivy-switch-buffer)
       (global-set-key (kbd "C-c C-r") 'ivy-resume)
       (global-set-key (kbd "C-c j") 'counsel-git-grep))))
 

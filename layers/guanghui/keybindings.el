@@ -49,7 +49,7 @@
 ;; (define-key ctl-x-map "\C-t" #'transpose-chars)
 
 (when (spacemacs/system-is-mac)
- (evil-leader/set-key "o!" 'zilongshanren/iterm-shell-command))
+ (spacemacs/set-leader-keys "o!" 'zilongshanren/iterm-shell-command))
 
 (spacemacs|add-toggle toggle-shadowsocks-proxy-mode
   :status shadowsocks-proxy-mode

@@ -76,18 +76,18 @@
   (use-package gulpjs
     :init
     (progn
-      (evil-leader/set-key "ags" 'gulpjs-start-task)
-      (evil-leader/set-key "agr" 'gulpjs-restart-task))))
+      (spacemacs/set-leader-keys "ags" 'gulpjs-start-task)
+      (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
 (defun guanghui/init-4clojure ()
   (use-package 4clojure
     :init
     (progn
       (spacemacs/declare-prefix "o4" "4clojure")
-      (evil-leader/set-key "o4q" '4clojure-open-question)
-      (evil-leader/set-key "o4n" '4clojure-next-question)
-      (evil-leader/set-key "o4p" '4clojure-previous-question)
-      (evil-leader/set-key "o4c" '4clojure-check-answers)
+      (spacemacs/set-leader-keys "o4q" '4clojure-open-question)
+      (spacemacs/set-leader-keys "o4n" '4clojure-next-question)
+      (spacemacs/set-leader-keys "o4p" '4clojure-previous-question)
+      (spacemacs/set-leader-keys "o4c" '4clojure-check-answers)
       )))
 
 (defun guanghui/post-init-popwin ()
@@ -122,7 +122,7 @@
     :defer t
     :init
     (progn
-      (evil-leader/set-key (kbd "mhm") 'discover-my-major)
+      (spacemacs/set-leader-keys (kbd "mhm") 'discover-my-major)
 
       (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
 
@@ -131,7 +131,7 @@
     :init
     (progn
       (spacemacs/declare-prefix "ol" "command log")
-      (evil-leader/set-key
+      (spacemacs/set-leader-keys
         "oll" 'mwe:log-keyboard-commands
         "olf" 'mwe:open-command-log-buffer))))
 
@@ -261,7 +261,7 @@
     (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
     (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
 
-    (evil-leader/set-key "bi" 'ibuffer)
+    (spacemacs/set-leader-keys "bi" 'ibuffer)
     (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
     (define-key evil-ex-completion-map "\C-b" 'backward-char)
     (define-key evil-ex-completion-map "\C-k" 'kill-line)
@@ -289,10 +289,10 @@
     (evil-define-key 'emacs term-raw-map (kbd "C-w")
       'evil-delete-backward-word)
 
-    (evil-leader/set-key "fR" 'zilongshanren/rename-file-and-buffer)
-    (evil-leader/set-key "bms" 'bookmark-set)
-    (evil-leader/set-key "bmr" 'bookmark-rename)
-    (evil-leader/set-key "bmd" 'bookmark-delete)
+    (spacemacs/set-leader-keys "fR" 'zilongshanren/rename-file-and-buffer)
+    (spacemacs/set-leader-keys "bms" 'bookmark-set)
+    (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
+    (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
     ;; enable hybrid editing style
     (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
@@ -332,7 +332,7 @@
         (org-octopress-setup-publish-project)
         (org-publish-project "octopress" t))
 
-      (evil-leader/set-key "op" 'zilongshanren/org-save-and-export)
+      (spacemacs/set-leader-keys "op" 'zilongshanren/org-save-and-export)
       )))
 
 (defun guanghui/post-init-lispy ()
@@ -466,7 +466,7 @@
     (bind-key* ";" 'chinese-wbim-insert-ascii)
     (setq chinese-wbim-punc-translate-p nil)
     (spacemacs/declare-prefix "ot" "Toggle")
-    (evil-leader/set-key
+    (spacemacs/set-leader-keys
       "otp" 'chinese-wbim-punc-translate-toggle)
     (setq chinese-wbim-wb-use-gbk t)
     (add-hook 'chinese-wbim-wb-load-hook
@@ -477,7 +477,7 @@
     ))
 
 (defun guanghui/post-init-youdao-dictionary ()
-  (evil-leader/set-key "oy" 'youdao-dictionary-search-at-point+))
+  (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+))
 
 (defun guanghui/post-init-cc-mode ()
   (progn
@@ -517,7 +517,7 @@
     (defun zilongshanren/search-in-fireball ()
       (interactive)
       (helm-do-ag (expand-file-name "~/Github/fireball/")))
-    (evil-leader/set-key "os" 'zilongshanren/search-in-fireball)
+    (spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)
 
     ;; If you use other VCS (subversion, for example), enable the following option
     ;;(setq ffip-project-file ".svn")
@@ -587,11 +587,11 @@
 (defun guanghui/init-org-tree-slide ()
   (use-package org-tree-slide
     :init
-    (evil-leader/set-key "oto" 'org-tree-slide-mode)))
+    (spacemacs/set-leader-keys "oto" 'org-tree-slide-mode)))
 
 
 (defun guanghui/post-init-projectile ()
-  (evil-leader/set-key "pf" 'zilongshanren/open-file-with-projectile-or-lsgit))
+  (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-lsgit))
 
 (defun guanghui/post-init-org ()
   (with-eval-after-load 'org
