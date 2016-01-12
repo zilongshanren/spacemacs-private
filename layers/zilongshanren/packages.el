@@ -1104,17 +1104,38 @@ be global."
                       (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
                       (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
-        (defun js2-toggle-indent ()
+        (defun my-toggle-web-indent ()
           (interactive)
-          (setq js-indent-level (if (= js-indent-level 2) 4 2))
-          (setq js2-indent-level (if (= js-indent-level 2) 4 2))
-          (setq js2-basic-offset (if (= js-indent-level 2) 4 2))
-          (message "js-indent-level, js2-indent-level, and js2-basic-offset set to %d"
-                   js2-basic-offset))
+          ;; web development
+          (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
+              (progn
+                (setq javascript-indent-level (if (= javascript-indent-level 2) 4 2))
+                (setq js-indent-level (if (= js-indent-level 2) 4 2))
+                (setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+
+          (if (eq major-mode 'web-mode)
+              (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
+                     (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+                     (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
+          (if (eq major-mode 'css-mode)
+              (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
+
+          (setq indent-tabs-mode nil))
+
 
         (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-          "oj" 'js2-toggle-indent)
+          "oi" 'my-toggle-web-indent)
+        (spacemacs/set-leader-keys-for-major-mode 'js-mode
+          "oi" 'my-toggle-web-indent)
+        (spacemacs/set-leader-keys-for-major-mode 'web-mode
+          "oi" 'my-toggle-web-indent)
+        (spacemacs/set-leader-keys-for-major-mode 'css-mode
+          "oi" 'my-toggle-web-indent)
+
         (spacemacs/declare-prefix-for-mode 'js2-mode "mo" "toggle")
+        (spacemacs/declare-prefix-for-mode 'js-mode "mo" "toggle")
+        (spacemacs/declare-prefix-for-mode 'web-mode "mo" "toggle")
+        (spacemacs/declare-prefix-for-mode 'css-mode "mo" "toggle")
 
         (autoload 'flycheck-get-checker-for-buffer "flycheck")
         (defun sanityinc/disable-js2-checks-if-flycheck-active ()
