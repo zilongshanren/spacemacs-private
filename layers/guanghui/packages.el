@@ -792,8 +792,8 @@
 
     (prodigy-define-service
       :name "Debug Fireball"
-      :command "gulp"
-      :args '("fireball" "--path" "/Users/guanghui/Github/example-cases")
+      :command "npm"
+      :args '("start" "--" "--nologin" "/Users/guanghui/Github/example-cases")
       :cwd "~/Github/fireball/"
       :tags '(work)
       :kill-signal 'sigkill
