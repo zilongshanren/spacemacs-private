@@ -171,7 +171,7 @@
       "gs" 'helm-gtags-find-symbol
       "gf" 'helm-gtags-find-files)))
 
-(defun guanghui/init-elfeed ()
+(defun guanghui/post-init-elfeed ()
   (use-package elfeed
     :init
     (global-set-key (kbd "C-x w") 'elfeed)

@@ -24,6 +24,7 @@ values."
      ;;  Guide key
      ;; --------------------------------------------------------
      ;; erc
+     spacemacs-helm
      better-defaults
      github
      version-control
@@ -50,6 +51,7 @@ values."
      ;; ycmd
      ;; fasd
      ;; deft
+     ;; elfeed
      ranger
      ;; racket
      gtags
@@ -87,6 +89,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
+                                    org-plus-contrib
                                     emmet-mode
                                     chinese-wbim
                                     chinese-pyim
