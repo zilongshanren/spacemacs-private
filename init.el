@@ -167,6 +167,8 @@ values."
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 10
+   ;; Default major mode of the scratch buffer (default `text-mode')
+   dotspacemacs-scratch-mode 'text-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -202,7 +204,7 @@ values."
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
-   dotspacemacs-emacs-command-key "SPC"
+   dotspacemacs-emacs-command-key ":"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
@@ -210,9 +212,11 @@ values."
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
-   ;; (Not implemented) dotspacemacs-distinguish-gui-ret nil
-   ;; If non nil `Y' is remapped to `y$'. (default t)
+   ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ t
+   ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
+   ;; (default nil)
+   dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
@@ -363,8 +367,8 @@ layers configuration."
 
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
-  (setq-default header-line-format
-                '((which-func-mode ("" which-func-format " "))))
+  ;; (setq-default header-line-format
+  ;;               '((which-func-mode ("" which-func-format " "))))
   (setq mode-line-misc-info
         ;; We remove Which Function Mode from the mode line, because it's mostly
         ;; invisible here anyway.
