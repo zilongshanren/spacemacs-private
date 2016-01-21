@@ -1104,6 +1104,14 @@ be global."
                       (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
                       (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
+        (defun my-web-mode-indent-setup ()
+          (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+          (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+          (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+          )
+
+        (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+
         (defun my-toggle-web-indent ()
           (interactive)
           ;; web development
@@ -1115,8 +1123,8 @@ be global."
 
           (if (eq major-mode 'web-mode)
               (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
-                     (setq web-mode-css-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
-                     (setq web-mode-code-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))))
+                     (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+                     (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
           (if (eq major-mode 'css-mode)
               (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
 
