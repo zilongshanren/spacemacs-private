@@ -604,6 +604,17 @@ open and unsaved."
   (use-package swiper
     :init
     (progn
+      (defun swiper-search-at-point ()
+        (let ((current-word))
+          (swiper (current-word (thing-at-point 'symbol)))))
+
+      (defun my-swiper-search (p)
+        (interactive "P")
+        (let ((current-prefix-arg nil))
+          (call-interactively
+           (if p #'swiper-search-at-point
+             #'swiper))))
+
       (setq ivy-use-virtual-buffers t)
       (setq ivy-display-style 'fancy)
       (use-package recentf
@@ -623,7 +634,7 @@ open and unsaved."
           (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
           (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
-      (define-key global-map (kbd "C-s") 'swiper)
+      (define-key global-map (kbd "C-s") 'my-swiper-search)
       (ivy-mode t)
       (spacemacs/set-leader-keys (kbd "bb") 'ivy-switch-buffer)
       (global-set-key (kbd "C-c C-r") 'ivy-resume)
