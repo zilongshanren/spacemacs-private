@@ -388,6 +388,17 @@ layers configuration."
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
+  ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
+  ;; (defun my-minibuffer-setup-hook ()
+  ;;   (setq gc-cons-threshold 100000000))
+
+  ;; (defun my-minibuffer-exit-hook ()
+  ;;   (setq gc-cons-threshold 800000))
+
+  ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

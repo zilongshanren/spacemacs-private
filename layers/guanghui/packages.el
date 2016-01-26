@@ -55,9 +55,17 @@
         ))
 
 (defun guanghui/post-init-pangu-spacing ()
-  (add-hook 'markdown-mode-hook
-            '(lambda ()
-               (set (make-local-variable 'pangu-spacing-real-insert-separtor) t))))
+  (progn
+    ;; add toggle options
+    (spacemacs|add-toggle toggle-pangu-spaceing
+      :status pangu-spacing-mode
+      :on (global-pangu-spacing-mode)
+      :off (global-pangu-spacing-mode -1)
+      :documentation "Toggle pangu spacing mode"
+      :evil-leader "ots")
+    (add-hook 'markdown-mode-hook
+              '(lambda ()
+                 (set (make-local-variable 'pangu-spacing-real-insert-separtor) t)))))
 
 (defun guanghui/init-litable ()
   (use-package litable
