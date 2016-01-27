@@ -605,6 +605,7 @@ open and unsaved."
     :init
     (progn
       (defun swiper-search-at-point ()
+        (interactive)
         (let ((current-word))
           (swiper (current-word (thing-at-point 'symbol)))))
 
