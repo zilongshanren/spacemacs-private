@@ -27,7 +27,8 @@ values."
      spacemacs-helm
      better-defaults
      github
-     version-control
+     (version-control :variables version-control-diff-tool 'git-gutter+
+                      version-control-global-margin t)
      osx
      semantic                           ; too slow
      markdown
@@ -98,7 +99,8 @@ values."
                                     org-download
                                     org-timer
                                     org-tree-slide
-                                    git-gutter+
+                                    git-gutter
+                                    git-gutter-fringe
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
@@ -397,7 +399,6 @@ layers configuration."
 
   ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
   ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
 
   )
 
