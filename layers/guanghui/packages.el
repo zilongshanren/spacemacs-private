@@ -38,7 +38,7 @@
         elfeed
         lua-mode
         ycmd
-        mwe-log-commands
+        ;; mwe-log-commands
         org-pomodoro
         discover-my-major
         popwin
@@ -133,15 +133,6 @@
       (spacemacs/set-leader-keys (kbd "mhm") 'discover-my-major)
 
       (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
-
-(defun guanghui/init-mwe-log-commands ()
-  (use-package mwe-log-commands
-    :init
-    (progn
-      (spacemacs/declare-prefix "ol" "command log")
-      (spacemacs/set-leader-keys
-        "oll" 'mwe:log-keyboard-commands
-        "olf" 'mwe:open-command-log-buffer))))
 
 (defun guanghui/post-init-ycmd ()
   (progn

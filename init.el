@@ -43,6 +43,7 @@ values."
      python
      lua
      html
+     command-log
      javascript
      ;; restclient
      emacs-lisp
