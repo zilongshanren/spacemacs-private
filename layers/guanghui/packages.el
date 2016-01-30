@@ -33,6 +33,7 @@
         lispy
         org-octopress
         helm-github-stars
+        command-log
         evil
         deft
         elfeed
@@ -53,6 +54,11 @@
         litable
         pangu-spacing
         ))
+
+(defun guanghui/post-init-command-log ()
+  (setq clm/log-command-exceptions* (append clm/log-command-exceptions*
+                                            '(evil-next-visual-line
+                                              evil-previous-visual-line))))
 
 (defun guanghui/post-init-pangu-spacing ()
   (progn
