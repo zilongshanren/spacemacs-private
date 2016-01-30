@@ -56,9 +56,10 @@
         ))
 
 (defun guanghui/post-init-command-log ()
-  (setq clm/log-command-exceptions* (append clm/log-command-exceptions*
-                                            '(evil-next-visual-line
-                                              evil-previous-visual-line))))
+  (with-eval-after-load 'command-log-mode
+    (setq clm/log-command-exceptions* (append clm/log-command-exceptions*
+                                              '(evil-next-visual-line
+                                                evil-previous-visual-line)))))
 
 (defun guanghui/post-init-pangu-spacing ()
   (progn
