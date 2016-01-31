@@ -41,7 +41,7 @@
         persp-mode
         json-mode
         racket-mode
-        yasnippet
+        ;; yasnippet
         helm-ag
         hungry-delete
         ;; flyspell
