@@ -1044,22 +1044,9 @@ be global."
 (defun zilongshanren/post-init-js2-mode ()
   (progn
     (add-hook 'js2-mode-hook 'which-function-mode)
-    ;; (add-hook 'js2-mode-hook '(lambda ()
-    ;;                             (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-    ;;                             (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-    ;;                             (local-set-key "\C-cb" 'js-send-buffer)
-    ;;                             (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-    ;;                             (local-set-key "\C-cl" 'js-load-file-and-go)
-    ;;                             ))
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      ;; "sr" 'js-send-region
-      ;; "sR" 'js-send-region-and-go
-      ;; "sb" 'js-send-buffer
-      ;; "sB" 'js-send-buffer-and-go
-      ;; "sd" 'js-send-last-sexp
-      ;; "sD" 'js-send-last-sexp-and-go
       "gd" 'helm-etags-select)
 
 
