@@ -22,7 +22,7 @@
         markdown-mode
         impatient-mode
         swiper
-        counsel
+        ;; counsel
         magit
         git-messenger
         helm-flyspell
@@ -31,7 +31,7 @@
         keyfreq
         ;; worf
         org-download
-        flycheck-package
+        ;; flycheck-package
         (org :location built-in)
         nodejs-repl
         js2-mode
@@ -277,18 +277,6 @@ open and unsaved."
         :evil-leader "otm")
 
       (evil-visual-mark-mode))))
-
-(defun zilongshanren/init-counsel ()
-  (use-package counsel
-    :init
-    (progn
-      (global-set-key (kbd "C-h v") 'counsel-describe-variable)
-      (global-set-key (kbd "C-h f") 'counsel-describe-function)
-      (spacemacs/set-leader-keys "hdv" 'counsel-describe-variable)
-      (spacemacs/set-leader-keys "hdf" 'counsel-describe-function)
-      (bind-key* "M-x" 'counsel-M-x)
-      (spacemacs/set-leader-keys dotspacemacs-command-key 'counsel-M-x)
-      )))
 
 (defun zilongshanren/init-beacon ()
   (use-package beacon
@@ -541,7 +529,6 @@ open and unsaved."
 (defun zilongshanren/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
-      (flycheck-package-setup)
       ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
       (setq flycheck-display-errors-delay 0.2)
       ;; (remove-hook 'c-mode-hook 'flycheck-mode)
@@ -599,47 +586,39 @@ open and unsaved."
       (keyfreq-mode t)
       (keyfreq-autosave-mode 1))))
 
-(defun zilongshanren/init-swiper ()
+(defun zilongshanren/post-init-swiper ()
   "Initialize my package"
-  (use-package swiper
-    :init
-    (progn
-      (defun swiper-search-at-point ()
-        (interactive)
-        (let ((current-word))
-          (swiper (current-word (thing-at-point 'symbol)))))
+  (progn
+    (defun my-swiper-search (p)
+      (interactive "P")
+      (let ((current-prefix-arg nil))
+        (call-interactively
+         (if p #'spacemacs/swiper-region-or-symbol
+           #'swiper))))
 
-      (defun my-swiper-search (p)
-        (interactive "P")
-        (let ((current-prefix-arg nil))
-          (call-interactively
-           (if p #'swiper-search-at-point
-             #'swiper))))
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-display-style 'fancy)
 
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-display-style 'fancy)
-      (use-package recentf
-        :config
-        (setq recentf-exclude
-              '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
-                ".*png$"))
-        (setq recentf-max-saved-items 60))
-      (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
-      (use-package ivy
-        :defer t
-        :config
-        (progn
-          (spacemacs|hide-lighter ivy-mode)
-          (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
-          (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
-          (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
-          (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
+    (use-package recentf
+      :config
+      (setq recentf-exclude
+            '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
+              ".*png$"))
+      (setq recentf-max-saved-items 60))
+    (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
 
-      (define-key global-map (kbd "C-s") 'my-swiper-search)
-      (ivy-mode t)
-      (spacemacs/set-leader-keys (kbd "bb") 'ivy-switch-buffer)
-      (global-set-key (kbd "C-c C-r") 'ivy-resume)
-      (global-set-key (kbd "C-c j") 'counsel-git-grep))))
+    (use-package ivy
+      :defer t
+      :config
+      (progn
+        (spacemacs|hide-lighter ivy-mode)
+        (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
+        (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
+        (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
+        (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
+
+    (define-key global-map (kbd "C-s") 'my-swiper-search)
+    ))
 
 
 (defun zilongshanren/post-init-magit ()
@@ -656,7 +635,7 @@ open and unsaved."
 
         ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
         (magit-define-popup-switch 'magit-push-popup ?u
-          "Set upstream" "--set-upstream")
+                                   "Set upstream" "--set-upstream")
         ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
         ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
         ;;                                                              (if (or (eq 'untracked section-type)

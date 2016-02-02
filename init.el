@@ -25,6 +25,7 @@ values."
      ;; --------------------------------------------------------
      ;; erc
      spacemacs-helm
+     spacemacs-ivy
      better-defaults
      github
      (version-control :variables version-control-diff-tool 'git-gutter+
