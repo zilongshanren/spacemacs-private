@@ -411,6 +411,12 @@ layers configuration."
   ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
   ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
+  ;; For python
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; For ruby
+  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; For Javascript
+  (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
