@@ -15,6 +15,7 @@
  '(ctags-update-delay-seconds 1024)
  '(erc-nick "zilongshanren")
  '(erc-port 6666)
+ '(exec-path-from-shell-arguments (quote ("-l")))
  '(expand-region-contract-fast-key "V")
  '(expand-region-exclude-text-mode-expansions (quote (html-mode nxml-mode web-mode)))
  '(expand-region-reset-fast-key "r")
