@@ -695,37 +695,18 @@ open and unsaved."
     :defer t
     :config
     (progn
-      (defun my-vc-visit-file-revision (file rev)
-        "Visit revision REV of FILE in another window.
-With prefix argument, uses the current window instead.
-If the current file is named `F', the revision is named `F.~REV~'.
-If `F.~REV~' already exists, use it instead of checking it out again."
-        ;; based on `vc-revision-other-window'.
-        (interactive
-         (let ((file (expand-file-name
-                      (read-file-name
-                       (if (buffer-file-name)
-                           (format "File (%s): " (file-name-nondirectory
-                                                  (buffer-file-name)))
-                         "File: ")))))
-           (require 'vc)
-           (unless (vc-backend file)
-             (error "File %s is not under version control" file))
-           (list file (vc-read-revision
-                       "Revision to visit (default is working revision): "
-                       (list file)))))
-        (require 'vc)
-        (unless (vc-backend file)
-          (error "File %s is not under version control" file))
-        (let ((revision (if (string-equal rev "")
-                            (vc-working-revision file)
-                          rev))
-              (visit (if current-prefix-arg
-                         'switch-to-buffer
-                       'switch-to-buffer-other-window)))
-          (funcall visit (vc-find-revision file revision))))
+      (defun zilong/github-browse-commit ()
+        "Show the GitHub page for the current commit."
+        (interactive)
+        (let* ((commit git-messenger:last-commit-id)
+               (url (concat "https://github.com/"
+                            (github-browse-file--relative-url)
+                            "/commit/"
+                            commit)))
+          (github-browse--save-and-view url)
+          (git-messenger:popup-close)))
 
-      (define-key git-messenger-map (kbd "f") 'my-vc-visit-file-revision))))
+      (define-key git-messenger-map (kbd "f") 'zilong/github-browse-commit))))
 
 (defun zilongshanren/post-init-helm-flyspell ()
   (progn
