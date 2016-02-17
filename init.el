@@ -95,6 +95,7 @@ values."
                                     magit-gitflow
                                     evil-mc
                                     org-plus-contrib
+                                    org
                                     emmet-mode
                                     chinese-wbim
                                     chinese-pyim

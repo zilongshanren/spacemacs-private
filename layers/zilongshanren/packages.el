@@ -35,6 +35,7 @@
         (org :location built-in)
         nodejs-repl
         js2-mode
+        js2-refactor
         visual-regexp
         visual-regexp-steroids
         helm-gtags
@@ -1039,7 +1040,11 @@ be global."
          (ditaa . t)))
       )))
 
-
+(defun zilongshanren/post-init-js2-refactor ()
+  (progn
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+      "r>" 'js2r-forward-slurp
+      "r<" 'js2r-forward-barf)))
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
