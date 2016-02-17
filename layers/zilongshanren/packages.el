@@ -84,10 +84,10 @@
 
     (with-eval-after-load 'smartparens
       (evil-define-key 'normal sp-keymap
-        (kbd ">)") 'sp-forward-slurp-sexp
-        (kbd "<(") 'sp-backward-slurp-sexp
-        (kbd ">(") 'sp-forward-barf-sexp
-        (kbd "<)") 'sp-backward-barf-sexp))
+        (kbd ")>") 'sp-forward-slurp-sexp
+        (kbd ")<") 'sp-forward-barf-sexp
+        (kbd "(>") 'sp-backward-barf-sexp
+        (kbd "(<") 'sp-backward-slurp-sexp))
 
     ))
 
