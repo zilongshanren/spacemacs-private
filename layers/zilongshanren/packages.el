@@ -69,7 +69,27 @@
         ;; plain-org-wiki
         (whitespace :location built-in)
         erc
+        smartparens
         ))
+
+(defun zilongshanren/post-init-smartparens ()
+  (progn
+    (defun wrap-sexp-with-new-round-parens ()
+      (interactive)
+      (insert "()")
+      (backward-char)
+      (sp-forward-slurp-sexp))
+
+    (global-set-key (kbd "C-(") 'wrap-sexp-with-new-round-parens)
+
+    (with-eval-after-load 'smartparens
+      (evil-define-key 'normal sp-keymap
+        (kbd ">)") 'sp-forward-slurp-sexp
+        (kbd "<(") 'sp-backward-slurp-sexp
+        (kbd ">(") 'sp-forward-barf-sexp
+        (kbd "<)") 'sp-backward-barf-sexp))
+
+    ))
 
 (defun zilongshanren/post-init-erc ()
   (progn

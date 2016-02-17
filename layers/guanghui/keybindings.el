@@ -66,8 +66,10 @@
 (bind-key* "s-r" 'zilongshanren/browser-refresh--chrome-applescript)
 
 (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
+(bind-key* "C-s-;" 'zilongshanren/delete-semicolon-at-the-end-of-this-line)
 
 (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
+(bind-key* "C-s-," 'zilongshanren/delete-comma-at-the-end-of-this-line)
 
 (bind-key* "C-=" 'er/expand-region)
 
