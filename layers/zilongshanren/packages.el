@@ -25,9 +25,9 @@
         ;; counsel
         magit
         git-messenger
-        helm-flyspell
-        helm
-        helm-ls-git
+        ;; helm-flyspell
+        ;; helm
+        ;; helm-ls-git
         keyfreq
         ;; worf
         org-download
@@ -38,12 +38,12 @@
         js2-refactor
         visual-regexp
         visual-regexp-steroids
-        helm-gtags
+        ;; helm-gtags
         persp-mode
         json-mode
         racket-mode
         ;; yasnippet
-        helm-ag
+        ;; helm-ag
         hungry-delete
         ;; flyspell
         find-file-in-project
