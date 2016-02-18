@@ -891,7 +891,7 @@ be global."
       (setq org-stuck-projects
             '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:"))
 
-      (setq org-agenda-inhibit-startup t)     ;; ~50x speedup
+      (setq org-agenda-inhibit-startup t)       ;; ~50x speedup
       (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
       (setq org-agenda-window-setup 'current-window)
       (setq org-log-done t)
@@ -1023,6 +1023,39 @@ be global."
               "rm -fr %b.out %b.log %b.tex auto"))
 
       (setq org-latex-listings t)
+
+      ;;reset subtask
+      (setq org-default-properties (cons "RESET_SUBTASKS" org-default-properties))
+
+      (defun org-reset-subtask-state-subtree ()
+        "Reset all subtasks in an entry subtree."
+        (interactive "*")
+        (if (org-before-first-heading-p)
+            (error "Not inside a tree")
+          (save-excursion
+            (save-restriction
+              (org-narrow-to-subtree)
+              (org-show-subtree)
+              (goto-char (point-min))
+              (beginning-of-line 2)
+              (narrow-to-region (point) (point-max))
+              (org-map-entries
+               '(when (member (org-get-todo-state) org-done-keywords)
+                  (org-todo (car org-todo-keywords))))
+              ))))
+
+      (defun org-reset-subtask-state-maybe ()
+        "Reset all subtasks in an entry if the `RESET_SUBTASKS' property is set"
+        (interactive "*")
+        (if (org-entry-get (point) "RESET_SUBTASKS")
+            (org-reset-subtask-state-subtree)))
+
+      (defun org-subtask-reset ()
+        (when (member org-state org-done-keywords) ;; org-state dynamically bound in org.el/org-todo
+          (org-reset-subtask-state-maybe)
+          (org-update-statistics-cookies t)))
+
+      (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
 
       (setq org-plantuml-jar-path
             (expand-file-name "~/.spacemacs.d/plantuml.jar"))
