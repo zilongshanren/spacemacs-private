@@ -165,3 +165,6 @@ org-files and bookmarks"
            (setq-local company-backends (delete ',backend company-backends))
          (push ',backend company-backends)))))
 
+(defun zilongshanren/load-my-layout ()
+  (interactive)
+  (persp-load-state-from-file (concat persp-save-dir "zilong")))
