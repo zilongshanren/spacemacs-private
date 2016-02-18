@@ -32,7 +32,7 @@
         ;; hydra
         lispy
         org-octopress
-        ;; helm-github-stars
+        helm-github-stars
         command-log
         evil
         deft
@@ -594,8 +594,7 @@
 
 
 (defun guanghui/post-init-projectile ()
-  ;; (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-lsgit)
-  )
+  (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-lsgit))
 
 (defun guanghui/post-init-org ()
   (with-eval-after-load 'org

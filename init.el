@@ -26,7 +26,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; spacemacs-helm
+     spacemacs-helm
      spacemacs-ivy
      better-defaults
      github
@@ -371,10 +371,17 @@ layers configuration."
   (bb/define-key company-active-map
     (kbd "C-w") 'evil-delete-backward-word)
 
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
+
+  (with-eval-after-load 'helm-swoop
+    (define-key helm-swoop-map (kbd "C-w") 'evil-delete-backward-word))
+
   (add-hook 'text-mode-hook 'auto-fill-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
+  (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file)
 
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
