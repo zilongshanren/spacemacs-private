@@ -610,22 +610,22 @@
       ;;add multi-file journal
       (setq org-capture-templates
             '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Workspace")
-               "* TODO %?\n  %i\n"
+               "* TODO [#B] %?\n  %i\n"
                :empty-lines 1)
               ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
                "* TODO [#C] %?\n  %i\n %U"
                :empty-lines 1)
               ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
-               "* TODO %?\n  %i\n %U"
+               "* TODO [#B] %?\n  %i\n %U"
                :empty-lines 1)
               ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
-               "* TODO %?\n  %i\n %U"
+               "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
               ("c" "Chrome" entry (file+headline "~/org-notes/notes.org" "Quick notes")
-               "* TODO %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
+               "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
                :empty-lines 1)
               ("l" "links" entry (file+headline "~/org-notes/notes.org" "Quick notes")
-               "* TODO %?\n  %i\n %a \n %U"
+               "* TODO [#C] %?\n  %i\n %a \n %U"
                :empty-lines 1)
               ("j" "Journal Entry"
                entry (file+datetree "~/org-notes/journal.org")
