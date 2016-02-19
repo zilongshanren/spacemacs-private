@@ -262,7 +262,9 @@
     ;; (define-key evil-insert-state-map "\C-n" 'next-line)
     ;; (define-key evil-insert-state-map "\C-k" 'kill-line)
     (define-key evil-emacs-state-map (kbd "s-f") 'forward-word)
+    (define-key evil-insert-state-map (kbd "s-f") 'forward-word)
     (define-key evil-emacs-state-map (kbd "s-b") 'backward-word)
+    (define-key evil-insert-state-map (kbd "s-b") 'backward-word)
 
     (spacemacs/set-leader-keys "bi" 'ibuffer)
     (define-key evil-ex-completion-map "\C-a" 'move-beginning-of-line)
@@ -297,15 +299,18 @@
     (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
     (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
+    ;; This will break visual column edit
     ;; enable hybrid editing style
-    (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
-      "Preparing the holy water flasks."
-      (evil-emacs-state))
+    ;; (defadvice evil-insert-state (around zilongshanren/holy-mode activate)
+    ;;   "Preparing the holy water flasks."
+    ;;   (evil-emacs-state))
     ;; disable c-[ temporally
     ;; (define-key input-decode-map [?\C-\[] (kbd "<C-[>"))
     ;; (bind-keys ("<C-[>" . evil-normal-state))
     ;; (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
-    (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+    ;; (define-key evil-emacs-state-map [escape] 'evil-normal-state)
+    (setcdr evil-insert-state-map nil)
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
     ))
 
 (defun guanghui/init-helm-github-stars ()

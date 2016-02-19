@@ -55,7 +55,6 @@
         ;; js-comint
         ctags-update
         evil-vimish-fold
-        fcitx
         beacon
         evil-visual-mark-mode
         (occur-mode :location built-in)
@@ -312,19 +311,6 @@ open and unsaved."
 
       (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)))
-
-(defun zilongshanren/post-init-fcitx ()
-  (progn
-    (defun zilongshanren/fcitx-evil-turn-on ()
-      (interactive)
-      (eval-after-load "evil"
-        '(progn
-           (add-hook 'evil-emacs-state-exit-hook
-                     #'fcitx--evil-insert-maybe-deactivate)
-           (add-hook 'evil-emacs-state-entry-hook
-                     #'fcitx--evil-insert-maybe-activate)
-           )))
-    (zilongshanren/fcitx-evil-turn-on)))
 
 (defun zilongshanren/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
