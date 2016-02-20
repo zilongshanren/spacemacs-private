@@ -76,4 +76,4 @@
 
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 
-(spacemacs/set-leader-keys "ols" 'zilongshanren/load-my-layout)
+(spacemacs/set-leader-keys "ol" 'zilongshanren/load-my-layout)

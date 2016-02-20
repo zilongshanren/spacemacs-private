@@ -100,6 +100,7 @@ values."
                                     emmet-mode
                                     chinese-wbim
                                     chinese-pyim
+                                    company-statistics
                                     yasnippet
                                     srefactor
                                     org-download
