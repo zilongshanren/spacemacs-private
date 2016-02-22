@@ -62,7 +62,7 @@ values."
      gtags
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
-     eyebrowse
+     ;; eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      (git :variables
@@ -76,7 +76,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     auto-completion
+     (auto-completion :variables auto-completion-enable-sort-by-usage t)
      (shell :variables
             shell-default-position 'full
             shell-default-shell 'ansi-term
@@ -100,7 +100,6 @@ values."
                                     emmet-mode
                                     chinese-wbim
                                     chinese-pyim
-                                    company-statistics
                                     yasnippet
                                     srefactor
                                     org-download
