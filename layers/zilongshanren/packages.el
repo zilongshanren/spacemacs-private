@@ -1047,6 +1047,7 @@ be global."
             (expand-file-name "~/.spacemacs.d/plantuml.jar"))
       (setq org-ditaa-jar-path "~/.spacemacs.d/ditaa.jar")
 
+
       (org-babel-do-load-languages
        'org-babel-load-languages
        '((perl . t)

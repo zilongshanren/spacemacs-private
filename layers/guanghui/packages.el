@@ -228,6 +228,9 @@
 
 (defun guanghui/post-init-evil ()
   (progn
+    (setcdr evil-insert-state-map nil)
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
     ;; ;; change evil initial mode state
@@ -309,8 +312,6 @@
     ;; (bind-keys ("<C-[>" . evil-normal-state))
     ;; (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
     ;; (define-key evil-emacs-state-map [escape] 'evil-normal-state)
-    (setcdr evil-insert-state-map nil)
-    (define-key evil-insert-state-map [escape] 'evil-normal-state)
     ))
 
 (defun guanghui/init-helm-github-stars ()
