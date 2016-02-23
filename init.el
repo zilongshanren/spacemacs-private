@@ -98,6 +98,7 @@ values."
                                     org-plus-contrib
                                     skewer-mode
                                     emmet-mode
+                                    smooth-scrolling
                                     chinese-wbim
                                     chinese-pyim
                                     yasnippet
