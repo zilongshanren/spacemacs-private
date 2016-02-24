@@ -97,6 +97,7 @@ values."
                                     evil-mc
                                     org-plus-contrib
                                     skewer-mode
+                                    vi-tilde-fringe
                                     emmet-mode
                                     smooth-scrolling
                                     chinese-wbim
@@ -120,8 +121,6 @@ values."
                                     gh-md
                                     evil-lisp-state
                                     spray
-                                    evil-tutor
-                                    define-word
                                     doc-view
                                     lorem-ipsum
                                     solarized-theme
