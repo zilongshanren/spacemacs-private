@@ -704,6 +704,9 @@ open and unsaved."
       (defun zilong/github-browse-commit ()
         "Show the GitHub page for the current commit."
         (interactive)
+        (use-package github-browse-file
+          :commands (github-browse-file--relative-url))
+
         (let* ((commit git-messenger:last-commit-id)
                (url (concat "https://github.com/"
                             (github-browse-file--relative-url)
