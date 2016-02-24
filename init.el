@@ -124,10 +124,7 @@ values."
                                     doc-view
                                     lorem-ipsum
                                     solarized-theme
-                                    ;; remove mode for python layer
-                                    nose
-                                    pony-mode
-                                    hy-mode)
+                                    )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
