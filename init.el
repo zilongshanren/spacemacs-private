@@ -350,7 +350,7 @@ layers configuration."
     (when (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
-  (global-company-mode t)
+  ;; (global-company-mode t)
   (setq-default powerline-default-separator 'arrow)
 
   ;; Utility functions
@@ -403,6 +403,7 @@ layers configuration."
              (hl-line-mode -1))))
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
+  (spacemacs/toggle-automatic-symbol-highlight-on)
 
   ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
   ;; (defun my-minibuffer-setup-hook ()

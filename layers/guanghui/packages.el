@@ -610,7 +610,10 @@
       (setq org-default-notes-file "~/org-notes/gtd.org")
 
       (with-eval-after-load 'org-agenda
-        (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro))
+        (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
+        (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+          "." 'spacemacs/org-agenda-transient-state/body)
+        )
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
       ;;add multi-file journal
