@@ -642,7 +642,7 @@ open and unsaved."
 
         ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
         (magit-define-popup-switch 'magit-push-popup ?u
-                                   "Set upstream" "--set-upstream")
+          "Set upstream" "--set-upstream")
         ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
         ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
         ;;                                                              (if (or (eq 'untracked section-type)
@@ -677,22 +677,6 @@ open and unsaved."
       '(define-key magit-mode-map (kbd "s-g")
          #'zilongshanren/magit-visit-pull-request))
 
-
-    (defadvice magit-blame-mode (after magit-blame-change-to-emacs-state activate compile)
-      "when entering magit blame mode, change evil normal state to emacs state"
-      (if (evil-normal-state-p)
-          (evil-emacs-state)
-        (evil-normal-state)))
-
-    (ad-activate 'magit-blame-mode)
-
-    (defadvice git-timemachine-mode (after git-timemachine-change-to-emacs-state activate compile)
-      "when entering git-timemachine mode, change evil normal state to emacs state"
-      (if (evil-normal-state-p)
-          (evil-emacs-state)
-        (evil-normal-state)))
-
-    (ad-activate 'git-timemachine-mode)
 
     (setq magit-process-popup-time 10)))
 
