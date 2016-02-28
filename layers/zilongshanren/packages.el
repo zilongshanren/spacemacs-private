@@ -1124,7 +1124,6 @@ be global."
           ;; web development
           (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
               (progn
-                (setq javascript-indent-level (if (= javascript-indent-level 2) 4 2))
                 (setq js-indent-level (if (= js-indent-level 2) 4 2))
                 (setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
 
