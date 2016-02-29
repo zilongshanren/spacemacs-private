@@ -64,6 +64,7 @@
 (bind-key* "C-c /" 'company-files)
 
 (bind-key* "s-r" 'zilongshanren/browser-refresh--chrome-applescript)
+(spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
 
 (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 (bind-key* "C-s-;" 'zilongshanren/delete-semicolon-at-the-end-of-this-line)

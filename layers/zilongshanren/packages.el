@@ -32,7 +32,7 @@
         ;; worf
         org-download
         ;; flycheck-package
-        (org :location built-in)
+        org
         nodejs-repl
         js2-mode
         js2-refactor
@@ -674,9 +674,8 @@ open and unsaved."
                    remote-branch))))))
 
     (eval-after-load 'magit
-      '(define-key magit-mode-map (kbd "s-g")
+      '(define-key magit-mode-map (kbd "C-c g")
          #'zilongshanren/magit-visit-pull-request))
-
 
     (setq magit-process-popup-time 10)))
 

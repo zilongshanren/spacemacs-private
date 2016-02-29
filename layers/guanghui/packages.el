@@ -15,7 +15,7 @@
 (setq guanghui-packages
       '(
         projectile
-        (org :location built-in)
+        org
         prodigy
         org-tree-slide
         js2-mode
