@@ -167,4 +167,4 @@ org-files and bookmarks"
 
 (defun zilongshanren/load-my-layout ()
   (interactive)
-  (persp-load-state-from-file (concat persp-save-dir "zilong")))
+  (persp-load-state-from-file (concat persp-save-dir "persp-auto-save")))
