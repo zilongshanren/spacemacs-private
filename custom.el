@@ -12,6 +12,7 @@
  '(ahs-inhibit-face-list nil)
  '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
+ '(company-dabbrev-other-buffers nil)
  '(ctags-update-delay-seconds 1024)
  '(erc-nick "zilongshanren")
  '(erc-port 6666)

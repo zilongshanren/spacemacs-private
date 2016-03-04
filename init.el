@@ -423,6 +423,15 @@ layers configuration."
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (spacemacs/set-leader-keys "rh" 'helm-resume)
   (spacemacs/set-leader-keys "ri" 'ivy-resume)
+  (spacemacs|add-company-hook 'text-mode)
+
+  (defadvice find-file (before make-directory-maybe (filename &optional wildcards) activate)
+    "Create parent directory if not exists while visiting file."
+    (unless (file-exists-p filename)
+      (let ((dir (file-name-directory filename)))
+        (unless (file-exists-p dir)
+          (make-directory dir t)))))
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
