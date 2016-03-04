@@ -421,6 +421,7 @@ layers configuration."
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; For Javascript
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (spacemacs/set-leader-keys "rh" 'helm-resume)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
