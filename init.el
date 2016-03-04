@@ -422,6 +422,7 @@ layers configuration."
   ;; For Javascript
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (spacemacs/set-leader-keys "rh" 'helm-resume)
+  (spacemacs/set-leader-keys "ri" 'ivy-resume)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
