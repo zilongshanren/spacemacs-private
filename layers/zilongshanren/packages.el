@@ -1028,7 +1028,7 @@ be global."
           (org-reset-subtask-state-maybe)
           (org-update-statistics-cookies t)))
 
-      (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
+      ;; (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
 
       (setq org-plantuml-jar-path
             (expand-file-name "~/.spacemacs.d/plantuml.jar"))
