@@ -95,11 +95,12 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
-                                    ;; org-plus-contrib
+                                    org-plus-contrib
                                     skewer-mode
                                     vi-tilde-fringe
                                     emmet-mode
                                     smooth-scrolling
+                                    org-repo-todo
                                     chinese-wbim
                                     chinese-pyim
                                     yasnippet
