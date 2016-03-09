@@ -95,7 +95,6 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
-                                    org-plus-contrib
                                     skewer-mode
                                     vi-tilde-fringe
                                     emmet-mode
@@ -110,6 +109,8 @@ values."
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
+                                    ;; i prefer iedit
+                                    multiple-cursors
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
@@ -432,6 +433,8 @@ layers configuration."
       (let ((dir (file-name-directory filename)))
         (unless (file-exists-p dir)
           (make-directory dir t)))))
+  ;; temp fix for spacemacs/jump-in-buffer
+  (spacemacs/set-leader-keys "sj" 'counsel-imenu)
 
   )
 

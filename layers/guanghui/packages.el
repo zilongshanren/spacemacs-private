@@ -25,7 +25,7 @@
         (cc-mode :location built-in)
         youdao-dictionary
         ;; chinese-wbim
-        multiple-cursors
+        ;; multiple-cursors
         visual-regexp-steroids
         nodejs-repl
         company-c-headers
