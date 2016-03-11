@@ -565,7 +565,7 @@ open and unsaved."
 
         (defun zilongshanren/markdown-to-html ()
           (interactive)
-          (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name))
+          (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
           (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
         (spacemacs/set-leader-keys-for-major-mode 'gfm-mode-map
