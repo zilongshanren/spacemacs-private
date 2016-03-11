@@ -163,12 +163,19 @@
 
 (defun guanghui/post-init-lua-mode ()
   (progn
-    (when (configuration-layer/package-usedp 'company)
-      (push 'company-dabbrev company-backends-lua-mode)
-      (push 'company-etags company-backends-lua-mode))
     (add-hook 'lua-mode-hook 'evil-matchit-mode)
     (add-hook 'lua-mode-hook 'smartparens-mode)
     (setq lua-indent-level 4)
+
+    ;;; add lua language, basic, string and table keywords.
+    (with-eval-after-load 'lua-mode
+      (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif"
+                        "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
+                        "until" "while" "__index" "dofile" "getmetatable" "ipairs" "pairs" "print" "rawget"
+                        "rawset" "select" "_G" "assert" "collectgarbage" "error" "pcall"
+                        "rawequal" "require" "load" "tostring" "tonumber" "xpcall" "gmatch" "gsub"
+                        "rep" "reverse" "sub" "upper" "concat" "pack" "insert" "remove" "unpack" "sort"
+                        "lower") company-keywords-alist))
 
     (spacemacs/set-leader-keys-for-major-mode 'lua-mode
       "<tab>" 'hs-toggle-hiding
