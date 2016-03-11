@@ -69,7 +69,15 @@
         (whitespace :location built-in)
         erc
         smartparens
+        peep-dired
         ))
+
+(defun zilongshanren/init-peep-dired ()
+  ;;preview files in dired
+  (use-package peep-dired
+    :defer t
+    :bind (:map dired-mode-map
+                ("P" . peep-dired))))
 
 (defun zilongshanren/post-init-smartparens ()
   (progn
@@ -261,6 +269,8 @@ open and unsaved."
         "C" 'dired-do-copy
         "<mouse-2>" 'my-dired-find-file
         "`" 'dired-open-term
+        "p" 'peep-dired-prev-file
+        "n" 'peep-dired-next-file
         "z" 'dired-get-size
         "c" 'dired-copy-file-here)
       )

@@ -23,7 +23,7 @@
   :on (iimage-mode)
   :off (iimage-mode -1)
   :documentation "Enable iimage mode"
-  :evil-leader "Ti")
+  :evil-leader "oti")
 
 (add-hook 'term-mode-hook 'ash-term-hooks)
 
