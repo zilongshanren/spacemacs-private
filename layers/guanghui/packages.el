@@ -169,7 +169,7 @@
 
     ;;; add lua language, basic, string and table keywords.
     (with-eval-after-load 'lua-mode
-      (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif"
+      (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif" "self"
                         "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
                         "until" "while" "__index" "dofile" "getmetatable" "ipairs" "pairs" "print" "rawget"
                         "rawset" "select" "_G" "assert" "collectgarbage" "error" "pcall"
