@@ -325,7 +325,13 @@ open and unsaved."
 (defun zilongshanren/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
     :init
-    (vimish-fold-global-mode 1)))
+    (vimish-fold-global-mode 1)
+    :config
+    (progn
+      (define-key evil-normal-state-map (kbd "zf") 'vimish-fold)
+      (define-key evil-visual-state-map (kbd "zf") 'vimish-fold)
+      (define-key evil-normal-state-map (kbd "zd") 'vimish-fold-delete)
+      (define-key evil-normal-state-map (kbd "za") 'vimish-fold-toggle))))
 
 (defun zilongshanren/init-ctags-update ()
   (use-package ctags-update
@@ -897,9 +903,7 @@ be global."
       ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
       (setq org-crypt-key nil)
 
-      (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
-
-
+      ;; (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
       (setq org-todo-keywords
             (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
