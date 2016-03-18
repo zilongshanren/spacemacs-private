@@ -435,6 +435,7 @@ layers configuration."
           (make-directory dir t)))))
   ;; temp fix for spacemacs/jump-in-buffer
   (spacemacs/set-leader-keys "sj" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
