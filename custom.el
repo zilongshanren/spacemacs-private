@@ -13,6 +13,9 @@
  '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
  '(company-dabbrev-other-buffers nil)
+ '(company-transformers
+   (quote
+    (spacemacs//company-transformer-cancel company-sort-by-statistics)))
  '(ctags-update-delay-seconds 1024)
  '(erc-nick "zilongshanren")
  '(erc-port 6666)

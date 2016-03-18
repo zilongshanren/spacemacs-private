@@ -497,6 +497,11 @@
 
 (defun guanghui/post-init-cc-mode ()
   (progn
+    (setq company-backends-c-mode-common '((company-dabbrev-code
+                                            company-keywords
+                                            company-gtags :sorted t)
+                                           company-files company-dabbrev ))
+
 
     ;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
     (defadvice c-lineup-arglist (around my activate)
