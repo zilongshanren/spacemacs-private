@@ -12,6 +12,7 @@
  '(ahs-inhibit-face-list nil)
  '(beacon-blink-delay 0.3)
  '(cfs--current-profile-name "profile1" t)
+ '(company-dabbrev-minimum-length 3)
  '(company-dabbrev-other-buffers nil)
  '(company-transformers
    (quote
