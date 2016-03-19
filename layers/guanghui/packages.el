@@ -585,7 +585,7 @@
   (progn
     (setq company-backends-js2-mode '((company-dabbrev-code
                                        company-keywords
-                                       company-etags) company-files company-dabbrev))
+                                       company-etags :sorted t) company-files company-dabbrev))
 
     (zilongshanren|toggle-company-backends company-tern)
 
