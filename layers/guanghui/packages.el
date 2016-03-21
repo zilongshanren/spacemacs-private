@@ -497,10 +497,8 @@
 
 (defun guanghui/post-init-cc-mode ()
   (progn
-    (setq company-backends-c-mode-common '((company-dabbrev-code
-                                            company-keywords
-                                            company-gtags :sorted t)
-                                           company-files company-dabbrev ))
+    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-gtags)
+                                           company-files company-dabbrev))
 
 
     ;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
@@ -583,9 +581,8 @@
 
 (defun guanghui/post-init-js2-mode ()
   (progn
-    (setq company-backends-js2-mode '((company-dabbrev-code
-                                       company-keywords
-                                       company-etags :sorted t) company-files company-dabbrev))
+    (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags )
+                                      company-files company-dabbrev))
 
     (zilongshanren|toggle-company-backends company-tern)
 
