@@ -518,9 +518,11 @@ open and unsaved."
   (progn
     (setq company-minimum-prefix-length 1
           company-idle-delay 0.08)
+
     (when (configuration-layer/package-usedp 'company)
       (spacemacs|add-company-hook lua-mode)
-      (spacemacs|add-company-hook nxml-mode))))
+      (spacemacs|add-company-hook nxml-mode))
+    ))
 
 (defun zilongshanren/init-cmake-font-lock ()
   (use-package cmake-font-lock

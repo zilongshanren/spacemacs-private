@@ -14,9 +14,7 @@
  '(cfs--current-profile-name "profile1" t)
  '(company-dabbrev-minimum-length 3)
  '(company-dabbrev-other-buffers nil)
- '(company-transformers
-   (quote
-    (spacemacs//company-transformer-cancel company-sort-by-statistics)))
+ '(company-show-numbers t)
  '(ctags-update-delay-seconds 1024)
  '(erc-nick "zilongshanren")
  '(erc-port 6666)
