@@ -97,6 +97,7 @@ values."
                                     evil-mc
                                     skewer-mode
                                     vi-tilde-fringe
+                                    eyebrowse
                                     emmet-mode
                                     smooth-scrolling
                                     org-repo-todo
