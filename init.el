@@ -118,6 +118,7 @@ values."
                                     srefactor
                                     org-download
                                     org-timer
+                                    org-plus-contrib
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe

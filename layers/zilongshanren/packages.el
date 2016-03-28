@@ -32,7 +32,7 @@
         ;; worf
         org-download
         ;; flycheck-package
-        org
+        (org :location built-in)
         nodejs-repl
         js2-mode
         js2-refactor
@@ -505,7 +505,7 @@ open and unsaved."
     :diminish (lispy-mode)
     :init
     (progn
-      (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
+      ;; (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
       (add-hook 'eval-expression-minibuffer-setup-hook 'lispy-mode)
       (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
