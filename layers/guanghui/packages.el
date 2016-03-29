@@ -91,7 +91,12 @@
   (use-package gulpjs
     :init
     (progn
+      (defun build-engine ()
+        (interactive)
+        (gulpjs-start-task-with-file-name "~/Github/fireball/app.js"))
+
       (spacemacs/set-leader-keys "ags" 'gulpjs-start-task)
+      (spacemacs/set-leader-keys "agS" 'build-engine)
       (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
 (defun guanghui/init-4clojure ()
