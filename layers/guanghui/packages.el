@@ -605,6 +605,7 @@
     (eval-after-load 'js2-mode
       '(progn
          (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
+         (add-hook 'js2-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
          (define-key js2-mode-map   (kbd "s-.") 'company-tern)))))
 
 (defun guanghui/init-org-tree-slide ()
