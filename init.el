@@ -32,6 +32,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     go
      windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
