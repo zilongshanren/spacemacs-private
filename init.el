@@ -400,7 +400,8 @@ layers configuration."
   (add-hook 'org-mode-hook 'auto-fill-mode)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
-  (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file)
+  (with-eval-after-load 'helm-files
+    (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file))
 
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful

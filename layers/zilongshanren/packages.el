@@ -27,7 +27,7 @@
         git-messenger
         helm-flyspell
         helm
-        helm-ls-git
+        ;; helm-ls-git
         keyfreq
         ;; worf
         org-download
@@ -493,12 +493,7 @@ open and unsaved."
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
-    :defer t
-    :config
-    (progn
-    (autoload 'nodejs-repl-eval-buffer "nodejs-repl-eval" nil t)
-    (autoload 'nodejs-repl-eval-dwim "nodejs-repl-eval" nil t)
-    (autoload 'nodejs-repl-eval-function "nodejs-repl-eval" nil t))))
+    :defer t))
 
 (defun zilongshanren/init-flycheck-package ()
   (use-package flycheck-package))
@@ -513,7 +508,7 @@ open and unsaved."
       ;; (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
       (add-hook 'eval-expression-minibuffer-setup-hook 'lispy-mode)
       (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
-      (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
+      ;; (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))))
@@ -1241,6 +1236,7 @@ be global."
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
 (defun zilongshanren/init-nodejs-repl-eval ()
   (use-package nodejs-repl-eval
+    :commands (nodejs-repl-eval-buffer nodejs-repl-eval-dwim nodejs-repl-eval-function)
     :init
     :defer t
     ))

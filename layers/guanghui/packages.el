@@ -76,7 +76,8 @@
 
 (defun guanghui/init-litable ()
   (use-package litable
-    :init))
+    :init
+    :defer t))
 
 (defun guanghui/init-osx-dictionary ()
   (use-package osx-dictionary
@@ -125,10 +126,13 @@
 
 (defun guanghui/init-org-mac-link ()
   (use-package org-mac-link
+    :commands org-mac-grab-link
     :init
-    (add-hook 'org-mode-hook
-              (lambda ()
-                (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))))
+    (progn
+      (add-hook 'org-mode-hook
+                (lambda ()
+                  (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link))))
+    :defer t))
 
 (defun guanghui/post-init-avy ()
   (progn
@@ -336,7 +340,10 @@
 
 (defun guanghui/init-org-octopress ()
   (use-package org-octopress
+    :commands (org-octopress)
     :init
+    :defer t
+    :config
     (progn
       (evilified-state-evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
@@ -615,7 +622,7 @@
 
 
 (defun guanghui/post-init-projectile ()
-  (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-lsgit))
+  (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-counsel-git))
 
 (defun guanghui/post-init-org ()
   (with-eval-after-load 'org

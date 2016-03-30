@@ -397,7 +397,7 @@ With PREFIX, cd to project root."
  :group 'shadowsocks-proxy)
 
 
-(defun zilongshanren/open-file-with-projectile-or-lsgit ()
+(defun zilongshanren/open-file-with-projectile-or-counsel-git ()
   (interactive)
   (if (zilongshanren/project-root)
       (counsel-git)
