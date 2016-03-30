@@ -507,7 +507,7 @@ open and unsaved."
     (progn
       ;; (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
       (add-hook 'eval-expression-minibuffer-setup-hook 'lispy-mode)
-      (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+      ;; (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
       ;; (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
