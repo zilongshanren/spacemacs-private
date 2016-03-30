@@ -109,6 +109,9 @@ values."
                                     evil-mc
                                     skewer-mode
                                     vi-tilde-fringe
+                                    coffee-mode
+                                    ace-jump-helm-line
+                                    evil-tutor
                                     eyebrowse
                                     emmet-mode
                                     smooth-scrolling

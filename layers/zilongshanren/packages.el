@@ -493,7 +493,12 @@ open and unsaved."
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
-    :defer t))
+    :defer t
+    :config
+    (progn
+    (autoload 'nodejs-repl-eval-buffer "nodejs-repl-eval" nil t)
+    (autoload 'nodejs-repl-eval-dwim "nodejs-repl-eval" nil t)
+    (autoload 'nodejs-repl-eval-function "nodejs-repl-eval" nil t))))
 
 (defun zilongshanren/init-flycheck-package ()
   (use-package flycheck-package))
@@ -1236,7 +1241,9 @@ be global."
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
 (defun zilongshanren/init-nodejs-repl-eval ()
   (use-package nodejs-repl-eval
-    :init))
+    :init
+    :defer t
+    ))
 
 (defun zilongshanren/init-plain-org-wiki ()
   (use-package plain-org-wiki
