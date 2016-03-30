@@ -652,7 +652,7 @@ open and unsaved."
     (with-eval-after-load 'magit
       (progn
         (add-to-list 'magit-no-confirm 'stage-all-changes)
-        (define-key magit-log-mode-map (kbd "W") 'magit-copy-as-kill)
+        (define-key magit-log-mode-map (kbd "W") 'magit-copy-section-value)
         (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
         (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
         (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
