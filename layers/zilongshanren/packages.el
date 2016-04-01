@@ -637,6 +637,24 @@ open and unsaved."
       :config
       (progn
         (spacemacs|hide-lighter ivy-mode)
+
+        ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
+        (defun counsel-goto-recent-directory ()
+          "Recent directories"
+          (interactive)
+          (unless recentf-mode (recentf-mode 1))
+          (let ((collection
+                 (delete-dups
+                  (append (mapcar 'file-name-directory recentf-list)
+                          ;; fasd history
+                          (if (executable-find "fasd")
+                              (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
+            (ivy-read "directories:" collection
+                      :action 'dired
+                      :caller 'counsel-goto-recent-directory)))
+        (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
+
+
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
         (define-key ivy-minibuffer-map (kbd "C-s-j") 'ivy-immediate-done)

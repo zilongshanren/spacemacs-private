@@ -67,7 +67,7 @@ values."
      ;; dash
      ;; emoji
      ;; ycmd
-     ;; fasd
+     fasd
      ;; deft
      ;; elfeed
      ranger
