@@ -67,7 +67,7 @@ values."
      ;; dash
      ;; emoji
      ;; ycmd
-     fasd
+     ;; fasd
      ;; deft
      ;; elfeed
      ranger
@@ -115,6 +115,7 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     emmet-mode
+                                    stickyfunc-enhance
                                     smooth-scrolling
                                     org-repo-todo
                                     chinese-wbim
@@ -458,6 +459,7 @@ layers configuration."
   (spacemacs/set-leader-keys "sj" 'helm-semantic-or-imenu)
   (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
+  (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
