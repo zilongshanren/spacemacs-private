@@ -460,6 +460,13 @@ layers configuration."
   (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
   (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
+  ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
+  (defun stop-using-minibuffer ()
+    "kill the minibuffer"
+    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+      (abort-recursive-edit)))
+
+  (add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
 
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
