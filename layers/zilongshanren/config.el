@@ -25,7 +25,7 @@
   :documentation "Enable iimage mode"
   :evil-leader "oti")
 
-(add-hook 'term-mode-hook 'ash-term-hooks)
+(add-hook 'term-mode-hook 'zilongshanren/ash-term-hooks)
 
 
 (global-prettify-symbols-mode 1)

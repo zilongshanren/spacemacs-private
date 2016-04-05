@@ -86,12 +86,12 @@
 
 
 ;; for running long run ansi-term
-(defun named-term (name)
+(defun zilongshanren/named-term (name)
   (interactive "sName: ")
   (ansi-term "/bin/zsh" name))
 
 
-(defun ash-term-hooks ()
+(defun zilongshanren/ash-term-hooks ()
   ;; dabbrev-expand in term
   (define-key term-raw-escape-map "/"
     (lambda ()
@@ -106,7 +106,7 @@
       (interactive)
       (term-send-raw-string (current-kill 0)))))
 
-(defun terminal ()
+(defun zilongshanren/terminal ()
   "Switch to terminal. Launch if nonexistent."
   (interactive)
   (if (get-buffer "*ansi-term*")
@@ -116,7 +116,7 @@
       (ansi-term "/bin/zsh")))
   (get-buffer-process "*ansi-term*"))
 
-(defalias 'tt 'terminal)
+(defalias 'tt 'zilongshanren/terminal)
 
 (defun zilongshanren/comment-box (b e)
   "Draw a box comment around the region but arrange for the region
@@ -132,7 +132,7 @@ comment box."
     (set-marker e nil)))
 
 ;;http://emacsredux.com/blog/2013/03/26/smarter-open-line/
-(defun smart-open-line ()
+(defun zilongshanren/smart-open-line ()
   "Insert an empty line after the current line.
 Position the cursor at its beginning, according to the current mode."
   (interactive)
@@ -285,7 +285,7 @@ e.g. Sunday, September 17, 2000."
 
 
 ;;js2-mode enhancement
-(defun my-which-function ()
+(defun zilongshanren/js2-which-function ()
   ;; clean the imenu cache
   ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
   (setq imenu--index-alist nil)
