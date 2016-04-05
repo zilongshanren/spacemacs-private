@@ -50,7 +50,7 @@
    "/CANCELLED" 'file))
 
 ;; "https://github.com/vhallac/.emacs.d/blob/master/config/customize-org-agenda.el"
-(defun bh/skip-non-stuck-projects ()
+(defun zilongshanren/skip-non-stuck-projects ()
   "Skip trees that are not stuck projects"
   (bh/list-sublevels-for-projects-indented)
   (save-restriction
@@ -213,14 +213,14 @@ Position the cursor at its beginning, according to the current mode."
 
 
 
-(defun prelude-shift-left-visual ()
+(defun zilongshanren/shift-left-visual ()
   "Shift left and restore visual selection."
   (interactive)
   (evil-shift-left (region-beginning) (region-end))
   (evil-normal-state)
   (evil-visual-restore))
 
-(defun prelude-shift-right-visual ()
+(defun zilongshanren/shift-right-visual ()
   "Shift right and restore visual selection."
   (interactive)
   (evil-shift-right (region-beginning) (region-end))
