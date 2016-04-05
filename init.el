@@ -460,6 +460,7 @@ layers configuration."
   (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
   (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
+
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)

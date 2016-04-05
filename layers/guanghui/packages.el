@@ -770,10 +770,7 @@
           (unless noinsert
             (insert output-string))
           output-string))
-      (global-set-key (kbd "C-c a") 'org-agenda)
       (define-key org-mode-map (kbd "s-p") 'org-priority)
-      (define-key global-map (kbd "<f9>") 'org-capture)
-      (global-set-key (kbd "C-c b") 'org-iswitchb)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "owh" 'plain-org-wiki-helm

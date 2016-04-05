@@ -505,6 +505,10 @@ open and unsaved."
     :diminish (lispy-mode)
     :init
     (progn
+      (defun zilongshanren/turn-on-lispy()
+        (interactive)
+        (add-hook 'emacs-lisp-mode-hook 'lispy-mode))
+      (run-with-idle-timer 1 nil #'zilongshanren/turn-on-lispy)
       ;; (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
       (add-hook 'eval-expression-minibuffer-setup-hook 'lispy-mode)
       ;; (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
