@@ -46,7 +46,7 @@
   (zilongshanren/octopress-qrsync "/Users/guanghui/4gamers.cn/guanghui.json")
   (message "Up Img to Qiniu"))
 
-(defun directory-parent (directory)
+(defun zilongshanren/directory-parent (directory)
   (let ((parent (file-name-directory (directory-file-name directory))))
     (if (not (equal directory parent))
         parent)))
@@ -55,8 +55,8 @@
   (interactive)
   (let* ((default-directory
            (if (string-match "_posts/$" default-directory)
-               (directory-parent (directory-parent default-directory))
-             (directory-parent default-directory)))
+               (zilongshanren/directory-parent (zilongshanren/directory-parent default-directory))
+             (zilongshanren/directory-parent default-directory)))
          (buffer (if (get-buffer "*jekyll*")
                      (switch-to-buffer "*jekyll*")
                    (ansi-term "/bin/zsh" "jekyll")))

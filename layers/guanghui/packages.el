@@ -92,12 +92,12 @@
   (use-package gulpjs
     :init
     (progn
-      (defun build-engine ()
+      (defun zilong/build-engine ()
         (interactive)
         (gulpjs-start-task-with-file-name "~/Github/fireball/app.js"))
 
       (spacemacs/set-leader-keys "ags" 'gulpjs-start-task)
-      (spacemacs/set-leader-keys "agS" 'build-engine)
+      (spacemacs/set-leader-keys "agS" 'zilong/build-engine)
       (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
 (defun guanghui/init-4clojure ()
@@ -229,12 +229,12 @@
         "G" 'elfeed-update
         "g" 'elfeed-search-update--force)
 
-      (defun elfeed-mark-all-as-read ()
+      (defun zilong/elfeed-mark-all-as-read ()
         (interactive)
         (mark-whole-buffer)
         (elfeed-search-untag-all-unread))
 
-      (define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)
+      (define-key elfeed-search-mode-map (kbd "R") 'zilong/elfeed-mark-all-as-read)
 
       (defadvice elfeed-show-yank (after elfeed-show-yank-to-kill-ring activate compile)
         "Insert the yanked text from x-selection to kill ring"
@@ -723,18 +723,18 @@
                )
               ("blog" :components ("blog-notes" "blog-static"))))
 
-      (defun org-summary-todo (n-done n-not-done)
+      (defun zilong/org-summary-todo (n-done n-not-done)
         "Switch entry to DONE when all subentries are done, to TODO otherwise."
         (let (org-log-done org-log-states)  ; turn off logging
           (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-      (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-      ;; used by org-clock-sum-today-by-tags
-      (defun filter-by-tags ()
+      (add-hook 'org-after-todo-statistics-hook 'zilong/org-summary-todo)
+      ;; used by zilong/org-clock-sum-today-by-tags
+      (defun zilong/filter-by-tags ()
         (let ((head-tags (org-get-tags-at)))
           (member current-tag head-tags)))
 
-      (defun org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
+      (defun zilong/org-clock-sum-today-by-tags (timerange &optional tstart tend noinsert)
         (interactive "P")
         (let* ((timerange-numeric-value (prefix-numeric-value timerange))
                (files (org-add-archive-files (org-agenda-files)))
@@ -756,7 +756,7 @@
                                       (error "No such file %s" file)))
             (with-current-buffer org-agenda-buffer
               (dolist (current-tag include-tags)
-                (org-clock-sum tstart tend 'filter-by-tags)
+                (org-clock-sum tstart tend 'zilong/filter-by-tags)
                 (setcdr (assoc current-tag tags-time-alist)
                         (+ org-clock-file-total-minutes (cdr (assoc current-tag tags-time-alist)))))))
           (while (setq item (pop tags-time-alist))
