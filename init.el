@@ -32,52 +32,29 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     go
-     windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     spacemacs-helm
-     spacemacs-ivy
+     (auto-completion :variables auto-completion-enable-sort-by-usage t)
      better-defaults
-     github
-     (version-control :variables version-control-diff-tool 'git-gutter+
-                      version-control-global-margin t)
-     osx
-     semantic                           ; too slow
-     markdown
-     (vinegar :variables vinegar-reuse-dired-buffer t)
-     org
-     prodigy
-     search-engine
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
-     (spell-checking :variables spell-checking-enable-by-default nil)
-     yaml
-     ;; (ruby :variables ruby-version-manager 'rvm)
-     python
-     lua
-     html
-     command-log
-     javascript
-     ;; restclient
-     emacs-lisp
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
+     (chinese :variables chinese-default-input-method 'wubi
+              chinese-enable-fcitx t
+              chinese-enable-youdao-dict t)
      (clojure :variables clojure-enable-fancify-symbols t)
-     ;; dash
-     ;; emoji
-     ;; ycmd
-     ;; fasd
-     ;; deft
-     ;; elfeed
-     ranger
-     ;; racket
-     gtags
-     (spacemacs-layouts :variables layouts-enable-autosave t
-                        layouts-autosave-delay 300)
-     ;; eyebrowse
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
+     command-log
+     ;; dash
+     ;; deft
+     ;; elfeed
+     emacs-lisp
+     ;; emoji
+     ;; eyebrowse
+     ;; fasd
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -86,19 +63,42 @@ values."
           magit-refs-show-commit-count 'all
           ;; This is really creepy magit
           magit-revision-show-gravatars nil)
+     github
+     go
+     gtags
+     guanghui
+     html
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-sort-by-usage t)
+     javascript
+     lua
+     markdown
+     org
+     osx
+     prodigy
+     python
+     ;; racket
+     ranger
+     ;; restclient
+     ;; (ruby :variables ruby-version-manager 'rvm)
+     search-engine
+     semantic                           ; too slow
      (shell :variables
             shell-default-position 'full
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
-     (chinese :variables chinese-default-input-method 'wubi
-              chinese-enable-fcitx t
-              chinese-enable-youdao-dict t)
-     zilongshanren
-     guanghui)
+     spacemacs-helm
+     spacemacs-ivy
+     (spacemacs-layouts :variables layouts-enable-autosave t
+                        layouts-autosave-delay 300)
+     (spell-checking :variables spell-checking-enable-by-default nil)
+     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     (version-control :variables version-control-diff-tool 'git-gutter+
+                      version-control-global-margin t)
+     (vinegar :variables vinegar-reuse-dired-buffer t)
+     windows-scripts
+     yaml
+     ;; ycmd
+     zilongshanren)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
