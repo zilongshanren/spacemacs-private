@@ -48,7 +48,7 @@ values."
      osx
      semantic                           ; too slow
      markdown
-     (vinegar :variables vinegar-reuse-dired-buffer t)
+     ;; (vinegar :variables vinegar-reuse-dired-buffer t)
      org
      prodigy
      search-engine
@@ -64,7 +64,6 @@ values."
      ;; restclient
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
-     ;; dash
      ;; emoji
      ;; ycmd
      ;; fasd
@@ -467,6 +466,15 @@ layers configuration."
       (abort-recursive-edit)))
 
   (add-hook 'mouse-leave-buffer-hook 'zilongshanren/stop-using-minibuffer)
+
+  (spacemacs/declare-prefix "ot" "Toggle")
+
+  (spacemacs|defvar-company-backends sh-mode)
+  (spacemacs|defvar-company-backends shell-script-mode)
+  (spacemacs|defvar-company-backends makefile-bsdmake-mode)
+  (spacemacs|add-company-hook sh-mode)
+  (spacemacs|add-company-hook shell-script-mode)
+  (spacemacs|add-company-hook makefile-bsdmake-mode)
 
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
