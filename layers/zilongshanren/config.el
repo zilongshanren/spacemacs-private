@@ -70,7 +70,7 @@
 
 (setq auto-mode-alist
       (append
-       '(("\\.mak\\'" . makefile-mode))
+       '(("\\.mak\\'" . makefile-bsdmake-mode))
        auto-mode-alist))
 
 (setq large-file-warning-threshold 100000000)
