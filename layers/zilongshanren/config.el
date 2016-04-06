@@ -14,7 +14,9 @@
 (spacemacs|defvar-company-backends org-mode)
 (spacemacs|defvar-company-backends nxml-mode)
 (spacemacs|defvar-company-backends sh-mode)
+(spacemacs|defvar-company-backends shell-script-mode)
 (spacemacs|add-company-hook sh-mode)
+(spacemacs|add-company-hook shell-script-mode)
 
 (spacemacs/declare-prefix "ot" "Toggle")
 
