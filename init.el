@@ -48,7 +48,7 @@ values."
      osx
      semantic                           ; too slow
      markdown
-     ;; (vinegar :variables vinegar-reuse-dired-buffer t)
+     (vinegar :variables vinegar-reuse-dired-buffer t)
      org
      prodigy
      search-engine
@@ -115,6 +115,7 @@ values."
                                     eyebrowse
                                     emmet-mode
                                     stickyfunc-enhance
+                                    flx-ido
                                     smooth-scrolling
                                     org-repo-todo
                                     chinese-wbim
