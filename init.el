@@ -89,8 +89,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/")
+                      auto-completion-enable-snippets-in-popup t)
      (shell :variables
             shell-default-position 'full
             shell-default-shell 'ansi-term
