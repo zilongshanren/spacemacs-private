@@ -795,7 +795,7 @@
       :kill-process-buffer-on-stop t)
 
     (prodigy-define-service
-      :name "Preview cocos2d-html5"
+      :name "Preview creator engine"
       :command "python"
       :args '("-m" "SimpleHTTPServer" "6004")
       :cwd "~/Github/fireball/engine"

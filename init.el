@@ -120,7 +120,6 @@ values."
                                     org-repo-todo
                                     chinese-wbim
                                     chinese-pyim
-                                    yasnippet
                                     srefactor
                                     org-download
                                     org-timer

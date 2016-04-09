@@ -279,6 +279,11 @@ open and unsaved."
   )
 
 (defun zilongshanren/init-occur-mode ()
+  (defun occur-non-ascii ()
+    "Find any non-ascii characters in the current buffer."
+    (interactive)
+    (occur "[^[:ascii:]]"))
+
   (defun occur-dwim ()
     "Call `occur' with a sane default."
     (interactive)
