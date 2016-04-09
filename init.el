@@ -470,12 +470,6 @@ layers configuration."
 
   (spacemacs/declare-prefix "ot" "Toggle")
 
-  (spacemacs|defvar-company-backends sh-mode)
-  (spacemacs|defvar-company-backends shell-script-mode)
-  (spacemacs|defvar-company-backends makefile-bsdmake-mode)
-  (spacemacs|add-company-hook sh-mode)
-  (spacemacs|add-company-hook shell-script-mode)
-  (spacemacs|add-company-hook makefile-bsdmake-mode)
 
   )
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

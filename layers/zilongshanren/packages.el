@@ -529,6 +529,9 @@ open and unsaved."
           company-idle-delay 0.08)
 
     (when (configuration-layer/package-usedp 'company)
+      (spacemacs|add-company-hook shell-script-mode)
+      (spacemacs|add-company-hook makefile-bsdmake-mode)
+      (spacemacs|add-company-hook sh-mode)
       (spacemacs|add-company-hook lua-mode)
       (spacemacs|add-company-hook nxml-mode))
     ))
