@@ -470,7 +470,34 @@ layers configuration."
 
   (spacemacs/declare-prefix "ot" "Toggle")
 
-
+  (spacemacs|define-transient-state gist-list-mode
+    :title "Gist-mode Transient State"
+    :doc "
+[_k_]  kill current gist
+[_e_]  edit gist title
+[_+_]  add a file to current gist
+[_-_]  delete a file from the current gist
+[_y_]  print current gist url
+[_b_]  browse current gist in browser
+[_*_]  star current gist
+[_\\^_]  unstar current gist
+[_f_]  fork current gist
+"
+    :bindings
+    ("k" gist-kill-current "delete current gist")
+    ("e" gist-edit-current-description "edit current gist title")
+    ("+" gist-add-buffer "add a file to current gist ")
+    ("-" gist-remove-file "add a file to current gist ")
+    ("y" gist-print-current-url "print current gist url")
+    ("b" gist-browse-current-url "browse current gist in browser")
+    ("*" gist-star "star current gist")
+    ("^" gist-unstar "unstar current gist")
+    ("f" gist-fork "fork current gist")
+    ("q" nil "quit" :exit t)
+    ("<escape>" nil nil :exit t))
+  (spacemacs/set-leader-keys-for-major-mode 'gist-list-mode
+    "." 'spacemacs/gist-list-mode-transient-state/body)
   )
+
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
