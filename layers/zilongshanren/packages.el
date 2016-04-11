@@ -76,6 +76,8 @@
   ;;preview files in dired
   (use-package peep-dired
     :defer t
+    :commands (peep-dired-next-file
+               peep-dired-prev-file)
     :bind (:map dired-mode-map
                 ("P" . peep-dired))))
 
