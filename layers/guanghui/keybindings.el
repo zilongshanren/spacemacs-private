@@ -82,3 +82,6 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "<f9>") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
+;; http://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-tab
+(define-key input-decode-map [?\C-i] [C-i])
+(bind-key* "C-i" 'evil-jump-forward)
