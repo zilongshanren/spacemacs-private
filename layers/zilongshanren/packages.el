@@ -56,7 +56,6 @@
         ctags-update
         evil-vimish-fold
         beacon
-        evil-visual-mark-mode
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
@@ -302,19 +301,6 @@ open and unsaved."
   (evilified-state-evilify occur-mode occur-mode-map
     "RET" 'occur-mode-goto-occurrence))
 
-(defun zilongshanren/init-evil-visual-mark-mode ()
-  (use-package evil-visual-mark-mode
-    :init
-    (progn
-      (spacemacs|add-toggle evil-visual-mark-mode
-        :status evil-visual-mark-mode
-        :on (evil-visual-mark-mode)
-        :off (evil-visual-mark-mode -1)
-        :documentation "Show evil marks"
-        :evil-leader "otm")
-
-      (evil-visual-mark-mode))))
-
 (defun zilongshanren/init-beacon ()
   (use-package beacon
     :init
@@ -535,7 +521,8 @@ open and unsaved."
       (spacemacs|add-company-hook makefile-bsdmake-mode)
       (spacemacs|add-company-hook sh-mode)
       (spacemacs|add-company-hook lua-mode)
-      (spacemacs|add-company-hook nxml-mode))
+      (spacemacs|add-company-hook nxml-mode)
+      (spacemacs|add-company-hook conf-unix-mode))
     ))
 
 (defun zilongshanren/init-cmake-font-lock ()
