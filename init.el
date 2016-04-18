@@ -422,7 +422,7 @@ layers configuration."
   ;; improve the performance of opening large file
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (defun spacemacs/check-large-file ()
-    (when (> (buffer-size) 400000)
+    (when (> (buffer-size) 100000)
       (progn (fundamental-mode)
              (hl-line-mode -1))))
 

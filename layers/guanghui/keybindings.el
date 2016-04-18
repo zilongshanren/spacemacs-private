@@ -85,3 +85,5 @@
 ;; http://emacs.stackexchange.com/questions/220/how-to-bind-c-i-as-different-from-tab
 (define-key input-decode-map [?\C-i] [C-i])
 (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+
+(bind-key* "C-M-s-y" 'aya-expand)
