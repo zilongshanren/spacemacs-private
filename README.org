@@ -39,7 +39,6 @@ https://slackin-emacs-cn.herokuapp.com/
 4. 最后，我的 spacemacs rocks 视频系列也是基于这份配置，看视频有疑问也可以看看配置。
 
 ** 可能会遇到的问题
-1. 如果使用了 =.spacemacs.d= 目录来保存你的 spacemacs 配置，就不需要在 HOME 目录维护一个 =.spacemacs=文件了。 至于为什么要使用 =.spacemacs.d= 目录而不是 =.spacemacs= 文件，主要是方便分离自己的配置与 spacemacs 的配置，更新
-更容易。
+1. 如果使用了 =.spacemacs.d= 目录来保存你的 spacemacs 配置，就不需要在 HOME 目录维护一个 =.spacemacs=文件了。 至于为什么要使用 =.spacemacs.d= 目录而不是 =.spacemacs= 文件，主要是方便分离自己的配置与 spacemacs 的配置，更新更容易。
 
 ** Happy Hacking:smile: 
