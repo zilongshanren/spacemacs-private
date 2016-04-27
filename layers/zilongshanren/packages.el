@@ -639,6 +639,14 @@ open and unsaved."
       (progn
         (spacemacs|hide-lighter ivy-mode)
 
+        (defun ivy-insert-action (x)
+          (with-ivy-window
+            (insert x)))
+
+        (ivy-set-actions
+         t
+         '(("I" ivy-insert-action "insert")))
+
         ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
         (defun counsel-goto-recent-directory ()
           "Recent directories"
