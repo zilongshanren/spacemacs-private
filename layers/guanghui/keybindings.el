@@ -87,3 +87,5 @@
 (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
 (bind-key* "C-M-s-y" 'aya-expand)
+
+(global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
