@@ -132,7 +132,7 @@
 
     (setq-default tab-width 4)
     ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
-    (setq inhibit-eol-conversion t)
+    ;; (setq inhibit-eol-conversion t)
     (add-hook 'prog-mode-hook 'whitespace-mode)
     ;; (global-whitespace-mode +1)
 
