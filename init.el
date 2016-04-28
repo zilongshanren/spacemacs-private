@@ -46,6 +46,7 @@ values."
      (version-control :variables version-control-diff-tool 'git-gutter+
                       version-control-global-margin t)
      osx
+     latex
      semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
@@ -496,6 +497,8 @@ layers configuration."
     ("<escape>" nil nil :exit t))
   (spacemacs/set-leader-keys-for-major-mode 'gist-list-mode
     "." 'spacemacs/gist-list-mode-transient-state/body)
+
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

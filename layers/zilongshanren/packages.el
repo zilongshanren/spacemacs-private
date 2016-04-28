@@ -1084,6 +1084,7 @@ be global."
          (ruby . t)
          (sh . t)
          (js . t)
+         (latex .t)
          (python . t)
          (emacs-lisp . t)
          (plantuml . t)
