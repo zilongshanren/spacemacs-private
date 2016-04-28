@@ -176,7 +176,11 @@
     (add-hook 'lua-mode-hook 'smartparens-mode)
     (setq lua-indent-level 4)
 
-    ;;; add lua language, basic, string and table keywords.
+    ;; hack for making company-etags working
+    (require 'company-etags)
+    (add-to-list 'company-etags-modes 'lua-mode)
+
+;;; add lua language, basic, string and table keywords.
     (with-eval-after-load 'lua-mode
       (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif" "self" "resume" "yield"
                         "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
