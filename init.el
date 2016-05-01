@@ -128,6 +128,7 @@ values."
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
+                                    spaceline
                                     ;; i prefer iedit
                                     multiple-cursors
                                     ;; disable it for lispy-mode

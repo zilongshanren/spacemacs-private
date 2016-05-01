@@ -30,7 +30,7 @@
         ;; helm-ls-git
         keyfreq
         ;; worf
-        org-download
+        ;; org-download
         ;; flycheck-package
         (org :location built-in)
         nodejs-repl
