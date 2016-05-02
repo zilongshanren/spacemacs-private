@@ -51,6 +51,7 @@
         projectile
         wrap-region
         web-mode
+        gist
         ;; tagedit
         ;; js-comint
         ctags-update
@@ -70,6 +71,30 @@
         smartparens
         peep-dired
         ))
+
+(defun zilongshanren/post-init-gist ()
+  (use-package gist
+    :defer t
+    :config
+    (progn
+      (spacemacs|define-transient-state gist-list-mode
+        :title "Gist-mode Transient State"
+        :bindings
+        ("k" gist-kill-current "delete gist")
+        ("e" gist-edit-current-description "edit gist title")
+        ("+" gist-add-buffer "add a file")
+        ("-" gist-remove-file "delete a file")
+        ("y" gist-print-current-url "print url")
+        ("b" gist-browse-current-url "browse gist in browser")
+        ("*" gist-star "star gist")
+        ("^" gist-unstar "unstar gist")
+        ("f" gist-fork "fork gist")
+        ("q" nil "quit" :exit t)
+        ("<escape>" nil nil :exit t))
+      (spacemacs/set-leader-keys-for-major-mode 'gist-list-mode
+        "." 'spacemacs/gist-list-mode-transient-state/body))
+    ))
+
 
 (defun zilongshanren/init-peep-dired ()
   ;;preview files in dired

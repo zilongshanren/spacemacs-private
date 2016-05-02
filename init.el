@@ -429,16 +429,6 @@ layers configuration."
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
   (spacemacs/toggle-automatic-symbol-highlight-on)
 
-  ;; http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-  ;; (defun my-minibuffer-setup-hook ()
-  ;;   (setq gc-cons-threshold 100000000))
-
-  ;; (defun my-minibuffer-exit-hook ()
-  ;;   (setq gc-cons-threshold 800000))
-
-  ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
   ;; For python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; For ruby
@@ -469,34 +459,6 @@ layers configuration."
   (add-hook 'mouse-leave-buffer-hook 'zilongshanren/stop-using-minibuffer)
 
   (spacemacs/declare-prefix "ot" "Toggle")
-
-  (spacemacs|define-transient-state gist-list-mode
-    :title "Gist-mode Transient State"
-    :doc "
-[_k_]  kill current gist
-[_e_]  edit gist title
-[_+_]  add a file to current gist
-[_-_]  delete a file from the current gist
-[_y_]  print current gist url
-[_b_]  browse current gist in browser
-[_*_]  star current gist
-[_\\^_]  unstar current gist
-[_f_]  fork current gist
-"
-    :bindings
-    ("k" gist-kill-current "delete current gist")
-    ("e" gist-edit-current-description "edit current gist title")
-    ("+" gist-add-buffer "add a file to current gist ")
-    ("-" gist-remove-file "add a file to current gist ")
-    ("y" gist-print-current-url "print current gist url")
-    ("b" gist-browse-current-url "browse current gist in browser")
-    ("*" gist-star "star current gist")
-    ("^" gist-unstar "unstar current gist")
-    ("f" gist-fork "fork current gist")
-    ("q" nil "quit" :exit t)
-    ("<escape>" nil nil :exit t))
-  (spacemacs/set-leader-keys-for-major-mode 'gist-list-mode
-    "." 'spacemacs/gist-list-mode-transient-state/body)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   )
