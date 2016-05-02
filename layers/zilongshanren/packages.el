@@ -55,7 +55,7 @@
         ;; tagedit
         ;; js-comint
         ctags-update
-        evil-vimish-fold
+        ;; evil-vimish-fold
         beacon
         (occur-mode :location built-in)
         (dired-mode :location built-in)

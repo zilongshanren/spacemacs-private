@@ -362,6 +362,7 @@ in `dotspacemacs/user-config'."
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   (setq evil-shift-round nil)
+  (setq spacemacs-buffer--cache-file (expand-file-name (concat spacemacs-cache-directory "spacemacs-buffer.txt")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -461,6 +462,8 @@ layers configuration."
   (spacemacs/declare-prefix "ot" "Toggle")
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  ;; Don't move back the cursor one position when exiting insert mode
+  (setq evil-move-cursor-back nil)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
