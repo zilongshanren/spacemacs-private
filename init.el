@@ -76,8 +76,7 @@ values."
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
      ;; eyebrowse
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
+     colors
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
