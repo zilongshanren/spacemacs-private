@@ -362,7 +362,12 @@ in `dotspacemacs/user-config'."
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   (setq evil-shift-round nil)
-  (setq spacemacs-buffer--cache-file (expand-file-name (concat spacemacs-cache-directory "spacemacs-buffer.txt")))
+  ;TODO: temp fix for loading time
+  (defun spacemacs/dump-vars-to-file (varlist filename)
+    "simplistic dumping of variables in VARLIST to a file FILENAME"
+    (with-temp-file filename
+      (spacemacs/dump varlist (current-buffer))
+      (make-directory (file-name-directory filename) t)))
   )
 
 (defun dotspacemacs/user-config ()
