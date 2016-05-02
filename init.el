@@ -89,7 +89,8 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-sort-by-usage t)
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      :disabled-for org markdown)
      (shell :variables
             shell-default-position 'full
             shell-default-shell 'ansi-term
@@ -374,7 +375,6 @@ layers configuration."
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
-  ;; (global-company-mode t)
   (setq-default powerline-default-separator 'arrow)
 
   ;; Utility functions
