@@ -115,7 +115,6 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     emmet-mode
-                                    pangu-spacing
                                     stickyfunc-enhance
                                     flx-ido
                                     smooth-scrolling
