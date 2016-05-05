@@ -115,6 +115,8 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     emmet-mode
+                                    tern
+                                    company-tern
                                     stickyfunc-enhance
                                     flx-ido
                                     smooth-scrolling
@@ -433,7 +435,7 @@ layers configuration."
              (hl-line-mode -1))))
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
-  (spacemacs/toggle-automatic-symbol-highlight-on)
+  ;; (spacemacs/toggle-automatic-symbol-highlight-on)
 
   ;; For python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
