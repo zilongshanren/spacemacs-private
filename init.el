@@ -115,8 +115,6 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     emmet-mode
-                                    tern
-                                    company-tern
                                     pangu-spacing
                                     stickyfunc-enhance
                                     flx-ido
