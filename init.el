@@ -117,6 +117,7 @@ values."
                                     emmet-mode
                                     tern
                                     company-tern
+                                    pangu-spacing
                                     stickyfunc-enhance
                                     flx-ido
                                     smooth-scrolling
@@ -430,7 +431,7 @@ layers configuration."
   ;; improve the performance of opening large file
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (defun spacemacs/check-large-file ()
-    (when (> (buffer-size) 100000)
+    (when (> (buffer-size) 500000)
       (progn (fundamental-mode)
              (hl-line-mode -1))))
 
