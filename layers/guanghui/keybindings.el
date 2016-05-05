@@ -89,3 +89,5 @@
 (bind-key* "C-M-s-y" 'aya-expand)
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+
+(bind-key* "s-x" 'counsel-M-x)
