@@ -37,6 +37,7 @@
         evil
         deft
         elfeed
+        fcitx
         lua-mode
         ycmd
         ;; mwe-log-commands
@@ -53,7 +54,20 @@
         osx-dictionary
         litable
         pangu-spacing
+        etags-select
         ))
+
+;; when many project has the need to use tags, I will give etags-table and etags-update a try
+(defun guanghui/init-etags-select ()
+  (use-package etags-select
+    :init
+    (progn
+      (evilified-state-evilify etags-select-mode etags-select-mode-map)
+      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+        "gd" 'etags-select-find-tag-at-point))))
+
+(defun guanghui/post-init-fcitx ()
+  (fcitx-aggressive-setup))
 
 (defun guanghui/post-init-command-log ()
   (with-eval-after-load 'command-log-mode
@@ -328,6 +342,7 @@
           evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
           evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
           evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+    (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
     ;; This will break visual column edit
     ;; enable hybrid editing style
     ;; (defadvice evil-insert-state (around zilongshanren/holy-mode activate)

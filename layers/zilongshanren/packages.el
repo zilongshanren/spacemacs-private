@@ -1128,8 +1128,7 @@ be global."
     (add-hook 'js2-mode-hook 'which-function-mode)
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "gd" 'helm-etags-select)
+
 
 
     (with-eval-after-load 'js2-mode
