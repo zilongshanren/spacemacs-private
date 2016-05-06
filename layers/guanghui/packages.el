@@ -669,7 +669,7 @@
                "* TODO [#B] %?\n  %i\n"
                :empty-lines 1)
               ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
-               "* TODO [#C] %?\n  %i\n %U"
+               "* %?\n  %i\n %U"
                :empty-lines 1)
               ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
                "* TODO [#B] %?\n  %i\n %U"
