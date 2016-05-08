@@ -36,6 +36,7 @@
  '(js2-include-jslint-globals nil)
  '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")
  '(magit-use-overlays nil)
+ '(only-global-abbrevs t)
  '(org-agenda-custom-commands nil)
  '(org-agenda-ndays 1)
  '(org-agenda-show-all-dates t)

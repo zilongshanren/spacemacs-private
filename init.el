@@ -404,7 +404,7 @@ layers configuration."
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   (with-eval-after-load 'helm-files
     (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file))
-
+  (spacemacs/toggle-automatic-symbol-highlight-on)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
   ;; (setq-default header-line-format
