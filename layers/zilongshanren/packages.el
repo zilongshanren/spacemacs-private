@@ -539,6 +539,8 @@ open and unsaved."
 
 (defun zilongshanren/post-init-company ()
   (progn
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.08)
 
     (when (configuration-layer/package-usedp 'company)
       (spacemacs|add-company-hook shell-script-mode)
