@@ -22,55 +22,50 @@
         markdown-mode
         impatient-mode
         swiper
-        ;; counsel
         magit
         git-messenger
-        helm-flyspell
-        helm
-        ;; helm-ls-git
-        ;; keyfreq ;;heavy memory consumption
-        ;; worf
-        ;; org-download
-        ;; flycheck-package
         (org :location built-in)
         nodejs-repl
         js2-mode
         js2-refactor
         visual-regexp
         visual-regexp-steroids
-        helm-gtags
         persp-mode
         json-mode
         racket-mode
         yasnippet
-        helm-ag
-        ;; hungry-delete
-        ;; flyspell
         find-file-in-project
-        ;; hl-anything
         projectile
         wrap-region
         web-mode
         gist
-        ;; tagedit
-        ;; js-comint
         ctags-update
-        ;; evil-vimish-fold
         beacon
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
-        ;; post extension names go here
-        (doxymacs :location local)
-        ;; nodejs-repl-eval don't support es6 and js2-mode also don't support it
-        ;; so I use js-comit instead.
-        (nodejs-repl-eval :location local)
-        ;; plain-org-wiki
         (whitespace :location built-in)
+        (doxymacs :location local)
+        (nodejs-repl-eval :location local)
         erc
         smartparens
         peep-dired
         (profiler-report-mode :location built-in)
+        ;; counsel
+        ;; keyfreq ;;heavy memory consumption
+        ;; worf
+        ;; org-download
+        ;; flycheck-package
+        ;; hungry-delete
+        ;; flyspell
+        ;; hl-anything
+        ;; tagedit
+        ;; js-comint
+        ;; evil-vimish-fold
+        ;; post extension names go here
+        ;; nodejs-repl-eval don't support es6 and js2-mode also don't support it
+        ;; so I use js-comit instead.
+        ;; plain-org-wiki
         ))
 
 (defun zilongshanren/init-profiler-report-mode ()
@@ -979,7 +974,7 @@ be global."
       (setq org-tags-match-list-sublevels nil)
 
       ;; http://wenshanren.org/?p=327
-      ;; change it to helm
+      ;; change it to ivy
       (defun zilongshanren/org-insert-src-block (src-code-type)
         "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
         (interactive

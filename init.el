@@ -34,7 +34,6 @@ values."
    '(
      go
      windows-scripts
-     spacemacs-helm
      spacemacs-ivy
      better-defaults
      github
@@ -382,18 +381,10 @@ layers configuration."
   (bb/define-key company-active-map
     (kbd "C-w") 'evil-delete-backward-word)
 
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
-
-  (with-eval-after-load 'helm-swoop
-    (define-key helm-swoop-map (kbd "C-w") 'evil-delete-backward-word))
-
   (add-hook 'text-mode-hook 'auto-fill-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
-  (with-eval-after-load 'helm-files
-    (define-key helm-find-files-map (kbd "s-c") 'helm-ff-run-copy-file))
   (spacemacs/toggle-automatic-symbol-highlight-on)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
@@ -425,7 +416,6 @@ layers configuration."
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   ;; For Javascript
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (spacemacs/set-leader-keys "rh" 'helm-resume)
   (spacemacs/set-leader-keys "ri" 'ivy-resume)
   (spacemacs|add-company-hook 'text-mode)
 
@@ -435,9 +425,6 @@ layers configuration."
       (let ((dir (file-name-directory filename)))
         (unless (file-exists-p dir)
           (make-directory dir t)))))
-  ;; temp fix for spacemacs/jump-in-buffer
-  (spacemacs/set-leader-keys "sj" 'helm-semantic-or-imenu)
-  (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
   (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
   ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html

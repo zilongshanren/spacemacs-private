@@ -28,10 +28,6 @@
  '(golden-ratio-exclude-modes
    (quote
     ("bs-mode" "calc-mode" "ediff-mode" "dired-mode" "gud-mode" "gdb-locals-mode" "gdb-registers-mode" "gdb-breakpoints-mode" "gdb-threads-mode" "gdb-frames-mode" "gdb-inferior-io-mode" "gud-mode" "gdb-inferior-io-mode" "gdb-disassembly-mode" "gdb-memory-mode" "restclient-mode" "speedbar-mode" term-mode)))
- '(helm-ag-always-set-extra-option nil)
- '(helm-gtags-update-interval-second 35)
- '(helm-ls-git-fuzzy-match t)
- '(helm-ls-git-show-abs-or-relative (quote absolute))
  '(ivy-height 18)
  '(js2-include-jslint-globals nil)
  '(lua-documentation-url "http://www.lua.org/manual/5.3/manual.html")
@@ -75,9 +71,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
- '(helm-ls-git-modified-and-staged-face ((t (:foreground "dark cyan"))))
- '(helm-ls-git-modified-not-staged-face ((t (:foreground "dark cyan"))))
- '(helm-ls-git-renamed-modified-face ((t (:foreground "dark cyan"))))
  '(iedit-occurrence ((t (:inherit cursor))))
  '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
 ;; Do not write anything past this comment. This is where Emacs will

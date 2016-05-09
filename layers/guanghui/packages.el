@@ -32,7 +32,7 @@
         ;; hydra
         lispy
         org-octopress
-        helm-github-stars
+        ;; helm-github-stars
         command-log
         evil
         deft
@@ -204,12 +204,7 @@
                         "rep" "reverse" "sub" "upper" "concat" "pack" "insert" "remove" "unpack" "sort"
                         "lower") company-keywords-alist))
 
-    (spacemacs/set-leader-keys-for-major-mode 'lua-mode
-      "<tab>" 'hs-toggle-hiding
-      "gg" 'helm-gtags-dwim
-      "gr" 'helm-gtags-find-rtag
-      "gs" 'helm-gtags-find-symbol
-      "gf" 'helm-gtags-find-files)))
+    ))
 
 (defun guanghui/post-init-elfeed ()
   (use-package elfeed
@@ -826,9 +821,6 @@
           output-string))
       (define-key org-mode-map (kbd "s-p") 'org-priority)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-      (spacemacs/set-leader-keys-for-major-mode 'org-mode
-        "owh" 'plain-org-wiki-helm
-        "owf" 'plain-org-wiki)
       (setq org-mobile-directory "~/org-notes/org")
       )))
 
