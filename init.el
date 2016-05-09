@@ -42,7 +42,7 @@ values."
                       version-control-global-margin t)
      osx
      latex
-     semantic                           ; too slow
+     ;; semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -120,10 +120,12 @@ values."
                                     srefactor
                                     org-download
                                     org-timer
+                                    livid-mode
                                     org-plus-contrib
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
+                                    semantic
                                     spaceline
                                     ;; i prefer iedit
                                     multiple-cursors
@@ -432,7 +434,7 @@ layers configuration."
         (unless (file-exists-p dir)
           (make-directory dir t)))))
   ;; temp fix for spacemacs/jump-in-buffer
-  (spacemacs/set-leader-keys "sj" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys "sj" 'counsel-imenu)
   (spacemacs/set-leader-keys "sS" 'spacemacs/helm-swoop-region-or-symbol)
 
   (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
