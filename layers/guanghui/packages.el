@@ -20,7 +20,7 @@
         org-tree-slide
         js2-mode
         find-file-in-project
-        org-bullets
+        ;; org-bullets
         ;; evil-escape
         (cc-mode :location built-in)
         youdao-dictionary

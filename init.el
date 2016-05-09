@@ -113,6 +113,8 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     emmet-mode
+                                    org-bullets
+                                    js2-refactor
                                     stickyfunc-enhance
                                     flx-ido
                                     smooth-scrolling
