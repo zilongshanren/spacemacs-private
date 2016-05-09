@@ -105,6 +105,7 @@ values."
                                     magit-gitflow
                                     evil-mc
                                     pangu-spacing
+                                    holy-mode
                                     skewer-mode
                                     highlight-indentation
                                     vi-tilde-fringe
