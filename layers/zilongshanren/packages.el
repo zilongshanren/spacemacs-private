@@ -298,7 +298,8 @@ open and unsaved."
         "p" 'peep-dired-prev-file
         "n" 'peep-dired-next-file
         "z" 'dired-get-size
-        "c" 'dired-copy-file-here)
+        "c" 'dired-copy-file-here
+        ")" 'dired-omit-mode)
       )
     :defer t
     )
