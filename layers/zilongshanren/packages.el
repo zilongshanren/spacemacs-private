@@ -50,7 +50,7 @@
         erc
         smartparens
         peep-dired
-        (profiler-report-mode :location built-in)
+        (profiler :location built-in)
         flyspell-correct
         ))
 
@@ -61,8 +61,8 @@
     :bind (:map flyspell-mode-map
                 ("C-;" . flyspell-correct-word-generic))))
 
-(defun zilongshanren/init-profiler-report-mode ()
-  (use-package profiler-report-mode
+(defun zilongshanren/init-profiler ()
+  (use-package profiler
     :init
     (evilified-state-evilify profiler-report-mode profiler-report-mode-map)))
 
