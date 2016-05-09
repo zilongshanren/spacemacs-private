@@ -838,8 +838,6 @@ be global."
           (message "\"%s\" now expands to \"%s\" %sally"
                    bef aft (if p "loc" "glob")))))
 
-    (setq save-abbrevs 'silently)
-    (setq-default abbrev-mode t)
 
     (bind-key* "C-;" 'zilongshanren/flyspell-goto-previous-error)
     (global-set-key (kbd "C-c s") 'helm-flyspell-correct)))
