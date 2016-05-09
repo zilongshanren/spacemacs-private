@@ -83,7 +83,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-sort-by-usage t
+     (auto-completion :variables auto-completion-enable-sort-by-usage nil
                       :disabled-for org markdown)
      (shell :variables
             shell-default-position 'full

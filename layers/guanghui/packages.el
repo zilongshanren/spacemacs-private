@@ -618,7 +618,7 @@
 
 (defun guanghui/post-init-js2-mode ()
   (progn
-    (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords)
+    (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
 
     (zilongshanren|toggle-company-backends company-tern)
@@ -638,7 +638,7 @@
       '(progn
          (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
          (add-hook 'js2-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
-         (define-key js2-mode-map   (kbd "s-.") 'company-etags)))))
+         (define-key js2-mode-map   (kbd "s-.") 'company-tern)))))
 
 (defun guanghui/init-org-tree-slide ()
   (use-package org-tree-slide
