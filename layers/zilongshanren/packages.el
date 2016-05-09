@@ -47,7 +47,7 @@
         ;; hungry-delete
         ;; flyspell
         find-file-in-project
-        hl-anything
+        ;; hl-anything
         projectile
         wrap-region
         web-mode
@@ -470,19 +470,19 @@ open and unsaved."
                                                                       org-mode-hook
                                                                       markdown-mode-hook))
 
-    (defun zilongshanren/load-yasnippet ()
-      (unless yas-global-mode
-        (progn
-          (yas-global-mode 1)
-          (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
-          (setq yas-snippet-dirs  my-snippet-dir)
-          (yas-load-directory my-snippet-dir)
-          (setq yas-wrap-around-region t)))
-      (yas-minor-mode 1))
+    ;; (defun zilongshanren/load-yasnippet ()
+    ;;   (unless yas-global-mode
+    ;;     (progn
+    ;;       (yas-global-mode 1)
+    ;;       (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
+    ;;       (setq yas-snippet-dirs  my-snippet-dir)
+    ;;       (yas-load-directory my-snippet-dir)
+    ;;       (setq yas-wrap-around-region t)))
+    ;;   (yas-minor-mode 1))
 
-    (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
-                                                            markdown-mode-hook
-                                                            org-mode-hook))
+    ;; (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+    ;;                                                         markdown-mode-hook
+    ;;                                                         org-mode-hook))
     ))
 
 (defun zilongshanren/post-init-racket-mode ()
@@ -532,7 +532,7 @@ open and unsaved."
     (progn
       ;; (add-hook 'lispy-mode-hook 'spacemacs/toggle-aggressive-indent-on)
       (add-hook 'eval-expression-minibuffer-setup-hook 'lispy-mode)
-      ;; (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+      (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
       ;; (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))

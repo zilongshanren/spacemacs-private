@@ -112,6 +112,7 @@ values."
                                     ace-jump-helm-line
                                     evil-tutor
                                     eyebrowse
+                                    hl-anything
                                     emmet-mode
                                     org-bullets
                                     js2-refactor
