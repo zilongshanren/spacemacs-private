@@ -25,7 +25,7 @@
         (cc-mode :location built-in)
         youdao-dictionary
         ;; chinese-wbim
-        ;; multiple-cursors
+        multiple-cursors
         visual-regexp-steroids
         nodejs-repl
         company-c-headers
@@ -477,6 +477,7 @@
   (use-package multiple-cursors
     :init
     (progn
+
       (bind-key* "C-s-l" 'mc/edit-lines)
       (bind-key* "C-s-f" 'mc/mark-all-dwim)
       (bind-key* "C-s-." 'mc/mark-next-like-this)
@@ -502,7 +503,35 @@
       (define-key endless/mc-map "l" #'mc/edit-lines)
       (define-key endless/mc-map "\C-a" #'mc/edit-beginnings-of-lines)
       (define-key endless/mc-map "\C-e" #'mc/edit-ends-of-lines)
-      )))
+      )
+    :config
+    (setq mc/cmds-to-run-for-all
+          '(
+            electric-newline-and-maybe-indent
+            hungry-delete-backward
+            spacemacs/backward-kill-word-or-region
+            spacemacs/smart-move-beginning-of-line
+            lispy-move-beginning-of-line
+            lispy-move-end-of-line
+            evil-exit-visual-state
+            evil-backward-char
+            evil-delete-char
+            evil-escape-emacs-state
+            evil-escape-insert-state
+            evil-exit-emacs-state
+            evil-previous-visual-line
+            evil-next-visual-line
+            evil-forward-char
+            evil-insert
+            evil-next-line
+            evil-normal-state
+            evil-previous-line
+            forward-sentence
+            kill-sentence
+            org-self-insert-command
+            sp-backward-delete-char
+            sp-delete-char
+            sp-remove-active-pair-overlay))))
 
 (defun guanghui/post-init-persp-mode ()
   (when (fboundp 'spacemacs|define-custom-layout)

@@ -127,8 +127,6 @@ values."
                                     git-gutter
                                     git-gutter-fringe
                                     spaceline
-                                    ;; i prefer iedit
-                                    multiple-cursors
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
