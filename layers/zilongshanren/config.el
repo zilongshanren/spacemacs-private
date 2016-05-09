@@ -68,10 +68,8 @@
 ;; keep in mind known issues with zsh - see emacs wiki
 ;; (setq tramp-default-method "ssh")
 
-(set-default 'imenu-auto-rescan t)
-
-
-
+;; This line has very bad performance lose!!!!!!!!!!!!!!!!!!!
+;; (set-default 'imenu-auto-rescan t)
 
 (setq auto-mode-alist
       (append
@@ -156,9 +154,6 @@ Single Capitals as you type."
   (add-to-list 'ispell-skip-region-alist '("=" "="))
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC")))
 (add-hook 'org-mode-hook #'endless/org-ispell)
-
-;;set region face for monokai theme
-(set-face-attribute 'region nil :background "#696969")
 
 
 ;;Don’t ask me when close emacs with process is running
