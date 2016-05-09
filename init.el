@@ -104,6 +104,7 @@ values."
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
+                                    pangu-spacing
                                     skewer-mode
                                     highlight-indentation
                                     vi-tilde-fringe
@@ -354,7 +355,6 @@ in `dotspacemacs/user-config'."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)

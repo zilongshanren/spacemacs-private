@@ -28,7 +28,7 @@
         helm-flyspell
         helm
         ;; helm-ls-git
-        keyfreq
+        ;; keyfreq ;;heavy memory consumption
         ;; worf
         ;; org-download
         ;; flycheck-package
@@ -70,7 +70,13 @@
         erc
         smartparens
         peep-dired
+        (profiler-report-mode :location built-in)
         ))
+
+(defun zilongshanren/init-profiler-report-mode ()
+  (use-package profiler-report-mode
+    :init
+    (evilified-state-evilify profiler-report-mode profiler-report-mode-map)))
 
 (defun zilongshanren/post-init-gist ()
   (use-package gist
