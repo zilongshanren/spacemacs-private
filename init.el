@@ -83,7 +83,7 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-sort-by-usage nil
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
      (shell :variables
             shell-default-position 'full
@@ -104,6 +104,7 @@ values."
                                     magit-gitflow
                                     evil-mc
                                     skewer-mode
+                                    highlight-indentation
                                     vi-tilde-fringe
                                     coffee-mode
                                     ace-jump-helm-line
