@@ -41,7 +41,7 @@ values."
                       version-control-global-margin t)
      osx
      latex
-     semantic                           ; too slow
+     ;; semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
