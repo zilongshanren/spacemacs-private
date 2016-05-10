@@ -32,16 +32,16 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     go
-     windows-scripts
+     ;; go
+     ;; windows-scripts
      spacemacs-ivy
      better-defaults
      github
      (version-control :variables version-control-diff-tool 'git-gutter+
                       version-control-global-margin t)
      osx
-     latex
-     ;; semantic                           ; too slow
+     ;; latex
+     semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -54,7 +54,7 @@ values."
      python
      lua
      html
-     command-log
+     ;; command-log
      javascript
      ;; restclient
      emacs-lisp
@@ -66,7 +66,7 @@ values."
      ;; elfeed
      ranger
      ;; racket
-     gtags
+     ;; gtags
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
      ;; eyebrowse
@@ -84,10 +84,10 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     (shell :variables
-            shell-default-position 'full
-            shell-default-shell 'ansi-term
-            shell-default-term-shell "/bin/zsh")
+     ;; (shell :variables
+     ;;        shell-default-position 'full
+     ;;        shell-default-shell 'ansi-term
+     ;;        shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
