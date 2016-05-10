@@ -131,6 +131,7 @@ values."
                                     git-gutter
                                     git-gutter-fringe
                                     spaceline
+                                    alert
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
@@ -352,6 +353,7 @@ in `dotspacemacs/user-config'."
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   (setq evil-shift-round nil)
+  (setq byte-compile-warnings '(not obsolete))
   )
 
 (defun dotspacemacs/user-config ()
