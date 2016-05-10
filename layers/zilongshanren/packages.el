@@ -449,9 +449,9 @@ open and unsaved."
           (setq yas-wrap-around-region t)))
       (yas-minor-mode 1))
 
-    ;; (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
-    ;;                                                         markdown-mode-hook
-    ;;                                                         org-mode-hook))
+    (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
+                                                            markdown-mode-hook
+                                                            org-mode-hook))
     ))
 
 (defun zilongshanren/post-init-racket-mode ()
