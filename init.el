@@ -112,11 +112,9 @@ values."
                                     evil-tutor
                                     eyebrowse
                                     hl-anything
-                                    emmet-mode
                                     org-bullets
                                     js2-refactor
                                     stickyfunc-enhance
-                                    flx-ido
                                     smooth-scrolling
                                     org-repo-todo
                                     chinese-wbim
