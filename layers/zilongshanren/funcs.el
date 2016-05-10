@@ -401,7 +401,7 @@ With PREFIX, cd to project root."
   (interactive)
   (if (zilongshanren/project-root)
       (counsel-git)
-    (helm-projectile-find-file)))
+    (ido-find-file)))
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
 (defun zilongshanren/growl-notification (title message &optional sticky)

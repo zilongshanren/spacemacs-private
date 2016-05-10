@@ -77,7 +77,8 @@
 
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 
-(spacemacs/set-leader-keys "ol" 'zilongshanren/load-my-layout)
+(spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
+(spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "<f9>") 'org-capture)

@@ -32,7 +32,6 @@
         ;; hydra
         lispy
         org-octopress
-        ;; helm-github-stars
         command-log
         evil
         deft
@@ -350,13 +349,6 @@
     ;; (define-key evil-emacs-state-map [escape] 'evil-normal-state)
     ))
 
-(defun guanghui/init-helm-github-stars ()
-  (use-package helm-github-stars
-    :defer t
-    :config
-    (progn
-      (setq helm-github-stars-username "zilongshanren")
-      (setq helm-github-stars-cache-file "~/.emacs.d/.cache/hgs-cache"))))
 
 (defun guanghui/init-org-octopress ()
   (use-package org-octopress
@@ -596,7 +588,7 @@
   (progn
     (defun zilongshanren/search-in-fireball ()
       (interactive)
-      (helm-do-ag (expand-file-name "~/Github/fireball/")))
+      (counsel-ag "" (expand-file-name "~/Github/fireball/")))
     (spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)
 
     ;; If you use other VCS (subversion, for example), enable the following option

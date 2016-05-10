@@ -109,7 +109,6 @@ values."
                                     highlight-indentation
                                     vi-tilde-fringe
                                     coffee-mode
-                                    ace-jump-helm-line
                                     evil-tutor
                                     eyebrowse
                                     hl-anything

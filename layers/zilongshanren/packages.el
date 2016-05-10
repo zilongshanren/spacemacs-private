@@ -40,7 +40,7 @@
         web-mode
         gist
         ctags-update
-        beacon
+        ;; beacon
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
