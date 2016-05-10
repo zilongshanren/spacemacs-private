@@ -26,7 +26,7 @@
 
 (global-set-key [(shift return)] 'zilongshanren/smart-open-line)
 
-(define-key global-map (kbd "<f1>") 'zilongshanren/hotspots)
+(define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 
 ;; (global-set-key (kbd "C-.") 'company-capf)

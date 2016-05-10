@@ -65,29 +65,10 @@
     (sit-for 4)
     (browse-url "http://localhost:4000")))
 
-;; refacto to hydra
-
-;; (defun zilongshanren/hotspots ()
-;;   "helm interface to my hotspots, which includes my locations,
-;; org-files and bookmarks"
-;;   (interactive)
-;;   (helm :buffer "*helm: utities*"
-;;         :sources `(,(zilongshanren//hotspots-sources))))
-
-;; (defun zilongshanren//hotspots-sources ()
-;;   "Construct the helm sources for my hotspots"
-;;   `((name . "Mail and News")
-;;    (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
-;;                   ("RSS" . elfeed)
-;;                   ("Blog" . org-octopress)
-;;                   ("Github" . (lambda() (helm-github-stars)))
-;;                   ("Calculator" . (lambda () (helm-calcul-expression)))
-;;                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
-;;                   ("Agenda" . (lambda () (org-agenda "" "a")))
-;;                   ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
-;;    (candidate-number-limit)
-;;    (action . (("Open" . (lambda (x) (funcall x)))))))
-
+(defhydra hydra-hotspots (:color blue)
+  "Hotspots"
+  ("b" org-octopress "blog")
+  ("r" zilongshanren/run-current-file "run current file"))
 
 ;; Screenshot
 (defun zilongshanren//insert-org-or-md-img-link (prefix imagename)
