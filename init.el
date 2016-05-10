@@ -145,6 +145,24 @@ values."
                                     spray
                                     doc-view
                                     lorem-ipsum
+                                    ac-ispell
+                                    ace-jump-mode
+                                    ace-pinyin
+                                    find-by-pinyin-dired
+                                    auto-complete
+                                    auto-dictionary
+                                    clang-format
+                                    define-word
+                                    disaster
+                                    epic
+                                    fancy-battery
+                                    neotree
+                                    org-present
+                                    orgit
+                                    orglue
+                                    spacemacs-theme
+                                    spinner
+                                    tagedit
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
