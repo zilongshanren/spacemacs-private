@@ -433,6 +433,14 @@ layers configuration."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;; Don't move back the cursor one position when exiting insert mode
   (setq evil-move-cursor-back nil)
+
+  (defhydra hydra-hotspots (:color blue)
+    "Hotspots"
+    ("b" org-octopress "blog")
+    ("r" zilongshanren/run-current-file "run current file"))
+
+  (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

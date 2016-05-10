@@ -29,7 +29,7 @@
         visual-regexp-steroids
         nodejs-repl
         company-c-headers
-        ;; hydra
+;        hydra
         lispy
         org-octopress
         command-log
@@ -411,7 +411,6 @@
         ("m" yas/minor-mode)
         ("a" yas-reload-all))
 
-      ;; (bind-key* "<f3>" 'hydra-yasnippet/body)
 
       (defhydra hydra-apropos (:color blue)
         "Apropos"

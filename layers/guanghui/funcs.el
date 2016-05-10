@@ -65,10 +65,6 @@
     (sit-for 4)
     (browse-url "http://localhost:4000")))
 
-(defhydra hydra-hotspots (:color blue)
-  "Hotspots"
-  ("b" org-octopress "blog")
-  ("r" zilongshanren/run-current-file "run current file"))
 
 ;; Screenshot
 (defun zilongshanren//insert-org-or-md-img-link (prefix imagename)
