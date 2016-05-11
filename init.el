@@ -442,7 +442,12 @@ layers configuration."
     ("r" zilongshanren/run-current-file "run current file"))
 
   (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
-
+  (with-eval-after-load 'whitespace
+    (diminish 'whitespace-mode))
+  (with-eval-after-load 'smartparens
+    (diminish 'smartparens-mode))
+  (with-eval-after-load 'which-key
+    (diminish 'which-key-mode))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
