@@ -32,8 +32,6 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; go
-     ;; windows-scripts
      spacemacs-ivy
      better-defaults
      github
@@ -59,17 +57,10 @@ values."
      ;; restclient
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
-     ;; emoji
-     ;; ycmd
-     ;; fasd
-     ;; deft
-     ;; elfeed
      ranger
      ;; racket
-     ;; gtags
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
-     ;; eyebrowse
      colors
      (git :variables
           git-magit-status-fullscreen t
@@ -77,7 +68,6 @@ values."
           magit-save-repository-buffers 'dontask
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
-          ;; This is really creepy magit
           magit-revision-show-gravatars nil)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
