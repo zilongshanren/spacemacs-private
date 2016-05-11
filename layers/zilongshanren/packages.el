@@ -318,6 +318,7 @@ open and unsaved."
           regexp-history)
     (call-interactively 'occur))
   (bind-key* "M-s o" 'occur-dwim)
+  (spacemacs/set-leader-keys "od" 'occur-dwim)
   (evilified-state-evilify occur-mode occur-mode-map
     "RET" 'occur-mode-goto-occurrence))
 
