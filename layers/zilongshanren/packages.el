@@ -657,6 +657,7 @@ open and unsaved."
 
 
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
+        (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-call)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
         (define-key ivy-minibuffer-map (kbd "C-s-j") 'ivy-immediate-done)
         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
