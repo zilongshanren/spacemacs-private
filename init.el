@@ -103,7 +103,6 @@ values."
                                     eyebrowse
                                     hl-anything
                                     org-bullets
-                                    js2-refactor
                                     stickyfunc-enhance
                                     smooth-scrolling
                                     org-repo-todo
