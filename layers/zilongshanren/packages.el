@@ -52,7 +52,12 @@
         peep-dired
         (profiler :location built-in)
         flyspell-correct
+        ag
         ))
+
+(defun zilongshanren/init-ag ()
+  (use-package ag
+    :init))
 
 (defun zilongshanren/init-flyspell-correct ()
   (use-package flyspell-correct

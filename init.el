@@ -306,7 +306,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -383,7 +383,6 @@ layers configuration."
   (add-hook 'org-mode-hook 'auto-fill-mode)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
-  (spacemacs/toggle-automatic-symbol-highlight-on)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
   (setq-default header-line-format
@@ -391,8 +390,7 @@ layers configuration."
 
   (add-hook 'prog-mode-hook
             (lambda ()
-              (when (> (buffer-size) 100000)
-                (turn-off-show-smartparens-mode))))
+              (turn-off-show-smartparens-mode)))
 
   ;; improve the performance of opening large file
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
