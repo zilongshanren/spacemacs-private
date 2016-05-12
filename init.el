@@ -447,6 +447,11 @@ layers configuration."
     (diminish 'smartparens-mode))
   (with-eval-after-load 'which-key
     (diminish 'which-key-mode))
+
+  (setq mode-line-misc-info
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
