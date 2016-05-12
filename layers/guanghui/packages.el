@@ -689,6 +689,9 @@
               ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
                "* TODO [#B] %?\n  %i\n %U"
                :empty-lines 1)
+              ("s" "Code Snippet" entry
+               (file "~/org-notes/snippets.org")
+               "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
               ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
