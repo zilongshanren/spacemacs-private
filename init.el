@@ -39,7 +39,7 @@ values."
                       version-control-global-margin t)
      osx
      ;; latex
-     semantic                           ; too slow
+     ;; semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -98,6 +98,7 @@ values."
                                     skewer-mode
                                     highlight-indentation
                                     vi-tilde-fringe
+                                    open-junk-file
                                     coffee-mode
                                     evil-tutor
                                     eyebrowse
