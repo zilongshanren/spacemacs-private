@@ -657,9 +657,13 @@ open and unsaved."
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
 
 
+        (spacemacs/set-leader-keys "sp" 'counsel-git-grep)
+        (spacemacs/set-leader-keys "sP" 'spacemacs/counsel-git-grep-region-or-symbol)
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
         (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-call)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
+        (define-key ivy-minibuffer-map (kbd "C-c C-e") 'counsel-git-grep-query-replace)
+        (define-key ivy-minibuffer-map (kbd "<f3>") 'ivy-occur)
         (define-key ivy-minibuffer-map (kbd "C-s-j") 'ivy-immediate-done)
         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
         (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
