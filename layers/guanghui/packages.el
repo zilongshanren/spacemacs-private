@@ -549,8 +549,72 @@
 
 (defun guanghui/post-init-cc-mode ()
   (progn
-    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-gtags)
+    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-etags)
                                            company-files company-dabbrev))
+    (spacemacs/set-leader-keys-for-major-mode 'c++-mode
+      "gd" 'etags-select-find-tag-at-point)
+
+    (defun my-project-name-contains-substring (REGEX)
+      (let ((dir (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   "")))
+        (string-match-p REGEX dir)))
+
+    (defun my-create-tags-if-needed (SRC-DIR &optional FORCE)
+      "return the full path of tags file"
+      (let ((dir (file-name-as-directory (file-truename SRC-DIR)) )
+            file)
+        (setq file (concat dir "TAGS"))
+        (when (or FORCE (not (file-exists-p file)))
+          (message "Creating TAGS in %s ..." dir)
+          (shell-command
+           (format "ctags -f %s -e -R %s" file dir))
+          )
+        file
+        ))
+
+    (defvar my-tags-updated-time nil)
+
+    (defun my-update-tags ()
+      (interactive)
+      "check the tags in tags-table-list and re-create it"
+      (dolist (tag tags-table-list)
+        (my-create-tags-if-needed (file-name-directory tag) t)
+        ))
+
+    (defun my-auto-update-tags-when-save ()
+      (interactive)
+      (cond
+       ((not my-tags-updated-time)
+        (setq my-tags-updated-time (current-time)))
+       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300)
+        ;; < 300 seconds
+        ;; do nothing
+        )
+       (t
+        (setq my-tags-updated-time (current-time))
+        (my-update-tags)
+        (message "updated tags after %d seconds." (- (float-time (current-time))  (float-time my-tags-updated-time)))
+        )
+       ))
+
+    (defun my-setup-develop-environment ()
+      (when (my-project-name-contains-substring "guanghui")
+        (cond
+         ((my-project-name-contains-substring "cocos2d-x")
+          ;; C++ project don't need html tags
+          (setq tags-table-list (list (my-create-tags-if-needed "~/cocos2d-x/cocos")))
+          )
+         ((my-project-name-contains-substring "github/fireball")
+          ;; html project donot need C++ tags
+          (setq tags-table-list (list (my-create-tags-if-needed "~/github/fireball/engine/cocos2d")))
+          ))))
+
+    (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
+    (add-hook 'js2-mode-hook 'my-setup-develop-environment)
+    (add-hook 'web-mode-hook 'my-setup-develop-environment)
+    (add-hook 'c++-mode-hook 'my-setup-develop-environment)
+    (add-hook 'c-mode-hook 'my-setup-develop-environment)
 
 
     ;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
