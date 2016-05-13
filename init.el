@@ -438,7 +438,7 @@ layers configuration."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;; Don't move back the cursor one position when exiting insert mode
   (setq evil-move-cursor-back nil)
-
+  (global-hungry-delete-mode t)
   (defhydra hydra-hotspots (:color blue)
     "Hotspots"
     ("b" org-octopress "blog")
@@ -451,6 +451,8 @@ layers configuration."
     (diminish 'smartparens-mode))
   (with-eval-after-load 'which-key
     (diminish 'which-key-mode))
+  (with-eval-after-load 'hungry-delete
+    (diminish 'hungry-delete-mode))
 
   (setq mode-line-misc-info
         ;; We remove Which Function Mode from the mode line, because it's mostly
