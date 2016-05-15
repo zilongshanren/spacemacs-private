@@ -39,7 +39,6 @@ values."
                       version-control-global-margin t)
      osx
      ;; latex
-     ;; semantic                           ; too slow
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -74,10 +73,10 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     ;; (shell :variables
-     ;;        shell-default-position 'full
-     ;;        shell-default-shell 'ansi-term
-     ;;        shell-default-term-shell "/bin/zsh")
+     (shell :variables
+            shell-default-position 'full
+            shell-default-shell 'ansi-term
+            shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
@@ -104,7 +103,6 @@ values."
                                     eyebrowse
                                     hl-anything
                                     org-bullets
-                                    stickyfunc-enhance
                                     smooth-scrolling
                                     org-repo-todo
                                     chinese-wbim
