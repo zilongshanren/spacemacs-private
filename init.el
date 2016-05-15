@@ -115,7 +115,6 @@ values."
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
-                                    spaceline
                                     alert
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
@@ -392,6 +391,7 @@ layers configuration."
   (setq-default header-line-format
                 '((which-func-mode ("" which-func-format " "))))
 
+  ;; show smartparens mode will cause Emacs frozen when use swiper...
   (add-hook 'prog-mode-hook
             (lambda ()
               (turn-off-show-smartparens-mode)))
