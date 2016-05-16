@@ -392,9 +392,8 @@ layers configuration."
                 '((which-func-mode ("" which-func-format " "))))
 
   ;; show smartparens mode will cause Emacs frozen when use swiper...
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              (turn-off-show-smartparens-mode)))
+  (turn-off-show-smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-show-smartparens-mode)
 
   ;; improve the performance of opening large file
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
