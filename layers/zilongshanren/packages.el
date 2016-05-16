@@ -47,12 +47,12 @@
         (whitespace :location built-in)
         (doxymacs :location local)
         (nodejs-repl-eval :location local)
-        erc
+        ;; erc
         smartparens
         peep-dired
         (profiler :location built-in)
         flyspell-correct
-        ag
+        ;; ag
         ))
 
 (defun zilongshanren/init-ag ()
