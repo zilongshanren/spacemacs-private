@@ -587,7 +587,7 @@
       (cond
        ((not my-tags-updated-time)
         (setq my-tags-updated-time (current-time)))
-       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300)
+       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 1500)
         ;; < 300 seconds
         ;; do nothing
         )
@@ -610,7 +610,8 @@
           (setq tags-table-list (list (my-create-tags-if-needed "~/github/fireball/engine/cocos2d")))
           ))))
 
-    (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
+    ;; (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
+    (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)
     (add-hook 'js2-mode-hook 'my-setup-develop-environment)
     (add-hook 'web-mode-hook 'my-setup-develop-environment)
     (add-hook 'c++-mode-hook 'my-setup-develop-environment)
