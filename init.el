@@ -33,6 +33,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      spacemacs-ivy
+     react
      better-defaults
      github
      (version-control :variables version-control-diff-tool 'git-gutter+

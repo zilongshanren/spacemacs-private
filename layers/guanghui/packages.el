@@ -670,8 +670,8 @@
         ;; well, I'm not interested in concatenated BIG js file or file in dist/
         (setq-local ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
         ;; do NOT search files in below directories, the default value is better.
-        ;; (setq-default ffip-prune-patterns '(".git" ".hg" "*.svn" "node_modules" "bower_components" "obj"))
-        )
+        (dolist (item '("*/docs/html/*" "*.meta" "*/cocos2d-x/*" "*.asset" "*/visual-tests/res/*"))
+          (push item  ffip-prune-patterns)))
       (when (ffip-current-full-filename-match-pattern-p "\\(/cocos2d-x\\)")
         ;; set the root directory into "~/projs/PROJECT_DIR"
         (setq-local ffip-project-root "~/cocos2d-x")
