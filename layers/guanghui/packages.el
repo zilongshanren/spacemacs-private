@@ -727,7 +727,19 @@
 
 
 (defun guanghui/post-init-projectile ()
-  (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-counsel-git))
+  (progn
+    (defvar my-simple-todo-regex "\\<\\(FIXME\\|TODO\\|BUG\\):")
+
+    (defun my-simple-todo ()
+      "When in a project, create a `multi-occur' buffer matching the
+  regex in `my-simple-todo-regex' across all buffers in the
+  current project. Otherwise do `occur' in the current file."
+      (interactive)
+      (if (projectile-project-p)
+          (multi-occur (projectile-project-buffers) my-simple-todo-regex)
+        (occur my-simple-todo-regex)))
+    (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-counsel-git)
+    (spacemacs/set-leader-keys "pt" 'my-simple-todo)))
 
 (defun guanghui/post-init-org ()
   (with-eval-after-load 'org
