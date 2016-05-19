@@ -641,6 +641,18 @@ open and unsaved."
           (with-ivy-window
             (insert x)))
 
+        (defun ivy-ff-checksum ()
+          (interactive)
+          "Calculate the checksum of FILE. The checksum is copied to kill-ring."
+          (let ((file (expand-file-name ivy--current ivy--directory))
+                (algo (intern (ivy-read
+                               "Algorithm: "
+                               '(md5 sha1 sha224 sha256 sha384 sha512)))))
+            (kill-new (with-temp-buffer
+                        (insert-file-contents-literally file)
+                        (secure-hash algo (current-buffer))))
+            (message "Checksum copied to kill-ring.")))
+
         (ivy-set-actions
          t
          '(("I" ivy-insert-action "insert")))
@@ -666,6 +678,8 @@ open and unsaved."
         (spacemacs/set-leader-keys "sP" 'spacemacs/counsel-git-grep-region-or-symbol)
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
         (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-call)
+        (define-key ivy-minibuffer-map (kbd "C-s-m") 'ivy-partial-or-done)
+        (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done)
         (define-key ivy-minibuffer-map (kbd "C-c C-e") 'counsel-git-grep-query-replace)
         (define-key ivy-minibuffer-map (kbd "<f3>") 'ivy-occur)
