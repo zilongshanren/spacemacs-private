@@ -215,4 +215,3 @@
   )
 
 (add-hook 'prog-mode-hook 'zilongshanren/hack-tab-key)
-(add-hook 'text-mode-hook 'zilongshanren/hack-tab-key)
