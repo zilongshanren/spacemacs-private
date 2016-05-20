@@ -92,6 +92,7 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(magit-gh-pulls
                                     magit-gitflow
+                                    emmet-mode
                                     evil-mc
                                     pangu-spacing
                                     holy-mode
