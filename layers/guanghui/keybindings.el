@@ -91,3 +91,4 @@
 (bind-key* "C-l" 'recenter)
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+(spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
