@@ -17,7 +17,7 @@
         projectile
         (org :location built-in)
         prodigy
-        org-tree-slide
+        ;; org-tree-slide
         js2-mode
         find-file-in-project
         ;; org-bullets
@@ -25,20 +25,20 @@
         (cc-mode :location built-in)
         youdao-dictionary
         ;; chinese-wbim
-        multiple-cursors
+        ;; multiple-cursors
         visual-regexp-steroids
-        nodejs-repl
+        ;; nodejs-repl
         company-c-headers
 ;        hydra
         lispy
         org-octopress
         command-log
         evil
-        deft
-        elfeed
+        ;; deft
+        ;; elfeed
         fcitx
         lua-mode
-        ycmd
+        ;; ycmd
         ;; mwe-log-commands
         org-pomodoro
         discover-my-major
@@ -50,9 +50,9 @@
         4clojure
         persp-mode
         (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
-        osx-dictionary
-        litable
-        pangu-spacing
+        ;; osx-dictionary
+        ;; litable
+        ;; pangu-spacing
         etags-select
         ))
 

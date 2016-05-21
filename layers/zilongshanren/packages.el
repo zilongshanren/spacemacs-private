@@ -36,17 +36,17 @@
         yasnippet
         find-file-in-project
         projectile
-        wrap-region
+        ;; wrap-region
         web-mode
         gist
-        ctags-update
+        ;; ctags-update
         ;; beacon
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
         (whitespace :location built-in)
-        (doxymacs :location local)
-        (nodejs-repl-eval :location local)
+        ;; (doxymacs :location local)
+        ;; (nodejs-repl-eval :location local)
         ;; erc
         smartparens
         peep-dired
