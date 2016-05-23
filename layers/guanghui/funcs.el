@@ -214,4 +214,5 @@
   (local-set-key (kbd "<S-tab>") 'zilongshanren/untab-region)
   )
 
-(add-hook 'prog-mode-hook 'zilongshanren/hack-tab-key)
+;; I'm don't like this settings too much.
+;; (add-hook 'prog-mode-hook 'zilongshanren/hack-tab-key)

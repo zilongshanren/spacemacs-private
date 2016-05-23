@@ -33,7 +33,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      spacemacs-ivy
-     react
+     ;; react
      better-defaults
      github
      (version-control :variables version-control-diff-tool 'git-gutter+
@@ -74,10 +74,6 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     ;; (shell :variables
-     ;;        shell-default-position 'full
-     ;;        shell-default-shell 'ansi-term
-     ;;        shell-default-term-shell "/bin/zsh")
      (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
@@ -118,6 +114,7 @@ values."
                                     git-gutter
                                     git-gutter-fringe
                                     alert
+                                    pcre2el
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
