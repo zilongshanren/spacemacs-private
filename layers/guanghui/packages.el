@@ -49,7 +49,7 @@
         avy
         4clojure
         persp-mode
-        (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
+        ;; (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
         ;; osx-dictionary
         ;; litable
         ;; pangu-spacing
