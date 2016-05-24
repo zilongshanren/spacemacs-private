@@ -340,7 +340,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
 (setq configuration-layer--elpa-archives
-  '(("melpai-cn" . "http://elpa.zilongshanren.com/melpa/")
+  '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
     ("org-cn"   . "http://elpa.zilongshanren.com/org/")
     ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
  
