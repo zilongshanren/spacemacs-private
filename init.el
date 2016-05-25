@@ -364,6 +364,9 @@ layers configuration."
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (setq-default powerline-default-separator 'arrow)
+  (with-eval-after-load 'flyspell
+    (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-word-generic))
+
 
   ;; Utility functions
   (defun bb/define-key (keymap &rest bindings)
