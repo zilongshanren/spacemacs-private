@@ -345,7 +345,7 @@ With PREFIX, cd to project root."
   (interactive (list (read-shell-command
                       "iTerm Shell Command: ")
                      current-prefix-arg))
-  (let* ((dir (if prefix (zilongshanren/project-root)
+  (let* ((dir (if prefix (zilongshanren/vcs-project-root)
                 default-directory))
          ;; if COMMAND is empty, just change directory
          (cmd (format "cd %s ;%s" dir command)))
@@ -362,7 +362,7 @@ With PREFIX, cd to project root."
   end tell
   " cmd))))
 
-(defun zilongshanren/project-root ()
+(defun zilongshanren/vcs-project-root ()
   "Return the project root for current buffer."
   (let ((directory default-directory))
     (or (locate-dominating-file directory ".git")
@@ -399,9 +399,11 @@ With PREFIX, cd to project root."
 
 (defun zilongshanren/open-file-with-projectile-or-counsel-git ()
   (interactive)
-  (if (zilongshanren/project-root)
+  (if (zilongshanren/vcs-project-root)
       (counsel-git)
-    (ido-find-file)))
+    (if (projectile-project-p)
+        (projectile-find-file)
+      (ido-find-file))))
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
 (defun zilongshanren/growl-notification (title message &optional sticky)
