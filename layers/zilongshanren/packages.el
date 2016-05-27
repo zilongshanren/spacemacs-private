@@ -152,12 +152,13 @@
     (setq whitespace-style '(face tabs trailing tab-mark ))
     ;; (setq whitespace-style '(face lines-tail))
     ;; show tab;  use untabify to convert tab to whitespace
-    ;; (setq spacemacs-show-trailing-whitespace nil)
+    (setq spacemacs-show-trailing-whitespace nil)
 
     (setq-default tab-width 4)
     ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
     ;; (setq inhibit-eol-conversion t)
-    (add-hook 'prog-mode-hook 'whitespace-mode)
+    ;; (add-hook 'prog-mode-hook 'whitespace-mode)
+
     ;; (global-whitespace-mode +1)
 
     (with-eval-after-load 'whitespace
