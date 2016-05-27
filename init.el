@@ -91,6 +91,7 @@ values."
                                     emmet-mode
                                     evil-mc
                                     pangu-spacing
+                                    spaceline
                                     holy-mode
                                     skewer-mode
                                     highlight-indentation
