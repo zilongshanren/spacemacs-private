@@ -459,6 +459,24 @@ layers configuration."
         ;; invisible here anyway.
         (assq-delete-all 'which-func-mode mode-line-misc-info))
 
+  (define-fringe-bitmap 'right-curly-arrow
+    [#b00000000
+     #b00000000
+     #b00000000
+     #b00000000
+     #b01110000
+     #b00010000
+     #b00010000
+     #b00000000])
+  (define-fringe-bitmap 'left-curly-arrow
+    [#b00000000
+     #b00001000
+     #b00001000
+     #b00001110
+     #b00000000
+     #b00000000
+     #b00000000
+     #b00000000])
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
