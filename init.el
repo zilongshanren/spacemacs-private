@@ -455,11 +455,6 @@ layers configuration."
   (with-eval-after-load 'hungry-delete
     (diminish 'hungry-delete-mode))
 
-  (setq mode-line-misc-info
-        ;; We remove Which Function Mode from the mode line, because it's mostly
-        ;; invisible here anyway.
-        (assq-delete-all 'which-func-mode mode-line-misc-info))
-
   (define-fringe-bitmap 'right-curly-arrow
     [#b00000000
      #b00000000
