@@ -340,10 +340,10 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-(setq configuration-layer--elpa-archives
-  '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-    ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-    ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
+  (setq configuration-layer--elpa-archives
+        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
+          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
+          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
  
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
@@ -353,6 +353,7 @@ in `dotspacemacs/user-config'."
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   (setq evil-shift-round nil)
   (setq byte-compile-warnings '(not obsolete))
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -477,7 +478,30 @@ layers configuration."
      #b00000000
      #b00000000
      #b00000000])
+  ;; tips:  use diminish-undo to toggle mode l
 
+  (spaceline-compile
+   ;; Left side of the mode line (all the important stuff)
+   '(((persp-name
+       workspace-number
+       window-number
+      )
+      :separator "|"
+      :face highlight-face)
+     ((buffer-modified buffer-size input-method))
+     anzu
+     '(buffer-id remote-host buffer-encoding-abbrev)
+     ((point-position line-column buffer-position selection-info)
+      :separator " | ")
+     major-mode
+     process
+     (flycheck-error flycheck-warning flycheck-info)
+     ;; (python-pyvenv :fallback python-pyenv)
+     ((minor-modes :separator spaceline-minor-modes-separator) :when active)
+     nyan-cat)
+   ;; Right segment (the unimportant stuff)
+   '((version-control :when active)
+     battery))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
