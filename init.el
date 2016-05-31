@@ -32,6 +32,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     spacemacs-helm
      spacemacs-ivy
      ;; react
      better-defaults
@@ -115,7 +116,6 @@ values."
                                     git-gutter
                                     git-gutter-fringe
                                     alert
-                                    pcre2el
                                     ;; disable it for lispy-mode
                                     ;;https://github.com/abo-abo/lispy/issues/137
                                     evil-escape
