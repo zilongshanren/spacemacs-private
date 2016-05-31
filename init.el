@@ -148,6 +148,15 @@ values."
                                     spacemacs-theme
                                     spinner
                                     tagedit
+                                    helm-flyspell
+                                    helm-c-yasnippet
+                                    helm-pydoc
+                                    ace-jump-helm-line
+                                    helm-make
+                                    helm-projectile
+                                    helm-themes
+                                    helm-swoop
+                                    helm-mode-manager
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
