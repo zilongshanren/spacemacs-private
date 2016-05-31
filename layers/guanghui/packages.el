@@ -25,7 +25,7 @@
         (cc-mode :location built-in)
         youdao-dictionary
         ;; chinese-wbim
-        ;; multiple-cursors
+        multiple-cursors
         visual-regexp-steroids
         ;; nodejs-repl
         company-c-headers
@@ -512,6 +512,8 @@
             evil-next-line
             evil-normal-state
             evil-previous-line
+            evil-append
+            evil-append-line
             forward-sentence
             kill-sentence
             org-self-insert-command
