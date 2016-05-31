@@ -34,7 +34,7 @@
         org-octopress
         command-log
         evil
-        ;; deft
+        deft
         ;; elfeed
         fcitx
         lua-mode
@@ -686,6 +686,7 @@
   (progn
     (setq deft-use-filter-string-for-filename t)
     (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
+    (setq deft-recursive t)
     (setq deft-extension "org")
     (setq deft-directory "~/org-notes")))
 

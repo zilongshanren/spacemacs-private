@@ -92,3 +92,5 @@
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 (spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
+
+(bind-key* "C-c k" 'which-key-show-top-level)

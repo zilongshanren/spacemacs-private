@@ -40,6 +40,7 @@ values."
                       version-control-global-margin t)
      osx
      ;; latex
+     deft
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
      org
@@ -91,7 +92,6 @@ values."
                                     emmet-mode
                                     evil-mc
                                     pangu-spacing
-                                    spaceline
                                     holy-mode
                                     skewer-mode
                                     highlight-indentation
@@ -110,7 +110,7 @@ values."
                                     org-download
                                     org-timer
                                     livid-mode
-                                    org-plus-contrib
+                                    ;; org-plus-contrib
                                     org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
@@ -477,6 +477,7 @@ layers configuration."
      #b00000000
      #b00000000
      #b00000000])
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
