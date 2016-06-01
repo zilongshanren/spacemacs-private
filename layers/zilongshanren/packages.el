@@ -59,12 +59,8 @@
   (use-package ag
     :init))
 
-(defun zilongshanren/init-flyspell-correct ()
-  (use-package flyspell-correct
-    :init
-    (setq flyspell-correct-interface 'flyspell-correct-ivy)
-    :bind (:map flyspell-mode-map
-                ("C-;" . flyspell-correct-word-generic))))
+(defun zilongshanren/post-init-flyspell-correct ()
+  (setq flyspell-correct-interface 'flyspell-correct-ivy))
 
 (defun zilongshanren/init-profiler ()
   (use-package profiler

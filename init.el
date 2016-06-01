@@ -32,8 +32,8 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     spacemacs-helm
-     spacemacs-ivy
+     helm
+     ivy
      ;; react
      better-defaults
      github
@@ -76,8 +76,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     (chinese :variables chinese-default-input-method 'wubi
-              chinese-enable-fcitx t
+     (chinese :variables chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
      zilongshanren
      guanghui
@@ -483,6 +482,8 @@ layers configuration."
      #b00000000
      #b00000000])
   ;; tips:  use diminish-undo to toggle mode l
+  (if (configuration-layer/layer-usedp 'helm)
+      (spacemacs/set-leader-keys "rh" 'helm-resume))
 
   )
 
