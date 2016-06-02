@@ -30,7 +30,7 @@
 
 
 (global-prettify-symbols-mode 1)
-(setq-default fill-column 110)
+(setq-default fill-column 80)
 
 (setq recenter-positions '(top middle bottom))
 ;; delete the selection with a key press
