@@ -112,6 +112,14 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
   (use-package etags-select
     :init
     (progn
+      (define-key evil-normal-state-map (kbd "gf")
+        (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
+
+      (define-key evil-normal-state-map (kbd "gb") 'pop-tag-mark)
+
+      (define-key evil-normal-state-map (kbd "gn")
+        (lambda () (interactive) (find-tag last-tag t)))
+
       (evilified-state-evilify etags-select-mode etags-select-mode-map)
       (spacemacs/set-leader-keys-for-major-mode 'js2-mode
         "gd" 'etags-select-find-tag-at-point))))
@@ -640,7 +648,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
       (cond
        ((not my-tags-updated-time)
         (setq my-tags-updated-time (current-time)))
-       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 1500)
+       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300)
         ;; < 300 seconds
         ;; do nothing
         )
@@ -648,10 +656,10 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
         (setq my-tags-updated-time (current-time))
         (my-update-tags)
         (message "updated tags after %d seconds." (- (float-time (current-time))  (float-time my-tags-updated-time)))
-        )
-       ))
+        )))
 
     (defun my-setup-develop-environment ()
+      (interactive)
       (when (my-project-name-contains-substring "guanghui")
         (cond
          ((my-project-name-contains-substring "cocos2d-x")
@@ -660,8 +668,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
           )
          ((my-project-name-contains-substring "github/fireball")
           ;; html project donot need C++ tags
-          (setq tags-table-list (list (my-create-tags-if-needed "~/github/fireball/engine/cocos2d")))
-          ))))
+          (setq tags-table-list (list (my-create-tags-if-needed "~/github/fireball/engine/cocos2d")))))))
 
     ;; (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
     (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)

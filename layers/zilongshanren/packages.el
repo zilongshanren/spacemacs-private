@@ -354,13 +354,6 @@ open and unsaved."
     :init
     (progn
       ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
-      (define-key evil-normal-state-map (kbd "gf")
-        (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
-
-      (define-key evil-normal-state-map (kbd "gb") 'pop-tag-mark)
-
-      (define-key evil-normal-state-map (kbd "gn")
-        (lambda () (interactive) (find-tag last-tag t)))
       )
     :defer t
     :config

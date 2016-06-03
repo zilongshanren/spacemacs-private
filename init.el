@@ -99,6 +99,7 @@ values."
                                     open-junk-file
                                     coffee-mode
                                     evil-tutor
+                                    counsel-projectile
                                     eyebrowse
                                     hl-anything
                                     org-bullets
@@ -484,7 +485,10 @@ layers configuration."
   ;; tips:  use diminish-undo to toggle mode l
   (if (configuration-layer/layer-usedp 'helm)
       (spacemacs/set-leader-keys "rh" 'helm-resume))
-
+  (when (configuration-layer/layer-usedp 'helm)
+    (spacemacs/set-leader-keys "sj" 'counsel-imenu))
+  (when (configuration-layer/layer-usedp 'ivy)
+    (setq projectile-switch-project-action 'zilongshanren/open-file-with-projectile-or-counsel-git))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

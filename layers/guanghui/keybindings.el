@@ -94,3 +94,6 @@
 (spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
 
 (bind-key* "C-c k" 'which-key-show-top-level)
+
+(global-set-key [remap fill-paragraph]
+                #'endless/fill-or-unfill)
