@@ -362,8 +362,6 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
     (define-key evil-ex-completion-map "\C-k" 'kill-line)
     (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
 
-    (define-key evil-visual-state-map (kbd ">") 'zilongshanren/shift-right-visual)
-    (define-key evil-visual-state-map (kbd "<") 'zilongshanren/shift-left-visual)
     (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
     ;; (define-key evil-visual-state-map (kbd "x") 'er/expand-region)
     ;; (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
