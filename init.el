@@ -178,7 +178,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -367,9 +367,9 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
+        '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+          ("org-cn"   . "https://elpa.zilongshanren.com/org/")
+          ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
  
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
