@@ -75,8 +75,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     (chinese :variables chinese-enable-fcitx t
-              chinese-enable-youdao-dict t)
+     (chinese :variables chinese-enable-youdao-dict t)
      zilongshanren
      guanghui
      )
