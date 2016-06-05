@@ -53,7 +53,7 @@ values."
      python
      lua
      html
-     command-log
+     ;; command-log
      javascript
      ;; restclient
      emacs-lisp
