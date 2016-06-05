@@ -186,7 +186,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 (defun guanghui/post-init-popwin ()
   (progn
     (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
-    (delete "*Async Shell Command*" 'popwin:special-display-config)
+    (delete "*Async Shell Command*" popwin:special-display-config)
     ))
 
 (defun guanghui/init-ox-reveal ()
