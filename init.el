@@ -36,8 +36,8 @@ values."
      ;; react
      better-defaults
      github
-     (version-control :variables version-control-diff-tool 'git-gutter+
-                      version-control-global-margin t)
+     ;; (version-control :variables version-control-diff-tool 'git-gutter+
+     ;;                  version-control-global-margin t)
      osx
      ;; latex
      deft
