@@ -43,7 +43,7 @@
         org-pomodoro
         discover-my-major
         popwin
-        ox-reveal
+        ;; ox-reveal
         org-mac-link
         ace-window
         avy
@@ -187,12 +187,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
     (delete "*Async Shell Command*" popwin:special-display-config)
     ))
 
-(defun guanghui/init-ox-reveal ()
-  (use-package ox-reveal
-    :defer t
-    :init
-    (progn
-      (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js"))))
+(defun guanghui/post-init-ox-reveal ()
+  (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js"))
 
 (defun guanghui/init-org-mac-link ()
   (use-package org-mac-link
@@ -430,6 +426,13 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 (defun guanghui/post-init-lispy ()
   (with-eval-after-load 'lispy
     (progn
+      (defun conditionally-enable-lispy ()
+        (when (eq this-command 'eval-expression)
+          (lispy-mode 1)))
+
+      (add-hook
+       'minibuffer-setup-hook
+       'conditionally-enable-lispy)
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
 
