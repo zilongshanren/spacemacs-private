@@ -510,7 +510,8 @@ open and unsaved."
       (spacemacs|add-company-hook sh-mode)
       (spacemacs|add-company-hook lua-mode)
       (spacemacs|add-company-hook nxml-mode)
-      (spacemacs|add-company-hook conf-unix-mode))
+      (spacemacs|add-company-hook conf-unix-mode)
+      )
     ))
 
 (defun zilongshanren/init-cmake-font-lock ()

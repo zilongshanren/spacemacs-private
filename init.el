@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     helm
      ivy
      ;; react
      better-defaults
@@ -499,12 +498,13 @@ layers configuration."
      #b00000000
      #b00000000])
   ;; tips:  use diminish-undo to toggle mode l
-  (if (configuration-layer/layer-usedp 'helm)
-      (spacemacs/set-leader-keys "rh" 'helm-resume))
+  ;; (if (configuration-layer/layer-usedp 'helm)
+  ;;     (spacemacs/set-leader-keys "rh" 'helm-resume))
   (when (configuration-layer/layer-usedp 'helm)
     (spacemacs/set-leader-keys "sj" 'counsel-imenu))
   (when (configuration-layer/layer-usedp 'ivy)
     (setq projectile-switch-project-action 'zilongshanren/open-file-with-projectile-or-counsel-git))
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

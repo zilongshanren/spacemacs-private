@@ -76,8 +76,6 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
           (substring-no-properties (funcall spaceline-org-clock-format-function)))
         :global-override org-mode-line-string)
 
-      (spaceline-helm-mode)
-
       (spaceline-compile
        'zilong
        ;; Left side of the mode line (all the important stuff)
@@ -246,14 +244,11 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
   (progn
     (add-hook 'lua-mode-hook 'evil-matchit-mode)
     (add-hook 'lua-mode-hook 'smartparens-mode)
-    (setq lua-indent-level 4)
-
-    ;; hack for making company-etags working
-    (require 'company-etags)
-    (add-to-list 'company-etags-modes 'lua-mode)
+    (setq lua-indent-level 2)
 
 ;;; add lua language, basic, string and table keywords.
     (with-eval-after-load 'lua-mode
+      (require 'company-keywords)
       (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif" "self" "resume" "yield"
                         "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
                         "until" "while" "__index" "dofile" "getmetatable" "ipairs" "pairs" "print" "rawget" "status"
