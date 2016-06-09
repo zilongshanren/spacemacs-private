@@ -97,7 +97,7 @@
             (progn
               (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
               (shell-command-to-string resize-command-str)))
-        (zilongshanren//insert-org-or-md-img-link "https://zilongshanren.com/" relativepath))
+        (zilongshanren//insert-org-or-md-img-link "https://zilongshanren.com/img/" relativepath))
     (progn
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
       (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png"))))

@@ -853,7 +853,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
               ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"cocos2d-x\"")
               ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"zilongshanren\"")
               ("W" "Weekly Review"
-               ((stuck "")            ;; review stuck projects as designated by org-stuck-projects
+               ((stuck "") ;; review stuck projects as designated by org-stuck-projects
                 (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
                 ))))
 
@@ -877,7 +877,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
                :recursive t
                :html-head , zilongshanren-website-html-blog-head
                :publishing-function org-html-publish-to-html
-               :headline-levels 4           ; Just the default for this project.
+               :headline-levels 4       ; Just the default for this project.
                :auto-preamble t
                :exclude "gtd.org"
                :exclude-tags ("ol" "noexport")
@@ -885,7 +885,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
                :html-preamble ,zilongshanren-website-html-preamble
                :author "zilongshanren"
                :email "guanghui8827@gmail.com"
-               :auto-sitemap t               ; Generate sitemap.org automagically...
+               :auto-sitemap t          ; Generate sitemap.org automagically...
                :sitemap-filename "index.org" ; ... call it sitemap.org (it's the default)...
                :sitemap-title "我的wiki"     ; ... with title 'Sitemap'.
                :sitemap-sort-files anti-chronologically
@@ -902,7 +902,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
       (defun zilong/org-summary-todo (n-done n-not-done)
         "Switch entry to DONE when all subentries are done, to TODO otherwise."
-        (let (org-log-done org-log-states)  ; turn off logging
+        (let (org-log-done org-log-states) ; turn off logging
           (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
       (add-hook 'org-after-todo-statistics-hook 'zilong/org-summary-todo)
@@ -948,6 +948,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
             (insert output-string))
           output-string))
       (define-key org-mode-map (kbd "s-p") 'org-priority)
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
+        "tl" 'org-toggle-link-display)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
       (setq org-mobile-directory "~/org-notes/org")
       )))

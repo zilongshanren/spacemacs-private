@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     helm
      ivy
      ;; react
      better-defaults
@@ -74,7 +75,8 @@ values."
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     (chinese :variables chinese-enable-youdao-dict t)
+     (chinese :variables chinese-enable-youdao-dict t
+              chinese-enable-fcitx t)
      zilongshanren
      guanghui
      )
@@ -498,8 +500,8 @@ layers configuration."
      #b00000000
      #b00000000])
   ;; tips:  use diminish-undo to toggle mode l
-  ;; (if (configuration-layer/layer-usedp 'helm)
-  ;;     (spacemacs/set-leader-keys "rh" 'helm-resume))
+  (if (configuration-layer/layer-usedp 'helm)
+      (spacemacs/set-leader-keys "rh" 'helm-resume))
   (when (configuration-layer/layer-usedp 'helm)
     (spacemacs/set-leader-keys "sj" 'counsel-imenu))
   (when (configuration-layer/layer-usedp 'ivy)
