@@ -88,6 +88,7 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(counsel-projectile
                                     magit-gh-pulls
+                                    spaceline
                                     magit-gitflow
                                     emmet-mode
                                     evil-mc
@@ -148,6 +149,7 @@ values."
                                     spinner
                                     tagedit
                                     helm-flyspell
+                                    flyspell-correct-helm
                                     helm-c-yasnippet
                                     helm-pydoc
                                     ace-jump-helm-line
@@ -392,8 +394,6 @@ layers configuration."
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (setq-default powerline-default-separator 'arrow)
-  (with-eval-after-load 'flyspell
-    (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-word-generic))
 
 
   ;; Utility functions
@@ -433,7 +433,7 @@ layers configuration."
              (hl-line-mode -1))))
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
-  ;; (spacemacs/toggle-automatic-symbol-highlight-on)
+  (spacemacs/toggle-automatic-symbol-highlight-on)
 
   ;; For python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))

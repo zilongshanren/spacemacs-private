@@ -60,7 +60,10 @@
     :init))
 
 (defun zilongshanren/post-init-flyspell-correct ()
-  (setq flyspell-correct-interface 'flyspell-correct-ivy))
+  (progn
+    (with-eval-after-load 'flyspell
+      (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-word-generic))
+    (setq flyspell-correct-interface 'flyspell-correct-ivy)))
 
 (defun zilongshanren/init-profiler ()
   (use-package profiler
