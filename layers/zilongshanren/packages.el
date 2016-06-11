@@ -11,6 +11,14 @@
 
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
+;; wrap-region
+;; ctags-update
+;; beacon
+;; (doxymacs :location local)
+;; (nodejs-repl-eval :location local)
+;; erc
+;; ag
+
 (setq zilongshanren-packages
       '(
         css-mode
@@ -36,24 +44,19 @@
         yasnippet
         find-file-in-project
         projectile
-        ;; wrap-region
         web-mode
-        gist
-        ;; ctags-update
-        ;; beacon
         (occur-mode :location built-in)
         (dired-mode :location built-in)
         js-doc
         (whitespace :location built-in)
-        ;; (doxymacs :location local)
-        ;; (nodejs-repl-eval :location local)
-        ;; erc
         smartparens
         peep-dired
         (profiler :location built-in)
         flyspell-correct
-        ;; ag
+        gist
         ))
+
+
 
 (defun zilongshanren/init-ag ()
   (use-package ag
@@ -73,6 +76,18 @@
 (defun zilongshanren/post-init-gist ()
   (use-package gist
     :defer t
+    :init
+    (setq gist-list-format
+      '((files "File" 30 nil "%s")
+        (id "Id" 10 nil identity)
+        (created "Created" 20 nil "%D %R")
+        (visibility "Visibility" 10 nil
+                    (lambda
+                      (public)
+                      (or
+                       (and public "public")
+                       "private")))
+        (description "Description" 0 nil identity)))
     :config
     (progn
       (spacemacs|define-transient-state gist-list-mode

@@ -12,47 +12,47 @@
 
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
+;; nodejs-repl
+;; hydra
+;; ;; elfeed
+;; company-c-headers
+;; ycmd
+;; mwe-log-commands
+;; ox-reveal
+;; (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
+;; osx-dictionary
+;; litable
+;; pangu-spacing
+;; org-tree-slide
+;; org-bullets
+;; evil-escape
+;; chinese-wbim
 (setq guanghui-packages
       '(
         projectile
         (org :location built-in)
         prodigy
-        ;; org-tree-slide
         js2-mode
         find-file-in-project
-        ;; org-bullets
-        ;; evil-escape
         (cc-mode :location built-in)
         youdao-dictionary
-        ;; chinese-wbim
         multiple-cursors
         visual-regexp-steroids
-        ;; nodejs-repl
-        company-c-headers
-;        hydra
         lispy
         org-octopress
         command-log
         evil
         deft
-        ;; elfeed
         fcitx
         lua-mode
-        ;; ycmd
-        ;; mwe-log-commands
         org-pomodoro
         discover-my-major
         popwin
-        ;; ox-reveal
         org-mac-link
         ace-window
         avy
         4clojure
         persp-mode
-        ;; (gulpjs :location (recipe :fetcher github :repo "zilongshanren/emacs-gulpjs"))
-        ;; osx-dictionary
-        ;; litable
-        ;; pangu-spacing
         etags-select
         spaceline
         ))
