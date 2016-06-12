@@ -680,6 +680,9 @@ open and unsaved."
                       :caller 'counsel-goto-recent-directory)))
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
 
+        (setq ivy-initial-inputs-alist nil)
+        (setq ivy-re-builders-alist
+              '((t . ivy--regex-fuzzy)))
 
         (when (not (configuration-layer/layer-usedp 'helm))
           (spacemacs/set-leader-keys "sp" 'counsel-git-grep)
