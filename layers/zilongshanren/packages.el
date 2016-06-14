@@ -38,7 +38,6 @@
         js2-refactor
         visual-regexp
         visual-regexp-steroids
-        persp-mode
         json-mode
         racket-mode
         yasnippet
