@@ -55,6 +55,9 @@ values."
      html
      ;; command-log
      javascript
+     (typescript :variables
+                 typescript-fmt-on-save nil
+                 typescript-fmt-tool 'typescript-formatter)
      ;; restclient
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
@@ -74,6 +77,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
      (chinese :variables chinese-enable-youdao-dict t
               chinese-enable-fcitx t)
