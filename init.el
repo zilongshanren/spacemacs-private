@@ -88,11 +88,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(powerline)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(counsel-projectile
                                     magit-gh-pulls
-                                    spaceline
                                     magit-gitflow
                                     emmet-mode
                                     evil-mc
@@ -510,9 +509,9 @@ layers configuration."
     (spacemacs/set-leader-keys "sj" 'counsel-imenu))
   (when (configuration-layer/layer-usedp 'ivy)
     (setq projectile-switch-project-action 'zilongshanren/open-file-with-projectile-or-counsel-git))
-  (use-package powerline
-    :config
-    (powerline-center-evil-theme ))
+  ;; (use-package powerline
+  ;;   :config
+  ;;   (powerline-center-evil-theme ))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
