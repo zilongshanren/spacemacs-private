@@ -60,7 +60,7 @@ values."
      (clojure :variables clojure-enable-fancify-symbols t)
      ranger
      ;; racket
-     (spacemacs-layouts :variables layouts-enable-autosave t
+     (spacemacs-layouts :variables layouts-enable-autosave nil
                         layouts-autosave-delay 300)
      colors
      (git :variables
