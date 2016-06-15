@@ -415,9 +415,6 @@ layers configuration."
   (bb/define-key company-active-map
     (kbd "C-w") 'evil-delete-backward-word)
 
-  (add-hook 'text-mode-hook 'auto-fill-mode)
-  (add-hook 'org-mode-hook 'auto-fill-mode)
-
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
   ;; when editing js file, this feature is very useful
