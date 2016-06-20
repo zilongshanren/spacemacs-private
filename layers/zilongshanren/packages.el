@@ -486,11 +486,11 @@ open and unsaved."
 
 (defun zilongshanren/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
-    :init))
+    :commands (vr/select-replace vr/select-query-replace)))
 
 (defun zilongshanren/init-visual-regexp ()
   (use-package visual-regexp
-    :init))
+    :commands (vr/replace vr/query-replace)))
 
 (defun zilongshanren/init-nodejs-repl ()
   (use-package nodejs-repl
