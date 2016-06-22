@@ -384,7 +384,6 @@ in `dotspacemacs/user-config'."
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
   (setq evil-shift-round nil)
   (setq byte-compile-warnings '(not obsolete))
-
   )
 
 (defun dotspacemacs/user-config ()
@@ -509,6 +508,8 @@ layers configuration."
   ;; (use-package powerline
   ;;   :config
   ;;   (powerline-center-evil-theme ))
+  (setq-default ns-use-srgb-colorspace nil)
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
