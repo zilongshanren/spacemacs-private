@@ -413,6 +413,8 @@ layers configuration."
 
   (bb/define-key company-active-map
     (kbd "C-w") 'evil-delete-backward-word)
+  (bb/define-key company-active-map
+    (kbd "s-w") 'company-show-location)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
