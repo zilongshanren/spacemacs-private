@@ -628,7 +628,6 @@ open and unsaved."
 
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
-    (global-set-key (kbd "C-s-y") 'counsel-yank-pop)
     (use-package recentf
       :config
       (setq recentf-exclude
