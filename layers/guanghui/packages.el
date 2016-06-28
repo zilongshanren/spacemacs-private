@@ -378,12 +378,13 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
     (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
     (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
-    (setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "green" :foreground "black")))
-          evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
-          evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "red") :foreground "white"))
-          evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-          evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "grey80" :foreground "black")))
+    (setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
+          evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "SkyBlue2" :foreground "black")))
+          evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "chartreuse3") :foreground "white"))
+          evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "plum3") :foreground "white"))
+          evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "gray" :foreground "black")))
           evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+
     (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
     ;; This will break visual column edit
     ;; enable hybrid editing style

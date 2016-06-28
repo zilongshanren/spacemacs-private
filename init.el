@@ -460,7 +460,7 @@ layers configuration."
           (make-directory dir t)))))
 
   (add-hook 'minibuffer-inactive-mode-hook
-   '(lambda() (set (make-local-variable 'semantic-mode) nil)))
+            '(lambda() (set (make-local-variable 'semantic-mode) nil)))
   ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
   (defun zilongshanren/stop-using-minibuffer ()
     "kill the minibuffer"
@@ -519,7 +519,9 @@ layers configuration."
                   name)
                 'face 'bold)
                (setq global-mode-string
-                     (list (concat "      [" name "]")))))))
+                     (list (propertize (concat "   [Layout: " name "]")
+                                       'face 'font-lock-preprocessor-face
+                                       'help-echo "Current Layout name.")))))))
 
   (add-hook 'persp-activated-functions 'zilongshanren/update-persp-name)
 
@@ -534,23 +536,25 @@ layers configuration."
                                   (- (+ right right-fringe right-margin) ,reserve)))
                 'face face))
 
+  (defun buffer-encoding-abbrev ()
+                            "The line ending convention used in the buffer."
+                            (let ((buf-coding (format "%s" buffer-file-coding-system)))
+                              (if (string-match "\\(dos\\|unix\\|mac\\)" buf-coding)
+                                  (match-string 1 buf-coding)
+                                buf-coding)))
+
   (setq-default mode-line-format
                 (list
                  " %1"
                  '(:eval (propertize
                           (window-numbering-get-number-string)
                           'face
-                          '((:background "green"))))
+                          'font-lock-type-face))
                  "%1 "
                  ;; the buffer name; the file name as a tool tip
                  '(:eval (propertize "%b " 'face 'font-lock-keyword-face
                                      'help-echo (buffer-file-name)))
 
-                 ;; line and column
-                 "(" ;; '%02' to set to 2 chars at least; prevents flickering
-                 (propertize "%02l" 'face 'font-lock-type-face) ","
-                 (propertize "%02c" 'face 'font-lock-type-face)
-                 ") "
 
                  " [" ;; insert vs overwrite mode, input-method in a tooltip
                  '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
@@ -573,8 +577,8 @@ layers configuration."
                                                     'help-echo "Buffer is read-only"))))
                  "] "
 
+                 ;; anzu
                  anzu--mode-line-format
-
 
                  ;; relative position, size of file
                  "["
@@ -589,20 +593,31 @@ layers configuration."
 
                  "%2 "
 
+                 ;; evil state
                  '(:eval evil-mode-line-tag)
 
+                 ;; minor modes
                  minor-mode-alist
-
+                 " "
+                 ;; git info
                  `(vc-mode vc-mode)
 
                  " "
 
                  ;; flycheck-mode-line
-
+                 ;; global-mode-string goes in mode-line-misc-info
                  mode-line-misc-info
 
                  (mode-line-fill 'mode-line 20)
 
+                 ;; line and column
+                 "(" ;; '%02' to set to 2 chars at least; prevents flickering
+                 (propertize "%02l" 'face 'font-lock-type-face) ","
+                 (propertize "%02c" 'face 'font-lock-type-face)
+                 ") "
+
+                 '(:eval (buffer-encoding-abbrev))
+                 mode-line-end-spaces
                  ;; add the time, with the date and the emacs uptime in the tooltip
                  ;; '(:eval (propertize (format-time-string "%H:%M")
                  ;;                     'help-echo
