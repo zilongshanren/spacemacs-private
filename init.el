@@ -499,6 +499,28 @@ layers configuration."
   ;;   (powerline-center-evil-theme ))
   (setq-default ns-use-srgb-colorspace nil)
 
+  (defun zilongshanren/update-persp-name (arg1 arg2)
+    (when (bound-and-true-p persp-mode)
+      ;; There are multiple implementations of
+      ;; persp-mode with different APIs
+      (progn (fboundp 'safe-persp-name)
+             (fboundp 'get-frame-persp)
+             ;; Display the nil persp only if specified
+             (or (not (string= persp-nil-name (safe-persp-name (get-frame-persp))))
+                 spaceline-display-default-perspective)
+             (let ((name (safe-persp-name (get-frame-persp))))
+               (propertize
+                (if (file-directory-p name)
+                    (file-name-nondirectory (directory-file-name name))
+                  name)
+                'face 'bold)
+               (setq global-mode-string
+                     (concat "      [    " name "    ]"))))))
+
+  (add-hook 'persp-before-switch-functions 'zilongshanren/update-persp-name)
+
+
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
