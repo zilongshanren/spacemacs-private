@@ -507,18 +507,11 @@ layers configuration."
     (when (bound-and-true-p persp-mode)
       ;; There are multiple implementations of
       ;; persp-mode with different APIs
-      (progn (fboundp 'safe-persp-name)
-             (fboundp 'get-frame-persp)
-             ;; Display the nil persp only if specified
+      (progn
              (or (not (string= persp-nil-name (safe-persp-name (get-frame-persp))))
                  "Default")
              (let ((name (safe-persp-name (get-frame-persp))))
-               (propertize
-                (if (file-directory-p name)
-                    (file-name-nondirectory (directory-file-name name))
-                  name)
-                'face 'bold)
-               (propertize (concat "[Layout: " name "] ")
+               (propertize (concat "[" name "] ")
                            'face 'font-lock-preprocessor-face
                            'help-echo "Current Layout name.")))))
 
@@ -588,6 +581,9 @@ layers configuration."
                           (window-number-mode-line)
                           'face
                           'font-lock-type-face))
+                 " "
+                 '(:eval (zilongshanren/update-persp-name))
+
                  "%1 "
                  ;; the buffer name; the file name as a tool tip
                  '(:eval (propertize "%b " 'face 'font-lock-keyword-face
@@ -631,7 +627,7 @@ layers configuration."
 
                  "%1 "
                  my-flycheck-mode-line
-                 "% "
+                 "%1 "
                  ;; evil state
                  '(:eval evil-mode-line-tag)
 
@@ -644,7 +640,6 @@ layers configuration."
                  " "
 
                  ;; global-mode-string goes in mode-line-misc-info
-                 '(:eval (zilongshanren/update-persp-name))
                  mode-line-misc-info
 
                  (mode-line-fill 'mode-line 20)
