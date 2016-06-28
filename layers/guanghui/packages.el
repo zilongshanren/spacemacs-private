@@ -378,12 +378,12 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
     (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
     (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
-    (setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
-          evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "SkyBlue2" :foreground "black")))
-          evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "chartreuse3") :foreground "white"))
-          evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "plum3") :foreground "white"))
-          evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "gray" :foreground "black")))
-          evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+    (setq evil-normal-state-tag   (propertize "[N]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
+          evil-emacs-state-tag    (propertize "[E]" 'face '((:background "SkyBlue2" :foreground "black")))
+          evil-insert-state-tag   (propertize "[I]" 'face '((:background "chartreuse3") :foreground "white"))
+          evil-motion-state-tag   (propertize "[M]" 'face '((:background "plum3") :foreground "white"))
+          evil-visual-state-tag   (propertize "[V]" 'face '((:background "gray" :foreground "black")))
+          evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
 
     (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
     ;; This will break visual column edit

@@ -503,7 +503,7 @@ layers configuration."
   ;;   (powerline-center-evil-theme ))
   (setq-default ns-use-srgb-colorspace nil)
 
-  (defun zilongshanren/update-persp-name (type &optional frame)
+  (defun zilongshanren/update-persp-name ()
     (when (bound-and-true-p persp-mode)
       ;; There are multiple implementations of
       ;; persp-mode with different APIs
@@ -511,19 +511,17 @@ layers configuration."
              (fboundp 'get-frame-persp)
              ;; Display the nil persp only if specified
              (or (not (string= persp-nil-name (safe-persp-name (get-frame-persp))))
-                 spaceline-display-default-perspective)
+                 "Default")
              (let ((name (safe-persp-name (get-frame-persp))))
                (propertize
                 (if (file-directory-p name)
                     (file-name-nondirectory (directory-file-name name))
                   name)
                 'face 'bold)
-               (setq global-mode-string
-                     (list (propertize (concat "   [Layout: " name "]")
-                                       'face 'font-lock-preprocessor-face
-                                       'help-echo "Current Layout name.")))))))
+               (propertize (concat "[Layout: " name "] ")
+                           'face 'font-lock-preprocessor-face
+                           'help-echo "Current Layout name.")))))
 
-  (add-hook 'persp-activated-functions 'zilongshanren/update-persp-name)
 
   (defun spaceline--unicode-number (str)
     "Return a nice unicode representation of a single-digit number STR."
@@ -646,6 +644,7 @@ layers configuration."
                  " "
 
                  ;; global-mode-string goes in mode-line-misc-info
+                 '(:eval (zilongshanren/update-persp-name))
                  mode-line-misc-info
 
                  (mode-line-fill 'mode-line 20)
