@@ -525,6 +525,27 @@ layers configuration."
 
   (add-hook 'persp-activated-functions 'zilongshanren/update-persp-name)
 
+  (defun spaceline--unicode-number (str)
+    "Return a nice unicode representation of a single-digit number STR."
+    (cond
+     ((string= "1" str) "➊")
+     ((string= "2" str) "➋")
+     ((string= "3" str) "➌")
+     ((string= "4" str) "➍")
+     ((string= "5" str) "➎")
+     ((string= "6" str) "➏")
+     ((string= "7" str) "➐")
+     ((string= "8" str) "➑")
+     ((string= "9" str) "➒")
+     ((string= "0" str) "➓")))
+
+  (defun window-number-mode-line ()
+    "The current window number. Requires `window-numbering-mode' to be enabled."
+    (when (bound-and-true-p window-numbering-mode)
+      (let* ((num (window-numbering-get-number))
+             (str (when num (int-to-string num))))
+        (spaceline--unicode-number str))))
+
   (defun mode-line-fill (face reserve)
     "Return empty space using FACE and leaving RESERVE space on the right."
     (unless reserve
@@ -537,17 +558,36 @@ layers configuration."
                 'face face))
 
   (defun buffer-encoding-abbrev ()
-                            "The line ending convention used in the buffer."
-                            (let ((buf-coding (format "%s" buffer-file-coding-system)))
-                              (if (string-match "\\(dos\\|unix\\|mac\\)" buf-coding)
-                                  (match-string 1 buf-coding)
-                                buf-coding)))
+    "The line ending convention used in the buffer."
+    (let ((buf-coding (format "%s" buffer-file-coding-system)))
+      (if (string-match "\\(dos\\|unix\\|mac\\)" buf-coding)
+          (match-string 1 buf-coding)
+        buf-coding)))
+
+  (setq my-flycheck-mode-line
+        '(:eval
+          (pcase flycheck-last-status-change
+            (`not-checked nil)
+            (`no-checker (propertize " -" 'face 'warning))
+            (`running (propertize " ✷" 'face 'success))
+            (`errored (propertize " !" 'face 'error))
+            (`finished
+             (let* ((error-counts (flycheck-count-errors flycheck-current-errors))
+                    (no-errors (cdr (assq 'error error-counts)))
+                    (no-warnings (cdr (assq 'warning error-counts)))
+                    (face (cond (no-errors 'error)
+                                (no-warnings 'warning)
+                                (t 'success))))
+               (propertize (format "[%s/%s]" (or no-errors 0) (or no-warnings 0))
+                           'face face)))
+            (`interrupted " -")
+            (`suspicious '(propertize " ?" 'face 'warning)))))
 
   (setq-default mode-line-format
                 (list
                  " %1"
                  '(:eval (propertize
-                          (window-numbering-get-number-string)
+                          (window-number-mode-line)
                           'face
                           'font-lock-type-face))
                  "%1 "
@@ -591,8 +631,9 @@ layers configuration."
                  '(:eval (propertize "%m" 'face 'font-lock-string-face
                                      'help-echo buffer-file-coding-system))
 
-                 "%2 "
-
+                 "%1 "
+                 my-flycheck-mode-line
+                 "% "
                  ;; evil state
                  '(:eval evil-mode-line-tag)
 
@@ -604,7 +645,6 @@ layers configuration."
 
                  " "
 
-                 ;; flycheck-mode-line
                  ;; global-mode-string goes in mode-line-misc-info
                  mode-line-misc-info
 
@@ -624,6 +664,9 @@ layers configuration."
                  ;;                     (concat (format-time-string "%c; ")
                  ;;                             (emacs-uptime "Uptime:%hh"))))
                  ))
+
+  (spacemacs/set-leader-keys "en" 'flycheck-next-error)
+  (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 
   )
 
