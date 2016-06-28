@@ -380,7 +380,8 @@ in `dotspacemacs/user-config'."
  
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
-  (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
   ;; ss proxy. But it will cause anacond-mode failed.
   (setq socks-server '("Default server" "127.0.0.1" 1080 5))
@@ -450,14 +451,16 @@ layers configuration."
   (spacemacs/set-leader-keys "ri" 'ivy-resume)
   (spacemacs|add-company-hook 'text-mode)
 
-  (defadvice find-file (before make-directory-maybe (filename &optional wildcards) activate)
+  (defadvice find-file (before make-directory-maybe
+                               (filename &optional wildcards) activate)
     "Create parent directory if not exists while visiting file."
     (unless (file-exists-p filename)
       (let ((dir (file-name-directory filename)))
         (unless (file-exists-p dir)
           (make-directory dir t)))))
 
-  (add-hook 'minibuffer-inactive-mode-hook '(lambda() (set (make-local-variable 'semantic-mode) nil)))
+  (add-hook 'minibuffer-inactive-mode-hook
+   '(lambda() (set (make-local-variable 'semantic-mode) nil)))
   ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
   (defun zilongshanren/stop-using-minibuffer ()
     "kill the minibuffer"
@@ -493,7 +496,8 @@ layers configuration."
   (when (configuration-layer/layer-usedp 'helm)
     (spacemacs/set-leader-keys "sj" 'counsel-imenu))
   (when (configuration-layer/layer-usedp 'ivy)
-    (setq projectile-switch-project-action 'zilongshanren/open-file-with-projectile-or-counsel-git))
+    (setq projectile-switch-project-action
+          'zilongshanren/open-file-with-projectile-or-counsel-git))
   ;; (use-package powerline
   ;;   :config
   ;;   (powerline-center-evil-theme ))
@@ -526,11 +530,18 @@ layers configuration."
     (when (and window-system (eq 'right (get-scroll-bar-mode)))
       (setq reserve (- reserve 3)))
     (propertize " "
-                'display `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))
+                'display `((space :align-to
+                                  (- (+ right right-fringe right-margin) ,reserve)))
                 'face face))
 
   (setq-default mode-line-format
                 (list
+                 " %1"
+                 '(:eval (propertize
+                          (window-numbering-get-number-string)
+                          'face
+                          '((:background "green"))))
+                 "%1 "
                  ;; the buffer name; the file name as a tool tip
                  '(:eval (propertize "%b " 'face 'font-lock-keyword-face
                                      'help-echo (buffer-file-name)))
@@ -545,7 +556,9 @@ layers configuration."
                  '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
                                      'face 'font-lock-preprocessor-face
                                      'help-echo (concat "Buffer is in "
-                                                        (if overwrite-mode "overwrite" "insert") " mode")))
+                                                        (if overwrite-mode
+                                                            "overwrite"
+                                                          "insert") " mode")))
 
                  ;; was this buffer modified since the last save?
                  '(:eval (when (buffer-modified-p)
@@ -576,7 +589,7 @@ layers configuration."
 
                  "%2 "
 
-                 evil-mode-line-tag
+                 '(:eval evil-mode-line-tag)
 
                  minor-mode-alist
 
