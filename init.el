@@ -97,6 +97,7 @@ values."
                                     evil-mc
                                     pangu-spacing
                                     nose
+                                    spaceline
                                     holy-mode
                                     skewer-mode
                                     highlight-indentation
@@ -419,9 +420,12 @@ layers configuration."
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
   ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
+  (which-func-mode)
   ;; when editing js file, this feature is very useful
   (setq-default header-line-format
                 '((which-func-mode ("" which-func-format " "))))
+  (setq-default mode-line-misc-info
+                (assq-delete-all 'which-function-mode mode-line-misc-info))
 
   ;; show smartparens mode will cause Emacs frozen when use swiper...
   ;; (turn-off-show-smartparens-mode)
@@ -483,24 +487,6 @@ layers configuration."
   (with-eval-after-load 'hungry-delete
     (diminish 'hungry-delete-mode))
 
-  (define-fringe-bitmap 'right-curly-arrow
-    [#b00000000
-     #b00000000
-     #b00000000
-     #b00000000
-     #b01110000
-     #b00010000
-     #b00010000
-     #b00000000])
-  (define-fringe-bitmap 'left-curly-arrow
-    [#b00000000
-     #b00001000
-     #b00001000
-     #b00001110
-     #b00000000
-     #b00000000
-     #b00000000
-     #b00000000])
   ;; tips:  use diminish-undo to toggle mode l
   (if (configuration-layer/layer-usedp 'helm)
       (spacemacs/set-leader-keys "rh" 'helm-resume))
