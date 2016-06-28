@@ -499,7 +499,7 @@ layers configuration."
   ;;   (powerline-center-evil-theme ))
   (setq-default ns-use-srgb-colorspace nil)
 
-  (defun zilongshanren/update-persp-name (arg1 arg2)
+  (defun zilongshanren/update-persp-name (type &optional frame)
     (when (bound-and-true-p persp-mode)
       ;; There are multiple implementations of
       ;; persp-mode with different APIs
@@ -517,7 +517,7 @@ layers configuration."
                (setq global-mode-string
                      (concat "      [    " name "    ]"))))))
 
-  (add-hook 'persp-before-switch-functions 'zilongshanren/update-persp-name)
+  (add-hook 'persp-activated-functions 'zilongshanren/update-persp-name)
 
 
 
