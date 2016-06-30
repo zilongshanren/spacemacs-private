@@ -55,7 +55,14 @@
         persp-mode
         etags-select
         spaceline
+        helm-github-stars
         ))
+
+(defun guanghui/init-helm-github-stars ()
+  (use-package helm-github-stars
+    :commands (helm-github-stars)
+    :init
+    (setq helm-github-stars-username "zilongshanren")))
 
 (defun guanghui/post-init-spaceline ()
   (use-package spaceline-config

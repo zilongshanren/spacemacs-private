@@ -478,9 +478,11 @@ layers configuration."
   (defhydra hydra-hotspots (:color blue)
     "Hotspots"
     ("b" org-octopress "blog")
+    ("g" helm-github-stars "helm github stars")
     ("r" zilongshanren/run-current-file "run current file"))
 
   (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
+  (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
   (with-eval-after-load 'whitespace
     (diminish 'whitespace-mode))
   (with-eval-after-load 'smartparens
@@ -508,12 +510,12 @@ layers configuration."
       ;; There are multiple implementations of
       ;; persp-mode with different APIs
       (progn
-             (or (not (string= persp-nil-name (safe-persp-name (get-frame-persp))))
-                 "Default")
-             (let ((name (safe-persp-name (get-frame-persp))))
-               (propertize (concat "[" name "] ")
-                           'face 'font-lock-preprocessor-face
-                           'help-echo "Current Layout name.")))))
+        (or (not (string= persp-nil-name (safe-persp-name (get-frame-persp))))
+            "Default")
+        (let ((name (safe-persp-name (get-frame-persp))))
+          (propertize (concat "[" name "] ")
+                      'face 'font-lock-preprocessor-face
+                      'help-echo "Current Layout name.")))))
 
 
   (defun spaceline--unicode-number (str)
