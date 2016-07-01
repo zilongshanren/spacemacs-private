@@ -1002,6 +1002,13 @@ open and unsaved."
 
 (defun zilongshanren/post-init-js2-mode ()
   (progn
+    ;; http://blog.binchen.org/posts/use-which-func-mode-with-js2-mode.html
+    (defun my-which-function ()
+      ;; clean the imenu cache
+      ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
+      (setq imenu--index-alist nil)
+      (which-function))
+
     (add-hook 'js2-mode-hook 'which-function-mode)
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
@@ -1043,7 +1050,7 @@ open and unsaved."
         (defun my-web-mode-indent-setup ()
           (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
           (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
-          (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+          (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
           )
 
         (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
