@@ -209,7 +209,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
 (defun guanghui/post-init-avy ()
   (progn
-    (global-set-key (kbd "C-s-'") 'avy-goto-char-2)))
+    (global-set-key (kbd "C-s-'") 'avy-goto-char-2)
+    (global-set-key (kbd "M-'") 'avy-goto-char-2)))
 
 (defun guanghui/post-init-ace-window ()
   (global-set-key (kbd "C-x C-o") #'ace-window))
