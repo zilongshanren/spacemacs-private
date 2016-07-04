@@ -97,3 +97,10 @@
 
 (global-set-key [remap fill-paragraph]
                 #'endless/fill-or-unfill)
+
+(global-set-key "s-j"
+                #'paredit-splice-sexp-killing-backward)
+
+(global-set-key "\M-(" #'paredit-wrap-round)
+(global-set-key "s-[" #'paredit-wrap-square)
+(global-set-key "\M-{" #'paredit-wrap-curly)
