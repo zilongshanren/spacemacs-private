@@ -58,8 +58,8 @@
   :evil-leader "ots")
 
 (global-set-key (kbd "s-s") 'save-buffer)
-(bind-key* "s-k" 'scroll-other-window-down)
-(bind-key* "s-j"  'scroll-other-window)
+;; (bind-key* "s-k" 'scroll-other-window-down)
+;; (bind-key* "s-j"  'scroll-other-window)
 (bind-key* "C-c /" 'company-files)
 
 (bind-key* "s-r" 'zilongshanren/browser-refresh--chrome-applescript)
@@ -97,10 +97,3 @@
 
 (global-set-key [remap fill-paragraph]
                 #'endless/fill-or-unfill)
-
-(bind-key* "s-j"
-           #'paredit-splice-sexp-killing-backward)
-
-(bind-key* "s-(" #'paredit-wrap-round)
-(bind-key* "s-[" #'paredit-wrap-square)
-(bind-key* "s-{" #'paredit-wrap-curly)

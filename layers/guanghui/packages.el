@@ -57,6 +57,7 @@
         spaceline
         helm-github-stars
         flycheck-clojure
+        paredit
         ))
 
 (defun guanghui/init-flycheck-clojure ()
@@ -447,6 +448,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
        'minibuffer-setup-hook
        'conditionally-enable-lispy)
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
+      (define-key lispy-mode-map (kbd "s-k") 'lispy-splice)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
 
 (defun guanghui/init-hydra ()
@@ -1115,3 +1117,19 @@ holding contextual information."
     :init
     (moz-controller-global-mode t)
     :diminish moz-controller-mode))
+
+(defun guanghui/init-paredit ()
+  (use-package paredit
+    :commands (paredit-wrap-round
+               paredit-wrap-square
+               paredit-wrap-curly
+               paredit-splice-sexp-killing-backward)
+    :init
+    (progn
+      (bind-key* "s-j"
+                 #'paredit-splice-sexp-killing-backward)
+
+      (bind-key* "s-(" #'paredit-wrap-round)
+      (bind-key* "s-[" #'paredit-wrap-square)
+      (bind-key* "s-{" #'paredit-wrap-curly)
+      )))
