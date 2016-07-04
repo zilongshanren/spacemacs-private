@@ -93,7 +93,6 @@ values."
    dotspacemacs-excluded-packages '(counsel-projectile
                                     magit-gh-pulls
                                     magit-gitflow
-                                    emmet-mode
                                     evil-mc
                                     pangu-spacing
                                     nose
