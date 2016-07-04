@@ -98,9 +98,9 @@
 (global-set-key [remap fill-paragraph]
                 #'endless/fill-or-unfill)
 
-(global-set-key "s-j"
-                #'paredit-splice-sexp-killing-backward)
+(bind-key* "s-j"
+           #'paredit-splice-sexp-killing-backward)
 
-(global-set-key "\M-(" #'paredit-wrap-round)
-(global-set-key "s-[" #'paredit-wrap-square)
-(global-set-key "\M-{" #'paredit-wrap-curly)
+(bind-key* "s-(" #'paredit-wrap-round)
+(bind-key* "s-[" #'paredit-wrap-square)
+(bind-key* "s-{" #'paredit-wrap-curly)
