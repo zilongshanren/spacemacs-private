@@ -56,7 +56,13 @@
         etags-select
         spaceline
         helm-github-stars
+        flycheck-clojure
         ))
+
+(defun guanghui/init-flycheck-clojure ()
+  (use-package flycheck-clojure
+    :init
+    (eval-after-load 'flycheck '(flycheck-clojure-setup))))
 
 (defun guanghui/init-helm-github-stars ()
   (use-package helm-github-stars
