@@ -475,6 +475,7 @@ open and unsaved."
          (define-key racket-repl-mode-map (kbd "[") nil)))
 
     (add-hook 'racket-mode-hook (lambda () (lispy-mode 1)))
+    (add-hook 'ielm-mode-hook (lambda () (lispy-mode 1)))
     (add-hook 'racket-repl-mode-hook #'(lambda () (lispy-mode t)))
     (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
     ))

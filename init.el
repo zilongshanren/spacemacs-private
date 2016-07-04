@@ -663,7 +663,7 @@ layers configuration."
 
   (spacemacs/set-leader-keys "en" 'flycheck-next-error)
   (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
-
+  (spacemacs/set-leader-keys "o(" 'ielm)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
