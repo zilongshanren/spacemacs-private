@@ -567,6 +567,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
             spacemacs/smart-move-beginning-of-line
             lispy-move-beginning-of-line
             lispy-move-end-of-line
+            lispy-space
+            lispy-delete-backward
             evil-exit-visual-state
             evil-backward-char
             evil-delete-char
