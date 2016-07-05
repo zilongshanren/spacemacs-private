@@ -79,8 +79,6 @@ values."
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
-     (chinese :variables chinese-enable-youdao-dict t
-              chinese-enable-fcitx t)
      zilongshanren
      guanghui
      )
@@ -94,7 +92,6 @@ values."
                                     magit-gh-pulls
                                     magit-gitflow
                                     evil-mc
-                                    pangu-spacing
                                     nose
                                     spaceline
                                     holy-mode
@@ -109,8 +106,6 @@ values."
                                     org-bullets
                                     smooth-scrolling
                                     org-repo-todo
-                                    chinese-wbim
-                                    chinese-pyim
                                     srefactor
                                     org-download
                                     org-timer
@@ -136,8 +131,6 @@ values."
                                     lorem-ipsum
                                     ac-ispell
                                     ace-jump-mode
-                                    ace-pinyin
-                                    find-by-pinyin-dired
                                     auto-complete
                                     auto-dictionary
                                     clang-format
