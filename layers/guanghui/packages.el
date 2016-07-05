@@ -797,16 +797,17 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
       "ga" 'projectile-find-other-file
       "gA" 'projectile-find-other-file-other-window)
 
+    (defun my-js2-mode-hook ()
+      (progn
+        (setq forward-sexp-function nil)
+        ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
+        (set (make-local-variable 'semantic-mode) nil)
+        ))
+    (add-hook 'js2-mode-hook 'my-js2-mode-hook)
+
     (eval-after-load 'js2-mode
       '(progn
-         (defun my-js2-mode-hook ()
-           (progn
-             (setq forward-sexp-function nil)
-             ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
-             (setq mode-name "JS2")
-             (set (make-local-variable 'semantic-mode) nil)
-             ))
-         (add-hook 'js2-mode-hook 'my-js2-mode-hook)
+         (setq mode-name "JS2")
          (define-key js2-mode-map   (kbd "s-.") 'company-tern)))))
 
 (defun guanghui/init-org-tree-slide ()
