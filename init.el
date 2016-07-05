@@ -91,6 +91,7 @@ values."
    dotspacemacs-excluded-packages '(counsel-projectile
                                     magit-gh-pulls
                                     magit-gitflow
+                                    org-projectile
                                     evil-mc
                                     nose
                                     spaceline
@@ -656,6 +657,7 @@ layers configuration."
   (spacemacs/set-leader-keys "en" 'flycheck-next-error)
   (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
   (spacemacs/set-leader-keys "o(" 'ielm)
+  (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
