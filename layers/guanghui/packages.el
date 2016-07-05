@@ -58,7 +58,14 @@
         helm-github-stars
         flycheck-clojure
         paredit
+        youdao-dictionary
         ))
+
+(defun guanghui/init-youdao-dictionary ()
+  (use-package youdao-dictionary
+    :init
+    (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
+    ))
 
 (defun guanghui/init-flycheck-clojure ()
   (use-package flycheck-clojure
