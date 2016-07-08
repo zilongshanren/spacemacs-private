@@ -658,6 +658,12 @@ layers configuration."
   (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
   (spacemacs/set-leader-keys "o(" 'ielm)
   (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+  (spacemacs/set-leader-keys "sj" 'helm-imenu)
+
+  (dolist (c (string-to-list ":_-?!#*"))
+    (modify-syntax-entry c "w" clojure-mode-syntax-table ))
+
+  (push '(clojurec-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
