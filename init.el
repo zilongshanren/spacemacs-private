@@ -87,6 +87,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
+   dotspacemacs-frozen-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(counsel-projectile
                                     magit-gh-pulls
@@ -94,6 +95,7 @@ values."
                                     org-projectile
                                     evil-mc
                                     nose
+                                    evil-unimpaired
                                     spaceline
                                     holy-mode
                                     skewer-mode
@@ -200,13 +202,12 @@ values."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
-   ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
-   ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects bookmarks)
-   ;; Number of recent files to show in the startup buffer. Ignored if
-   ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
-   dotspacemacs-startup-recent-list-size 10
+   ;; List of items to show in startup buffer or an association list of of
+   ;; the form `(list-type . list-size)`. If nil it is disabled.
+   ;; Possible values for list-type are:
+   ;; `recents' `bookmarks' `projects' `agenda' `todos'."
+   dotspacemacs-startup-lists '((recents . 5)
+                                (projects . 7))
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
@@ -663,7 +664,6 @@ layers configuration."
   (dolist (c (string-to-list ":_-?!#*"))
     (modify-syntax-entry c "w" clojure-mode-syntax-table ))
 
-  (push '(clojurec-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
