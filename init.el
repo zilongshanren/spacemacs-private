@@ -664,6 +664,7 @@ layers configuration."
   (dolist (c (string-to-list ":_-?!#*"))
     (modify-syntax-entry c "w" clojure-mode-syntax-table ))
 
+  ;; deal with BOM
   (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
 
   (setq auto-coding-regexp-alist
@@ -671,6 +672,13 @@ layers configuration."
                 (delete (rassoc 'utf-16le-with-signature auto-coding-regexp-alist)
                         (delete (rassoc 'utf-8-with-signature auto-coding-regexp-alist)
                                 auto-coding-regexp-alist))))
+
+  (defun ffap-hexl-mode ()
+    (interactive)
+    (let ((ffap-file-finder 'hexl-find-file))
+      (call-interactively 'ffap)))
+
+  (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
 
   )
 
