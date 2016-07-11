@@ -664,6 +664,14 @@ layers configuration."
   (dolist (c (string-to-list ":_-?!#*"))
     (modify-syntax-entry c "w" clojure-mode-syntax-table ))
 
+  (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
+
+  (setq auto-coding-regexp-alist
+        (delete (rassoc 'utf-16be-with-signature auto-coding-regexp-alist)
+                (delete (rassoc 'utf-16le-with-signature auto-coding-regexp-alist)
+                        (delete (rassoc 'utf-8-with-signature auto-coding-regexp-alist)
+                                auto-coding-regexp-alist))))
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
