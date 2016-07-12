@@ -50,7 +50,8 @@ values."
      (spell-checking :variables spell-checking-enable-by-default nil)
      yaml
      ;; (ruby :variables ruby-version-manager 'rvm)
-     ;;python
+     (python :variables
+             python-test-runner '(nose pytest))
      lua
      html
      ;; command-log
