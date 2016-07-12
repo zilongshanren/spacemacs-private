@@ -95,7 +95,6 @@ values."
                                     magit-gitflow
                                     org-projectile
                                     evil-mc
-                                    nose
                                     evil-unimpaired
                                     spaceline
                                     holy-mode
@@ -152,7 +151,6 @@ values."
                                     helm-flyspell
                                     flyspell-correct-helm
                                     helm-c-yasnippet
-                                    helm-pydoc
                                     ace-jump-helm-line
                                     helm-make
                                     helm-projectile
@@ -680,7 +678,8 @@ layers configuration."
       (call-interactively 'ffap)))
 
   (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
-
+  ;; if you use pyton3, then you could comment the following line
+  (setq python-shell-interpreter "python")
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

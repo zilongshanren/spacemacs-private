@@ -813,16 +813,16 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
     (defun my-js2-mode-hook ()
       (progn
+        (setq mode-name "JS2")
+        (define-key js2-mode-map   (kbd "s-.") 'company-tern)
+
         (setq forward-sexp-function nil)
         ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
         (set (make-local-variable 'semantic-mode) nil)
         ))
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
-    (eval-after-load 'js2-mode
-      '(progn
-         (setq mode-name "JS2")
-         (define-key js2-mode-map   (kbd "s-.") 'company-tern)))))
+    ))
 
 (defun guanghui/init-org-tree-slide ()
   (use-package org-tree-slide
