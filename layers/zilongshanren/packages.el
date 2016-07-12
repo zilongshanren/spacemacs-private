@@ -335,6 +335,7 @@ open and unsaved."
               (when (stringp sym)
                 (regexp-quote sym))))
           regexp-history)
+    (deactivate-mark)
     (call-interactively 'occur))
   (bind-key* "M-s o" 'occur-dwim)
   (spacemacs/set-leader-keys "od" 'occur-dwim)
