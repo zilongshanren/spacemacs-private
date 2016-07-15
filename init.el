@@ -477,6 +477,8 @@ layers configuration."
     ("r" zilongshanren/run-current-file "run current file"))
 
   (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
+  (if (configuration-layer/layer-usedp 'helm)
+      (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots))
   (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
   (with-eval-after-load 'whitespace
     (diminish 'whitespace-mode))
