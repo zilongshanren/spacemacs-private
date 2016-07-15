@@ -681,6 +681,7 @@ layers configuration."
   (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python")
+  (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
