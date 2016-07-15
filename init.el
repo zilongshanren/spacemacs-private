@@ -96,6 +96,7 @@ values."
                                     org-projectile
                                     evil-mc
                                     evil-unimpaired
+                                    volatile-highlights
                                     spaceline
                                     holy-mode
                                     skewer-mode
