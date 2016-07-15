@@ -88,7 +88,7 @@
 ;; (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
 (bind-key* "C-M-s-y" 'aya-expand)
-(bind-key* "C-l" 'recenter)
+;; (bind-key* "C-l" 'recenter)
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 (spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
