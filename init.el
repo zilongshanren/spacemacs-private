@@ -139,6 +139,7 @@ values."
                                     auto-dictionary
                                     clang-format
                                     define-word
+                                    google-translate
                                     disaster
                                     epic
                                     fancy-battery
