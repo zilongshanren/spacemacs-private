@@ -159,6 +159,7 @@ values."
                                     helm-themes
                                     helm-swoop
                                     helm-mode-manager
+                                    helm-spacemacs-help
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -402,8 +403,8 @@ layers configuration."
     (while bindings
       (define-key keymap (pop bindings) (pop bindings))))
   (bb/define-key evil-normal-state-map
-    "+" 'spacemacs/evil-numbers-increase
-    "_" 'spacemacs/evil-numbers-decrease
+    "+" 'evil-numbers/inc-at-pt
+    "_" 'evil-numbers/dec-at-pt
     "\\" 'evil-repeat-find-char-reverse
     "[s" (lambda (n) (interactive "p") (dotimes (c n nil) (insert " ")))
     "]s" (lambda (n) (interactive "p")
@@ -664,8 +665,9 @@ layers configuration."
   (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
   (spacemacs/set-leader-keys "sj" 'helm-imenu)
 
-  (dolist (c (string-to-list ":_-?!#*"))
-    (modify-syntax-entry c "w" clojure-mode-syntax-table ))
+  (with-eval-after-load 'clojure-mode
+    (dolist (c (string-to-list ":_-?!#*"))
+      (modify-syntax-entry c "w" clojure-mode-syntax-table )))
 
   ;; deal with BOM
   (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)

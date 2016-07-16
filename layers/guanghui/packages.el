@@ -56,7 +56,7 @@
         etags-select
         spaceline
         helm-github-stars
-        flycheck-clojure
+        ;; flycheck-clojure
         paredit
         youdao-dictionary
         helm
@@ -84,6 +84,7 @@
 
 (defun guanghui/init-flycheck-clojure ()
   (use-package flycheck-clojure
+    :defer t
     :init
     (eval-after-load 'flycheck '(flycheck-clojure-setup))))
 
