@@ -60,7 +60,14 @@
         paredit
         youdao-dictionary
         helm
+        tiny
         ))
+
+(defun guanghui/init-tiny ()
+  (use-package tiny
+    :defer t
+    :init
+    (spacemacs/set-leader-keys "om" 'tiny-expand)))
 
 (defun guanghui/post-init-helm ()
   (with-eval-after-load 'helm

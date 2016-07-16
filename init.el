@@ -100,6 +100,7 @@ values."
                                     evil-exchange
                                     evil-unimpaired
                                     evil-indent-plus
+                                    centered-buffer-mode
                                     volatile-highlights
                                     spaceline
                                     holy-mode
