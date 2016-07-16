@@ -95,7 +95,11 @@ values."
                                     magit-gitflow
                                     org-projectile
                                     evil-mc
+                                    evil-args
+                                    evil-ediff
+                                    evil-exchange
                                     evil-unimpaired
+                                    evil-indent-plus
                                     volatile-highlights
                                     spaceline
                                     holy-mode
@@ -687,6 +691,7 @@ layers configuration."
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python")
   (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
