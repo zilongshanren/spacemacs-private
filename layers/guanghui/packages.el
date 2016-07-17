@@ -856,6 +856,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 (defun guanghui/post-init-org ()
   (with-eval-after-load 'org
     (progn
+      (require 'ox-md nil t)
       ;; copy from chinese layer
       (defadvice org-html-paragraph (before org-html-paragraph-advice
                                             (paragraph contents info) activate)
