@@ -61,7 +61,14 @@
         youdao-dictionary
         helm
         tiny
+        smartparens
         ))
+
+(defun guanghui/post-init-smartparens ()
+  (use-package smartparens
+    :defer t
+    :config
+    (setq sp-highlight-pair-overlay nil)))
 
 (defun guanghui/init-tiny ()
   (use-package tiny
