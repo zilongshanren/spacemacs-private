@@ -191,7 +191,47 @@
   (setq js-doc-mail-address "guanghui8827@gmail.com"
         js-doc-author (format "Guanghui Qu <%s>" js-doc-mail-address)
         js-doc-url "http://www.zilongshanren.com"
-        js-doc-license "MIT"))
+        js-doc-license "MIT")
+
+ (defun my-js-doc-insert-function-doc-snippet ()
+    "Insert JsDoc style comment of the function with yasnippet."
+    (interactive)
+
+    (with-eval-after-load 'yasnippet
+      (js-doc--beginning-of-defun)
+
+      (let ((metadata (js-doc--function-doc-metadata))
+            (field-count 1))
+        (yas-expand-snippet
+         (concat
+          js-doc-top-line
+          " * ${1:Function description.}\n"
+          (format "* @method %s\n" (nth-value 1 (split-string (which-function) "\\.")))
+          (mapconcat (lambda (param)
+                       (format
+                        " * @param {${%d:Type of %s}} %s - ${%d:Parameter description.}\n"
+                        (incf field-count)
+                        param
+                        param
+                        (incf field-count)))
+                     (cdr (assoc 'params metadata))
+                     "")
+          (when (assoc 'returns metadata)
+            (format
+             " * @returns {${%d:Return Type}} ${%d:Return description.}\n"
+             (incf field-count)
+             (incf field-count)))
+          (when (assoc 'throws metadata)
+            (format
+             " * @throws {${%d:Exception Type}} ${%d:Exception description.}\n"
+             (incf field-count)
+             (incf field-count)))
+          js-doc-bottom-line)))))
+
+          (add-hook 'js2-mode-hook
+                  #'(lambda ()
+                      (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
+                      (define-key js2-mode-map "@" 'js-doc-insert-tag))))
 
 (defun zilongshanren/init-dired-mode ()
   (use-package dired-mode
@@ -1045,11 +1085,6 @@ open and unsaved."
         ;; (setq-default js2-mode-show-strict-warnings nil)
         (setq-default js2-highlight-external-variables t)
         (setq-default js2-strict-trailing-comma-warning nil)
-
-        (add-hook 'js2-mode-hook
-                  #'(lambda ()
-                      (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc-snippet)
-                      (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
         (defun my-web-mode-indent-setup ()
           (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
