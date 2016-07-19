@@ -693,6 +693,8 @@ layers configuration."
   (setq python-shell-interpreter "python")
   (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (when (spacemacs/window-system-is-mac)
+    (setq ns-pop-up-frames nil))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
