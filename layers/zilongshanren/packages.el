@@ -448,6 +448,7 @@ open and unsaved."
 
 (defun zilongshanren/post-init-yasnippet ()
   (progn
+    (set-face-background 'secondary-selection "gray")
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
                                                                       org-mode-hook
@@ -1047,7 +1048,7 @@ open and unsaved."
 
         (add-hook 'js2-mode-hook
                   #'(lambda ()
-                      (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+                      (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc-snippet)
                       (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
         (defun my-web-mode-indent-setup ()
