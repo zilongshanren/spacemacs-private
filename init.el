@@ -516,7 +516,10 @@ layers configuration."
   (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python")
-  (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
+  ;; visual line mode will cause swiper slower...
+  ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (when (spacemacs/window-system-is-mac)
     (setq ns-pop-up-frames nil))
