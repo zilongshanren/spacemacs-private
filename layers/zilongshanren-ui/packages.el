@@ -32,6 +32,7 @@
 (defconst zilongshanren-ui-packages
   '(
     (zilong-mode-line :location built-in)
+    diminish
     )
   )
 
@@ -189,6 +190,17 @@
                  ;;                     (concat (format-time-string "%c; ")
                  ;;                             (emacs-uptime "Uptime:%hh"))))
                  )))
+
+(defun zilongshanren-ui/post-init-diminish ()
+  (progn
+    (with-eval-after-load 'whitespace
+      (diminish 'whitespace-mode))
+    (with-eval-after-load 'smartparens
+      (diminish 'smartparens-mode))
+    (with-eval-after-load 'which-key
+      (diminish 'which-key-mode))
+    (with-eval-after-load 'hungry-delete
+      (diminish 'hungry-delete-mode))))
 
 
 ;;; packages.el ends here

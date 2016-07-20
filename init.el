@@ -400,8 +400,7 @@ layers configuration."
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
-  (setq-default powerline-default-separator 'arrow)
-
+  ;; (setq-default powerline-default-separator 'arrow)
 
   ;; Utility functions
   (defun bb/define-key (keymap &rest bindings)
@@ -422,13 +421,6 @@ layers configuration."
     (kbd "s-w") 'company-show-location)
 
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
-  ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
-  (which-func-mode)
-  ;; when editing js file, this feature is very useful
-  (setq-default header-line-format
-                '((which-func-mode ("" which-func-format " "))))
-  (setq-default mode-line-misc-info
-                (assq-delete-all 'which-function-mode mode-line-misc-info))
 
   ;; show smartparens mode will cause Emacs frozen when use swiper...
   ;; (turn-off-show-smartparens-mode)
@@ -487,14 +479,6 @@ layers configuration."
   (if (configuration-layer/layer-usedp 'helm)
       (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots))
   (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
-  (with-eval-after-load 'whitespace
-    (diminish 'whitespace-mode))
-  (with-eval-after-load 'smartparens
-    (diminish 'smartparens-mode))
-  (with-eval-after-load 'which-key
-    (diminish 'which-key-mode))
-  (with-eval-after-load 'hungry-delete
-    (diminish 'hungry-delete-mode))
 
   ;; tips:  use diminish-undo to toggle mode l
   (if (configuration-layer/layer-usedp 'helm)
