@@ -531,9 +531,10 @@
          ((my-project-name-contains-substring "cocos2d-x")
           ;; C++ project don't need html tags
           (setq tags-table-list (list (my-create-tags-if-needed "~/cocos2d-x/cocos"))))
-         ((my-project-name-contains-substring "github/fireball")
+         ((my-project-name-contains-substring "Github/fireball")
+          (message "load tags for fireball engine repo...")
           ;; html project donot need C++ tags
-          (setq tags-table-list (list (my-create-tags-if-needed "~/github/fireball/engine/cocos2d")))))))
+          (setq tags-table-list (list (my-create-tags-if-needed "~/Github/fireball/engine/cocos2d")))))))
 
     ;; (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
     (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)
