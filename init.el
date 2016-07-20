@@ -428,47 +428,21 @@ layers configuration."
 
   ;; improve the performance of opening large file
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
-  (defun spacemacs/check-large-file ()
-    (when (> (buffer-size) 500000)
-      (progn (fundamental-mode)
-             (hl-line-mode -1))))
-
-  (add-hook 'find-file-hook 'spacemacs/check-large-file)
   ;; (spacemacs/toggle-automatic-symbol-highlight-on)
 
-  ;; For python
-  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;; For ruby
-  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;; For Javascript
-  (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (spacemacs/set-leader-keys "ri" 'ivy-resume)
   (spacemacs|add-company-hook 'text-mode)
 
-  (defadvice find-file (before make-directory-maybe
-                               (filename &optional wildcards) activate)
-    "Create parent directory if not exists while visiting file."
-    (unless (file-exists-p filename)
-      (let ((dir (file-name-directory filename)))
-        (unless (file-exists-p dir)
-          (make-directory dir t)))))
-
-  (add-hook 'minibuffer-inactive-mode-hook
-            '(lambda() (set (make-local-variable 'semantic-mode) nil)))
-  ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
-  (defun zilongshanren/stop-using-minibuffer ()
-    "kill the minibuffer"
-    (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
-      (abort-recursive-edit)))
-
-  (add-hook 'mouse-leave-buffer-hook 'zilongshanren/stop-using-minibuffer)
 
   (spacemacs/declare-prefix "ot" "Toggle")
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
   ;; Don't move back the cursor one position when exiting insert mode
   (setq evil-move-cursor-back nil)
+
   (global-hungry-delete-mode t)
+
   (defhydra hydra-hotspots (:color blue)
     "Hotspots"
     ("b" org-octopress "blog")
