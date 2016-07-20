@@ -82,6 +82,7 @@ values."
      zilongshanren-misc
      zilongshanren-ui
      zilongshanren-org
+     zilongshanren-better-defaults
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -502,16 +503,6 @@ layers configuration."
   ;; deal with BOM
   (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
 
-  (setq auto-coding-regexp-alist
-        (delete (rassoc 'utf-16be-with-signature auto-coding-regexp-alist)
-                (delete (rassoc 'utf-16le-with-signature auto-coding-regexp-alist)
-                        (delete (rassoc 'utf-8-with-signature auto-coding-regexp-alist)
-                                auto-coding-regexp-alist))))
-
-  (defun ffap-hexl-mode ()
-    (interactive)
-    (let ((ffap-file-finder 'hexl-find-file))
-      (call-interactively 'ffap)))
 
   (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
   ;; if you use pyton3, then you could comment the following line
@@ -521,8 +512,6 @@ layers configuration."
   ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
-  (when (spacemacs/window-system-is-mac)
-    (setq ns-pop-up-frames nil))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
