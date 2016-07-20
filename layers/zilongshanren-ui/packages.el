@@ -35,6 +35,8 @@
     diminish
     ;; if you wnat to use spaceline, please comment out zilong-mode-line
     ;; spaceline
+    ;; beacon
+    ;; evil-vimish-fold
     )
   )
 
@@ -252,4 +254,40 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
       (setq-default mode-line-format '("%e" (:eval (spaceline-ml-zilong))))
       )))
+
+(defun zilongshanren-ui/init-beacon ()
+  (use-package beacon
+    :init
+    (progn
+      (spacemacs|add-toggle beacon
+        :status beacon-mode
+        :on (beacon-mode)
+        :off (beacon-mode -1)
+        :documentation "Enable point highlighting after scrolling"
+        :evil-leader "otb")
+
+      (spacemacs/toggle-beacon-on))
+    :config (spacemacs|hide-lighter beacon-mode)))
+
+(defun zilongshanren-ui/init-evil-vimish-fold ()
+  (use-package evil-vimish-fold
+    :init
+    (vimish-fold-global-mode 1)
+    :config
+    (progn
+      (define-key evil-normal-state-map (kbd "zf") 'vimish-fold)
+      (define-key evil-visual-state-map (kbd "zf") 'vimish-fold)
+      (define-key evil-normal-state-map (kbd "zd") 'vimish-fold-delete)
+      (define-key evil-normal-state-map (kbd "za") 'vimish-fold-toggle))))
+
+(defun zilongshanren-ui/post-init-hl-anything ()
+  (progn
+    (hl-highlight-mode -1)
+    (spacemacs|add-toggle toggle-hl-anything
+      :status hl-highlight-mode
+      :on (hl-highlight-mode)
+      :off (hl-highlight-mode -1)
+      :documentation "Toggle highlight anything mode."
+      :evil-leader "ths")))
+
 ;;; packages.el ends here

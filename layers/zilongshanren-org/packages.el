@@ -9,24 +9,6 @@
 ;;
 ;;; License: GPLv3
 
-;;; Commentary:
-
-;; See the Spacemacs documentation and FAQs for instructions on how to implement
-;; a new layer:
-;;
-;;   SPC h SPC layers RET
-;;
-;;
-;; Briefly, each package to be installed or configured by this layer should be
-;; added to `zilongshanren-org-packages'. Then, for each package PACKAGE:
-;;
-;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `zilongshanren-org/init-PACKAGE' to load and initialize the package.
-
-;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `zilongshanren-org/pre-init-PACKAGE' and/or
-;;   `zilongshanren-org/post-init-PACKAGE' to customize the package as it is loaded.
-
 ;;; Code:
 
 (defconst zilongshanren-org-packages
@@ -35,6 +17,7 @@
     org-mac-link
     org-octopress
     org-pomodoro
+    deft
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -562,4 +545,12 @@ holding contextual information."
     :defer t
     :init
     (add-hook 'org-mode-hook 'worf-mode)))
+
+(defun zilongshanren-misc/post-init-deft ()
+  (progn
+    (setq deft-use-filter-string-for-filename t)
+    (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
+    (setq deft-recursive t)
+    (setq deft-extension "org")
+    (setq deft-directory "~/org-notes")))
 ;;; packages.el ends here
