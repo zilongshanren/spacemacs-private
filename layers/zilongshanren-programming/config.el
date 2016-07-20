@@ -37,66 +37,24 @@
     (shell-command-on-region b e
                              "python -mjson.tool" (current-buffer) t)))
 
-;; when save a buffer, the directory is not exsits, it will ask you to create the directory
-(add-hook 'before-save-hook
-          (lambda ()
-            (when buffer-file-name
-              (let ((dir (file-name-directory buffer-file-name)))
-                (when (and (not (file-exists-p dir))
-                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-                  (make-directory dir t))))))
 
 
-;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
-(defun dcaps-to-scaps ()
-  "Convert word in DOuble CApitals to Single Capitals."
-  (interactive)
-  (and (= ?w (char-syntax (char-before)))
-       (save-excursion
-         (and (if (called-interactively-p)
-                  (skip-syntax-backward "w")
-                (= -3 (skip-syntax-backward "w")))
-              (let (case-fold-search)
-                (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
-              (capitalize-word 1)))))
 
-(define-minor-mode dubcaps-mode
-  "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
-Single Capitals as you type."
-  :init-value nil
-  :lighter (" DC")
-  (if dubcaps-mode
-      (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
-    (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
-
-(add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt '("xml" "xsd" "rng" "xslt" "xsl") t) "\\'") 'nxml-mode))
+(add-to-list 'auto-mode-alist (cons (concat "\\." (regexp-opt
+                                                   '("xml"
+                                                     "xsd"
+                                                     "rng"
+                                                     "xslt"
+                                                     "xsl")
+                                                   t) "\\'") 'nxml-mode))
 (setq nxml-slash-auto-complete-flag t)
 
 
-;; cleanup recent files
-(add-hook 'kill-emacs-hook #'(lambda () (progn (and (fboundp 'recentf-cleanup) (recentf-cleanup))
-                                               (and (fboundp 'projectile-cleanup-known-projects) (projectile-cleanup-known-projects)))))
-
-;; change evil initial mode state
-(menu-bar-mode t)
 
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
 
-(setq url-show-status nil)
-
-
-
-;;Don’t ask me when close emacs with process is running
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (flet ((process-list ())) ad-do-it))
-
-;;Don’t ask me when kill process buffer
-(setq kill-buffer-query-functions
-      (remq 'process-kill-buffer-query-function
-            kill-buffer-query-functions))
 
 ;; return nil to write content to file
 (defun zilongshanren/untabify-buffer ()
@@ -106,4 +64,10 @@ Single Capitals as you type."
 
 (add-hook 'c++-mode-hook
           '(lambda ()
-             (add-hook 'write-contents-hooks 'zilongshanren/untabify-buffer nil t)))
+             (add-hook 'write-contents-hooks
+                       'zilongshanren/untabify-buffer nil t)))
+
+(setq auto-mode-alist
+      (append
+       '(("\\.mak\\'" . makefile-bsdmake-mode))
+       auto-mode-alist))
