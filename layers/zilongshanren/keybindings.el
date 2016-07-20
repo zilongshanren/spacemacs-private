@@ -1,6 +1,6 @@
 ;;; keybindings.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren 
+;; Copyright (c) 2015-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -97,3 +97,51 @@
 
 (global-set-key [remap fill-paragraph]
                 #'endless/fill-or-unfill)
+
+(spacemacs/set-leader-keys "en" 'flycheck-next-error)
+(spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
+(spacemacs/set-leader-keys "o(" 'ielm)
+(spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+(spacemacs/set-leader-keys "sj" 'helm-imenu)
+
+
+;; deal with BOM
+(spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
+
+
+(spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
+
+;; tips:  use diminish-undo to toggle mode l
+(if (configuration-layer/layer-usedp 'helm)
+    (spacemacs/set-leader-keys "rh" 'helm-resume))
+(when (configuration-layer/layer-usedp 'helm)
+  (spacemacs/set-leader-keys "sj" 'counsel-imenu))
+
+(spacemacs/set-leader-keys "ri" 'ivy-resume)
+
+
+;; Utility functions
+(defun bb/define-key (keymap &rest bindings)
+  (declare (indent 1))
+  (while bindings
+    (define-key keymap (pop bindings) (pop bindings))))
+(bb/define-key evil-normal-state-map
+  "+" 'evil-numbers/inc-at-pt
+  "_" 'evil-numbers/dec-at-pt
+  "\\" 'evil-repeat-find-char-reverse
+  "[s" (lambda (n) (interactive "p") (dotimes (c n nil) (insert " ")))
+  "]s" (lambda (n) (interactive "p")
+         (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
+
+(bb/define-key company-active-map
+  (kbd "C-w") 'evil-delete-backward-word)
+
+(bb/define-key company-active-map
+  (kbd "s-w") 'company-show-location)
+
+(spacemacs/declare-prefix "ot" "Toggle")
+
+
+(if (configuration-layer/layer-usedp 'helm)
+    (progn (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+           (spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)))

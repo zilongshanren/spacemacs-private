@@ -78,11 +78,7 @@ values."
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
-     zilongshanren-programming
-     zilongshanren-misc
-     zilongshanren-ui
-     zilongshanren-org
-     zilongshanren-better-defaults
+     zilongshanren
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -402,24 +398,6 @@ layers configuration."
 
   ;; (setq-default powerline-default-separator 'arrow)
 
-  ;; Utility functions
-  (defun bb/define-key (keymap &rest bindings)
-    (declare (indent 1))
-    (while bindings
-      (define-key keymap (pop bindings) (pop bindings))))
-  (bb/define-key evil-normal-state-map
-    "+" 'evil-numbers/inc-at-pt
-    "_" 'evil-numbers/dec-at-pt
-    "\\" 'evil-repeat-find-char-reverse
-    "[s" (lambda (n) (interactive "p") (dotimes (c n nil) (insert " ")))
-    "]s" (lambda (n) (interactive "p")
-           (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
-
-  (bb/define-key company-active-map
-    (kbd "C-w") 'evil-delete-backward-word)
-  (bb/define-key company-active-map
-    (kbd "s-w") 'company-show-location)
-
   (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
 
   ;; show smartparens mode will cause Emacs frozen when use swiper...
@@ -430,11 +408,8 @@ layers configuration."
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   ;; (spacemacs/toggle-automatic-symbol-highlight-on)
 
-  (spacemacs/set-leader-keys "ri" 'ivy-resume)
   (spacemacs|add-company-hook 'text-mode)
 
-
-  (spacemacs/declare-prefix "ot" "Toggle")
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -443,42 +418,16 @@ layers configuration."
 
   (global-hungry-delete-mode t)
 
-  (defhydra hydra-hotspots (:color blue)
-    "Hotspots"
-    ("b" org-octopress "blog")
-    ("g" helm-github-stars "helm github stars")
-    ("r" zilongshanren/run-current-file "run current file"))
 
-  (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
-  (if (configuration-layer/layer-usedp 'helm)
-      (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots))
-  (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
-
-  ;; tips:  use diminish-undo to toggle mode l
-  (if (configuration-layer/layer-usedp 'helm)
-      (spacemacs/set-leader-keys "rh" 'helm-resume))
-  (when (configuration-layer/layer-usedp 'helm)
-    (spacemacs/set-leader-keys "sj" 'counsel-imenu))
   (when (configuration-layer/layer-usedp 'ivy)
     (setq projectile-switch-project-action
           'zilongshanren/open-file-with-projectile-or-counsel-git))
 
 
-  (spacemacs/set-leader-keys "en" 'flycheck-next-error)
-  (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
-  (spacemacs/set-leader-keys "o(" 'ielm)
-  (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
-  (spacemacs/set-leader-keys "sj" 'helm-imenu)
-
   (with-eval-after-load 'clojure-mode
     (dolist (c (string-to-list ":_-?!#*"))
       (modify-syntax-entry c "w" clojure-mode-syntax-table )))
 
-  ;; deal with BOM
-  (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
-
-
-  (spacemacs/set-leader-keys "fh" 'ffap-hexl-mode)
   ;; if you use pyton3, then you could comment the following line
   (setq python-shell-interpreter "python")
 
