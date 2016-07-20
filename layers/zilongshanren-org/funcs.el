@@ -102,3 +102,42 @@
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
       (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png"))))
   (insert "\n"))
+
+(defun zilongshanren/org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'file))
+
+(defun zilongshanren/org-archive-cancel-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/CANCELLED" 'file))
+
+;; "https://github.com/vhallac/.emacs.d/blob/master/config/customize-org-agenda.el"
+(defun zilongshanren/skip-non-stuck-projects ()
+  "Skip trees that are not stuck projects"
+  (bh/list-sublevels-for-projects-indented)
+  (save-restriction
+    (widen)
+    (let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
+      ;; VH: I changed this line from
+      ;; (if (bh/is-project-p)
+      (if (and (eq (point) (bh/find-project-task))
+               (bh/is-project-p))
+          (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
+                 (has-next ))
+            (save-excursion
+              (forward-line 1)
+              (while (and (not has-next) (< (point) subtree-end) (re-search-forward "^\\*+ NEXT " subtree-end t))
+                (unless (member "WAITING" (org-get-tags-at))
+                  (setq has-next t))))
+            (if has-next
+                next-headline
+              nil)) ; a stuck project, has subtasks but no next task
+        next-headline))))
