@@ -1,0 +1,18 @@
+#+TITLE: zilong-ui layer
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+ - [[#description][Description]]
+ - [[#install][Install]]
+ - [[#key-bindings][Key bindings]]
+
+* Description
+  This layer contains all the stuff with UI: theme customization, text font customization, font face customization etc.
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =zilong-ui= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+
