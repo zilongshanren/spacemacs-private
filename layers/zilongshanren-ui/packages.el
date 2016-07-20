@@ -33,6 +33,8 @@
   '(
     (zilong-mode-line :location built-in)
     diminish
+    ;; if you wnat to use spaceline, please comment out zilong-mode-line
+    ;; spaceline
     )
   )
 
@@ -203,4 +205,51 @@
       (diminish 'hungry-delete-mode))))
 
 
+(defun zilongshanren-ui/post-init-spaceline ()
+  (use-package spaceline-config
+    :config
+    (progn
+      (defvar spaceline-org-clock-format-function
+        'org-clock-get-clock-string
+        "The function called by the `org-clock' segment to determine what to show.")
+
+      (spaceline-define-segment org-clock
+                                "Show information about the current org clock task.  Configure
+`spaceline-org-clock-format-function' to configure. Requires a currently running
+org clock.
+
+This segment overrides the modeline functionality of `org-mode-line-string'."
+                                (when (and (fboundp 'org-clocking-p)
+                                           (org-clocking-p))
+                                  (substring-no-properties (funcall spaceline-org-clock-format-function)))
+                                :global-override org-mode-line-string)
+
+      (spaceline-compile
+       'zilong
+       ;; Left side of the mode line (all the important stuff)
+       '(((persp-name
+           workspace-number
+           window-number
+           )
+          :separator "|"
+          :face highlight-face)
+         ((buffer-modified buffer-size input-method))
+         anzu
+         '(buffer-id remote-host buffer-encoding-abbrev)
+         ((point-position line-column buffer-position selection-info)
+          :separator " | ")
+         major-mode
+         process
+         (flycheck-error flycheck-warning flycheck-info)
+         ;; (python-pyvenv :fallback python-pyenv)
+         ((minor-modes :separator spaceline-minor-modes-separator) :when active)
+         (org-pomodoro :when active)
+         (org-clock :when active)
+         nyan-cat)
+       ;; Right segment (the unimportant stuff)
+       '((version-control :when active)
+         battery))
+
+      (setq-default mode-line-format '("%e" (:eval (spaceline-ml-zilong))))
+      )))
 ;;; packages.el ends here
