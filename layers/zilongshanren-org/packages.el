@@ -546,7 +546,7 @@ holding contextual information."
     :init
     (add-hook 'org-mode-hook 'worf-mode)))
 
-(defun zilongshanren-misc/post-init-deft ()
+(defun zilongshanren-org/post-init-deft ()
   (progn
     (setq deft-use-filter-string-for-filename t)
     (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
