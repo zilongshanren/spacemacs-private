@@ -1,6 +1,6 @@
 ;;; packages.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren
+;; Copyright (c) 2014-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -12,7 +12,7 @@
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
 
-(setq zilongshanren-packages
+(setq zilongshanren-programming-packages
       '(
         css-mode
         lispy
@@ -49,22 +49,22 @@
 
 
 
-(defun zilongshanren/init-ag ()
+(defun zilongshanren-programming/init-ag ()
   (use-package ag
     :init))
 
-(defun zilongshanren/post-init-flyspell-correct ()
+(defun zilongshanren-programming/post-init-flyspell-correct ()
   (progn
     (with-eval-after-load 'flyspell
       (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-word-generic))
     (setq flyspell-correct-interface 'flyspell-correct-ivy)))
 
-(defun zilongshanren/init-profiler ()
+(defun zilongshanren-programming/init-profiler ()
   (use-package profiler
     :init
     (evilified-state-evilify profiler-report-mode profiler-report-mode-map)))
 
-(defun zilongshanren/post-init-gist ()
+(defun zilongshanren-programming/post-init-gist ()
   (use-package gist
     :defer t
     :init
@@ -100,7 +100,7 @@
     ))
 
 
-(defun zilongshanren/init-peep-dired ()
+(defun zilongshanren-programming/init-peep-dired ()
   ;;preview files in dired
   (use-package peep-dired
     :defer t
@@ -109,7 +109,7 @@
     :bind (:map dired-mode-map
                 ("P" . peep-dired))))
 
-(defun zilongshanren/post-init-smartparens ()
+(defun zilongshanren-programming/post-init-smartparens ()
   (progn
     (defun wrap-sexp-with-new-round-parens ()
       (interactive)
@@ -128,7 +128,7 @@
 
     ))
 
-(defun zilongshanren/post-init-erc ()
+(defun zilongshanren-programming/post-init-erc ()
   (progn
     (defun my-erc-hook (match-type nick message)
       "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
@@ -142,7 +142,7 @@
     (add-hook 'erc-text-matched-hook 'my-erc-hook)
     (spaceline-toggle-erc-track-off)))
 
-(defun zilongshanren/post-init-whitespace ()
+(defun zilongshanren-programming/post-init-whitespace ()
   (progn
     ;; ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
     (setq whitespace-line-column fill-column) ;; limit line length
@@ -179,7 +179,7 @@
 
     (diminish 'whitespace-mode)))
 
-(defun zilongshanren/post-init-js-doc ()
+(defun zilongshanren-programming/post-init-js-doc ()
   (setq js-doc-mail-address "guanghui8827@gmail.com"
         js-doc-author (format "Guanghui Qu <%s>" js-doc-mail-address)
         js-doc-url "http://www.zilongshanren.com"
@@ -225,7 +225,7 @@
                       (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
                       (define-key js2-mode-map "@" 'js-doc-insert-tag))))
 
-(defun zilongshanren/init-dired-mode ()
+(defun zilongshanren-programming/init-dired-mode ()
   (use-package dired-mode
     :init
     (progn
@@ -350,7 +350,7 @@ open and unsaved."
     )
   )
 
-(defun zilongshanren/init-occur-mode ()
+(defun zilongshanren-programming/init-occur-mode ()
   (defun occur-non-ascii ()
     "Find any non-ascii characters in the current buffer."
     (interactive)
@@ -374,7 +374,7 @@ open and unsaved."
   (evilified-state-evilify occur-mode occur-mode-map
     "RET" 'occur-mode-goto-occurrence))
 
-(defun zilongshanren/init-beacon ()
+(defun zilongshanren-programming/init-beacon ()
   (use-package beacon
     :init
     (progn
@@ -388,7 +388,7 @@ open and unsaved."
       (spacemacs/toggle-beacon-on))
     :config (spacemacs|hide-lighter beacon-mode)))
 
-(defun zilongshanren/init-evil-vimish-fold ()
+(defun zilongshanren-programming/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
     :init
     (vimish-fold-global-mode 1)
@@ -399,7 +399,7 @@ open and unsaved."
       (define-key evil-normal-state-map (kbd "zd") 'vimish-fold-delete)
       (define-key evil-normal-state-map (kbd "za") 'vimish-fold-toggle))))
 
-(defun zilongshanren/init-ctags-update ()
+(defun zilongshanren-programming/init-ctags-update ()
   (use-package ctags-update
     :init
     (progn
@@ -410,7 +410,7 @@ open and unsaved."
     (spacemacs|hide-lighter ctags-auto-update-mode)))
 
 ;; nodejs-repl is much better now.
-;; (defun zilongshanren/init-js-comint ()
+;; (defun zilongshanren-programming/init-js-comint ()
 ;;   (use-package js-comint
 ;;     :init
 ;;     (progn
@@ -426,7 +426,7 @@ open and unsaved."
 ;;                  (replace-regexp-in-string "\033\\[[0-9]+[GKJ]" "" output)))))
 ;;       (setq inferior-js-program-command "node"))))
 
-(defun zilongshanren/post-init-web-mode ()
+(defun zilongshanren-programming/post-init-web-mode ()
   (setq company-backends-web-mode '((company-dabbrev-code
                                      company-keywords
                                      company-etags)
@@ -434,7 +434,7 @@ open and unsaved."
 
 
 
-(defun zilongshanren/init-wrap-region ()
+(defun zilongshanren-programming/init-wrap-region ()
   (use-package wrap-region
     :init
     (progn
@@ -452,7 +452,7 @@ open and unsaved."
     :config
     (spacemacs|hide-lighter wrap-region-mode)))
 
-(defun zilongshanren/post-init-projectile ()
+(defun zilongshanren-programming/post-init-projectile ()
   (with-eval-after-load 'projectile
     (progn
       (setq projectile-completion-system 'ivy)
@@ -462,7 +462,7 @@ open and unsaved."
 
 ;; spacemacs distribution disabled this package, because it has overlay bug.
 ;; I hack the implementation here. on default, the hl-highlight-mode is disabled.
-(defun zilongshanren/post-init-hl-anything ()
+(defun zilongshanren-programming/post-init-hl-anything ()
   (progn
     (hl-highlight-mode -1)
     (spacemacs|add-toggle toggle-hl-anything
@@ -472,13 +472,13 @@ open and unsaved."
       :documentation "Toggle highlight anything mode."
       :evil-leader "ths")))
 
-(defun zilongshanren/init-find-file-in-project ()
+(defun zilongshanren-programming/init-find-file-in-project ()
   (use-package find-file-in-project
     :defer t
     :init))
 
 
-(defun zilongshanren/post-init-yasnippet ()
+(defun zilongshanren-programming/post-init-yasnippet ()
   (progn
     (set-face-background 'secondary-selection "gray")
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
@@ -501,7 +501,7 @@ open and unsaved."
                                                             org-mode-hook))
     ))
 
-(defun zilongshanren/post-init-racket-mode ()
+(defun zilongshanren-programming/post-init-racket-mode ()
   (progn
     (eval-after-load 'racket-repl-mode
       '(progn
@@ -513,28 +513,28 @@ open and unsaved."
     (add-hook 'racket-repl-mode-hook #'(lambda () (smartparens-mode t)))
     ))
 
-(defun zilongshanren/post-init-json-mode ()
+(defun zilongshanren-programming/post-init-json-mode ()
   (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode)))
 
 
 
-(defun zilongshanren/init-visual-regexp-steroids ()
+(defun zilongshanren-programming/init-visual-regexp-steroids ()
   (use-package visual-regexp-steroids
     :commands (vr/select-replace vr/select-query-replace)))
 
-(defun zilongshanren/init-visual-regexp ()
+(defun zilongshanren-programming/init-visual-regexp ()
   (use-package visual-regexp
     :commands (vr/replace vr/query-replace)))
 
-(defun zilongshanren/init-nodejs-repl ()
+(defun zilongshanren-programming/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
     :defer t))
 
-(defun zilongshanren/init-flycheck-package ()
+(defun zilongshanren-programming/init-flycheck-package ()
   (use-package flycheck-package))
 
-(defun zilongshanren/init-lispy ()
+(defun zilongshanren-programming/init-lispy ()
   "Initialize lispy"
   (use-package lispy
     :defer t
@@ -550,7 +550,7 @@ open and unsaved."
       (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))))
 
 
-(defun zilongshanren/post-init-company ()
+(defun zilongshanren-programming/post-init-company ()
   (progn
     (setq company-minimum-prefix-length 1
           company-idle-delay 0.08)
@@ -565,15 +565,15 @@ open and unsaved."
       )
     ))
 
-(defun zilongshanren/init-cmake-font-lock ()
+(defun zilongshanren-programming/init-cmake-font-lock ()
   (use-package cmake-font-lock
     :defer t))
 
-(defun zilongshanren/init-google-c-style ()
+(defun zilongshanren-programming/init-google-c-style ()
   (use-package google-c-style
     :init (add-hook 'c-mode-common-hook 'google-set-c-style)))
 
-(defun zilongshanren/post-init-cmake-mode ()
+(defun zilongshanren-programming/post-init-cmake-mode ()
   (progn
     (spacemacs/declare-prefix-for-mode 'cmake-mode
                                        "mh" "docs")
@@ -593,7 +593,7 @@ open and unsaved."
     (add-hook 'cmake-mode-hook (function cmake-rename-buffer))))
 
 
-(defun zilongshanren/post-init-flycheck ()
+(defun zilongshanren-programming/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
       ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
@@ -603,7 +603,7 @@ open and unsaved."
       )))
 
 ;; configs for writing
-(defun zilongshanren/post-init-markdown-mode ()
+(defun zilongshanren-programming/post-init-markdown-mode ()
   (progn
     (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
 
@@ -626,7 +626,7 @@ open and unsaved."
         ))
     ))
 
-(defun zilongshanren/init-impatient-mode ()
+(defun zilongshanren-programming/init-impatient-mode ()
   "Initialize impatient mode"
   (use-package impatient-mode
     :init
@@ -645,14 +645,14 @@ open and unsaved."
       )))
 
 
-(defun zilongshanren/init-keyfreq ()
+(defun zilongshanren-programming/init-keyfreq ()
   (use-package keyfreq
     :init
     (progn
       (keyfreq-mode t)
       (keyfreq-autosave-mode 1))))
 
-(defun zilongshanren/post-init-swiper ()
+(defun zilongshanren-programming/post-init-swiper ()
   "Initialize my package"
   (progn
     (defun my-swiper-search (p)
@@ -734,7 +734,7 @@ open and unsaved."
     ))
 
 
-(defun zilongshanren/post-init-magit ()
+(defun zilongshanren-programming/post-init-magit ()
   (progn
     (with-eval-after-load 'magit
       (progn
@@ -785,7 +785,7 @@ open and unsaved."
 
     (setq magit-process-popup-time 10)))
 
-(defun zilongshanren/post-init-git-messenger ()
+(defun zilongshanren-programming/post-init-git-messenger ()
   (use-package git-messenger
     :defer t
     :config
@@ -807,13 +807,13 @@ open and unsaved."
       (define-key git-messenger-map (kbd "f") 'zilong/github-browse-commit))))
 
 
-(defun zilongshanren/post-init-js2-refactor ()
+(defun zilongshanren-programming/post-init-js2-refactor ()
   (progn
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "r>" 'js2r-forward-slurp
       "r<" 'js2r-forward-barf)))
 
-(defun zilongshanren/post-init-js2-mode ()
+(defun zilongshanren-programming/post-init-js2-mode ()
   (progn
     ;; http://blog.binchen.org/posts/use-which-func-mode-with-js2-mode.html
     (defun my-which-function ()
@@ -946,7 +946,7 @@ open and unsaved."
                 (setq imenu-create-index-function 'js2-imenu-make-index)))
     ))
 
-(defun zilongshanren/post-init-css-mode ()
+(defun zilongshanren-programming/post-init-css-mode ()
   (progn
     (dolist (hook '(css-mode-hook sass-mode-hook less-mode-hook))
       (add-hook hook 'rainbow-mode))
@@ -959,12 +959,12 @@ open and unsaved."
               (lambda ()
                 (setq imenu-create-index-function 'css-imenu-make-index)))))
 
-(defun zilongshanren/post-init-tagedit ()
+(defun zilongshanren-programming/post-init-tagedit ()
   (add-hook 'web-mode-hook (lambda () (tagedit-mode 1))))
 
 ;; For each extension, define a function zilongshanren/init-<extension-name>
 ;;
-(defun zilongshanren/init-doxymacs ()
+(defun zilongshanren-programming/init-doxymacs ()
   "Initialize doxymacs"
   (use-package doxymacs
     :init
@@ -978,7 +978,7 @@ open and unsaved."
       (spacemacs|hide-lighter doxymacs-mode))))
 
 ;; https://atlanis.net/blog/posts/nodejs-repl-eval.html
-(defun zilongshanren/init-nodejs-repl-eval ()
+(defun zilongshanren-programming/init-nodejs-repl-eval ()
   (use-package nodejs-repl-eval
     :commands (nodejs-repl-eval-buffer nodejs-repl-eval-dwim nodejs-repl-eval-function)
     :init

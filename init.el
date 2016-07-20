@@ -78,7 +78,7 @@ values."
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
-     zilongshanren
+     zilongshanren-programming
      zilongshanren-misc
      zilongshanren-ui
      zilongshanren-org
