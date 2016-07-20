@@ -519,7 +519,6 @@ holding contextual information."
         (org-octopress-setup-publish-project)
         (org-publish-project "octopress" t))
 
-      (spacemacs/set-leader-keys "op" 'zilongshanren/org-save-and-export)
       )))
 
 

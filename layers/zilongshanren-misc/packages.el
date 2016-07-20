@@ -343,10 +343,6 @@
     (evil-define-key 'emacs term-raw-map (kbd "C-w")
       'evil-delete-backward-word)
 
-    (spacemacs/set-leader-keys "fR" 'zilongshanren/rename-file-and-buffer)
-    (spacemacs/set-leader-keys "bms" 'bookmark-set)
-    (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
-    (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
     (setq evil-normal-state-tag   (propertize "[N]" 'face '((:background "DarkGoldenrod2" :foreground "black")))
           evil-emacs-state-tag    (propertize "[E]" 'face '((:background "SkyBlue2" :foreground "black")))
