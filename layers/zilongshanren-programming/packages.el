@@ -15,6 +15,7 @@
 (setq zilongshanren-programming-packages
       '(
         css-mode
+        paredit
         lispy
         cmake-font-lock
         cmake-mode
@@ -31,6 +32,7 @@
         lua-mode
         (cc-mode :location built-in)
         ;; flycheck-clojure
+        etags-select
         ))
 
 (defun zilongshanren-programming/post-init-js-doc ()
@@ -569,3 +571,77 @@
     :defer t
     :init
     (eval-after-load 'flycheck '(flycheck-clojure-setup))))
+
+(defun zilongshanren-programming/post-init-ycmd ()
+  (progn
+    (setq ycmd-tag-files 'auto)
+    (setq ycmd-request-message-level -1)
+    (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+    (setq company-backends-c-mode-common '((company-c-headers
+                                            company-dabbrev-code
+                                            company-keywords
+                                            company-gtags :with company-yasnippet)
+                                           company-files company-dabbrev ))
+
+    (zilongshanren|toggle-company-backends company-ycmd)
+    (eval-after-load 'ycmd
+      '(spacemacs|hide-lighter ycmd-mode))
+
+    (spacemacs/set-leader-keys-for-major-mode 'c-mode
+      "tb" 'zilong/company-toggle-company-ycmd)
+    (spacemacs/set-leader-keys-for-major-mode 'c++-mode
+      "tb" 'zilong/company-toggle-company-ycmd)))
+
+;; when many project has the need to use tags, I will give etags-table and etags-update a try
+(defun zilongshanren-programming/init-etags-select ()
+  (use-package etags-select
+    :init
+    (progn
+      (define-key evil-normal-state-map (kbd "gf")
+        (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
+
+      (define-key evil-normal-state-map (kbd "gb") 'pop-tag-mark)
+
+      (define-key evil-normal-state-map (kbd "gn")
+        (lambda () (interactive) (find-tag last-tag t)))
+
+      (evilified-state-evilify etags-select-mode etags-select-mode-map)
+      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+        "gd" 'etags-select-find-tag-at-point))))
+
+(defun zilongshanren-programming/init-gulpjs ()
+  (use-package gulpjs
+    :init
+    (progn
+      (defun zilong/build-engine ()
+        (interactive)
+        (gulpjs-start-task-with-file-name "~/Github/fireball/app.js"))
+
+      (spacemacs/set-leader-keys "ags" 'gulpjs-start-task)
+      (spacemacs/set-leader-keys "agS" 'zilong/build-engine)
+      (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
+
+(defun zilongshanren-programming/post-init-nodejs-repl ()
+  (progn
+    (spacemacs/declare-prefix-for-mode 'js2-mode
+                                       "ms" "REPL")
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+      "sb" 'nodejs-repl-eval-buffer
+      "sf" 'nodejs-repl-eval-function
+      "sd" 'nodejs-repl-eval-dwim)))
+
+(defun zilongshanren-programming/init-paredit ()
+  (use-package paredit
+    :commands (paredit-wrap-round
+               paredit-wrap-square
+               paredit-wrap-curly
+               paredit-splice-sexp-killing-backward)
+    :init
+    (progn
+      (bind-key* "s-j"
+                 #'paredit-splice-sexp-killing-backward)
+
+      (bind-key* "s-(" #'paredit-wrap-round)
+      (bind-key* "s-[" #'paredit-wrap-square)
+      (bind-key* "s-{" #'paredit-wrap-curly)
+      )))

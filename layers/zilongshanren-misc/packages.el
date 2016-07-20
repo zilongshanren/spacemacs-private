@@ -13,7 +13,6 @@
       '(
         (occur-mode :location built-in)
         (dired-mode :location built-in)
-        (whitespace :location built-in)
         (profiler :location built-in)
         projectile
         prodigy
@@ -26,14 +25,11 @@
         evil
         fcitx
         discover-my-major
-        popwin
         ace-window
         avy
         4clojure
         persp-mode
-        etags-select
         helm-github-stars
-        paredit
         youdao-dictionary
         helm
         tiny
@@ -157,22 +153,6 @@
 
 
 
-;; when many project has the need to use tags, I will give etags-table and etags-update a try
-(defun zilongshanren-misc/init-etags-select ()
-  (use-package etags-select
-    :init
-    (progn
-      (define-key evil-normal-state-map (kbd "gf")
-        (lambda () (interactive) (find-tag (find-tag-default-as-regexp))))
-
-      (define-key evil-normal-state-map (kbd "gb") 'pop-tag-mark)
-
-      (define-key evil-normal-state-map (kbd "gn")
-        (lambda () (interactive) (find-tag last-tag t)))
-
-      (evilified-state-evilify etags-select-mode etags-select-mode-map)
-      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-        "gd" 'etags-select-find-tag-at-point))))
 
 (defun zilongshanren-misc/post-init-fcitx ()
   (fcitx-aggressive-setup))
@@ -183,18 +163,7 @@
                                               '(evil-next-visual-line
                                                 evil-previous-visual-line)))))
 
-(defun zilongshanren-misc/post-init-pangu-spacing ()
-  (progn
-    ;; add toggle options
-    (spacemacs|add-toggle toggle-pangu-spaceing
-      :status pangu-spacing-mode
-      :on (global-pangu-spacing-mode)
-      :off (global-pangu-spacing-mode -1)
-      :documentation "Toggle pangu spacing mode"
-      :evil-leader "ots")
-    (add-hook 'markdown-mode-hook
-              '(lambda ()
-                 (set (make-local-variable 'pangu-spacing-real-insert-separtor) t)))))
+
 
 (defun zilongshanren-misc/init-litable ()
   (use-package litable
@@ -210,17 +179,6 @@
       (global-set-key (kbd "C-c d") 'osx-dictionary-search-pointer)
       )))
 
-(defun zilongshanren-misc/init-gulpjs ()
-  (use-package gulpjs
-    :init
-    (progn
-      (defun zilong/build-engine ()
-        (interactive)
-        (gulpjs-start-task-with-file-name "~/Github/fireball/app.js"))
-
-      (spacemacs/set-leader-keys "ags" 'gulpjs-start-task)
-      (spacemacs/set-leader-keys "agS" 'zilong/build-engine)
-      (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
 (defun zilongshanren-misc/init-4clojure ()
   (use-package 4clojure
@@ -233,11 +191,6 @@
       (spacemacs/set-leader-keys "o4c" '4clojure-check-answers)
       )))
 
-(defun zilongshanren-misc/post-init-popwin ()
-  (progn
-    (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
-    (delete "*Async Shell Command*" popwin:special-display-config)
-    ))
 
 
 
@@ -258,25 +211,7 @@
 
       (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
 
-(defun zilongshanren-misc/post-init-ycmd ()
-  (progn
-    (setq ycmd-tag-files 'auto)
-    (setq ycmd-request-message-level -1)
-    (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
-    (setq company-backends-c-mode-common '((company-c-headers
-                                            company-dabbrev-code
-                                            company-keywords
-                                            company-gtags :with company-yasnippet)
-                                           company-files company-dabbrev ))
 
-    (zilongshanren|toggle-company-backends company-ycmd)
-    (eval-after-load 'ycmd
-      '(spacemacs|hide-lighter ycmd-mode))
-
-    (spacemacs/set-leader-keys-for-major-mode 'c-mode
-      "tb" 'zilong/company-toggle-company-ycmd)
-    (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-      "tb" 'zilong/company-toggle-company-ycmd)))
 
 
 
@@ -487,14 +422,7 @@
           (quote
            ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))))
 
-(defun zilongshanren-misc/post-init-nodejs-repl ()
-  (progn
-    (spacemacs/declare-prefix-for-mode 'js2-mode
-                                       "ms" "REPL")
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "sb" 'nodejs-repl-eval-buffer
-      "sf" 'nodejs-repl-eval-function
-      "sd" 'nodejs-repl-eval-dwim)))
+
 
 (defun zilongshanren-misc/init-visual-regexp ()
   (use-package visual-regexp
@@ -735,21 +663,7 @@
     (moz-controller-global-mode t)
     :diminish moz-controller-mode))
 
-(defun zilongshanren-misc/init-paredit ()
-  (use-package paredit
-    :commands (paredit-wrap-round
-               paredit-wrap-square
-               paredit-wrap-curly
-               paredit-splice-sexp-killing-backward)
-    :init
-    (progn
-      (bind-key* "s-j"
-                 #'paredit-splice-sexp-killing-backward)
 
-      (bind-key* "s-(" #'paredit-wrap-round)
-      (bind-key* "s-[" #'paredit-wrap-square)
-      (bind-key* "s-{" #'paredit-wrap-curly)
-      )))
 
 (defun zilongshanren-misc/init-occur-mode ()
   (defun occur-non-ascii ()
@@ -900,42 +814,7 @@ open and unsaved."
     :defer t
     ))
 
-(defun zilongshanren-misc/post-init-whitespace ()
-  (progn
-    ;; ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
-    (setq whitespace-line-column fill-column) ;; limit line length
-    ;;https://www.reddit.com/r/emacs/comments/2keh6u/show_tabs_and_trailing_whitespaces_only/
-    (setq whitespace-display-mappings
-          ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-          '(
-            (space-mark 32 [183] [46])           ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-            (newline-mark 10 [182 10])           ; 10 LINE FEED
-            (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-            ))
-    (setq whitespace-style '(face tabs trailing tab-mark ))
-    ;; (setq whitespace-style '(face lines-tail))
-    ;; show tab;  use untabify to convert tab to whitespace
-    (setq spacemacs-show-trailing-whitespace nil)
 
-    (setq-default tab-width 4)
-    ;; set-buffer-file-coding-system -> utf8 to convert dos to utf8
-    ;; (setq inhibit-eol-conversion t)
-    ;; (add-hook 'prog-mode-hook 'whitespace-mode)
-
-    ;; (global-whitespace-mode +1)
-
-    (with-eval-after-load 'whitespace
-      (progn
-        (set-face-attribute 'whitespace-tab nil
-                            :background "#Adff2f"
-                            :foreground "#00a8a8"
-                            :weight 'bold)
-        (set-face-attribute 'whitespace-trailing nil
-                            :background "#e4eeff"
-                            :foreground "#183bc8"
-                            :weight 'normal)))
-
-    (diminish 'whitespace-mode)))
 
 (defun zilongshanren-misc/init-profiler ()
   (use-package profiler
