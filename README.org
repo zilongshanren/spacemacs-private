@@ -29,11 +29,10 @@ brew reinstall emacs --HEAD --use-git-head --with-cocoa --with-gnutls --with-rsv
 
 ** 配置说明
 1. 我的配置主要分成四个 layer
-
-- zilongshanren-ui: 定制 mode-line，font face 等配置。
-- zilongshanren-programming：和编程相关的配置。
-- zilongshanren-misc：一些杂项，不属于其它 3 种分类的都放在这里面。
-- zilongshanren-org：和 org 相关的配置
+  - zilongshanren-ui: 定制 mode-line，font face 等配置。
+  - zilongshanren-programming：和编程相关的配置。
+  - zilongshanren-misc：一些杂项，不属于其它 3 种分类的都放在这里面。
+  - zilongshanren-org：和 org 相关的配置
 
 2. Spacemacs Rocks 系统视频演示：https://github.com/zilongshanren/Spacemacs-rocks/issues/5 , 让你从此爱上 Emacs :smile:
 
@@ -51,6 +50,7 @@ brew reinstall emacs --HEAD --use-git-head --with-cocoa --with-gnutls --with-rsv
 因为每个人的 Emacs 配置都不尽相同，你可以参考我的配置，然后建立自己的 layer 和配置。
 
 ** 可能会遇到的问题
-1. 如果使用了 =.spacemacs.d= 目录来保存你的 spacemacs 配置，就不需要在 HOME 目录维护一个 =.spacemacs=文件了。 至于为什么要使用 =.spacemacs.d= 目录而不是 =.spacemacs= 文件，主要是方便分离自己的配置与 spacemacs 的配置，更新更容易。
+1. 如果使用了 =.spacemacs.d= 目录来保存你的 spacemacs 配置，就不需要在 HOME 目录维护一个 =.spacemacs= 文件了。 至于为什么要使用 =.spacemacs.d= 目录而不是 =.spacemacs= 文件，主要是方便分离自己的配置与 spacemacs 的配置，更新更容易。
+2. 如果发现添加在 =.spacemacs.d/init.el= 里面的配置没有生效，检查一下是否你的 HOME 目录还存在一个 =.spacemacs= 文件。
 
 ** Happy Hacking:smile: 
