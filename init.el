@@ -79,7 +79,7 @@ values."
                       auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
      zilongshanren
-     guanghui
+     zilongshanren-misc
      zilongshanren-ui
      zilongshanren-org
      )

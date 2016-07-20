@@ -19,3 +19,10 @@
               '((which-func-mode ("" which-func-format " "))))
 (setq-default mode-line-misc-info
               (assq-delete-all 'which-function-mode mode-line-misc-info))
+
+;; more useful frame title, that show either a file or a
+;; buffer name (if the buffer isn't visiting a file)
+(setq frame-title-format
+      '("" " Guanghui - "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name)) "%b"))))

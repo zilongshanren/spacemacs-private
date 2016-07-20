@@ -12,7 +12,7 @@
 
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
-(setq guanghui-packages
+(setq zilongshanren-misc-packages
       '(
         projectile
         prodigy
@@ -44,19 +44,19 @@
         smartparens
         ))
 
-(defun guanghui/post-init-smartparens ()
+(defun zilongshanren-misc/post-init-smartparens ()
   (use-package smartparens
     :defer t
     :config
     (setq sp-highlight-pair-overlay nil)))
 
-(defun guanghui/init-tiny ()
+(defun zilongshanren-misc/init-tiny ()
   (use-package tiny
     :defer t
     :init
     (spacemacs/set-leader-keys "om" 'tiny-expand)))
 
-(defun guanghui/post-init-helm ()
+(defun zilongshanren-misc/post-init-helm ()
   (with-eval-after-load 'helm
     (progn
       ;; limit max number of matches displayed for speed
@@ -69,20 +69,20 @@
       )
     ))
 
-(defun guanghui/init-youdao-dictionary ()
+(defun zilongshanren-misc/init-youdao-dictionary ()
   (use-package youdao-dictionary
     :defer t
     :init
     (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
     ))
 
-(defun guanghui/init-flycheck-clojure ()
+(defun zilongshanren-misc/init-flycheck-clojure ()
   (use-package flycheck-clojure
     :defer t
     :init
     (eval-after-load 'flycheck '(flycheck-clojure-setup))))
 
-(defun guanghui/init-helm-github-stars ()
+(defun zilongshanren-misc/init-helm-github-stars ()
   (use-package helm-github-stars
     :commands (helm-github-stars)
     :init
@@ -91,7 +91,7 @@
 
 
 ;; when many project has the need to use tags, I will give etags-table and etags-update a try
-(defun guanghui/init-etags-select ()
+(defun zilongshanren-misc/init-etags-select ()
   (use-package etags-select
     :init
     (progn
@@ -107,16 +107,16 @@
       (spacemacs/set-leader-keys-for-major-mode 'js2-mode
         "gd" 'etags-select-find-tag-at-point))))
 
-(defun guanghui/post-init-fcitx ()
+(defun zilongshanren-misc/post-init-fcitx ()
   (fcitx-aggressive-setup))
 
-(defun guanghui/post-init-command-log ()
+(defun zilongshanren-misc/post-init-command-log ()
   (with-eval-after-load 'command-log-mode
     (setq clm/log-command-exceptions* (append clm/log-command-exceptions*
                                               '(evil-next-visual-line
                                                 evil-previous-visual-line)))))
 
-(defun guanghui/post-init-pangu-spacing ()
+(defun zilongshanren-misc/post-init-pangu-spacing ()
   (progn
     ;; add toggle options
     (spacemacs|add-toggle toggle-pangu-spaceing
@@ -129,12 +129,12 @@
               '(lambda ()
                  (set (make-local-variable 'pangu-spacing-real-insert-separtor) t)))))
 
-(defun guanghui/init-litable ()
+(defun zilongshanren-misc/init-litable ()
   (use-package litable
     :init
     :defer t))
 
-(defun guanghui/init-osx-dictionary ()
+(defun zilongshanren-misc/init-osx-dictionary ()
   (use-package osx-dictionary
     :init
     (progn
@@ -143,7 +143,7 @@
       (global-set-key (kbd "C-c d") 'osx-dictionary-search-pointer)
       )))
 
-(defun guanghui/init-gulpjs ()
+(defun zilongshanren-misc/init-gulpjs ()
   (use-package gulpjs
     :init
     (progn
@@ -155,7 +155,7 @@
       (spacemacs/set-leader-keys "agS" 'zilong/build-engine)
       (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
-(defun guanghui/init-4clojure ()
+(defun zilongshanren-misc/init-4clojure ()
   (use-package 4clojure
     :init
     (progn
@@ -166,7 +166,7 @@
       (spacemacs/set-leader-keys "o4c" '4clojure-check-answers)
       )))
 
-(defun guanghui/post-init-popwin ()
+(defun zilongshanren-misc/post-init-popwin ()
   (progn
     (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
     (delete "*Async Shell Command*" popwin:special-display-config)
@@ -174,15 +174,15 @@
 
 
 
-(defun guanghui/post-init-avy ()
+(defun zilongshanren-misc/post-init-avy ()
   (progn
     (global-set-key (kbd "C-s-'") 'avy-goto-char-2)
     (global-set-key (kbd "M-'") 'avy-goto-char-2)))
 
-(defun guanghui/post-init-ace-window ()
+(defun zilongshanren-misc/post-init-ace-window ()
   (global-set-key (kbd "C-x C-o") #'ace-window))
 
-(defun guanghui/init-discover-my-major ()
+(defun zilongshanren-misc/init-discover-my-major ()
   (use-package discover-my-major
     :defer t
     :init
@@ -191,7 +191,7 @@
 
       (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
 
-(defun guanghui/post-init-ycmd ()
+(defun zilongshanren-misc/post-init-ycmd ()
   (progn
     (setq ycmd-tag-files 'auto)
     (setq ycmd-request-message-level -1)
@@ -211,7 +211,7 @@
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "tb" 'zilong/company-toggle-company-ycmd)))
 
-(defun guanghui/post-init-lua-mode ()
+(defun zilongshanren-misc/post-init-lua-mode ()
   (progn
     (add-hook 'lua-mode-hook 'evil-matchit-mode)
     (add-hook 'lua-mode-hook 'smartparens-mode)
@@ -230,7 +230,7 @@
 
     ))
 
-(defun guanghui/post-init-elfeed ()
+(defun zilongshanren-misc/post-init-elfeed ()
   (use-package elfeed
     :init
     (global-set-key (kbd "C-x w") 'elfeed)
@@ -279,7 +279,7 @@
 
       (ad-activate 'elfeed-show-yank))))
 
-(defun guanghui/post-init-evil ()
+(defun zilongshanren-misc/post-init-evil ()
   (progn
     (setcdr evil-insert-state-map nil)
     (define-key evil-insert-state-map [escape] 'evil-normal-state)
@@ -376,7 +376,7 @@
 
 
 
-(defun guanghui/post-init-lispy ()
+(defun zilongshanren-misc/post-init-lispy ()
   (with-eval-after-load 'lispy
     (progn
       (defun conditionally-enable-lispy ()
@@ -390,7 +390,7 @@
       (define-key lispy-mode-map (kbd "s-k") 'lispy-splice)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
 
-(defun guanghui/init-hydra ()
+(defun zilongshanren-misc/init-hydra ()
   (use-package hydra
     :init
     (progn
@@ -445,7 +445,7 @@
       (bind-key*  "<f4>" 'hydra-apropos/body)
       )))
 
-(defun guanghui/post-init-company-c-headers ()
+(defun zilongshanren-misc/post-init-company-c-headers ()
   (progn
     (setq company-c-headers-path-system
           (quote
@@ -454,7 +454,7 @@
           (quote
            ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))))
 
-(defun guanghui/post-init-nodejs-repl ()
+(defun zilongshanren-misc/post-init-nodejs-repl ()
   (progn
     (spacemacs/declare-prefix-for-mode 'js2-mode
                                        "ms" "REPL")
@@ -463,12 +463,12 @@
       "sf" 'nodejs-repl-eval-function
       "sd" 'nodejs-repl-eval-dwim)))
 
-(defun guanghui/post-init-visual-regexp-steroids ()
+(defun zilongshanren-misc/post-init-visual-regexp-steroids ()
   (progn
     (define-key global-map (kbd "C-c r") 'vr/replace)
     (define-key global-map (kbd "C-c q") 'vr/query-replace)))
 
-(defun guanghui/init-multiple-cursors ()
+(defun zilongshanren-misc/init-multiple-cursors ()
   (use-package multiple-cursors
     :init
     (progn
@@ -532,7 +532,7 @@
             sp-delete-char
             sp-remove-active-pair-overlay))))
 
-(defun guanghui/post-init-persp-mode ()
+(defun zilongshanren-misc/post-init-persp-mode ()
   (when (fboundp 'spacemacs|define-custom-layout)
     (spacemacs|define-custom-layout "@Cocos2D-X"
       :binding "c"
@@ -541,7 +541,7 @@
       (split-window-right)
       (find-file "~/cocos2d-x/cocos/cocos2d.cpp"))))
 
-(defun guanghui/post-init-chinese-wbim ()
+(defun zilongshanren-misc/post-init-chinese-wbim ()
   (progn
     ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
     (bind-key* ";" 'chinese-wbim-insert-ascii)
@@ -557,10 +557,10 @@
                   (define-key map "=" 'chinese-wbim-next-page))))
     ))
 
-(defun guanghui/post-init-youdao-dictionary ()
+(defun zilongshanren-misc/post-init-youdao-dictionary ()
   (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+))
 
-(defun guanghui/post-init-cc-mode ()
+(defun zilongshanren-misc/post-init-cc-mode ()
   (progn
     (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-etags)
                                            company-files company-dabbrev))
@@ -654,10 +654,10 @@
   )
 
 
-(defun guanghui/post-init-evil-escape ()
+(defun zilongshanren-misc/post-init-evil-escape ()
   (setq evil-escape-delay 0.2))
 
-(defun guanghui/post-init-find-file-in-project ()
+(defun zilongshanren-misc/post-init-find-file-in-project ()
   (progn
     (defun zilongshanren/search-in-fireball ()
       (interactive)
@@ -691,7 +691,7 @@
         ))
     (ad-activate 'find-file-in-project)))
 
-(defun guanghui/post-init-deft ()
+(defun zilongshanren-misc/post-init-deft ()
   (progn
     (setq deft-use-filter-string-for-filename t)
     (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
@@ -700,7 +700,7 @@
     (setq deft-directory "~/org-notes")))
 
 
-(defun guanghui/post-init-js2-mode ()
+(defun zilongshanren-misc/post-init-js2-mode ()
   (progn
     (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
@@ -735,7 +735,7 @@
 
 
 
-(defun guanghui/post-init-projectile ()
+(defun zilongshanren-misc/post-init-projectile ()
   (progn
     (defvar my-simple-todo-regex "\\<\\(FIXME\\|TODO\\|BUG\\):")
 
@@ -752,7 +752,7 @@
 
 
 
-(defun guanghui/post-init-prodigy ()
+(defun zilongshanren-misc/post-init-prodigy ()
   (progn
     (prodigy-define-tag
       :name 'jekyll
@@ -814,13 +814,13 @@
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)))
 
-(defun guanghui/init-moz-controller ()
+(defun zilongshanren-misc/init-moz-controller ()
   (use-package moz-controller
     :init
     (moz-controller-global-mode t)
     :diminish moz-controller-mode))
 
-(defun guanghui/init-paredit ()
+(defun zilongshanren-misc/init-paredit ()
   (use-package paredit
     :commands (paredit-wrap-round
                paredit-wrap-square
