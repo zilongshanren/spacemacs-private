@@ -398,18 +398,14 @@ layers configuration."
 
   ;; (setq-default powerline-default-separator 'arrow)
 
-  (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode)
-
   ;; show smartparens mode will cause Emacs frozen when use swiper...
   ;; (turn-off-show-smartparens-mode)
   ;; (add-hook 'emacs-lisp-mode-hook 'turn-on-show-smartparens-mode)
 
   ;; improve the performance of opening large file
-  (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   ;; (spacemacs/toggle-automatic-symbol-highlight-on)
 
   (spacemacs|add-company-hook 'text-mode)
-
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -418,18 +414,10 @@ layers configuration."
 
   (global-hungry-delete-mode t)
 
-
   (when (configuration-layer/layer-usedp 'ivy)
     (setq projectile-switch-project-action
           'zilongshanren/open-file-with-projectile-or-counsel-git))
 
-
-  (with-eval-after-load 'clojure-mode
-    (dolist (c (string-to-list ":_-?!#*"))
-      (modify-syntax-entry c "w" clojure-mode-syntax-table )))
-
-  ;; if you use pyton3, then you could comment the following line
-  (setq python-shell-interpreter "python")
 
   ;; visual line mode will cause swiper slower...
   ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)

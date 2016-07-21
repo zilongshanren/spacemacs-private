@@ -33,7 +33,25 @@
         (cc-mode :location built-in)
         ;; flycheck-clojure
         etags-select
+        (python :location built-in)
+        (emacs-lisp :location built-in)
+        clojure-mode
         ))
+
+(defun zilongshanren-programming/post-init-clojure-mode ()
+  (use-package clojure-mode
+    :defer t
+    :config
+    (dolist (c (string-to-list ":_-?!#*"))
+      (modify-syntax-entry c "w" clojure-mode-syntax-table ))))
+
+(defun zilongshanren-programming/post-init-emacs-lisp ()
+    (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode))
+
+(defun zilongshanren-programming/post-init-python ()
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; if you use pyton3, then you could comment the following line
+  (setq python-shell-interpreter "python"))
 
 (defun zilongshanren-programming/post-init-js-doc ()
   (setq js-doc-mail-address "guanghui8827@gmail.com"
@@ -266,6 +284,7 @@
 
     (zilongshanren|toggle-company-backends company-tern)
 
+    (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)

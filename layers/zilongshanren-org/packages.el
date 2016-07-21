@@ -37,6 +37,7 @@
 ;; http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
 ;;http://stackoverflow.com/questions/21005885/export-org-mode-code-block-and-result-with-different-styles
 (defun zilongshanren-org/post-init-org ()
+  (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (with-eval-after-load 'org
     (progn
       ;; https://github.com/syl20bnr/spacemacs/issues/2994#issuecomment-139737911

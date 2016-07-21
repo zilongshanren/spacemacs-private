@@ -106,9 +106,9 @@
 (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)
 (spacemacs/set-leader-keys "op" 'zilongshanren/org-save-and-export)
 (spacemacs/set-leader-keys "fR" 'zilongshanren/rename-file-and-buffer)
-(spacemacs/set-leader-keys "oms" 'bookmark-set)
-(spacemacs/set-leader-keys "omr" 'bookmark-rename)
-(spacemacs/set-leader-keys "omd" 'bookmark-delete)
+;; (spacemacs/set-leader-keys "oms" 'bookmark-set)
+;; (spacemacs/set-leader-keys "omr" 'bookmark-rename)
+;; (spacemacs/set-leader-keys "omd" 'bookmark-delete)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
 (spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
