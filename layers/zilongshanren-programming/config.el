@@ -72,3 +72,5 @@
        '(("\\.mak\\'" . makefile-bsdmake-mode))
        auto-mode-alist))
 
+
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)

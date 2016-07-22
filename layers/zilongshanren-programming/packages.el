@@ -177,6 +177,13 @@
 (defun zilongshanren-programming/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
+    (progn
+      (spacemacs/declare-prefix-for-mode 'js2-mode
+                                         "ms" "REPL")
+      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+        "sb" 'nodejs-repl-eval-buffer
+        "sf" 'nodejs-repl-eval-function
+        "sd" 'nodejs-repl-eval-dwim))
     :defer t))
 
 (defun zilongshanren-programming/init-flycheck-package ()
@@ -640,14 +647,6 @@
       (spacemacs/set-leader-keys "agS" 'zilong/build-engine)
       (spacemacs/set-leader-keys "agr" 'gulpjs-restart-task))))
 
-(defun zilongshanren-programming/post-init-nodejs-repl ()
-  (progn
-    (spacemacs/declare-prefix-for-mode 'js2-mode
-                                       "ms" "REPL")
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "sb" 'nodejs-repl-eval-buffer
-      "sf" 'nodejs-repl-eval-function
-      "sd" 'nodejs-repl-eval-dwim)))
 
 (defun zilongshanren-programming/init-paredit ()
   (use-package paredit
