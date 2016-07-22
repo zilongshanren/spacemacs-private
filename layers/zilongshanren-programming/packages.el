@@ -22,6 +22,7 @@
         flycheck
         impatient-mode
         nodejs-repl
+        (nodejs-repl-eval :location local)
         js2-mode
         js2-refactor
         json-mode
@@ -177,13 +178,6 @@
 (defun zilongshanren-programming/init-nodejs-repl ()
   (use-package nodejs-repl
     :init
-    (progn
-      (spacemacs/declare-prefix-for-mode 'js2-mode
-                                         "ms" "REPL")
-      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-        "sb" 'nodejs-repl-eval-buffer
-        "sf" 'nodejs-repl-eval-function
-        "sd" 'nodejs-repl-eval-dwim))
     :defer t))
 
 (defun zilongshanren-programming/init-flycheck-package ()
@@ -482,6 +476,13 @@
   (use-package nodejs-repl-eval
     :commands (nodejs-repl-eval-buffer nodejs-repl-eval-dwim nodejs-repl-eval-function)
     :init
+    (progn
+      (spacemacs/declare-prefix-for-mode 'js2-mode
+                                         "ms" "REPL")
+      (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+        "sb" 'nodejs-repl-eval-buffer
+        "sf" 'nodejs-repl-eval-function
+        "sd" 'nodejs-repl-eval-dwim))
     :defer t
     ))
 
