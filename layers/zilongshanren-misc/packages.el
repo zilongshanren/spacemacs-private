@@ -14,7 +14,6 @@
         projectile
         prodigy
         find-file-in-project
-        youdao-dictionary
         multiple-cursors
         visual-regexp
         visual-regexp-steroids

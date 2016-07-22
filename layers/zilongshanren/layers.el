@@ -16,5 +16,3 @@
                                       zilongshanren-org
                                       zilongshanren-better-defaults
                                       ))
-
-(configuration-layer/remove-layer 'chinese)

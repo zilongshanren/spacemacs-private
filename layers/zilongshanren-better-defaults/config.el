@@ -154,3 +154,5 @@ Single Capitals as you type."
     (abort-recursive-edit)))
 
 (add-hook 'mouse-leave-buffer-hook 'zilongshanren/stop-using-minibuffer)
+
+(setq tags-add-tables nil)
