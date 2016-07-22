@@ -106,9 +106,14 @@
 (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)
 (spacemacs/set-leader-keys "op" 'zilongshanren/org-save-and-export)
 (spacemacs/set-leader-keys "fR" 'zilongshanren/rename-file-and-buffer)
-;; (spacemacs/set-leader-keys "oms" 'bookmark-set)
-;; (spacemacs/set-leader-keys "omr" 'bookmark-rename)
-;; (spacemacs/set-leader-keys "omd" 'bookmark-delete)
+
+;;Must set key to nil to prevent error: Key sequence b m s starts with non-prefix key b m
+(spacemacs/set-leader-keys "bm" nil)
+(spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
+(spacemacs/declare-prefix "bm" "Bookmark")
+(spacemacs/set-leader-keys "bms" 'bookmark-set)
+(spacemacs/set-leader-keys "bmr" 'bookmark-rename)
+(spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
 (spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)

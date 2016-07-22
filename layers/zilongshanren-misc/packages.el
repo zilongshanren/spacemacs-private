@@ -130,7 +130,7 @@
   (use-package tiny
     :defer t
     :init
-    (spacemacs/set-leader-keys "om" 'tiny-expand)))
+    (spacemacs/set-leader-keys "oe" 'tiny-expand)))
 
 (defun zilongshanren-misc/post-init-helm ()
   (with-eval-after-load 'helm
