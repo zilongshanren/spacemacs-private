@@ -167,7 +167,7 @@
   (fcitx-aggressive-setup))
 
 (defun zilongshanren-misc/post-init-command-log ()
-  (with-eval-after-load 'command-log-mode
+  (with-eval-after-load 'global-command-log-mode
     (setq clm/log-command-exceptions* (append clm/log-command-exceptions*
                                               '(evil-next-visual-line
                                                 evil-previous-visual-line)))))

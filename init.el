@@ -422,8 +422,7 @@ layers configuration."
   ;; visual line mode will cause swiper slower...
   ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 
-  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
-  )
+  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on))
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)

@@ -64,6 +64,7 @@
  ;; If there is more than one, they won't work right.
  '(ahs-definition-face ((t (:foreground "#d33682" :slant normal :weight bold))))
  '(ahs-face ((t (:foreground "#d33682" :weight bold))))
+ '(command-log-command ((t (:foreground "dark magenta"))))
  '(command-log-key ((t (:foreground "dark cyan"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
