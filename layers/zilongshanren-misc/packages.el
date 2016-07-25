@@ -309,8 +309,8 @@
     (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
 
-    (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
-    (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
+    (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
+    (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
     (define-key evil-normal-state-map (kbd "M-y") 'counsel-yank-pop)
 
     ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
