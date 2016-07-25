@@ -97,7 +97,7 @@
                                           (projectile-cleanup-known-projects)))))
 
 ;; change evil initial mode state
-(menu-bar-mode t)
+;; (menu-bar-mode t)
 
 (add-hook 'before-save-hook
           (lambda ()
