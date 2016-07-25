@@ -285,6 +285,10 @@
           '((shell-mode . normal))
           do (evil-set-initial-state mode state))
 
+    (add-hook 'edebug-mode-hook '(lambda () (if edebug-mode
+                                           (evil-emacs-state)
+                                         (evil-normal-state))))
+
     ;;mimic "nzz" behaviou in vim
     (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
       (evil-scroll-line-to-center (line-number-at-pos)))
