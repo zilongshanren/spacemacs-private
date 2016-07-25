@@ -311,6 +311,7 @@
 
     (define-key evil-normal-state-map (kbd "[ b") 'spacemacs/previous-useful-buffer)
     (define-key evil-normal-state-map (kbd "] b") 'spacemacs/next-useful-buffer)
+    (define-key evil-normal-state-map (kbd "M-y") 'counsel-yank-pop)
 
     ;; (define-key evil-insert-state-map "\C-e" 'end-of-line)
     ;; (define-key evil-insert-state-map "\C-n" 'next-line)
@@ -483,6 +484,7 @@
             hungry-delete-backward
             spacemacs/backward-kill-word-or-region
             spacemacs/smart-move-beginning-of-line
+            evil-substitute
             lispy-move-beginning-of-line
             lispy-move-end-of-line
             lispy-space
