@@ -723,6 +723,7 @@
       (spacemacs|add-company-hook lua-mode)
       (spacemacs|add-company-hook nxml-mode)
       (spacemacs|add-company-hook conf-unix-mode)
+      (spacemacs|add-company-hook json-mode)
       )
     ))
 

@@ -18,6 +18,7 @@
 (spacemacs|defvar-company-backends shell-script-mode)
 (spacemacs|defvar-company-backends makefile-bsdmake-mode)
 (spacemacs|defvar-company-backends conf-unix-mode)
+(spacemacs|defvar-company-backends json-mode)
 
 (spacemacs|add-toggle iimage
   :status iimage-mode

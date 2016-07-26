@@ -172,7 +172,9 @@
     ))
 
 (defun zilongshanren-programming/post-init-json-mode ()
-  (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode)))
+  (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode))
+  (spacemacs/set-leader-keys-for-major-mode 'json-mode
+    "ti" 'my-toggle-web-indent))
 
 
 (defun zilongshanren-programming/init-nodejs-repl ()
