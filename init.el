@@ -104,7 +104,6 @@ values."
                                     skewer-mode
                                     highlight-indentation
                                     vi-tilde-fringe
-                                    open-junk-file
                                     coffee-mode
                                     evil-tutor
                                     eyebrowse

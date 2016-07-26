@@ -302,11 +302,11 @@
       (progn
         (setq mode-name "JS2")
         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
-
+        (spacemacs/toggle-syntax-checking-on)
         (setq forward-sexp-function nil)
         ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
-        (set (make-local-variable 'semantic-mode) nil)
-        ))
+        (set (make-local-variable 'semantic-mode) nil)))
+
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
     ;; http://blog.binchen.org/posts/use-which-func-mode-with-js2-mode.html
@@ -344,8 +344,8 @@
         (setq-default js2-basic-offset 4)
         (setq-default js2-indent-switch-body t)
         ;; Let flycheck handle parse errors
-        ;; (setq-default js2-mode-show-parse-errors nil)
-        ;; (setq-default js2-mode-show-strict-warnings nil)
+        (setq-default js2-mode-show-parse-errors nil)
+        (setq-default js2-mode-show-strict-warnings nil)
         (setq-default js2-highlight-external-variables t)
         (setq-default js2-strict-trailing-comma-warning nil)
 
@@ -372,6 +372,7 @@
             (set (make-local-variable 'js2-mode-show-parse-errors) t)
             (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
         (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
+
         (eval-after-load 'tern-mode
           '(spacemacs|hide-lighter tern-mode))
         ))
