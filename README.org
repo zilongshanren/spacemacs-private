@@ -8,10 +8,10 @@ https://slackin-emacs-cn.herokuapp.com/
 ** Mac 平台推荐安装 Emacs 的方法
 
 #+BEGIN_SRC sh
-brew reinstall emacs --HEAD --use-git-head --with-cocoa --with-gnutls --with-rsvg --with-imagemagick
+brew tap railwaycat/emacsmacport;
+brew install emacs-mac --with-spacemacs-icon --HEAD
 #+END_SRC
 
-采用此方法安装的 Emacs 比 emacs-mac-port 的启动速度更快，貌似 bug 也更少。
 
 ** 使用方法
 
@@ -31,7 +31,7 @@ brew reinstall emacs --HEAD --use-git-head --with-cocoa --with-gnutls --with-rsv
 1. 我的配置主要分成 5 个 layer
   - zilongshanren-ui: 定制 mode-line，font face 等配置。
   - zilongshanren-programming：和编程相关的配置。
-  - zilongshanren-misc：一些杂项，不属于其它 3 种分类的都放在这里面。
+  - zilongshanren-misc：一些杂项，不属于其它分类的都放在这里面。
   - zilongshanren-org：和 org 相关的配置
   - zilongshanren-better-defaults: 增强 Emacs 自带的 package 和功能
 
