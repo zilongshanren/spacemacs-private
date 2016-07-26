@@ -36,7 +36,6 @@
         swiper
         magit
         git-messenger
-        company
         gist
         hydra
         ))
@@ -423,16 +422,6 @@
 ;      (bind-key*  "<f4>" 'hydra-apropos/body)
 ;      )))
 
-(defun zilongshanren-misc/post-init-company-c-headers ()
-  (progn
-    (setq company-c-headers-path-system
-          (quote
-           ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
-    (setq company-c-headers-path-user
-          (quote
-           ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))))
-
-
 
 (defun zilongshanren-misc/init-visual-regexp ()
   (use-package visual-regexp
@@ -711,21 +700,6 @@
     :config
     (spacemacs|hide-lighter wrap-region-mode)))
 
-(defun zilongshanren-misc/post-init-company ()
-  (progn
-    (setq company-minimum-prefix-length 1
-          company-idle-delay 0.08)
-
-    (when (configuration-layer/package-usedp 'company)
-      (spacemacs|add-company-hook shell-script-mode)
-      (spacemacs|add-company-hook makefile-bsdmake-mode)
-      (spacemacs|add-company-hook sh-mode)
-      (spacemacs|add-company-hook lua-mode)
-      (spacemacs|add-company-hook nxml-mode)
-      (spacemacs|add-company-hook conf-unix-mode)
-      (spacemacs|add-company-hook json-mode)
-      )
-    ))
 
 
 (defun zilongshanren-misc/init-keyfreq ()

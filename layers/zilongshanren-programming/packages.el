@@ -37,6 +37,7 @@
         (python :location built-in)
         (emacs-lisp :location built-in)
         clojure-mode
+        company
         ))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
@@ -644,3 +645,28 @@
       (bind-key* "s-[" #'paredit-wrap-square)
       (bind-key* "s-{" #'paredit-wrap-curly)
       )))
+
+(defun zilongshanren-programming/post-init-company ()
+  (progn
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.08)
+
+    (when (configuration-layer/package-usedp 'company)
+      (spacemacs|add-company-hook shell-script-mode)
+      (spacemacs|add-company-hook makefile-bsdmake-mode)
+      (spacemacs|add-company-hook sh-mode)
+      (spacemacs|add-company-hook lua-mode)
+      (spacemacs|add-company-hook nxml-mode)
+      (spacemacs|add-company-hook conf-unix-mode)
+      (spacemacs|add-company-hook json-mode)
+      )
+    ))
+
+(defun zilongshanren-programming/post-init-company-c-headers ()
+  (progn
+    (setq company-c-headers-path-system
+          (quote
+           ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
+    (setq company-c-headers-path-user
+          (quote
+           ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))))
