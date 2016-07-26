@@ -100,9 +100,13 @@ version 2015-08-21"
 (defun my-toggle-web-indent ()
   (interactive)
   ;; web development
+  (if (eq major-mode 'json-mode)
+      (progn
+        (setq js-indent-level (if (= js-indent-level 2) 4 2))))
+
   (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
       (progn
-        (setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+        (setq js-indent-level (if (= js-indent-level 2) 4 2))))
 
   (if (eq major-mode 'web-mode)
       (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
