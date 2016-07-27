@@ -82,9 +82,12 @@
   (declare (indent 1))
   (while bindings
     (define-key keymap (pop bindings) (pop bindings))))
+
+(define-key evil-normal-state-map (kbd "-") nil)
+
 (bb/define-key evil-normal-state-map
   "+" 'evil-numbers/inc-at-pt
-  "_" 'evil-numbers/dec-at-pt
+  "-" 'evil-numbers/dec-at-pt
   "\\" 'evil-repeat-find-char-reverse
   "[s" (lambda (n) (interactive "p") (dotimes (c n nil) (insert " ")))
   "]s" (lambda (n) (interactive "p")
