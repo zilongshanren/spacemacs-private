@@ -13,12 +13,10 @@
 ;; (setq-default ns-use-srgb-colorspace nil)
 
 ;; http://emacsredux.com/blog/2014/04/05/which-function-mode/
-(which-func-mode)
+(which-function-mode)
 ;; when editing js file, this feature is very useful
 (setq-default header-line-format
               '((which-func-mode ("" which-func-format " "))))
-(setq-default mode-line-misc-info
-              (assq-delete-all 'which-function-mode mode-line-misc-info))
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
