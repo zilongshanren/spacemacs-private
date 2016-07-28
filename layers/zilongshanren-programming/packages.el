@@ -206,6 +206,8 @@
         (when (eq this-command 'eval-expression)
           (lispy-mode 1)))
 
+      (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
+
       (add-hook
        'minibuffer-setup-hook
        'conditionally-enable-lispy)
@@ -246,7 +248,8 @@
   (with-eval-after-load 'flycheck
     (progn
       ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-      (setq flycheck-display-errors-delay 0.2)
+      (setq flycheck-display-errors-delay 0.4)
+      (setq flycheck-idle-change-delay 1.0)
       ;; (remove-hook 'c-mode-hook 'flycheck-mode)
       ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
       )))
