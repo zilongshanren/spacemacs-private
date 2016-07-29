@@ -354,7 +354,6 @@
         (setq-default js2-highlight-external-variables t)
         (setq-default js2-strict-trailing-comma-warning nil)
 
-
         (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
         (spacemacs/set-leader-keys-for-major-mode 'js2-mode
@@ -371,12 +370,6 @@
         (spacemacs/declare-prefix-for-mode 'web-mode "mt" "toggle")
         (spacemacs/declare-prefix-for-mode 'css-mode "mt" "toggle")
 
-        (autoload 'flycheck-get-checker-for-buffer "flycheck")
-        (defun sanityinc/disable-js2-checks-if-flycheck-active ()
-          (unless (flycheck-get-checker-for-buffer)
-            (set (make-local-variable 'js2-mode-show-parse-errors) t)
-            (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
-        (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
 
         (eval-after-load 'tern-mode
           '(spacemacs|hide-lighter tern-mode))
