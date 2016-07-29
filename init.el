@@ -76,7 +76,6 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
      zilongshanren
      )
@@ -99,6 +98,7 @@ values."
                                     evil-indent-plus
                                     centered-buffer-mode
                                     volatile-highlights
+                                    smartparens
                                     spaceline
                                     holy-mode
                                     skewer-mode

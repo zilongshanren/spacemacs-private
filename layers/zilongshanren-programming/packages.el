@@ -36,7 +36,7 @@
         etags-select
         (python :location built-in)
         (emacs-lisp :location built-in)
-        clojure-mode
+        ;; clojure-mode
         company
         ))
 
@@ -44,8 +44,7 @@
   (use-package clojure-mode
     :defer t
     :config
-    (dolist (c (string-to-list ":_-?!#*"))
-      (modify-syntax-entry c "w" clojure-mode-syntax-table ))))
+    ))
 
 (defun zilongshanren-programming/post-init-emacs-lisp ()
     (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode))
