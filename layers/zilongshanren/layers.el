@@ -9,7 +9,7 @@
 ;;
 ;;; License: GPLv3
 
-(configuration-layer/declare-layers '(
+(configuration-layer/declare-used-layers '(
                                       zilongshanren-misc
                                       zilongshanren-programming
                                       zilongshanren-ui

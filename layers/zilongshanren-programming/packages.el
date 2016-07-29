@@ -186,7 +186,6 @@
   (use-package flycheck-package))
 
 (defun zilongshanren-programming/init-lispy ()
-  "Initialize lispy"
   (use-package lispy
     :defer t
     :diminish (lispy-mode)
@@ -309,7 +308,6 @@
         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
         (spacemacs/toggle-syntax-checking-on)
         (setq forward-sexp-function nil)
-        ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
         (set (make-local-variable 'semantic-mode) nil)))
 
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
