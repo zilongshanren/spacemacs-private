@@ -126,6 +126,8 @@
     (spacemacs/set-leader-keys "rh" 'helm-resume))
 (when (configuration-layer/layer-usedp 'helm)
   (spacemacs/set-leader-keys "sj" 'counsel-imenu))
+(if (configuration-layer/layer-usedp 'ivy)
+    (spacemacs/set-leader-keys "ff" 'counsel-find-file))
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "o(" 'ielm)
