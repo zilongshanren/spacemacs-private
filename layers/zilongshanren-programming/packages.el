@@ -93,20 +93,12 @@
              " * @throws {${%d:Exception Type}} ${%d:Exception description.}\n"
              (incf field-count)
              (incf field-count)))
-          js-doc-bottom-line)))))
-
-          (add-hook 'js2-mode-hook
-                  #'(lambda ()
-                      (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
-                      (define-key js2-mode-map "@" 'js-doc-insert-tag))))
+          js-doc-bottom-line))))))
 
 
 (defun zilongshanren-programming/init-ctags-update ()
   (use-package ctags-update
     :init
-    (progn
-      ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
-      )
     :defer t
     :config
     (spacemacs|hide-lighter ctags-auto-update-mode)))
@@ -289,8 +281,6 @@
 
     (zilongshanren|toggle-company-backends company-tern)
 
-    (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)
 
@@ -304,6 +294,12 @@
 
     (defun my-js2-mode-hook ()
       (progn
+        (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
+        (define-key js2-mode-map "@" 'js-doc-insert-tag)
+        (modify-syntax-entry ?_ "w")
+        (which-function-mode t)
+        (setq imenu-create-index-function 'js2-imenu-make-index)
+
         (setq mode-name "JS2")
         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
         (spacemacs/toggle-syntax-checking-on)
@@ -318,8 +314,6 @@
       ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
       (setq imenu--index-alist nil)
       (which-function))
-
-    (add-hook 'js2-mode-hook 'which-function-mode)
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
 
@@ -409,9 +403,7 @@
                                    ("Class" "^[ \t]*cc\.\\(.+\\)[ \t]*=[ \t]*cc\.\\(.+\\)\.extend" 1)
                                    ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
 
-    (add-hook 'js2-mode-hook
-              (lambda ()
-                (setq imenu-create-index-function 'js2-imenu-make-index)))
+
     ))
 
 (defun zilongshanren-programming/post-init-css-mode ()
