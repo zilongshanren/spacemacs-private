@@ -164,8 +164,6 @@
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-  ;; Don't move back the cursor one position when exiting insert mode
-  (setq evil-move-cursor-back nil)
 
   (global-hungry-delete-mode t)
 

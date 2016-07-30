@@ -50,6 +50,57 @@
     (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
     (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
 
+    ;; (progn
+;;       ;; major mode hydra is really cool, don't need to switch mode anymore
+;;       ;; C-c [a-z] and s-[a-z] is very quick to pressed even in emacs-state and F1-F9 is also the same
+;;       ;; If the command will change the buffer, they should be put in these groups.
+;;       ;; otherwise, use which-key + spacems + user defined key mappings in evil normal mode
+;;       (defhydra hydra-yasnippet (:color blue :hint nil)
+;;         "
+;;              ^YASnippets^
+;; --------------------------------------------
+;;  Modes:    Load/Visit:    Actions:
+
+;; _g_lobal  _d_irectory    _i_nsert
+;; _m_inor   _f_ile         _t_ryout
+;; _e_xtra   _l_ist         _n_ew
+;;         _a_ll
+;; "
+;;         ("d" yas-load-directory)
+;;         ("e" yas-activate-extra-mode)
+;;         ("i" yas-insert-snippet)
+;;         ("f" yas-visit-snippet-file :color blue)
+;;         ("n" yas-new-snippet)
+;;         ("t" yas-tryout-snippet)
+;;         ("l" yas-describe-tables)
+;;         ("g" yas/global-mode)
+;;         ("m" yas/minor-mode)
+;;         ("a" yas-reload-all))
+
+
+;;       (defhydra hydra-apropos (:color blue)
+;;         "Apropos"
+;;         ("a" apropos "apropos")
+;;         ("c" apropos-command "cmd")
+;;         ("d" apropos-documentation "doc")
+;;         ("e" apropos-value "val")
+;;         ("l" apropos-library "lib")
+;;         ("o" apropos-user-option "option")
+;;         ("u" apropos-user-option "option")
+;;         ("v" apropos-variable "var")
+;;         ("i" info-apropos "info")
+;;         ("t" tags-apropos "tags")
+;;         ("z" hydra-customize-apropos/body "customize"))
+
+;;       (defhydra hydra-customize-apropos (:color blue)
+;;         "Apropos (customize)"
+;;         ("a" customize-apropos "apropos")
+;;         ("f" customize-apropos-faces "faces")
+;;         ("g" customize-apropos-groups "groups")
+;;         ("o" customize-apropos-options "options"))
+
+;;       (bind-key*  "<f4>" 'hydra-apropos/body)
+;;       )
     ))
 
 (defun zilongshanren-misc/post-init-gist ()
@@ -333,6 +384,8 @@
 
     ;; in spacemacs, we always use evilify miscro state
     (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+    ;; Don't move back the cursor one position when exiting insert mode
+    (setq evil-move-cursor-back nil)
 
     ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
     (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
@@ -366,62 +419,6 @@
     ;; (setq evil-emacs-state-cursor '("chartreuse3" (bar . 2)))
     ;; (define-key evil-emacs-state-map [escape] 'evil-normal-state)
     ))
-
-;(defun zilongshanren-misc/init-hydra ()
-;  (use-package hydra
-;    :init
-;    (progn
-;      ;; major mode hydra is really cool, don't need to switch mode anymore
-;      ;; C-c [a-z] and s-[a-z] is very quick to pressed even in emacs-state and F1-F9 is also the same
-;      ;; If the command will change the buffer, they should be put in these groups.
-;      ;; otherwise, use which-key + spacems + user defined key mappings in evil normal mode
-;      (defhydra hydra-yasnippet (:color blue :hint nil)
-;        "
-;              ^YASnippets^
-;--------------------------------------------
-;  Modes:    Load/Visit:    Actions:
-;
-; _g_lobal  _d_irectory    _i_nsert
-; _m_inor   _f_ile         _t_ryout
-; _e_xtra   _l_ist         _n_ew
-;         _a_ll
-;"
-;        ("d" yas-load-directory)
-;        ("e" yas-activate-extra-mode)
-;        ("i" yas-insert-snippet)
-;        ("f" yas-visit-snippet-file :color blue)
-;        ("n" yas-new-snippet)
-;        ("t" yas-tryout-snippet)
-;        ("l" yas-describe-tables)
-;        ("g" yas/global-mode)
-;        ("m" yas/minor-mode)
-;        ("a" yas-reload-all))
-;
-;
-;      (defhydra hydra-apropos (:color blue)
-;        "Apropos"
-;        ("a" apropos "apropos")
-;        ("c" apropos-command "cmd")
-;        ("d" apropos-documentation "doc")
-;        ("e" apropos-value "val")
-;        ("l" apropos-library "lib")
-;        ("o" apropos-user-option "option")
-;        ("u" apropos-user-option "option")
-;        ("v" apropos-variable "var")
-;        ("i" info-apropos "info")
-;        ("t" tags-apropos "tags")
-;        ("z" hydra-customize-apropos/body "customize"))
-;
-;      (defhydra hydra-customize-apropos (:color blue)
-;        "Apropos (customize)"
-;        ("a" customize-apropos "apropos")
-;        ("f" customize-apropos-faces "faces")
-;        ("g" customize-apropos-groups "groups")
-;        ("o" customize-apropos-options "options"))
-;
-;      (bind-key*  "<f4>" 'hydra-apropos/body)
-;      )))
-
 
 (defun zilongshanren-misc/init-visual-regexp ()
   (use-package visual-regexp
