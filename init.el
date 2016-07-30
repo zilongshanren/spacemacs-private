@@ -56,72 +56,21 @@
      )
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '(counsel-projectile
-                                    magit-gh-pulls
-                                    magit-gitflow
-                                    org-projectile
-                                    evil-mc
-                                    evil-args
-                                    evil-ediff
-                                    evil-exchange
-                                    evil-unimpaired
-                                    evil-indent-plus
-                                    centered-buffer-mode
-                                    volatile-highlights
-                                    ;; performance not good
-                                    smartparens
-                                    spaceline
-                                    holy-mode
-                                    skewer-mode
-                                    highlight-indentation
-                                    vi-tilde-fringe
-                                    eyebrowse
-                                    hl-anything
-                                    org-bullets
-                                    smooth-scrolling
-                                    org-repo-todo
-                                    org-download
-                                    org-timer
-                                    livid-mode
-                                    git-gutter
-                                    git-gutter-fringe
-                                    alert
-                                    ;; disable it for lispy-mode
-                                    ;;https://github.com/abo-abo/lispy/issues/137
-                                    evil-escape
-                                    leuven-theme
-                                    gh-md
-                                    evil-lisp-state
-                                    spray
-                                    doc-view
-                                    lorem-ipsum
-                                    ac-ispell
-                                    ace-jump-mode
-                                    auto-complete
-                                    auto-dictionary
-                                    clang-format
-                                    define-word
-                                    google-translate
-                                    disaster
-                                    epic
-                                    fancy-battery
-                                    neotree
-                                    org-present
-                                    orgit
-                                    orglue
-                                    spacemacs-theme
-                                    spinner
-                                    tagedit
-                                    helm-flyspell
-                                    flyspell-correct-helm
-                                    helm-c-yasnippet
-                                    ace-jump-helm-line
-                                    helm-make
-                                    helm-projectile
-                                    helm-themes
-                                    helm-swoop
-                                    helm-spacemacs-help
-                                    )
+   dotspacemacs-excluded-packages
+   '(counsel-projectile magit-gh-pulls magit-gitflow org-projectile evil-mc
+                        evil-args evil-ediff evil-exchange evil-unimpaired
+                        evil-indent-plus centered-buffer-mode volatile-highlights
+                        smartparens spaceline holy-mode skewer-mode
+                        highlight-indentation vi-tilde-fringe eyebrowse hl-anything
+                        org-bullets smooth-scrolling org-repo-todo org-download org-timer
+                        livid-mode git-gutter git-gutter-fringe alert evil-escape
+                        leuven-theme gh-md evil-lisp-state spray doc-view lorem-ipsum
+                        ac-ispell ace-jump-mode auto-complete auto-dictionary
+                        clang-format define-word google-translate disaster epic
+                        fancy-battery neotree org-present orgit orglue spacemacs-theme
+                        spinner tagedit helm-flyspell flyspell-correct-helm
+                        helm-c-yasnippet ace-jump-helm-line helm-make helm-projectile
+                        helm-themes helm-swoop helm-spacemacs-help)
    dotspacemacs-download-packages 'used
    dotspacemacs-delete-orphan-packages t))
 
