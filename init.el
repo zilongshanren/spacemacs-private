@@ -68,24 +68,21 @@
                                     evil-indent-plus
                                     centered-buffer-mode
                                     volatile-highlights
+                                    ;; performance not good
                                     smartparens
                                     spaceline
                                     holy-mode
                                     skewer-mode
                                     highlight-indentation
                                     vi-tilde-fringe
-                                    coffee-mode
-                                    evil-tutor
                                     eyebrowse
                                     hl-anything
                                     org-bullets
                                     smooth-scrolling
                                     org-repo-todo
-                                    srefactor
                                     org-download
                                     org-timer
                                     livid-mode
-                                    org-tree-slide
                                     git-gutter
                                     git-gutter-fringe
                                     alert
@@ -123,7 +120,6 @@
                                     helm-projectile
                                     helm-themes
                                     helm-swoop
-                                    helm-mode-manager
                                     helm-spacemacs-help
                                     )
    dotspacemacs-download-packages 'used
