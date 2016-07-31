@@ -68,7 +68,7 @@
                         ac-ispell ace-jump-mode auto-complete auto-dictionary
                         clang-format define-word google-translate disaster epic
                         fancy-battery neotree org-present orgit orglue spacemacs-theme
-                        spinner tagedit helm-flyspell flyspell-correct-helm
+                        tagedit helm-flyspell flyspell-correct-helm
                         helm-c-yasnippet ace-jump-helm-line helm-make helm-projectile
                         helm-themes helm-swoop helm-spacemacs-help)
    dotspacemacs-download-packages 'used
