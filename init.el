@@ -165,7 +165,7 @@
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; temp fix for ivy-switch-buffer
-  (spacemacs/set-leader-keys "bb" 'helm-mini)
+  ;; (spacemacs/set-leader-keys "bb" 'helm-mini)
 
   (global-hungry-delete-mode t)
 
