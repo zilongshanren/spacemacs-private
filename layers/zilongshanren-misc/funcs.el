@@ -215,7 +215,7 @@ e.g. Sunday, September 17, 2000."
       (counsel-git)
     (if (projectile-project-p)
         (projectile-find-file)
-      (ido-find-file))))
+      (counsel-file-jump))))
 
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/

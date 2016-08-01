@@ -531,18 +531,17 @@
 
 (defun zilongshanren-misc/init-find-file-in-project ()
   (use-package find-file-in-project
-    :defer t
-    :config
+    :init
     (progn
       (defun zilongshanren/search-in-fireball ()
         (interactive)
-        (counsel-ag "" (expand-file-name "~/Github/fireball/")))
-      (spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)
-
+        (helm-do-ag (expand-file-name "~/Github/fireball/"))))
+    :defer t
+    :config
+    (progn
       ;; If you use other VCS (subversion, for example), enable the following option
       ;;(setq ffip-project-file ".svn")
       ;; in MacOS X, the search file command is CMD+p
-      (bind-key* "s-p" 'find-file-in-project)
       ;; for this project, I'm only interested certain types of files
       ;; (setq-default ffip-patterns '("*.html" "*.js" "*.css" "*.java" "*.xml" "*.js"))
       ;; if the full path of current file is under SUBPROJECT1 or SUBPROJECT2
