@@ -427,3 +427,7 @@ With PREFIX, cd to project root."
        end tell
   end tell
   " cmd))))
+
+
+(defadvice persp-switch (after my-quit-helm-perspectives activate)
+  (setq hydra-deactivate t))
