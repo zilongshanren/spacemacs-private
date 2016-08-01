@@ -121,15 +121,25 @@
 (spacemacs/set-leader-keys "od" 'occur-dwim)
 (spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
 
-;; tips:  use diminish-undo to toggle mode l
+;; helm specific keybindings
 (if (configuration-layer/layer-usedp 'helm)
-    (spacemacs/set-leader-keys "rh" 'helm-resume))
-(when (configuration-layer/layer-usedp 'helm)
-  (spacemacs/set-leader-keys "sj" 'counsel-imenu))
+    (progn
+      (spacemacs/set-leader-keys "rh" 'helm-resume)
+      (spacemacs/set-leader-keys "sj" 'counsel-imenu)))
+
+;; ivy specific keybindings
+(if (configuration-layer/layer-usedp 'ivy)
+    (progn
+      (spacemacs/set-leader-keys "ff" 'counsel-find-file)
+      (spacemacs/set-leader-keys "fL" 'counsel-locate)))
+
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "o(" 'ielm)
+
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+(spacemacs/set-leader-keys "og" 'my-git-timemachine)
+
 (spacemacs/set-leader-keys "sj" 'helm-imenu)
 ;; deal with BOM
 (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
@@ -138,3 +148,6 @@
 (spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
 (spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
 (spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
+
+(bind-key* "s-p" 'find-file-in-project)
+(spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)

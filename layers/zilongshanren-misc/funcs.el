@@ -40,14 +40,6 @@
           (backward-char)
           (delete-char 1)))))
 
-(defmacro zilongshanren|toggle-company-backends (backend)
-  "Push or delete the backend to company-backends"
-  (let ((funsymbol (intern (format "zilong/company-toggle-%S" backend))))
-    `(defun ,funsymbol ()
-       (interactive)
-       (if (eq (car company-backends) ',backend)
-           (setq-local company-backends (delete ',backend company-backends))
-         (push ',backend company-backends)))))
 
 (defun zilongshanren/load-my-layout ()
   (interactive)
@@ -143,6 +135,7 @@
                   (git-timemachine--revisions)))
     (ivy-read "commits:"
               collection
+              :unwind #'git-timemachine-quit
               :action (lambda (rev)
                         (progn (git-timemachine-show-revision rev)
                                (evil-emacs-state))))))
@@ -223,7 +216,7 @@ e.g. Sunday, September 17, 2000."
       (counsel-git)
     (if (projectile-project-p)
         (projectile-find-file)
-      (ido-find-file))))
+      (counsel-file-jump))))
 
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
@@ -434,3 +427,7 @@ With PREFIX, cd to project root."
        end tell
   end tell
   " cmd))))
+
+
+(defadvice persp-switch (after my-quit-helm-perspectives activate)
+  (setq hydra-deactivate t))

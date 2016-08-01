@@ -36,7 +36,7 @@
         etags-select
         (python :location built-in)
         (emacs-lisp :location built-in)
-        clojure-mode
+        ;; clojure-mode
         company
         ))
 
@@ -44,8 +44,7 @@
   (use-package clojure-mode
     :defer t
     :config
-    (dolist (c (string-to-list ":_-?!#*"))
-      (modify-syntax-entry c "w" clojure-mode-syntax-table ))))
+    ))
 
 (defun zilongshanren-programming/post-init-emacs-lisp ()
     (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode))
@@ -94,20 +93,12 @@
              " * @throws {${%d:Exception Type}} ${%d:Exception description.}\n"
              (incf field-count)
              (incf field-count)))
-          js-doc-bottom-line)))))
-
-          (add-hook 'js2-mode-hook
-                  #'(lambda ()
-                      (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
-                      (define-key js2-mode-map "@" 'js-doc-insert-tag))))
+          js-doc-bottom-line))))))
 
 
 (defun zilongshanren-programming/init-ctags-update ()
   (use-package ctags-update
     :init
-    (progn
-      ;; (add-hook 'js2-mode-hook 'turn-on-ctags-auto-update-mode)
-      )
     :defer t
     :config
     (spacemacs|hide-lighter ctags-auto-update-mode)))
@@ -187,7 +178,6 @@
   (use-package flycheck-package))
 
 (defun zilongshanren-programming/init-lispy ()
-  "Initialize lispy"
   (use-package lispy
     :defer t
     :diminish (lispy-mode)
@@ -205,6 +195,8 @@
       (defun conditionally-enable-lispy ()
         (when (eq this-command 'eval-expression)
           (lispy-mode 1)))
+
+      (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
 
       (add-hook
        'minibuffer-setup-hook
@@ -246,7 +238,8 @@
   (with-eval-after-load 'flycheck
     (progn
       ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-      (setq flycheck-display-errors-delay 0.2)
+      (setq flycheck-display-errors-delay 0.4)
+      (setq flycheck-idle-change-delay 1.0)
       ;; (remove-hook 'c-mode-hook 'flycheck-mode)
       ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
       )))
@@ -288,8 +281,6 @@
 
     (zilongshanren|toggle-company-backends company-tern)
 
-    (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)
 
@@ -303,11 +294,16 @@
 
     (defun my-js2-mode-hook ()
       (progn
+        (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
+        (define-key js2-mode-map "@" 'js-doc-insert-tag)
+        (modify-syntax-entry ?_ "w")
+        (which-function-mode t)
+        (setq imenu-create-index-function 'js2-imenu-make-index)
+
         (setq mode-name "JS2")
         (define-key js2-mode-map   (kbd "s-.") 'company-tern)
         (spacemacs/toggle-syntax-checking-on)
         (setq forward-sexp-function nil)
-        ;; (set (make-local-variable 'indent-line-function) 'my-js2-indent-function)
         (set (make-local-variable 'semantic-mode) nil)))
 
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
@@ -318,8 +314,6 @@
       ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
       (setq imenu--index-alist nil)
       (which-function))
-
-    (add-hook 'js2-mode-hook 'which-function-mode)
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
 
@@ -352,7 +346,6 @@
         (setq-default js2-highlight-external-variables t)
         (setq-default js2-strict-trailing-comma-warning nil)
 
-
         (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
         (spacemacs/set-leader-keys-for-major-mode 'js2-mode
@@ -369,12 +362,6 @@
         (spacemacs/declare-prefix-for-mode 'web-mode "mt" "toggle")
         (spacemacs/declare-prefix-for-mode 'css-mode "mt" "toggle")
 
-        (autoload 'flycheck-get-checker-for-buffer "flycheck")
-        (defun sanityinc/disable-js2-checks-if-flycheck-active ()
-          (unless (flycheck-get-checker-for-buffer)
-            (set (make-local-variable 'js2-mode-show-parse-errors) t)
-            (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
-        (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
 
         (eval-after-load 'tern-mode
           '(spacemacs|hide-lighter tern-mode))
@@ -416,9 +403,7 @@
                                    ("Class" "^[ \t]*cc\.\\(.+\\)[ \t]*=[ \t]*cc\.\\(.+\\)\.extend" 1)
                                    ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
 
-    (add-hook 'js2-mode-hook
-              (lambda ()
-                (setq imenu-create-index-function 'js2-imenu-make-index)))
+
     ))
 
 (defun zilongshanren-programming/post-init-css-mode ()

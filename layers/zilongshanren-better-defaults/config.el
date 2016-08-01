@@ -156,3 +156,6 @@ Single Capitals as you type."
 (add-hook 'mouse-leave-buffer-hook 'zilongshanren/stop-using-minibuffer)
 
 (setq tags-add-tables nil)
+
+(electric-pair-mode t)
+(show-paren-mode t)
