@@ -72,6 +72,7 @@
  '(iedit-occurrence ((t (:inherit cursor))))
  '(js2-external-variable ((t (:foreground "plum3"))))
  '(show-paren-match ((t (:background "dark gray" :foreground "#d33682" :weight bold))))
- '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal)))))
+ '(sp-show-pair-match-face ((t (:background "#272822" :foreground "gray" :inverse-video t :weight normal))))
+ '(org-table ((t (:foreground "#6c71c4" :family "Ubuntu Mono")))))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
