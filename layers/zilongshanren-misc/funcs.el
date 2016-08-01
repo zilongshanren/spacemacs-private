@@ -135,6 +135,7 @@
                   (git-timemachine--revisions)))
     (ivy-read "commits:"
               collection
+              :unwind #'git-timemachine-quit
               :action (lambda (rev)
                         (progn (git-timemachine-show-revision rev)
                                (evil-emacs-state))))))

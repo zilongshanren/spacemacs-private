@@ -136,7 +136,10 @@
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "o(" 'ielm)
+
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+(spacemacs/set-leader-keys "og" 'my-git-timemachine)
+
 (spacemacs/set-leader-keys "sj" 'helm-imenu)
 ;; deal with BOM
 (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
