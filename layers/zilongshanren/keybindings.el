@@ -67,7 +67,7 @@
 (bind-key* "s-;" 'zilongshanren/insert-semicolon-at-the-end-of-this-line)
 (bind-key* "C-s-;" 'zilongshanren/delete-semicolon-at-the-end-of-this-line)
 (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
-(bind-key* "C-s-," 'zilongshanren/delete-comma-at-the-end-of-this-line)
+;; (bind-key* "C-s-," 'zilongshanren/delete-comma-at-the-end-of-this-line)
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
 (bind-key* "M-s o" 'occur-dwim)
 (bind-key* "C-=" 'er/expand-region)
