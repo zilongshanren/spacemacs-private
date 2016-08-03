@@ -330,6 +330,14 @@
 
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
+    (defun evil-paste-after-from-0 ()
+      (interactive)
+      (let ((evil-this-register ?0))
+        (call-interactively 'evil-paste-after)))
+
+    (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
+
     ;; ;; change evil initial mode state
     (loop for (mode . state) in
           '((shell-mode . normal))

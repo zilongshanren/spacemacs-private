@@ -54,7 +54,7 @@
                       :disabled-for org markdown)
      zilongshanren
      )
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(sicp)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(counsel-projectile magit-gh-pulls magit-gitflow org-projectile evil-mc
