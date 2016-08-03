@@ -414,7 +414,7 @@
           evil-motion-state-tag   (propertize "[M]" 'face '((:background "plum3") :foreground "white"))
           evil-visual-state-tag   (propertize "[V]" 'face '((:background "gray" :foreground "black")))
           evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
-
+    (setq evil-insert-state-cursor '("chartreuse3" box))
     (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
     ;; This will break visual column edit
     ;; enable hybrid editing style
