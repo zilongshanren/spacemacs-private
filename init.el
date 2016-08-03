@@ -138,9 +138,9 @@
 
 (defun dotspacemacs/user-init ()
   (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
+        '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
+          ("org-cn"   . "https://elpa.zilongshanren.com/org/")
+          ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
  
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)

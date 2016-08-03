@@ -9,8 +9,10 @@ https://slackin-emacs-cn.herokuapp.com/
 
 #+BEGIN_SRC sh
 brew tap railwaycat/emacsmacport;
-brew install emacs-mac --with-spacemacs-icon --HEAD
+brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 #+END_SRC
+
+注： =--with-gnutls= 是用来支持 ssl 的
 
 
 ** 使用方法
