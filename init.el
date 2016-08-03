@@ -159,6 +159,7 @@
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
+  (fset 'evil-visual-update-x-selection 'ignore)
 
   (spacemacs|add-company-hook 'text-mode)
 
