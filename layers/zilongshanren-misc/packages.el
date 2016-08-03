@@ -336,7 +336,7 @@
         (call-interactively 'evil-paste-after)))
 
     (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
-
+    (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
 
     ;; ;; change evil initial mode state
     (loop for (mode . state) in
