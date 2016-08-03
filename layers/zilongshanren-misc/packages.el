@@ -488,6 +488,8 @@
             evil-delete-char
             evil-escape-emacs-state
             evil-escape-insert-state
+            mwim-beginning-of-code-or-line
+            mwim-end-of-line-or-code
             evil-exit-emacs-state
             evil-previous-visual-line
             evil-next-visual-line
