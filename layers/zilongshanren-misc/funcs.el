@@ -9,6 +9,15 @@
 ;;
 ;;; License: GPLv3
 
+;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
+(defmacro adjust-major-mode-keymap-with-evil (m &optional r)
+  `(eval-after-load (quote ,(if r r m))
+     '(progn
+        (evil-make-overriding-map ,(intern (concat m "-mode-map")) 'normal)
+        ;; force update evil keymaps after git-timemachine-mode loaded
+        (add-hook (quote ,(intern (concat m "-mode-hook"))) #'evil-normalize-keymaps))))
+
+
 ;; insert ; at the end of current line
 (defun zilongshanren/insert-semicolon-at-the-end-of-this-line ()
   (interactive)
@@ -141,8 +150,7 @@
               collection
               :unwind #'my-unwind-git-timemachine
               :action (lambda (rev)
-                        (progn (git-timemachine-show-revision (cdr rev))
-                               (evil-emacs-state))))))
+                        (git-timemachine-show-revision (cdr rev))))))
 
 (defun my-git-timemachine ()
   "Open git snapshot with the selected version.  Based on ivy-mode."

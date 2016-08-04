@@ -330,6 +330,8 @@
 
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
+    (adjust-major-mode-keymap-with-evil "git-timemachine")
+
     (defun evil-paste-after-from-0 ()
       (interactive)
       (let ((evil-this-register ?0))
