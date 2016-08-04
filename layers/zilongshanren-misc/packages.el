@@ -331,6 +331,7 @@
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
     (adjust-major-mode-keymap-with-evil "git-timemachine")
+    (adjust-major-mode-keymap-with-evil "edebug")
 
     (defun evil-paste-after-from-0 ()
       (interactive)
@@ -344,10 +345,6 @@
     (loop for (mode . state) in
           '((shell-mode . normal))
           do (evil-set-initial-state mode state))
-
-    (add-hook 'edebug-mode-hook '(lambda () (if edebug-mode
-                                           (evil-emacs-state)
-                                         (evil-normal-state))))
 
     ;;mimic "nzz" behaviou in vim
     (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
