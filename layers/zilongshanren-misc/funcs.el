@@ -123,6 +123,10 @@
            fill-column)))
     (call-interactively #'fill-paragraph)))
 
+(defun my-unwind-git-timemachine ()
+  (if (not (eq last-command-event 13))
+      (git-timemachine-quit)))
+
 ;; http://blog.binchen.org/posts/new-git-timemachine-ui-based-on-ivy-mode.html
 (defun my-git-timemachine-show-selected-revision ()
   "Show last (current) revision of file."
@@ -135,9 +139,9 @@
                   (git-timemachine--revisions)))
     (ivy-read "commits:"
               collection
-              :unwind #'git-timemachine-quit
+              :unwind #'my-unwind-git-timemachine
               :action (lambda (rev)
-                        (progn (git-timemachine-show-revision rev)
+                        (progn (git-timemachine-show-revision (cdr rev))
                                (evil-emacs-state))))))
 
 (defun my-git-timemachine ()
