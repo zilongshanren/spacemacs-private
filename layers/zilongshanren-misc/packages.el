@@ -758,10 +758,13 @@
 
 
         (defun my-find-file-in-git-repo (repo)
-          (let* ((default-directory repo)
-                 (files (split-string (shell-command-to-string (format "cd %s && git ls-files" repo)) "\n" t)))
-            (ivy-read "files:" files
-                      :action 'find-file)))
+          (if (file-directory-p repo)
+              (let* ((default-directory repo)
+                     (files (split-string (shell-command-to-string (format "cd %s && git ls-files" repo)) "\n" t)))
+                (ivy-read "files:" files
+                          :action 'find-file
+                          :caller 'my-find-file-in-git-repo))
+            (message "%s is not a valid directory." repo)))
 
         (ivy-set-actions
          t
@@ -795,7 +798,7 @@
                               (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
             (ivy-read "directories:" collection
                       :action 'my-find-file-in-git-repo
-                      :caller 'counsel-goto-recent-directory)))
+                      :caller 'counsel-find-file-recent-directory)))
 
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
         (spacemacs/set-leader-keys "faf" 'counsel-find-file-recent-directory)
