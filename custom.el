@@ -70,6 +70,7 @@
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(git-gutter-fr:added ((t (:foreground "#859900" :weight bold :width extra-expanded))))
  '(iedit-occurrence ((t (:inherit cursor))))
+ '(ivy-virtual ((t (:background "skyblue"))))
  '(js2-external-variable ((t (:foreground "plum3"))))
  '(mc/cursor-bar-face ((t (:background "chartreuse3"))))
  '(show-paren-match ((t (:background "dark gray" :foreground "#d33682" :weight bold))))

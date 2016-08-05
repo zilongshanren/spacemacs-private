@@ -801,6 +801,8 @@
         (spacemacs/set-leader-keys "faf" 'counsel-find-file-recent-directory)
 
         (setq ivy-initial-inputs-alist nil)
+        (setq ivy-wrap t)
+        (setq confirm-nonexistent-file-or-buffer t)
 
         (when (not (configuration-layer/layer-usedp 'helm))
           (spacemacs/set-leader-keys "sp" 'counsel-git-grep)
