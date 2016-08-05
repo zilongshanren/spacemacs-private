@@ -756,10 +756,6 @@
                         (secure-hash algo (current-buffer))))
             (message "Checksum copied to kill-ring.")))
 
-        (ivy-set-actions
-         t
-         '(("I" ivy-insert-action "insert")))
-
 
         (defun my-find-file-in-git-repo (repo)
           (let* ((default-directory repo)
@@ -767,6 +763,10 @@
             (ivy-read "files:" files
                       :action 'find-file)))
 
+        (ivy-set-actions
+         t
+         '(("f" my-find-file-in-git-repo "find files")
+           ("I" ivy-insert-action "insert")))
 
         ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
         (defun counsel-goto-recent-directory ()
