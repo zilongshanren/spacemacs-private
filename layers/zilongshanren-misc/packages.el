@@ -760,6 +760,14 @@
          t
          '(("I" ivy-insert-action "insert")))
 
+
+        (defun my-find-file-in-git-repo (repo)
+          (let* ((default-directory repo)
+                 (files (split-string (shell-command-to-string (format "cd %s && git ls-files" repo)) "\n" t)))
+            (ivy-read "files:" files
+                      :action 'find-file)))
+
+
         ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
         (defun counsel-goto-recent-directory ()
           "Recent directories"
@@ -774,7 +782,23 @@
             (ivy-read "directories:" collection
                       :action 'dired
                       :caller 'counsel-goto-recent-directory)))
+
+        (defun counsel-find-file-recent-directory ()
+          "Find file in recent git repository."
+          (interactive)
+          (unless recentf-mode (recentf-mode 1))
+          (let ((collection
+                 (delete-dups
+                  (append (mapcar 'file-name-directory recentf-list)
+                          ;; fasd history
+                          (if (executable-find "fasd")
+                              (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
+            (ivy-read "directories:" collection
+                      :action 'my-find-file-in-git-repo
+                      :caller 'counsel-goto-recent-directory)))
+
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
+        (spacemacs/set-leader-keys "faf" 'counsel-find-file-recent-directory)
 
         (setq ivy-initial-inputs-alist nil)
 
@@ -792,8 +816,7 @@
         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
         (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
-    (define-key global-map (kbd "C-s") 'my-swiper-search)
-    ))
+    (define-key global-map (kbd "C-s") 'my-swiper-search)))
 
 
 (defun zilongshanren-misc/post-init-magit ()
