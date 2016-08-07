@@ -70,7 +70,7 @@
                         fancy-battery neotree org-present orgit orglue spacemacs-theme
                         helm-flyspell flyspell-correct-helm
                         helm-c-yasnippet ace-jump-helm-line helm-make helm-projectile
-                        helm-themes helm-swoop helm-spacemacs-help)
+                        helm-themes helm-swoop helm-spacemacs-help smeargle)
    dotspacemacs-download-packages 'used
    dotspacemacs-delete-orphan-packages t))
 

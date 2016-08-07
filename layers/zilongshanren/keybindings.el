@@ -93,11 +93,13 @@
   "]s" (lambda (n) (interactive "p")
          (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
 
-(bb/define-key company-active-map
-  (kbd "C-w") 'evil-delete-backward-word)
+(with-eval-after-load 'company
+  (progn
+    (bb/define-key company-active-map
+      (kbd "C-w") 'evil-delete-backward-word)
 
-(bb/define-key company-active-map
-  (kbd "s-w") 'company-show-location)
+    (bb/define-key company-active-map
+      (kbd "s-w") 'company-show-location)))
 
 (spacemacs/declare-prefix "ot" "Toggle")
 
@@ -131,7 +133,8 @@
 (if (configuration-layer/layer-usedp 'ivy)
     (progn
       (spacemacs/set-leader-keys "ff" 'counsel-find-file)
-      (spacemacs/set-leader-keys "fL" 'counsel-locate)))
+      (spacemacs/set-leader-keys "fL" 'counsel-locate)
+      (spacemacs/set-leader-keys "hi" 'counsel-info-lookup-symbol)))
 
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
