@@ -19,9 +19,7 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 #+BEGIN_SRC sh
   #clone spacemacs repo and use develop branch
-  git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d
-  cd .emacs.d
-  git checkout --track origin/develop
+  git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d -b develop
 
   #clone zilongshanren layer and checkout develop branch
   git clone https://github.com/zilongshanren/spacemacs-private.git ~/.spacemacs.d/
