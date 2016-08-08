@@ -201,6 +201,7 @@
       (add-hook
        'minibuffer-setup-hook
        'conditionally-enable-lispy)
+      (define-key lispy-mode-map (kbd "s-m") 'lispy-mark-symbol)
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
       (define-key lispy-mode-map (kbd "s-k") 'lispy-splice)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
