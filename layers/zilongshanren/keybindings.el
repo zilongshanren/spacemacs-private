@@ -151,6 +151,7 @@
 (spacemacs/set-leader-keys "nl" 'spacemacs/evil-search-clear-highlight)
 (spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
 (spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
+(spacemacs/set-leader-keys "ob" 'popwin:display-last-buffer)
 
 (bind-key* "s-p" 'find-file-in-project)
 (spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)
