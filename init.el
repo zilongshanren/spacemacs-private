@@ -60,7 +60,7 @@
    '(counsel-projectile magit-gh-pulls magit-gitflow org-projectile evil-mc
                         evil-args evil-ediff evil-exchange evil-unimpaired
                         evil-indent-plus centered-buffer-mode volatile-highlights
-                        smartparens spaceline holy-mode skewer-mode
+                        smartparens spaceline holy-mode skewer-mode rainbow-delimiters
                         highlight-indentation vi-tilde-fringe eyebrowse hl-anything
                         org-bullets smooth-scrolling org-repo-todo org-download org-timer
                         livid-mode git-gutter git-gutter-fringe  evil-escape

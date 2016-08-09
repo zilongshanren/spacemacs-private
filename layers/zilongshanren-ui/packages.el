@@ -174,11 +174,11 @@
                  '(:eval evil-mode-line-tag)
 
                  ;; minor modes
-                 '(:eval (when (> (window-width) 100)
+                 '(:eval (when (> (window-width) 120)
                            minor-mode-alist))
                  " "
                  ;; git info
-                 '(:eval (when (> (window-width) 100)
+                 '(:eval (when (> (window-width) 120)
                            `(vc-mode vc-mode)))
 
                  " "
