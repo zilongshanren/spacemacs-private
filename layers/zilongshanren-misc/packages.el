@@ -771,9 +771,22 @@
                           :caller 'my-find-file-in-git-repo))
             (message "%s is not a valid directory." repo)))
 
+        (defun my-open-file-in-external-app (file)
+          "Open file in external application."
+          (interactive)
+          (let ((file-path file))
+            (if file-path
+                (cond
+                 ((spacemacs/system-is-mswindows) (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+                 ((spacemacs/system-is-mac) (shell-command (format "open \"%s\"" file-path)))
+                 ((spacemacs/system-is-linux) (let ((process-connection-type nil))
+                                                (start-process "" nil "xdg-open" file-path))))
+              (message "No file associated to this buffer."))))
+
         (ivy-set-actions
          t
          '(("f" my-find-file-in-git-repo "find files")
+           ("!" my-open-file-in-external-app "Open file in external app")
            ("I" ivy-insert-action "insert")))
 
         ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
