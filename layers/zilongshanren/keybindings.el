@@ -125,6 +125,7 @@
 (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
+(spacemacs/set-leader-keys "ox" 'org-open-at-point)
 (spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
 
 ;; helm specific keybindings
