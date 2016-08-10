@@ -476,6 +476,10 @@
       (define-key endless/mc-map "\C-e" #'mc/edit-ends-of-lines)
       )
     :config
+    (setq mc/cmds-to-run-once
+          '(
+            counsel-M-x
+            zilongshanren/my-mc-mark-next-like-this))
     (setq mc/cmds-to-run-for-all
           '(
             electric-newline-and-maybe-indent
@@ -509,7 +513,8 @@
             org-self-insert-command
             sp-backward-delete-char
             sp-delete-char
-            sp-remove-active-pair-overlay))))
+            sp-remove-active-pair-overlay))
+    ))
 
 (defun zilongshanren-misc/post-init-persp-mode ()
   (when (fboundp 'spacemacs|define-custom-layout)

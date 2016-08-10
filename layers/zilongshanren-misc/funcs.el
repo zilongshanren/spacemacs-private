@@ -443,3 +443,9 @@ With PREFIX, cd to project root."
 
 (defadvice persp-switch (after my-quit-helm-perspectives activate)
   (setq hydra-deactivate t))
+
+(defun zilongshanren/my-mc-mark-next-like-this ()
+  (interactive)
+  (if (region-active-p)
+      (mc/mark-next-like-this 1)
+    (er/expand-region 1)))
