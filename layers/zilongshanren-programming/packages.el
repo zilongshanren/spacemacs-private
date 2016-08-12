@@ -340,7 +340,7 @@
         (setq-default js2-bounce-indent nil)
         (setq-default js-indent-level 4)
         (setq-default js2-basic-offset 4)
-        (setq-default js2-indent-switch-body t)
+        (setq-default js-switch-indent-offset 2)
         ;; Let flycheck handle parse errors
         (setq-default js2-mode-show-parse-errors nil)
         (setq-default js2-mode-show-strict-warnings nil)
