@@ -240,7 +240,7 @@
     (progn
       ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
       (setq flycheck-display-errors-delay 0.4)
-      (setq flycheck-idle-change-delay 1.0)
+      (setq flycheck-idle-change-delay 2.0)
       ;; (remove-hook 'c-mode-hook 'flycheck-mode)
       ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
       )))
