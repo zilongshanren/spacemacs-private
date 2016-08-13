@@ -123,6 +123,7 @@
 (spacemacs/set-leader-keys "bms" 'bookmark-set)
 (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
 (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
+(spacemacs/set-leader-keys "bmj" 'counsel-bookmark)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
 (spacemacs/set-leader-keys "ox" 'org-open-at-point)
