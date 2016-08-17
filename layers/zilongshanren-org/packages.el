@@ -271,10 +271,10 @@ unwanted space when exporting org-mode to html."
             '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Workspace")
                "* TODO [#B] %?\n  %i\n"
                :empty-lines 1)
-              ("n" "notes" entry (file+headline "~/org-notes/!notes.org" "Quick notes")
+              ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
                "* %?\n  %i\n %U"
                :empty-lines 1)
-              ("b" "Blog Ideas" entry (file+headline "~/org-notes/!notes.org" "Blog Ideas")
+              ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
                "* TODO [#B] %?\n  %i\n %U"
                :empty-lines 1)
               ("s" "Code Snippet" entry
@@ -283,14 +283,14 @@ unwanted space when exporting org-mode to html."
               ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
-              ("c" "Chrome" entry (file+headline "~/org-notes/!notes.org" "Quick notes")
+              ("c" "Chrome" entry (file+headline "~/org-notes/notes.org" "Quick notes")
                "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
                :empty-lines 1)
-              ("l" "links" entry (file+headline "~/org-notes/!notes.org" "Quick notes")
+              ("l" "links" entry (file+headline "~/org-notes/notes.org" "Quick notes")
                "* TODO [#C] %?\n  %i\n %a \n %U"
                :empty-lines 1)
               ("j" "Journal Entry"
-               entry (file+datetree "~/org-notes/!journal.org")
+               entry (file+datetree "~/org-notes/journal.org")
                "* %?"
                :empty-lines 1)))
 
