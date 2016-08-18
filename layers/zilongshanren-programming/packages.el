@@ -285,13 +285,6 @@
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)
 
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "ga" 'projectile-find-other-file
-      "gA" 'projectile-find-other-file-other-window)
-
-    (spacemacs/set-leader-keys-for-major-mode 'web-mode
-      "ga" 'projectile-find-other-file
-      "gA" 'projectile-find-other-file-other-window)
 
     (defun my-js2-mode-hook ()
       (progn
