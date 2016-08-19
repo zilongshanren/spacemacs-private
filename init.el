@@ -25,6 +25,8 @@
      ;; (ruby :variables ruby-version-manager 'rvm)
      (python :variables
              python-test-runner '(nose pytest))
+     (ruby :variables ruby-enable-enh-ruby-mode t
+           ruby-version-manager 'chruby)
      lua
      html
      ;; command-log
