@@ -171,6 +171,8 @@
   ;; (spacemacs/set-leader-keys "bb" 'helm-mini)
 
   (global-hungry-delete-mode t)
+  (spacemacs|diminish helm-gtags-mode)
+  (spacemacs|diminish ggtags-mode)
 
   (when (configuration-layer/layer-usedp 'ivy)
     (setq projectile-switch-project-action

@@ -467,7 +467,7 @@
 
 (defun zilongshanren-programming/post-init-cc-mode ()
   (progn
-    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-etags)
+    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-gtags company-etags)
                                            company-files company-dabbrev))
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "gd" 'etags-select-find-tag-at-point)
