@@ -8,11 +8,11 @@
    '(
      helm
      ivy
-     ;; react
+     react
      better-defaults
      github
      osx
-     ;; latex
+     latex
      deft
      markdown
      (vinegar :variables vinegar-reuse-dired-buffer t)
@@ -21,24 +21,24 @@
      search-engine
      (syntax-checking :variables syntax-checking-enable-by-default nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
+     gtags
      yaml
-     ;; (ruby :variables ruby-version-manager 'rvm)
      (python :variables
              python-test-runner '(nose pytest))
      (ruby :variables ruby-enable-enh-ruby-mode t
            ruby-version-manager 'chruby)
+     ruby-on-rails
      lua
      html
-     ;; command-log
      javascript
      (typescript :variables
                  typescript-fmt-on-save nil
                  typescript-fmt-tool 'typescript-formatter)
-     ;; restclient
+     restclient
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
      ranger
-     ;; racket
+     racket
      (spacemacs-layouts :variables layouts-enable-autosave nil
                         layouts-autosave-delay 300)
      colors
