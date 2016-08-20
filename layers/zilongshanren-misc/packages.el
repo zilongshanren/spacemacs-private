@@ -91,7 +91,8 @@
       ("g" customize-apropos-groups "groups")
       ("o" customize-apropos-options "options"))
 
-    (bind-key*  "<f4>" 'hydra-apropos/body)
+    ;; (bind-key*  "<f4>" 'hydra-apropos/body)
+    (spacemacs/set-leader-keys "oh" 'hydra-apropos/body)
 
     ))
 
