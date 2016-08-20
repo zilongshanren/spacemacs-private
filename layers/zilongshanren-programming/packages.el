@@ -239,12 +239,12 @@
 (defun zilongshanren-programming/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
-      (setq flycheck-display-errors-delay 0.2)
+      (setq flycheck-display-errors-delay 0.9)
       (setq flycheck-idle-change-delay 2.0)
       )))
 
 (defun zilongshanren-programming/post-init-eldoc ()
-  (setq eldoc-idle-delay 0.1))
+  (setq eldoc-idle-delay 0.01))
 
 
 (defun zilongshanren-programming/init-impatient-mode ()
