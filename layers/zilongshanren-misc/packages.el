@@ -724,7 +724,7 @@
       (let ((current-prefix-arg nil))
         (call-interactively
          (if p #'spacemacs/swiper-region-or-symbol
-           #'swiper))))
+           #'counsel-grep-or-swiper))))
 
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
@@ -843,6 +843,7 @@
   (progn
     (with-eval-after-load 'magit
       (progn
+
         (add-to-list 'magit-no-confirm 'stage-all-changes)
         (define-key magit-log-mode-map (kbd "W") 'magit-copy-section-value)
         (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
@@ -860,6 +861,9 @@
         ;;                                                                      (eq 'stashes section-type))
         ;;                                                                  'hide))))
         ))
+
+    ;; prefer two way ediff
+    (setq magit-ediff-dwim-show-on-hunks t)
 
     ;; Githu PR settings
     ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"

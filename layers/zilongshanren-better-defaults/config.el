@@ -161,3 +161,11 @@ Single Capitals as you type."
 ;; https://www.reddit.com/r/emacs/comments/4xhxfw/how_to_tune_the_behavior_of_eletricpairmode/
 (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 (show-paren-mode t)
+
+;; http://oremacs.com/2015/01/17/setting-up-ediff/
+(defmacro csetq (variable value)
+  `(funcall (or (get ',variable 'custom-set)
+                'set-default)
+            ',variable ,value))
+
+(csetq ediff-diff-options "-w")
