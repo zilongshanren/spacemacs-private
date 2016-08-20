@@ -19,7 +19,8 @@
      org
      prodigy
      search-engine
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     (syntax-checking :variables syntax-checking-enable-by-default nil
+                      syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
      gtags
      yaml

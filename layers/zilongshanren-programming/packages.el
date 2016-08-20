@@ -38,6 +38,7 @@
         (emacs-lisp :location built-in)
         ;; clojure-mode
         company
+        (eldoc :location built-in)
         ))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
@@ -238,14 +239,12 @@
 (defun zilongshanren-programming/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
-      ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-      (setq flycheck-display-errors-delay 0.4)
+      (setq flycheck-display-errors-delay 0.2)
       (setq flycheck-idle-change-delay 2.0)
-      ;; (remove-hook 'c-mode-hook 'flycheck-mode)
-      ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
       )))
 
-;; configs for writing
+(defun zilongshanren-programming/post-init-eldoc ()
+  (setq eldoc-idle-delay 0.1))
 
 
 (defun zilongshanren-programming/init-impatient-mode ()
