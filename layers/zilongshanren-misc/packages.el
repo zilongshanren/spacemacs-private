@@ -340,10 +340,10 @@
           do (evil-set-initial-state mode state))
 
     ;;mimic "nzz" behaviou in vim
-    (defadvice evil-ex-search-next (after advice-for-evil-search-next activate)
+    (defadvice evil-search-next (after advice-for-evil-search-next activate)
       (evil-scroll-line-to-center (line-number-at-pos)))
 
-    (defadvice evil-ex-search-previous (after advice-for-evil-search-previous activate)
+    (defadvice evil-search-previous (after advice-for-evil-search-previous activate)
       (evil-scroll-line-to-center (line-number-at-pos)))
 
     (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
