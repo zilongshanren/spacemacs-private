@@ -74,7 +74,7 @@
                         helm-flyspell flyspell-correct-helm clean-aindent-mode
                         helm-c-yasnippet ace-jump-helm-line helm-make helm-projectile
                         helm-themes helm-swoop helm-spacemacs-help smeargle)
-   dotspacemacs-download-packages 'used
+   dotspacemacs-install-packages 'used-only
    dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
