@@ -47,18 +47,16 @@
       ("b" org-octopress "blog")
       ("g" helm-github-stars "helm github stars")
       ("r" zilongshanren/run-current-file "run current file"))
-    (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
-    (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
 
     (defhydra multiple-cursors-hydra (:hint nil)
       "
-           ^Up^            ^Down^        ^Other^
-      ----------------------------------------------
-      [_p_]   Next    [_n_]   Next    [_l_] Edit lines
-      [_P_]   Skip    [_N_]   Skip    [_a_] Mark all
-      [_M-p_] Unmark  [_M-n_] Unmark  [_r_] Mark by regexp
-      ^ ^             ^ ^             [_q_] Quit
-      "
+       ^Up^            ^Down^        ^Other^
+             ----------------------------------------------
+         [_p_]   Next    [_n_]   Next    [_l_] Edit lines
+         [_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+         [_M-p_] Unmark  [_M-n_] Unmark [_r_] Mark by regexp
+         ^ ^             ^ ^ [_q_] Quit
+       "
       ("l" mc/edit-lines :exit t)
       ("a" mc/mark-all-like-this :exit t)
       ("n" mc/mark-next-like-this)
@@ -68,9 +66,11 @@
       ("P" mc/skip-to-previous-like-this)
       ("M-p" mc/unmark-previous-like-this)
       ("r" mc/mark-all-in-region-regexp :exit t)
-      ("q" nil))
+      ("q"
+       nil))
 
-    (defhydra hydra-apropos (:color blue)
+    (defhydra
+      hydra-apropos (:color blue)
       "Apropos"
       ("a" apropos "apropos")
       ("c" apropos-command "cmd")
@@ -84,13 +84,16 @@
       ("t" tags-apropos "tags")
       ("z" hydra-customize-apropos/body "customize"))
 
-    (defhydra hydra-customize-apropos (:color blue)
+    (defhydra
+      hydra-customize-apropos (:color blue)
       "Apropos (customize)"
       ("a" customize-apropos "apropos")
       ("f" customize-apropos-faces "faces")
       ("g" customize-apropos-groups "groups")
       ("o" customize-apropos-options "options"))
 
+    (define-key global-map (kbd "<f1>") 'hydra-hotspots/body)
+    (spacemacs/set-leader-keys "oo" 'hydra-hotspots/body)
     ;; (bind-key*  "<f4>" 'hydra-apropos/body)
     (spacemacs/set-leader-keys "oh" 'hydra-apropos/body)
 
@@ -101,16 +104,17 @@
     :defer t
     :init
     (setq gist-list-format
-      '((files "File" 30 nil "%s")
-        (id "Id" 10 nil identity)
-        (created "Created" 20 nil "%D %R")
-        (visibility "Visibility" 10 nil
-                    (lambda
-                      (public)
-                      (or
-                       (and public "public")
-                       "private")))
-        (description "Description" 0 nil identity)))
+          '((files "File" 30 nil "%s")
+            (id "Id" 10 nil identity)
+            (created "Created" 20 nil "%D %R")
+            zsh:1: no matches found: *.cpp
+            (visibility "Visibility" 10 nil
+                        (lambda
+                          (public)
+                          (or
+                           (and public "public")
+                           "private")))
+            (description "Description" 0 nil identity)))
     :config
     (progn
       (spacemacs|define-transient-state gist-list-mode
@@ -152,12 +156,6 @@
     :defer t
     :init
     (progn
-      (defun wrap-sexp-with-new-round-parens ()
-        (interactive)
-        (insert "()")
-        (backward-char)
-        (sp-forward-slurp-sexp))
-
       (global-set-key (kbd "C-(") 'wrap-sexp-with-new-round-parens))
     :config
     (progn
@@ -260,11 +258,8 @@
     :init
     (progn
       (spacemacs/set-leader-keys (kbd "mhm") 'discover-my-major)
-
-      (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map))))
-
-
-
+      (evilified-state-evilify makey-key-mode makey-key-mode-get-key-map)
+      )))
 
 
 (defun zilongshanren-misc/post-init-elfeed ()
@@ -325,11 +320,6 @@
 
     (adjust-major-mode-keymap-with-evil "git-timemachine")
     (adjust-major-mode-keymap-with-evil "edebug")
-
-    (defun evil-paste-after-from-0 ()
-      (interactive)
-      (let ((evil-this-register ?0))
-        (call-interactively 'evil-paste-after)))
 
     (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
@@ -678,15 +668,6 @@
 
 (defun zilongshanren-misc/post-init-erc ()
   (progn
-    (defun my-erc-hook (match-type nick message)
-      "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
-      (unless (posix-string-match "^\\** *Users on #" message)
-        (zilongshanren/growl-notification
-         (concat "ERC: : " (buffer-name (current-buffer)))
-         message
-         t
-         )))
-
     (add-hook 'erc-text-matched-hook 'my-erc-hook)
     (spaceline-toggle-erc-track-off)))
 
@@ -720,15 +701,9 @@
 (defun zilongshanren-misc/post-init-swiper ()
   "Initialize my package"
   (progn
-    (defun my-swiper-search (p)
-      (interactive "P")
-      (let ((current-prefix-arg nil))
-        (call-interactively
-         (if p #'spacemacs/swiper-region-or-symbol
-           #'counsel-grep-or-swiper))))
-
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
+
     (use-package recentf
       :config
       (setq recentf-exclude
@@ -743,78 +718,11 @@
       (progn
         (spacemacs|hide-lighter ivy-mode)
 
-        (defun ivy-insert-action (x)
-          (with-ivy-window
-            (insert x)))
-
-        (defun ivy-ff-checksum ()
-          (interactive)
-          "Calculate the checksum of FILE. The checksum is copied to kill-ring."
-          (let ((file (expand-file-name ivy--current ivy--directory))
-                (algo (intern (ivy-read
-                               "Algorithm: "
-                               '(md5 sha1 sha224 sha256 sha384 sha512)))))
-            (kill-new (with-temp-buffer
-                        (insert-file-contents-literally file)
-                        (secure-hash algo (current-buffer))))
-            (message "Checksum copied to kill-ring.")))
-
-
-        (defun my-find-file-in-git-repo (repo)
-          (if (file-directory-p repo)
-              (let* ((default-directory repo)
-                     (files (split-string (shell-command-to-string (format "cd %s && git ls-files" repo)) "\n" t)))
-                (ivy-read "files:" files
-                          :action 'find-file
-                          :caller 'my-find-file-in-git-repo))
-            (message "%s is not a valid directory." repo)))
-
-        (defun my-open-file-in-external-app (file)
-          "Open file in external application."
-          (interactive)
-          (let ((file-path file))
-            (if file-path
-                (cond
-                 ((spacemacs/system-is-mswindows) (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
-                 ((spacemacs/system-is-mac) (shell-command (format "open \"%s\"" file-path)))
-                 ((spacemacs/system-is-linux) (let ((process-connection-type nil))
-                                                (start-process "" nil "xdg-open" file-path))))
-              (message "No file associated to this buffer."))))
-
         (ivy-set-actions
          t
          '(("f" my-find-file-in-git-repo "find files")
            ("!" my-open-file-in-external-app "Open file in external app")
            ("I" ivy-insert-action "insert")))
-
-        ;; http://blog.binchen.org/posts/use-ivy-to-open-recent-directories.html
-        (defun counsel-goto-recent-directory ()
-          "Recent directories"
-          (interactive)
-          (unless recentf-mode (recentf-mode 1))
-          (let ((collection
-                 (delete-dups
-                  (append (mapcar 'file-name-directory recentf-list)
-                          ;; fasd history
-                          (if (executable-find "fasd")
-                              (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
-            (ivy-read "directories:" collection
-                      :action 'dired
-                      :caller 'counsel-goto-recent-directory)))
-
-        (defun counsel-find-file-recent-directory ()
-          "Find file in recent git repository."
-          (interactive)
-          (unless recentf-mode (recentf-mode 1))
-          (let ((collection
-                 (delete-dups
-                  (append (mapcar 'file-name-directory recentf-list)
-                          ;; fasd history
-                          (if (executable-find "fasd")
-                              (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
-            (ivy-read "directories:" collection
-                      :action 'my-find-file-in-git-repo
-                      :caller 'counsel-find-file-recent-directory)))
 
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
         (spacemacs/set-leader-keys "faf" 'counsel-find-file-recent-directory)
@@ -871,23 +779,6 @@
     (setq magit-repository-directories '("~/cocos2d-x/"))
     (setq magit-push-always-verify nil)
 
-
-    (defun zilongshanren/magit-visit-pull-request ()
-      "Visit the current branch's PR on GitHub."
-      (interactive)
-      (let ((remote-branch (magit-get-current-branch)))
-        (cond
-         ((null remote-branch)
-          (message "No remote branch"))
-         (t
-          (browse-url
-           (format "https://github.com/%s/pull/new/%s"
-                   (replace-regexp-in-string
-                    "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-                    (magit-get "remote"
-                               (magit-get-remote)
-                               "url"))
-                   remote-branch))))))
 
     (eval-after-load 'magit
       '(define-key magit-mode-map (kbd "C-c g")

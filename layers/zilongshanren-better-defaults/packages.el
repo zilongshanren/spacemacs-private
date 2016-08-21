@@ -23,6 +23,7 @@
 
 (defun zilongshanren-better-defaults/init-dired-mode ()
   (use-package dired-mode
+    :defer t
     :init
     (progn
       (require 'dired-x)
@@ -64,7 +65,6 @@
         "c" 'dired-copy-file-here
         ")" 'dired-omit-mode)
       )
-    :defer t
     ))
 
 
