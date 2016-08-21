@@ -22,7 +22,7 @@
      (syntax-checking :variables syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
-     gtags
+     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      yaml
      (python :variables
              python-test-runner '(nose pytest))
