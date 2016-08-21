@@ -510,7 +510,6 @@
 
 (defun zilongshanren-misc/post-init-chinese-wbim ()
   (progn
-    ;; [[http://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings][keymap - How to override major mode bindings - Emacs Stack Exchange]]
     (bind-key* ";" 'chinese-wbim-insert-ascii)
     (setq chinese-wbim-punc-translate-p nil)
     (spacemacs/declare-prefix "ot" "Toggle")
@@ -533,11 +532,6 @@
 
 (defun zilongshanren-misc/init-find-file-in-project ()
   (use-package find-file-in-project
-    :init
-    (progn
-      (defun zilongshanren/search-in-fireball ()
-        (interactive)
-        (helm-do-ag (expand-file-name "~/Github/fireball/"))))
     :defer t
     :config
     (progn
@@ -761,24 +755,15 @@
         (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
         (setq magit-completing-read-function 'magit-builtin-completing-read)
 
-        ;; http://emacs.stackexchange.com/questions/6021/change-a-branchs-upstream-with-magit/6023#6023
         (magit-define-popup-switch 'magit-push-popup ?u
           "Set upstream" "--set-upstream")
-        ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
-        ;; (add-hook 'magit-section-set-visibility-hook '(lambda (section) (let ((section-type (magit-section-type section)))
-        ;;                                                              (if (or (eq 'untracked section-type)
-        ;;                                                                      (eq 'stashes section-type))
-        ;;                                                                  'hide))))
         ))
 
     ;; prefer two way ediff
     (setq magit-ediff-dwim-show-on-hunks t)
 
-    ;; Githu PR settings
-    ;; "http://endlessparentheses.com/create-github-prs-from-emacs-with-magit.html"
     (setq magit-repository-directories '("~/cocos2d-x/"))
     (setq magit-push-always-verify nil)
-
 
     (eval-after-load 'magit
       '(define-key magit-mode-map (kbd "C-c g")
@@ -791,20 +776,6 @@
     :defer t
     :config
     (progn
-      (defun zilong/github-browse-commit ()
-        "Show the GitHub page for the current commit."
-        (interactive)
-        (use-package github-browse-file
-          :commands (github-browse-file--relative-url))
-
-        (let* ((commit git-messenger:last-commit-id)
-               (url (concat "https://github.com/"
-                            (github-browse-file--relative-url)
-                            "/commit/"
-                            commit)))
-          (github-browse--save-and-view url)
-          (git-messenger:popup-close)))
-
       (define-key git-messenger-map (kbd "f") 'zilong/github-browse-commit))))
 
 (defun zilongshanren-misc/post-init-markdown-mode ()
@@ -815,11 +786,6 @@
       (progn
         ;; (when (configuration-layer/package-usedp 'company)
         ;;   (spacemacs|add-company-hook markdown-mode))
-
-        (defun zilongshanren/markdown-to-html ()
-          (interactive)
-          (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
-          (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
         (spacemacs/set-leader-keys-for-major-mode 'gfm-mode-map
           "p" 'zilongshanren/markdown-to-html)

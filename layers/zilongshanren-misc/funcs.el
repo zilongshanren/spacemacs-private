@@ -559,3 +559,26 @@ With PREFIX, cd to project root."
                            (magit-get-remote)
                            "url"))
                remote-branch))))))
+
+(defun zilongshanren/markdown-to-html ()
+  (interactive)
+  (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
+  (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
+
+(defun zilong/github-browse-commit ()
+  "Show the GitHub page for the current commit."
+  (interactive)
+  (use-package github-browse-file
+    :commands (github-browse-file--relative-url))
+
+  (let* ((commit git-messenger:last-commit-id)
+         (url (concat "https://github.com/"
+                      (github-browse-file--relative-url)
+                      "/commit/"
+                      commit)))
+    (github-browse--save-and-view url)
+    (git-messenger:popup-close)))
+
+(defun zilongshanren/search-in-fireball ()
+  (interactive)
+  (helm-do-ag (expand-file-name "~/Github/fireball/")))
