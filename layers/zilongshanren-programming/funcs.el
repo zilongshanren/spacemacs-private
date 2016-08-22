@@ -232,14 +232,16 @@ version 2015-08-21"
     (my-create-tags-if-needed (file-name-directory tag) t)))
 
 
-(defun my-auto-update-tags-when-save ()
-      (interactive)
+(defun my-auto-update-tags-when-save (prefix)
+      (interactive "P")
       (cond
        ((not my-tags-updated-time)
         (setq my-tags-updated-time (current-time)))
-       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300)
+
+       ((and (not prefix)
+             (< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300))
         ;; < 300 seconds
-        ;; do nothing
+        (message "no need to update the tags")
         )
        (t
         (setq my-tags-updated-time (current-time))

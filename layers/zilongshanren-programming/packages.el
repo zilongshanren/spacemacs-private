@@ -39,7 +39,11 @@
         ;; clojure-mode
         company
         (eldoc :location built-in)
+        dumb-jump
         ))
+
+(defun zilongshanren-programming/post-init-dumb-jump ()
+  (setq dumb-jump-selector 'ivy))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
   (use-package clojure-mode
@@ -243,6 +247,8 @@
 
 (defun zilongshanren-programming/post-init-js2-mode ()
   (progn
+    (spacemacs|define-jump-handlers js2-mode)
+
     (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
 
@@ -305,10 +311,6 @@
         ))
 
     (evilified-state-evilify js2-error-buffer-mode js2-error-buffer-mode-map)
-
-
-
-
 
     ))
 
