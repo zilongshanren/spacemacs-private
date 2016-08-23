@@ -174,6 +174,8 @@
   (global-hungry-delete-mode t)
   (spacemacs|diminish helm-gtags-mode)
   (spacemacs|diminish ggtags-mode)
+  (spacemacs|diminish which-key-mode)
+  (spacemacs|diminish spacemacs-whitespace-cleanup-mode)
 
   ;; https://emacs-china.org/t/ranger-golden-ratio/964/2
   (defun my-ranger ()

@@ -124,7 +124,7 @@
                  '(:eval evil-mode-line-tag)
 
                  ;; minor modes
-                 '(:eval (when (> (window-width) 90)
+                 '(:eval (when (> (window-width) 80)
                            minor-mode-alist))
                  " "
                  ;; git info
@@ -145,7 +145,8 @@
                  (propertize "%02c" 'face 'font-lock-type-face)
                  ") "
 
-                 '(:eval (buffer-encoding-abbrev))
+                 '(:eval (when (> (window-width) 90)
+                           (buffer-encoding-abbrev)))
                  mode-line-end-spaces
                  ;; add the time, with the date and the emacs uptime in the tooltip
                  ;; '(:eval (propertize (format-time-string "%H:%M")
