@@ -11,15 +11,11 @@
 
 (defconst zilongshanren-better-defaults-packages
   '(
-    (occur-mode :location built-in)
     (dired-mode :location built-in)
     (profiler :location built-in)
     )
 )
 
-(defun zilongshanren-better-defaults/init-occur-mode ()
-  (evilified-state-evilify occur-mode occur-mode-map
-    "RET" 'occur-mode-goto-occurrence))
 
 (defun zilongshanren-better-defaults/init-dired-mode ()
   (use-package dired-mode
