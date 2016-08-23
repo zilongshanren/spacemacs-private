@@ -124,7 +124,7 @@
                  '(:eval evil-mode-line-tag)
 
                  ;; minor modes
-                 '(:eval (when (> (window-width) 120)
+                 '(:eval (when (> (window-width) 90)
                            minor-mode-alist))
                  " "
                  ;; git info
