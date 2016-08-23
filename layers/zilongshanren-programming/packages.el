@@ -38,7 +38,12 @@
         (emacs-lisp :location built-in)
         ;; clojure-mode
         company
+        (eldoc :location built-in)
+        dumb-jump
         ))
+
+(defun zilongshanren-programming/post-init-dumb-jump ()
+  (setq dumb-jump-selector 'ivy))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
   (use-package clojure-mode
@@ -135,16 +140,6 @@
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
                                                                       org-mode-hook
                                                                       markdown-mode-hook))
-    (defun zilongshanren/load-yasnippet ()
-      (interactive)
-      (unless yas-global-mode
-        (progn
-          (yas-global-mode 1)
-          (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
-          (setq yas-snippet-dirs  my-snippet-dir)
-          (yas-load-directory my-snippet-dir)
-          (setq yas-wrap-around-region t)))
-      (yas-minor-mode 1))
 
     (spacemacs/add-to-hooks 'zilongshanren/load-yasnippet '(prog-mode-hook
                                                             markdown-mode-hook
@@ -192,10 +187,6 @@
       (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))
     :config
     (progn
-      (defun conditionally-enable-lispy ()
-        (when (eq this-command 'eval-expression)
-          (lispy-mode 1)))
-
       (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
 
       (add-hook
@@ -221,31 +212,18 @@
                                        "mh" "docs")
     (spacemacs/set-leader-keys-for-major-mode 'cmake-mode
       "hd" 'cmake-help)
-    (defun cmake-rename-buffer ()
-      "Renames a CMakeLists.txt buffer to cmake-<directory name>."
-      (interactive)
-      (when (and (buffer-file-name)
-                 (string-match "CMakeLists.txt" (buffer-name)))
-        (setq parent-dir (file-name-nondirectory
-                          (directory-file-name
-                           (file-name-directory (buffer-file-name)))))
-        (setq new-buffer-name (concat "cmake-" parent-dir))
-        (rename-buffer new-buffer-name t)))
-
     (add-hook 'cmake-mode-hook (function cmake-rename-buffer))))
 
 
 (defun zilongshanren-programming/post-init-flycheck ()
   (with-eval-after-load 'flycheck
     (progn
-      ;; (setq flycheck-display-errors-function 'flycheck-display-error-messages)
-      (setq flycheck-display-errors-delay 0.4)
+      (setq flycheck-display-errors-delay 0.9)
       (setq flycheck-idle-change-delay 2.0)
-      ;; (remove-hook 'c-mode-hook 'flycheck-mode)
-      ;; (remove-hook 'c++-mode-hook 'flycheck-mode)
       )))
 
-;; configs for writing
+(defun zilongshanren-programming/post-init-eldoc ()
+  (setq eldoc-idle-delay 0.01))
 
 
 (defun zilongshanren-programming/init-impatient-mode ()
@@ -253,15 +231,7 @@
   (use-package impatient-mode
     :init
     (progn
-
-      (defun zilongshanren-mode-hook ()
-        "my web mode hook for HTML REPL"
-        (interactive)
-        (impatient-mode)
-        (spacemacs|hide-lighter impatient-mode)
-        (httpd-start))
-
-      (add-hook 'web-mode-hook 'zilongshanren-mode-hook)
+      (add-hook 'web-mode-hook 'zilongshanren/impatient-mode-hook)
       (spacemacs/set-leader-keys-for-major-mode 'web-mode
         "p" 'imp-visit-buffer)
       )))
@@ -277,6 +247,8 @@
 
 (defun zilongshanren-programming/post-init-js2-mode ()
   (progn
+    (spacemacs|define-jump-handlers js2-mode)
+
     (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
 
@@ -285,40 +257,10 @@
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "tb" 'zilong/company-toggle-company-tern)
 
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "ga" 'projectile-find-other-file
-      "gA" 'projectile-find-other-file-other-window)
-
-    (spacemacs/set-leader-keys-for-major-mode 'web-mode
-      "ga" 'projectile-find-other-file
-      "gA" 'projectile-find-other-file-other-window)
-
-    (defun my-js2-mode-hook ()
-      (progn
-        (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
-        (define-key js2-mode-map "@" 'js-doc-insert-tag)
-        (modify-syntax-entry ?_ "w")
-        (which-function-mode t)
-        (setq imenu-create-index-function 'js2-imenu-make-index)
-
-        (setq mode-name "JS2")
-        (define-key js2-mode-map   (kbd "s-.") 'company-tern)
-        (spacemacs/toggle-syntax-checking-on)
-        (setq forward-sexp-function nil)
-        (set (make-local-variable 'semantic-mode) nil)))
-
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
-    ;; http://blog.binchen.org/posts/use-which-func-mode-with-js2-mode.html
-    (defun my-which-function ()
-      ;; clean the imenu cache
-      ;; @see http://stackoverflow.com/questions/13426564/how-to-force-a-rescan-in-imenu-by-a-function
-      (setq imenu--index-alist nil)
-      (which-function))
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
-
-
 
     (with-eval-after-load 'js2-mode
       (progn
@@ -370,41 +312,6 @@
 
     (evilified-state-evilify js2-error-buffer-mode js2-error-buffer-mode-map)
 
-
-    (defun js2-imenu-make-index ()
-      (interactive)
-      (save-excursion
-        ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
-        (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                                   ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                                   ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                                   ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                                   ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                                   ("Controller" "[. \t]controller([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Controller" "[. \t]controllerAs:[ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Filter" "[. \t]filter([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("State" "[. \t]state([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Factory" "[. \t]factory([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Service" "[. \t]service([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Module" "[. \t]module([ \t]*['\"]\\([a-zA-Z0-9_\.]+\\)" 1)
-                                   ("ngRoute" "[. \t]when(\\(['\"][a-zA-Z0-9_\/]+['\"]\\)" 1)
-                                   ("Directive" "[. \t]directive([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Event" "[. \t]\$on([ \t]*['\"]\\([^'\"]+\\)" 1)
-                                   ("Config" "[. \t]config([ \t]*function *( *\\([^\)]+\\)" 1)
-                                   ("Config" "[. \t]config([ \t]*\\[ *['\"]\\([^'\"]+\\)" 1)
-                                   ("OnChange" "[ \t]*\$(['\"]\\([^'\"]*\\)['\"]).*\.change *( *function" 1)
-                                   ("OnClick" "[ \t]*\$([ \t]*['\"]\\([^'\"]*\\)['\"]).*\.click *( *function" 1)
-                                   ("Watch" "[. \t]\$watch( *['\"]\\([^'\"]+\\)" 1)
-                                   ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
-                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-                                   ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
-                                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
-                                   ("Class" "^[ \t]*var[ \t]*\\([0-9a-zA-Z]+\\)[ \t]*=[ \t]*\\([a-zA-Z]*\\).extend" 1)
-                                   ("Class" "^[ \t]*cc\.\\(.+\\)[ \t]*=[ \t]*cc\.\\(.+\\)\.extend" 1)
-                                   ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
-
-
     ))
 
 (defun zilongshanren-programming/post-init-css-mode ()
@@ -432,9 +339,6 @@
     (add-hook 'c-mode-common-hook 'doxymacs-mode)
     :config
     (progn
-      (defun my-doxymacs-font-lock-hook ()
-        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-            (doxymacs-font-lock)))
       (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
       (spacemacs|hide-lighter doxymacs-mode))))
 
@@ -474,61 +378,12 @@
 
 (defun zilongshanren-programming/post-init-cc-mode ()
   (progn
-    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-etags)
+    (setq company-backends-c-mode-common '((company-dabbrev-code :with company-keywords company-gtags company-etags)
                                            company-files company-dabbrev))
     (spacemacs/set-leader-keys-for-major-mode 'c++-mode
       "gd" 'etags-select-find-tag-at-point)
 
-    (defun my-project-name-contains-substring (REGEX)
-      (let ((dir (if (buffer-file-name)
-                     (file-name-directory (buffer-file-name))
-                   "")))
-        (string-match-p REGEX dir)))
-
-    (defun my-create-tags-if-needed (SRC-DIR &optional FORCE)
-      "return the full path of tags file"
-      (let ((dir (file-name-as-directory (file-truename SRC-DIR)))
-            file)
-        (setq file (concat dir "TAGS"))
-        (when (or FORCE (not (file-exists-p file)))
-          (message "Creating TAGS in %s ..." dir)
-          (shell-command
-           (format "ctags -f %s -e -R %s" file dir)))
-        file))
-
     (defvar my-tags-updated-time nil)
-
-    (defun my-update-tags ()
-      (interactive)
-      "check the tags in tags-table-list and re-create it"
-      (dolist (tag tags-table-list)
-        (my-create-tags-if-needed (file-name-directory tag) t)))
-
-    (defun my-auto-update-tags-when-save ()
-      (interactive)
-      (cond
-       ((not my-tags-updated-time)
-        (setq my-tags-updated-time (current-time)))
-       ((< (- (float-time (current-time)) (float-time my-tags-updated-time)) 300)
-        ;; < 300 seconds
-        ;; do nothing
-        )
-       (t
-        (setq my-tags-updated-time (current-time))
-        (my-update-tags)
-        (message "updated tags after %d seconds." (- (float-time (current-time)) (float-time my-tags-updated-time))))))
-
-    (defun my-setup-develop-environment ()
-      (interactive)
-      (when (my-project-name-contains-substring "guanghui")
-        (cond
-         ((my-project-name-contains-substring "cocos2d-x")
-          ;; C++ project don't need html tags
-          (setq tags-table-list (list (my-create-tags-if-needed "~/cocos2d-x/cocos"))))
-         ((my-project-name-contains-substring "Github/fireball")
-          (message "load tags for fireball engine repo...")
-          ;; html project donot need C++ tags
-          (setq tags-table-list (list (my-create-tags-if-needed "~/Github/fireball/engine/cocos2d")))))))
 
     ;; (add-hook 'after-save-hook 'my-auto-update-tags-when-save)
     (add-hook 'js2-mode-hook 'my-setup-develop-environment)

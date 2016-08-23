@@ -449,3 +449,136 @@ With PREFIX, cd to project root."
   (if (region-active-p)
       (mc/mark-next-like-this 1)
     (er/expand-region 1)))
+
+
+(defun wrap-sexp-with-new-round-parens ()
+  (interactive)
+  (insert "()")
+  (backward-char)
+  (sp-forward-slurp-sexp))
+
+(defun evil-paste-after-from-0 ()
+  (interactive)
+  (let ((evil-this-register ?0))
+    (call-interactively 'evil-paste-after)))
+
+(defun my-erc-hook (match-type nick message)
+  "Shows a growl notification, when user's nick was mentioned. If the buffer is currently not visible, makes it sticky."
+  (unless (posix-string-match "^\\** *Users on #" message)
+    (zilongshanren/growl-notification
+     (concat "ERC: : " (buffer-name (current-buffer)))
+     message
+     t
+     )))
+
+(defun my-swiper-search (p)
+  (interactive "P")
+  (let ((current-prefix-arg nil))
+    (call-interactively
+     (if p #'spacemacs/swiper-region-or-symbol
+       #'counsel-grep-or-swiper))))
+
+(defun ivy-ff-checksum ()
+  (interactive)
+  "Calculate the checksum of FILE. The checksum is copied to kill-ring."
+  (let ((file (expand-file-name ivy--current ivy--directory))
+        (algo (intern (ivy-read
+                       "Algorithm: "
+                       '(md5 sha1 sha224 sha256 sha384 sha512)))))
+    (kill-new (with-temp-buffer
+                (insert-file-contents-literally file)
+                (secure-hash algo (current-buffer))))
+    (message "Checksum copied to kill-ring.")))
+
+(defun my-find-file-in-git-repo (repo)
+  (if (file-directory-p repo)
+      (let* ((default-directory repo)
+             (files (split-string (shell-command-to-string (format "cd %s && git ls-files" repo)) "\n" t)))
+        (ivy-read "files:" files
+                  :action 'find-file
+                  :caller 'my-find-file-in-git-repo))
+    (message "%s is not a valid directory." repo)))
+
+(defun my-open-file-in-external-app (file)
+  "Open file in external application."
+  (interactive)
+  (let ((file-path file))
+    (if file-path
+        (cond
+         ((spacemacs/system-is-mswindows) (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+         ((spacemacs/system-is-mac) (shell-command (format "open \"%s\"" file-path)))
+         ((spacemacs/system-is-linux) (let ((process-connection-type nil))
+                                        (start-process "" nil "xdg-open" file-path))))
+      (message "No file associated to this buffer."))))
+
+(defun ivy-insert-action (x)
+  (with-ivy-window
+    (insert x)))
+
+(defun counsel-goto-recent-directory ()
+  "Recent directories"
+  (interactive)
+  (unless recentf-mode (recentf-mode 1))
+  (let ((collection
+         (delete-dups
+          (append (mapcar 'file-name-directory recentf-list)
+                  ;; fasd history
+                  (if (executable-find "fasd")
+                      (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
+    (ivy-read "directories:" collection
+              :action 'dired
+              :caller 'counsel-goto-recent-directory)))
+
+(defun counsel-find-file-recent-directory ()
+  "Find file in recent git repository."
+  (interactive)
+  (unless recentf-mode (recentf-mode 1))
+  (let ((collection
+         (delete-dups
+          (append (mapcar 'file-name-directory recentf-list)
+                  ;; fasd history
+                  (if (executable-find "fasd")
+                      (split-string (shell-command-to-string "fasd -ld") "\n" t))))))
+    (ivy-read "directories:" collection
+              :action 'my-find-file-in-git-repo
+              :caller 'counsel-find-file-recent-directory)))
+
+(defun zilongshanren/magit-visit-pull-request ()
+  "Visit the current branch's PR on GitHub."
+  (interactive)
+  (let ((remote-branch (magit-get-current-branch)))
+    (cond
+     ((null remote-branch)
+      (message "No remote branch"))
+     (t
+      (browse-url
+       (format "https://github.com/%s/pull/new/%s"
+               (replace-regexp-in-string
+                "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+                (magit-get "remote"
+                           (magit-get-remote)
+                           "url"))
+               remote-branch))))))
+
+(defun zilongshanren/markdown-to-html ()
+  (interactive)
+  (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
+  (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
+
+(defun zilong/github-browse-commit ()
+  "Show the GitHub page for the current commit."
+  (interactive)
+  (use-package github-browse-file
+    :commands (github-browse-file--relative-url))
+
+  (let* ((commit git-messenger:last-commit-id)
+         (url (concat "https://github.com/"
+                      (github-browse-file--relative-url)
+                      "/commit/"
+                      commit)))
+    (github-browse--save-and-view url)
+    (git-messenger:popup-close)))
+
+(defun zilongshanren/search-in-fireball ()
+  (interactive)
+  (helm-do-ag (expand-file-name "~/Github/fireball/")))
