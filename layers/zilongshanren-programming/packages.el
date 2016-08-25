@@ -229,7 +229,7 @@
       )))
 
 (defun zilongshanren-programming/post-init-eldoc ()
-  (setq eldoc-idle-delay 0.01))
+  (setq eldoc-idle-delay 0.4))
 
 
 (defun zilongshanren-programming/init-impatient-mode ()
