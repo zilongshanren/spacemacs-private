@@ -40,7 +40,13 @@
         company
         (eldoc :location built-in)
         dumb-jump
+        graphviz-dot-mode
         ))
+
+(defun zilongshanren-programming/post-init-graphviz-dot-mode ()
+  (with-eval-after-load 'graphviz-dot-mode
+      (require 'company-keywords)
+      (push '(graphviz-dot-mode  "digraph" "node" "shape" "subgraph" "label" "edge" "bgcolor" "style" "record") company-keywords-alist)))
 
 (defun zilongshanren-programming/post-init-dumb-jump ()
   (setq dumb-jump-selector 'ivy))
@@ -500,6 +506,7 @@
       (spacemacs|add-company-hook nxml-mode)
       (spacemacs|add-company-hook conf-unix-mode)
       (spacemacs|add-company-hook json-mode)
+      (spacemacs|add-company-hook graphviz-dot-mode)
       )
     ))
 

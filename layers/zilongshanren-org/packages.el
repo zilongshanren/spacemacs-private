@@ -185,6 +185,7 @@
        '((perl . t)
          (ruby . t)
          (sh . t)
+         (dot . t)
          (js . t)
          (latex .t)
          (python . t)
