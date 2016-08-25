@@ -8,22 +8,37 @@
    '(
      helm
      ivy
-     react
      better-defaults
      github
-     osx
-     latex
-     deft
-     markdown
-     (vinegar :variables vinegar-reuse-dired-buffer t)
-     org
+     ranger
+     colors
      prodigy
      search-engine
      (syntax-checking :variables syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
+     (vinegar :variables vinegar-reuse-dired-buffer t)
+     (spacemacs-layouts :variables layouts-enable-autosave nil
+                        layouts-autosave-delay 300)
+     (git :variables
+          git-magit-status-fullscreen t
+          magit-push-always-verify nil
+          magit-save-repository-buffers 'dontask
+          magit-revert-buffers 'silent
+          magit-refs-show-commit-count 'all
+          magit-revision-show-gravatars nil)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      :disabled-for org markdown)
+     osx
+     restclient
      gtags
+     latex
+     deft
+     markdown
+     org
      yaml
+     react
      (python :variables
              python-test-runner '(nose pytest))
      (ruby :variables ruby-enable-enh-ruby-mode t
@@ -35,26 +50,11 @@
      (typescript :variables
                  typescript-fmt-on-save nil
                  typescript-fmt-tool 'typescript-formatter)
-     restclient
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
-     ranger
      racket
-     (spacemacs-layouts :variables layouts-enable-autosave nil
-                        layouts-autosave-delay 300)
-     colors
-     (git :variables
-          git-magit-status-fullscreen t
-          magit-push-always-verify nil
-          magit-save-repository-buffers 'dontask
-          magit-revert-buffers 'silent
-          magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      :disabled-for org markdown)
      zilongshanren
      )
    dotspacemacs-additional-packages '(sicp)
