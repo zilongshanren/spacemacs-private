@@ -31,7 +31,7 @@
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       :disabled-for org markdown)
-     osx
+     (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
      restclient
      gtags
      latex
