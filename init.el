@@ -33,7 +33,7 @@
                       :disabled-for org markdown)
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
      restclient
-     gtags
+     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      latex
      deft
      markdown
