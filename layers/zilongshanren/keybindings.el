@@ -22,9 +22,6 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 (define-key global-map (kbd "<f9>") 'org-capture)
-(global-set-key (kbd "C-M-=") 'spacemacs/scale-up-font)
-(global-set-key (kbd "C-M--") 'spacemacs/scale-down-font)
-(global-set-key (kbd "C-M-0") 'spacemacs/reset-font-size)
 
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c i e") 'spacemacs/auto-yasnippet-expand)
