@@ -174,6 +174,10 @@
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
+  ;; force horizontal split window
+  (if (< (window-width) 160)
+      (setq split-width-threshold 1))
+
   (spacemacs|add-company-hook 'text-mode)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
