@@ -21,6 +21,8 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 3. 安装 ispell，用来做拼写检查。你需要下载 aspell 和 对应的 English 字典。 https://www.emacswiki.org/emacs/AspellWindows
 
+4. 安装 SharpKeys, 把左 window 键修改成 app 键 ，把大写键修改成 Ctrl 键 。 https://sharpkeys.codeplex.com/
+
 ** 使用方法
 
 #+BEGIN_SRC sh

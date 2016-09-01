@@ -146,7 +146,7 @@
         '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "https://elpa.zilongshanren.com/org/")
           ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
- 
+
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
   (setq tramp-ssh-controlmaster-options
@@ -167,6 +167,8 @@
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
     (setq ispell-program-name "aspell")
+    (setq w32-pass-alt-to-system nil)
+    (setq w32-apps-modifier 'super)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
                         charset
@@ -177,6 +179,7 @@
   ;; force horizontal split window
   (if (< (window-width) 160)
       (setq split-width-threshold 1))
+
 
   (spacemacs|add-company-hook 'text-mode)
 
