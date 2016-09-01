@@ -177,8 +177,7 @@
   (fset 'evil-visual-update-x-selection 'ignore)
 
   ;; force horizontal split window
-  (if (< (window-width) 160)
-      (setq split-width-threshold 1))
+  (setq split-width-threshold 120)
 
 
   (spacemacs|add-company-hook 'text-mode)
