@@ -166,6 +166,7 @@
 
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
+    (setq ispell-program-name "aspell")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
                         charset
