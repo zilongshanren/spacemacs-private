@@ -35,6 +35,9 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 现在可以打开 Emacs 24.5+ 开始使用我的配置了。
 
+** 安装 SourceCodePro 字体
+下载地址：https://github.com/adobe-fonts/source-code-pro/releases
+
 ** 配置说明
 1. 我的配置主要分成 5 个 layer
   - zilongshanren-ui: 定制 mode-line，font face 等配置。
