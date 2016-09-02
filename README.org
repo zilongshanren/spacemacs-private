@@ -23,6 +23,8 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 4. 安装 SharpKeys, 把左 window 键修改成 app 键 ，把大写键修改成 Ctrl 键 。 https://sharpkeys.codeplex.com/
 
+5. 安装 ctags： http://ctags.sourceforge.net/
+
 ** 使用方法
 
 #+BEGIN_SRC sh
