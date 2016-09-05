@@ -254,6 +254,7 @@
 (defun zilongshanren-programming/post-init-js2-mode ()
   (progn
     (spacemacs|define-jump-handlers js2-mode)
+    (add-hook 'spacemacs-jump-handlers-js2-mode 'etags-select-find-tag-at-point)
 
     (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
