@@ -22,6 +22,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 (define-key global-map (kbd "<f9>") 'org-capture)
+(define-key global-map (kbd "C-c t") 'org-capture)
 
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c i e") 'spacemacs/auto-yasnippet-expand)
