@@ -700,12 +700,7 @@
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
 
-    (use-package recentf
-      :config
-      (setq recentf-exclude
-            '("COMMIT_MSG" "COMMIT_EDITMSG" "github.*txt$"
-              ".*png$"))
-      (setq recentf-max-saved-items 60))
+
     (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
 
     (use-package ivy
