@@ -96,4 +96,4 @@
 ;; updated line number every second
 (setq linum-delay t)
 (defadvice linum-schedule (around my-linum-schedule () activate)
-  (run-with-idle-timer 1 nil #'linum-update-current))
+  (run-with-idle-timer 0.1 nil #'linum-update-current))
