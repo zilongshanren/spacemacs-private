@@ -430,9 +430,9 @@ With PREFIX, cd to project root."
     (do-applescript
      (format
       "
-  tell application \"iTerm\"
+  tell application \"iTerm2\"
        activate
-       set _session to current session of current terminal
+       set _session to current session of current window
        tell _session
             set command to get the clipboard
             write text \"%s\"
