@@ -35,6 +35,7 @@
      restclient
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      (shell :variables shell-default-shell 'eshell)
+     docker
      latex
      deft
      markdown
@@ -43,9 +44,9 @@
      react
      (python :variables
              python-test-runner '(nose pytest))
-     (ruby :variables ruby-enable-enh-ruby-mode t
-           ruby-version-manager 'chruby)
-     ruby-on-rails
+     ;; (ruby :variables ruby-enable-enh-ruby-mode t
+     ;;       ruby-version-manager 'chruby)
+     ;; ruby-on-rails
      lua
      html
      javascript
@@ -226,7 +227,8 @@
 
   (evilified-state-evilify-map special-mode-map :mode special-mode)
 
-  ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+  (add-to-list 'auto-mode-alist
+               '("Capstanfile\\'" . yaml-mode))
 
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on))
 
