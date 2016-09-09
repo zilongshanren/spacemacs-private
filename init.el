@@ -224,7 +224,8 @@
     (setq projectile-switch-project-action
           'zilongshanren/open-file-with-projectile-or-counsel-git))
 
-  ;; visual line mode will cause swiper slow...
+  (evilified-state-evilify-map special-mode-map :mode special-mode)
+
   ;; (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on))
