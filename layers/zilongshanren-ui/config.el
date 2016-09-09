@@ -45,9 +45,7 @@
    #b00000000
    #b00000000])
 
-
-;; config for linum mode
-(global-linum-mode t)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 ;; http://stackoverflow.com/questions/3875213/turning-on-linum-mode-when-in-python-c-mode
 (setq linum-mode-inhibit-modes-list '(eshell-mode
@@ -83,6 +81,7 @@
                                       vc-git-log-edit-mode
                                       log-edit-mode
                                       term-mode
+                                      spacemacs-buffer-mode
                                       w3m-mode
                                       speedbar-mode
                                       gnus-summary-mode

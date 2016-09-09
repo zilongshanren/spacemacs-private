@@ -23,6 +23,7 @@
 (define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 (define-key global-map (kbd "<f9>") 'org-capture)
 (define-key global-map (kbd "C-c t") 'org-capture)
+(define-key global-map (kbd "<f8>") 'zilongshanren/show-current-buffer-major-mode)
 
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c i e") 'spacemacs/auto-yasnippet-expand)

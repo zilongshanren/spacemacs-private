@@ -582,3 +582,8 @@ With PREFIX, cd to project root."
 (defun zilongshanren/search-in-fireball ()
   (interactive)
   (helm-do-ag (expand-file-name "~/Github/fireball/")))
+
+
+(defun zilongshanren/show-current-buffer-major-mode ()
+  (interactive)
+  (describe-variable 'major-mode))
