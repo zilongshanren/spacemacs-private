@@ -41,7 +41,26 @@
         (eldoc :location built-in)
         dumb-jump
         graphviz-dot-mode
+        cider
         ))
+
+(defun zilongshanren-programming/post-init-cider ()
+  (setq cider-cljs-lein-repl
+        "(do (require 'figwheel-sidecar.repl-api)
+           (figwheel-sidecar.repl-api/start-figwheel!)
+           (figwheel-sidecar.repl-api/cljs-repl))")
+
+  (defun zilongshanren/cider-figwheel-repl ()
+    (interactive)
+    (save-some-buffers)
+    (with-current-buffer (cider-current-repl-buffer)
+      (goto-char (point-max))
+      (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+             (figwheel-sidecar.repl-api/cljs-repl)")
+      (cider-repl-return)))
+
+  (global-set-key (kbd "C-c C-f") #'zilongshanren/cider-figwheel-repl))
 
 (defun zilongshanren-programming/post-init-graphviz-dot-mode ()
   (with-eval-after-load 'graphviz-dot-mode
