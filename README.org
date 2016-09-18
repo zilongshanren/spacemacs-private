@@ -15,7 +15,7 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 注： =--with-gnutls= 是用来支持 ssl 的
 
 ** Windows 平台推荐安装 Emacs方法
-1. 使用 http://emacsbinw64.sourceforge.net/ 上面的 Emacs 版本，我目前使用的是 pretest 版本 25.1 rc2
+1. 使用 https://sourceforge.net/projects/emacsbinw64/files/release/ 上面的 Emacs 版本，我目前使用的 Emacs 25.1
 
 2. 安装 pt, 这样 helm-ag 也可以使用 pt 来搜索 。pt 的下载地址： https://github.com/monochromegane/the_platinum_searcher
 
