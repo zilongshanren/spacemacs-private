@@ -68,7 +68,12 @@
       (push '(graphviz-dot-mode  "digraph" "node" "shape" "subgraph" "label" "edge" "bgcolor" "style" "record") company-keywords-alist)))
 
 (defun zilongshanren-programming/post-init-dumb-jump ()
-  (setq dumb-jump-selector 'ivy))
+  (setq dumb-jump-selector 'ivy)
+  (defun my-dumb-jump ()
+    (interactive)
+    (evil-set-jump)
+    (dumb-jump-go))
+  (global-set-key (kbd "C-s-g") 'my-dumb-jump))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
   (use-package clojure-mode
