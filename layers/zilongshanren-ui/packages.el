@@ -43,6 +43,24 @@
   )
 
 (defun zilongshanren-ui/init-zilong-mode-line ()
+  (defun zilongshanren/display-mode-indent-width ()
+    (let ((mode-indent-level
+           (catch 'break
+             (dolist (test spacemacs--indent-variable-alist)
+               (let ((mode (car test))
+                     (val (cdr test)))
+                 (when (or (and (symbolp mode) (derived-mode-p mode))
+                           (and (listp mode) (apply 'derived-mode-p mode))
+                           (eq 't mode))
+                   (when (not (listp val))
+                     (setq val (list val)))
+                   (dolist (v val)
+                     (cond
+                      ((integerp v) (throw 'break v))
+                      ((and (symbolp v) (boundp v))
+                       (throw 'break (symbol-value v))))))))
+             (throw 'break (default-value 'evil-shift-width)))))
+      (concat "TS:" (int-to-string (or mode-indent-level 0)))))
 
   (setq my-flycheck-mode-line
         '(:eval
@@ -124,7 +142,7 @@
                  '(:eval evil-mode-line-tag)
 
                  ;; minor modes
-                 '(:eval (when (> (window-width) 80)
+                 '(:eval (when (> (window-width) 90)
                            minor-mode-alist))
                  " "
                  ;; git info
@@ -139,13 +157,14 @@
 
                  (mode-line-fill 'mode-line 20)
 
+                 '(:eval (zilongshanren/display-mode-indent-width))
                  ;; line and column
-                 "(" ;; '%02' to set to 2 chars at least; prevents flickering
+                 " (" ;; '%02' to set to 2 chars at least; prevents flickering
                  (propertize "%02l" 'face 'font-lock-type-face) ","
                  (propertize "%02c" 'face 'font-lock-type-face)
                  ") "
 
-                 '(:eval (when (> (window-width) 90)
+                 '(:eval (when (> (window-width) 80)
                            (buffer-encoding-abbrev)))
                  mode-line-end-spaces
                  ;; add the time, with the date and the emacs uptime in the tooltip
