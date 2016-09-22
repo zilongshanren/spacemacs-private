@@ -90,11 +90,14 @@
             kill-buffer-query-functions))
 
 ;; cleanup recent files
-(add-hook 'kill-emacs-hook #'(lambda () (progn
-                                     (and (fboundp 'recentf-cleanup)
-                                          (recentf-cleanup))
-                                     (and (fboundp 'projectile-cleanup-known-projects)
-                                          (projectile-cleanup-known-projects)))))
+(defun zilongshanren/cleanup-recentf-and-known-projects ()
+  (progn
+    (and (fboundp 'recentf-cleanup)
+         (recentf-cleanup))
+    (and (fboundp 'projectile-cleanup-known-projects)
+         (projectile-cleanup-known-projects))))
+
+(add-hook 'kill-emacs-hook #'zilongshanren/cleanup-recentf-and-known-projects)
 
 ;; change evil initial mode state
 (menu-bar-mode t)

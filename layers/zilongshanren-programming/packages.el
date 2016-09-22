@@ -42,7 +42,18 @@
         dumb-jump
         graphviz-dot-mode
         cider
+        editorconfig
         ))
+
+(defun zilongshanren-programming/init-editorconfig ()
+  (use-package editorconfig
+    :init
+    (progn
+      (defun conditional-enable-editorconfig ()
+        (if (and (zilongshanren/vcs-project-root)
+                 (locate-dominating-file default-directory ".editorconfig"))
+            (editorconfig-apply)))
+      (add-hook 'prog-mode-hook 'conditional-enable-editorconfig))))
 
 (defun zilongshanren-programming/post-init-cider ()
   (setq cider-cljs-lein-repl
