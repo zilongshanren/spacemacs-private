@@ -148,8 +148,9 @@ Single Capitals as you type."
   "Create parent directory if not exists while visiting file."
   (unless (file-exists-p filename)
     (let ((dir (file-name-directory filename)))
-      (unless (file-exists-p dir)
-        (make-directory dir t)))))
+      (when dir
+        (unless (file-exists-p dir)
+          (make-directory dir t))))))
 
 (add-hook 'minibuffer-inactive-mode-hook
           '(lambda() (set (make-local-variable 'semantic-mode) nil)))
