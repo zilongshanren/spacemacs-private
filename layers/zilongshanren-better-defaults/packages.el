@@ -17,29 +17,28 @@
     )
 )
 
-(defun zilongshanren-better-defaults/init-recentf ()
-  (use-package recentf
-      :config
-      (setq recentf-exclude
-            '("COMMIT_MSG"
-              "COMMIT_EDITMSG"
-              "github.*txt$"
-              "/tmp/"
-              "/ssh:"
-              "/sudo:"
-              "/TAGS$"
-              "/GTAGS$"
-              "/GRAGS$"
-              "/GPATH$"
-              "\\.mkv$"
-              "\\.mp[34]$"
-              "\\.avi$"
-              "\\.pdf$"
-              "\\.sub$"
-              "\\.srt$"
-              "\\.ass$"
-              ".*png$"))
-      (setq recentf-max-saved-items 2048)))
+(defun zilongshanren-better-defaults/post-init-recentf ()
+  (progn
+    (setq recentf-exclude
+          '("COMMIT_MSG"
+            "COMMIT_EDITMSG"
+            "github.*txt$"
+            "/tmp/"
+            "/ssh:"
+            "/sudo:"
+            "/TAGS$"
+            "/GTAGS$"
+            "/GRAGS$"
+            "/GPATH$"
+            "\\.mkv$"
+            "\\.mp[34]$"
+            "\\.avi$"
+            "\\.pdf$"
+            "\\.sub$"
+            "\\.srt$"
+            "\\.ass$"
+            ".*png$"))
+    (setq recentf-max-saved-items 2048)))
 
 (defun zilongshanren-better-defaults/init-dired-mode ()
   (use-package dired-mode

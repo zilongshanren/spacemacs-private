@@ -279,7 +279,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
       :documentation "Toggle pangu spacing mode"
       :evil-leader "ots")
     (add-hook 'markdown-mode-hook
-              '(lambda ()
+              #'(lambda ()
                  (set (make-local-variable 'pangu-spacing-real-insert-separtor) t)))))
 
 (defun zilongshanren-ui/post-init-popwin ()

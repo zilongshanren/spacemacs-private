@@ -65,7 +65,7 @@
     (untabify (point-min) (point-max)) nil))
 
 (add-hook 'c++-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (add-hook 'write-contents-hooks
                        'zilongshanren/untabify-buffer nil t)))
 
