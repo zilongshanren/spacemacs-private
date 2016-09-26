@@ -92,6 +92,7 @@
   "+" 'evil-numbers/inc-at-pt
   "-" 'evil-numbers/dec-at-pt
   "\\" 'evil-repeat-find-char-reverse
+  (kbd "DEL") 'evil-repeat-find-char-reverse
   "[s" (lambda (n) (interactive "p") (dotimes (c n nil) (insert " ")))
   "]s" (lambda (n) (interactive "p")
          (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
