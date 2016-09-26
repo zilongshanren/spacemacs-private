@@ -62,6 +62,9 @@
               ("\\.html?\\'" "open")
               ("\\.md\\'" "open")))
 
+      (setq dired-omit-files
+      (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$"))
+
       ;; always delete and copy recursively
       (setq dired-recursive-deletes 'always)
       (setq dired-recursive-copies 'always)
