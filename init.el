@@ -40,6 +40,7 @@
      deft
      markdown
      org
+     shaders
      yaml
      react
      (python :variables
@@ -59,6 +60,9 @@
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      zilongshanren
+     (chinese :packages youdao-dictionary fcitx
+              :variables chinese-enable-fcitx t
+              chinese-enable-youdao-dict t)
      )
    dotspacemacs-additional-packages '(sicp)
    dotspacemacs-frozen-packages '()

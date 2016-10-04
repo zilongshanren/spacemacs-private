@@ -26,7 +26,6 @@
         4clojure
         persp-mode
         helm-github-stars
-        youdao-dictionary
         helm
         tiny
         smartparens
@@ -185,15 +184,6 @@
       (push "\\.emlx$" helm-boring-file-regexp-list)
       )
     ))
-
-(defun zilongshanren-misc/init-youdao-dictionary ()
-  (use-package youdao-dictionary
-    :defer t
-    :init
-    (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
-    ))
-
-
 
 (defun zilongshanren-misc/init-helm-github-stars ()
   (use-package helm-github-stars
@@ -524,9 +514,6 @@
                   (define-key map "-" 'chinese-wbim-previous-page)
                   (define-key map "=" 'chinese-wbim-next-page))))
     ))
-
-(defun zilongshanren-misc/post-init-youdao-dictionary ()
-  (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+))
 
 
 (defun zilongshanren-misc/post-init-evil-escape ()
