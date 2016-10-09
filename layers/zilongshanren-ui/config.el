@@ -93,8 +93,8 @@
              ad-do-it))
 (ad-activate 'linum-on)
 
-(eval-after-load "linum"
-  '(set-face-attribute 'linum nil :height 140))
+;; (eval-after-load "linum"
+;;   '(set-face-attribute 'linum nil :height 140))
 
 ;; updated line number every second
 (setq linum-delay t)

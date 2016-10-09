@@ -45,9 +45,9 @@
      react
      (python :variables
              python-test-runner '(nose pytest))
-     ;; (ruby :variables ruby-enable-enh-ruby-mode t
-     ;;       ruby-version-manager 'chruby)
-     ;; ruby-on-rails
+     (ruby :variables ruby-enable-enh-ruby-mode t
+           ruby-version-manager 'chruby)
+     ruby-on-rails
      lua
      html
      javascript
