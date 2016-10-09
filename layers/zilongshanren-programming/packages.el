@@ -43,7 +43,37 @@
         graphviz-dot-mode
         cider
         editorconfig
+        robe
         ))
+
+(defun zilongshanren-programming/post-init-robe ()
+  (progn
+    (add-hook 'inf-ruby-mode-hook 'spacemacs/toggle-auto-completion-on)
+    (defun zilongshanren/ruby-send-current-line (&optional print)
+      "Send the current line to the inferior Ruby process."
+      (interactive "P")
+      (ruby-send-region
+       (line-beginning-position)
+       (line-end-position))
+      (when print (ruby-print-result)))
+
+    (defun zilongshanren/ruby-send-current-line-and-go ()
+      (interactive)
+      (zilongshanren/ruby-send-current-line)
+      (ruby-switch-to-inf t))
+
+    (defun zilongshanren/start-inf-ruby-and-robe ()
+      (interactive)
+      (when (not (get-buffer "*ruby*"))
+        (inf-ruby))
+      (robe-start))
+
+    (dolist (mode '(ruby-mode enh-ruby-mode))
+      (spacemacs/set-leader-keys-for-major-mode mode
+        "sb" 'ruby-send-buffer
+        "sl" 'zilongshanren/ruby-send-current-line
+        "sL" 'zilongshanren/ruby-send-current-line-and-go
+        "sI" 'zilongshanren/start-inf-ruby-and-robe))))
 
 (defun zilongshanren-programming/init-editorconfig ()
   (use-package editorconfig
