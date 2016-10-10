@@ -70,7 +70,8 @@
 
     (dolist (mode '(ruby-mode enh-ruby-mode))
       (spacemacs/set-leader-keys-for-major-mode mode
-        "sb" 'ruby-send-buffer
+        "sb" 'ruby-send-block
+        "sB" 'ruby-send-buffer
         "sl" 'zilongshanren/ruby-send-current-line
         "sL" 'zilongshanren/ruby-send-current-line-and-go
         "sI" 'zilongshanren/start-inf-ruby-and-robe))))
