@@ -244,9 +244,7 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
   (progn
     (defun my-inhibit-globalized-hl-highlight-mode ()
       "Counter-act a globalized hl-highlight-mode."
-      (add-hook 'after-change-major-mode-hook
-                (lambda () (hl-highlight-mode 0))
-                :append :local))
+      (set (make-local-variable 'hl-highlight-mode) nil))
 
     (add-hook 'org-agenda-mode-hook 'my-inhibit-globalized-hl-highlight-mode)
     (hl-highlight-mode -1)

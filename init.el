@@ -64,7 +64,7 @@
               :variables chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
      )
-   dotspacemacs-additional-packages '(sicp)
+   dotspacemacs-additional-packages '(sicp hl-anything)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(counsel-projectile magit-gh-pulls magit-gitflow org-projectile evil-mc
