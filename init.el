@@ -71,7 +71,7 @@
                         evil-args evil-ediff evil-exchange evil-unimpaired
                         evil-indent-plus volatile-highlights
                         spaceline holy-mode skewer-mode rainbow-delimiters
-                        highlight-indentation vi-tilde-fringe eyebrowse hl-anything
+                        highlight-indentation vi-tilde-fringe eyebrowse
                         org-bullets smooth-scrolling org-repo-todo org-download org-timer
                         livid-mode git-gutter git-gutter-fringe  evil-escape
                         leuven-theme gh-md evil-lisp-state spray lorem-ipsum

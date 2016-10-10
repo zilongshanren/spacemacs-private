@@ -9,32 +9,13 @@
 ;;
 ;;; License: GPLv3
 
-;;; Commentary:
-
-;; See the Spacemacs documentation and FAQs for instructions on how to implement
-;; a new layer:
-;;
-;;   SPC h SPC layers RET
-;;
-;;
-;; Briefly, each package to be installed or configured by this layer should be
-;; added to `zilong-ui-packages'. Then, for each package PACKAGE:
-;;
-;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `zilong-ui/init-PACKAGE' to load and initialize the package.
-
-;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `zilong-ui/pre-init-PACKAGE' and/or
-;;   `zilong-ui/post-init-PACKAGE' to customize the package as it is loaded.
-
-;;; Code:
-
 (defconst zilongshanren-ui-packages
   '(
     (zilong-mode-line :location built-in)
     diminish
     popwin
     (whitespace :location built-in)
+    hl-anything
     ;; if you wnat to use spaceline, please comment out zilong-mode-line
     ;; spaceline
     ;; beacon
@@ -261,6 +242,13 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
 (defun zilongshanren-ui/post-init-hl-anything ()
   (progn
+    (defun my-inhibit-globalized-hl-highlight-mode ()
+      "Counter-act a globalized hl-highlight-mode."
+      (add-hook 'after-change-major-mode-hook
+                (lambda () (hl-highlight-mode 0))
+                :append :local))
+
+    (add-hook 'org-agenda-mode-hook 'my-inhibit-globalized-hl-highlight-mode)
     (hl-highlight-mode -1)
     (spacemacs|add-toggle toggle-hl-anything
       :status hl-highlight-mode
