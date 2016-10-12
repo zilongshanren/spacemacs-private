@@ -235,6 +235,30 @@
   (add-to-list 'auto-mode-alist
                '("Capstanfile\\'" . yaml-mode))
 
+  (defun js-indent-line ()
+    "Indent the current line as JavaScript."
+    (interactive)
+    (let* ((parse-status
+            (save-excursion (syntax-ppss (point-at-bol))))
+           (offset (- (point) (save-excursion (back-to-indentation) (point)))))
+      (if (nth 3 parse-status)
+          'noindent
+        (indent-line-to (js--proper-indentation parse-status))
+        (when (> offset 0) (forward-char offset)))))
+
+  (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
+  (defun un-indent-by-removing-4-spaces ()
+    "remove 4 spaces from beginning of of line"
+    (interactive)
+    (save-excursion
+      (save-match-data
+        (beginning-of-line)
+        ;; get rid of tabs at beginning of line
+        (when (looking-at "^\\s-+")
+          (untabify (match-beginning 0) (match-end 0)))
+        (when (looking-at (concat "^" (make-string tab-width ?\ )))
+          (replace-match "")))))
+
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on))
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
