@@ -329,6 +329,14 @@
 
     (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
 
+    (defun my-evil-yank ()
+      (interactive)
+      (save-excursion
+        (call-interactively 'evil-yank))
+      (backward-char))
+
+    (define-key evil-visual-state-map (kbd "y") 'my-evil-yank)
+
     (define-key evil-normal-state-map
       (kbd "Y") 'zilongshanren/yank-to-end-of-line)
 
