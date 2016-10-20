@@ -165,10 +165,10 @@ Single Capitals as you type."
 
 (setq tags-add-tables nil)
 
-;; (electric-pair-mode t)
+(electric-pair-mode t)
 ;; https://www.reddit.com/r/emacs/comments/4xhxfw/how_to_tune_the_behavior_of_eletricpairmode/
-;; (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
-;; (show-paren-mode t)
+(setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+(show-paren-mode t)
 
 ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 (defmacro csetq (variable value)

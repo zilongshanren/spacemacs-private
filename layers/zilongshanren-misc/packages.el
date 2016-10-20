@@ -28,7 +28,7 @@
         helm-github-stars
         helm
         tiny
-        smartparens
+        ;; smartparens
         flyspell-correct
         peep-dired
         markdown-mode
@@ -37,6 +37,7 @@
         git-messenger
         gist
         hydra
+        wrap-region
         ))
 
 (defun zilongshanren-misc/post-init-hydra ()
@@ -495,7 +496,8 @@
             org-self-insert-command
             sp-backward-delete-char
             sp-delete-char
-            sp-remove-active-pair-overlay))
+            sp-remove-active-pair-overlay
+            orgtbl-hijacker-command-109))
     ))
 
 (defun zilongshanren-misc/post-init-persp-mode ()
