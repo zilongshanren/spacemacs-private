@@ -72,6 +72,7 @@
       (defvar dired-filelist-cmd
         '(("vlc" "-L")))
 
+      ;; FIXME: evilify dired mode will lead to startup warnings
       (evilified-state-evilify-map dired-mode-map
         :mode dired-mode
         :bindings
