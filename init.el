@@ -36,7 +36,7 @@
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      (shell :variables shell-default-shell 'eshell)
      docker
-     latex
+     ;; latex
      deft
      markdown
      org
@@ -81,7 +81,9 @@
                         helm-flyspell flyspell-correct-helm clean-aindent-mode
                         helm-c-yasnippet ace-jump-helm-line helm-make
                         helm-themes helm-swoop helm-spacemacs-help smeargle
-                        ido-vertical-mode flx-ido company-quickhelp)
+                        ido-vertical-mode flx-ido company-quickhelp
+                        window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
+                        )
    dotspacemacs-install-packages 'used-only
    dotspacemacs-delete-orphan-packages t))
 
@@ -266,7 +268,8 @@
       (fundamental-mode)))
   (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
 
-  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on))
+  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
