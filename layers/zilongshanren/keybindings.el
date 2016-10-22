@@ -149,7 +149,7 @@
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
 (spacemacs/set-leader-keys "og" 'my-git-timemachine)
 
-(spacemacs/set-leader-keys "sj" 'counsel-imenu)
+(spacemacs/set-leader-keys "sj" 'zilongshanren/counsel-imenu)
 ;; deal with BOM
 (spacemacs/set-leader-keys "fl" 'find-file-literally-at-point)
 (spacemacs/set-leader-keys "ri" 'ivy-resume)

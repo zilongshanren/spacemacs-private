@@ -587,3 +587,8 @@ With PREFIX, cd to project root."
 (defun zilongshanren/show-current-buffer-major-mode ()
   (interactive)
   (describe-variable 'major-mode))
+
+(defun zilongshanren/counsel-imenu ()
+  (interactive)
+  (counsel-imenu)
+  (evil-set-jump))
