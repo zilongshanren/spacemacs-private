@@ -118,10 +118,7 @@
   (global-set-key (kbd "C-s-g") 'my-dumb-jump))
 
 (defun zilongshanren-programming/post-init-clojure-mode ()
-  (use-package clojure-mode
-    :defer t
-    :config
-    ))
+  )
 
 (defun zilongshanren-programming/post-init-emacs-lisp ()
     (remove-hook 'emacs-lisp-mode-hook 'auto-compile-mode))
@@ -258,7 +255,8 @@
       ;; (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
-      (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))
+      ;; (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1)))
+      )
     :config
     (progn
       (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
