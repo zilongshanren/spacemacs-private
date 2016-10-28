@@ -140,7 +140,8 @@
     (progn
       (spacemacs/set-leader-keys "ff" 'counsel-find-file)
       (spacemacs/set-leader-keys "fL" 'counsel-locate)
-      (spacemacs/set-leader-keys "hi" 'counsel-info-lookup-symbol)))
+      (spacemacs/set-leader-keys "hi" 'counsel-info-lookup-symbol)
+      (spacemacs/set-leader-keys "pb" 'projectile-switch-to-buffer)))
 
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
