@@ -502,6 +502,7 @@
 
 (defun zilongshanren-misc/post-init-persp-mode ()
   (setq persp-kill-foreign-buffer-action 'kill)
+  (setq persp-lighter nil)
   (when (fboundp 'spacemacs|define-custom-layout)
     (spacemacs|define-custom-layout "@Cocos2D-X"
       :binding "c"

@@ -270,6 +270,7 @@
   (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
 
   (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
