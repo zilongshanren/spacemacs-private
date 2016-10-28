@@ -169,6 +169,9 @@
   )
 
 (defun dotspacemacs/user-config ()
+  ;; 解决Error enabling Flyspell mode:
+  ;; (Error: No word lists can be found for the language "zh_CN".)
+  (ispell-change-dictionary "american" t)
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
