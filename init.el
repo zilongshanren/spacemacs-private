@@ -166,6 +166,8 @@
   (setq evil-shift-round nil)
   (setq byte-compile-warnings '(not obsolete))
   (setq warning-minimum-level :error)
+  ;; hack for remove purpose mode
+  (setq purpose-mode nil)
   )
 
 (defun dotspacemacs/user-config ()
