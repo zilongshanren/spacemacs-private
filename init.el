@@ -6,7 +6,6 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     helm
      ivy
      better-defaults
      github

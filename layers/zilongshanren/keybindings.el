@@ -108,9 +108,8 @@
 (spacemacs/declare-prefix "ot" "Toggle")
 
 
-(if (configuration-layer/layer-usedp 'helm)
-    (progn (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
-           (spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)))
+(global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+(spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)
 
 (spacemacs/set-leader-keys "oc" 'my-auto-update-tags-when-save)
 (spacemacs/set-leader-keys "op" 'zilongshanren/org-save-and-export)
@@ -129,11 +128,8 @@
 (spacemacs/set-leader-keys "ox" 'org-open-at-point)
 (spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
 
-;; helm specific keybindings
-(if (configuration-layer/layer-usedp 'helm)
-    (progn
-      (spacemacs/set-leader-keys "rh" 'helm-resume)
-      (spacemacs/set-leader-keys "sj" 'counsel-imenu)))
+(spacemacs/set-leader-keys "rh" 'helm-resume)
+(spacemacs/set-leader-keys "sj" 'counsel-imenu)
 
 ;; ivy specific keybindings
 (if (configuration-layer/layer-usedp 'ivy)
