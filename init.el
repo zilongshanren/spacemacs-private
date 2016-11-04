@@ -81,7 +81,7 @@
                         helm-c-yasnippet ace-jump-helm-line helm-make
                         helm-themes helm-swoop helm-spacemacs-help smeargle
                         ido-vertical-mode flx-ido company-quickhelp
-                        window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
+                        ;; window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
                         )
    dotspacemacs-install-packages 'used-only
    dotspacemacs-delete-orphan-packages t))
@@ -122,6 +122,7 @@
    dotspacemacs-auto-save-file-location 'cache
    dotspacemacs-max-rollback-slots 5
    dotspacemacs-helm-resize nil
+   dotspacemacs-switch-to-buffer-prefers-purpose t
    dotspacemacs-helm-no-header nil
    dotspacemacs-helm-position 'bottom
    dotspacemacs-enable-paste-transient-state nil
@@ -165,7 +166,7 @@
   (setq byte-compile-warnings '(not obsolete))
   (setq warning-minimum-level :error)
   ;; hack for remove purpose mode
-  (setq purpose-mode nil)
+  ;; (setq purpose-mode nil)
   )
 
 (defun dotspacemacs/user-config ()
