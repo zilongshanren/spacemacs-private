@@ -122,7 +122,7 @@
    dotspacemacs-auto-save-file-location 'cache
    dotspacemacs-max-rollback-slots 5
    dotspacemacs-helm-resize nil
-   dotspacemacs-switch-to-buffer-prefers-purpose t
+   dotspacemacs-switch-to-buffer-prefers-purpose nil
    dotspacemacs-helm-no-header nil
    dotspacemacs-helm-position 'bottom
    dotspacemacs-enable-paste-transient-state nil
