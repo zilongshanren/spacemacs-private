@@ -501,7 +501,8 @@ With PREFIX, cd to project root."
 (defun my-open-file-in-external-app (file)
   "Open file in external application."
   (interactive)
-  (let ((file-path file))
+  (let ((default-directory (zilongshanren/vcs-project-root))
+        (file-path file))
     (if file-path
         (cond
          ((spacemacs/system-is-mswindows) (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
