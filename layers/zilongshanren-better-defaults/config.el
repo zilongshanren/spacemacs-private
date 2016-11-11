@@ -153,7 +153,8 @@ Single Capitals as you type."
           (make-directory dir t))))))
 
 (add-hook 'minibuffer-inactive-mode-hook
-          #'(lambda() (set (make-local-variable 'semantic-mode) nil)))
+          #'(lambda() (set (make-local-variable 'semantic-mode) nil)
+              (set (make-local-variable 'electric-pair-mode) nil)))
 
 ;; http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html
 (defun zilongshanren/stop-using-minibuffer ()
