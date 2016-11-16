@@ -32,61 +32,61 @@ values."
    dotspacemacs-configuration-layers
    '(
      ivy
-     better-defaults
-     github
-     ranger
-     colors
-     prodigy
-     search-engine
-     graphviz
-     (syntax-checking :variables syntax-checking-enable-by-default nil
-                      syntax-checking-enable-tooltips nil)
-     (spell-checking :variables spell-checking-enable-by-default nil)
-     (vinegar :variables vinegar-reuse-dired-buffer t)
+      better-defaults
+      github
+      ranger
+      colors
+      prodigy
+      search-engine
+      graphviz
+      (syntax-checking :variables syntax-checking-enable-by-default nil
+                       syntax-checking-enable-tooltips nil)
+      (spell-checking :variables spell-checking-enable-by-default nil)
+      (vinegar :variables vinegar-reuse-dired-buffer t)
      (spacemacs-layouts :variables layouts-enable-autosave nil
                         layouts-autosave-delay 300)
-     (git :variables
-          git-magit-status-fullscreen t
-          magit-push-always-verify nil
-          magit-save-repository-buffers 'dontask
-          magit-revert-buffers 'silent
-          magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
-     (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
-                      :disabled-for org markdown)
-     (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
-     restclient
-     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
-     (shell :variables shell-default-shell 'eshell)
-     docker
-     ;; latex
-     deft
-     markdown
-     org
-     shaders
-     yaml
-     react
-     (python :variables
-             python-test-runner '(nose pytest))
-     (ruby :variables ruby-version-manager 'chruby)
-     ruby-on-rails
-     lua
-     html
-     javascript
-     (typescript :variables
-                 typescript-fmt-on-save nil
-                 typescript-fmt-tool 'typescript-formatter)
-     emacs-lisp
-     (clojure :variables clojure-enable-fancify-symbols t)
-     racket
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
-     zilongshanren
-     (chinese :packages youdao-dictionary fcitx
-              :variables chinese-enable-fcitx nil
-              chinese-enable-youdao-dict t)
+      (git :variables
+           git-magit-status-fullscreen t
+           magit-push-always-verify nil
+           magit-save-repository-buffers 'dontask
+           magit-revert-buffers 'silent
+           magit-refs-show-commit-count 'all
+           magit-revision-show-gravatars nil)
+      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+      (auto-completion :variables auto-completion-enable-sort-by-usage t
+                       auto-completion-enable-snippets-in-popup t
+                       :disabled-for org markdown)
+      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
+      restclient
+      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
+      (shell :variables shell-default-shell 'eshell)
+      docker
+      ;; latex
+      deft
+      markdown
+      org
+      shaders
+      yaml
+      react
+      (python :variables
+              python-test-runner '(nose pytest))
+      (ruby :variables ruby-version-manager 'chruby)
+      ruby-on-rails
+      lua
+      html
+      javascript
+      (typescript :variables
+                  typescript-fmt-on-save nil
+                  typescript-fmt-tool 'typescript-formatter)
+      emacs-lisp
+      (clojure :variables clojure-enable-fancify-symbols t)
+      racket
+      (c-c++ :variables
+             c-c++-default-mode-for-headers 'c++-mode)
+      zilongshanren
+      (chinese :packages youdao-dictionary fcitx
+               :variables chinese-enable-fcitx nil
+               chinese-enable-youdao-dict t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -429,23 +429,23 @@ values."
       (fundamental-mode)))
   (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
 
-  (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/7749
-  (defun spacemacs/ivy-persp-switch-project (arg)
-    (interactive "P")
-    (ivy-read "Switch to Project Perspective: "
-              (if (projectile-project-p)
-                  (cons (abbreviate-file-name (projectile-project-root))
-                        (projectile-relevant-known-projects))
-                projectile-known-projects)
-              :action (lambda (project)
-                        (let ((persp-reset-windows-on-nil-window-conf t))
-                          (persp-switch project)
-                          (let ((projectile-completion-system 'ivy)
-                                (old-default-directory default-directory))
-                            (projectile-switch-project-by-name project)
-                            (setq default-directory old-default-directory))))))
+  ;; (defun spacemacs/ivy-persp-switch-project (arg)
+  ;;   (interactive "P")
+  ;;   (ivy-read "Switch to Project Perspective: "
+  ;;             (if (projectile-project-p)
+  ;;                 (cons (abbreviate-file-name (projectile-project-root))
+  ;;                       (projectile-relevant-known-projects))
+  ;;               projectile-known-projects)
+  ;;             :action (lambda (project)
+  ;;                       (let ((persp-reset-windows-on-nil-window-conf t))
+  ;;                         (persp-switch project)
+  ;;                         (let ((projectile-completion-system 'ivy)
+  ;;                               (old-default-directory default-directory))
+  ;;                           (projectile-switch-project-by-name project)
+  ;;                           (setq default-directory old-default-directory))))))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
