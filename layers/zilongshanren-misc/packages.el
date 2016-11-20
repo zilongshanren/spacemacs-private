@@ -46,7 +46,10 @@
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio
     (dolist (mode '("dired-mode" "occur-mode"))
-      (add-to-list 'golden-ratio-exclude-modes mode))))
+      (add-to-list 'golden-ratio-exclude-modes mode)))
+  (dolist (n '("COMMIT_EDITMSG"))
+    (add-to-list 'golden-ratio-exclude-buffer-names n))
+  )
 
 (defun zilongshanren-misc/post-init-ranger ()
   ;; https://emacs-china.org/t/ranger-golden-ratio/964/2
