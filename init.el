@@ -110,7 +110,7 @@ values."
                         helm-flyspell flyspell-correct-helm clean-aindent-mode
                         helm-c-yasnippet ace-jump-helm-line helm-make
                         helm-themes helm-swoop helm-spacemacs-help smeargle
-                        ido-vertical-mode flx-ido company-quickhelp
+                        ido-vertical-mode flx-ido company-quickhelp counsel-projectile
                         window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
                         )
    dotspacemacs-install-packages 'used-only
