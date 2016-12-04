@@ -226,7 +226,7 @@ e.g. Sunday, September 17, 2000."
   (interactive)
   (if (or (zilongshanren/vcs-project-root)
           (projectile-project-p))
-      (counsel-projectile-find-file)
+      (projectile-find-file)
     (counsel-file-jump)))
 
 
