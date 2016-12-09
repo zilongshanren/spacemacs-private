@@ -454,7 +454,6 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
           '((files "File" 30 nil "%s")
             (id "Id" 10 nil identity)
             (created "Created" 20 nil "%D %R")
-            zsh:1: no matches found: *.cpp
             (visibility "Visibility" 10 nil
                         (lambda
                           (public)
