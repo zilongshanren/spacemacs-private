@@ -46,7 +46,9 @@
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio
     (dolist (mode '("dired-mode" "occur-mode"))
-      (add-to-list 'golden-ratio-exclude-modes mode))))
+      (add-to-list 'golden-ratio-exclude-modes mode))
+    (dolist (n '("COMMIT_EDITMSG"))
+      (add-to-list 'golden-ratio-exclude-buffer-names n))))
 
 (defun zilongshanren-misc/post-init-ranger ()
   ;; https://emacs-china.org/t/ranger-golden-ratio/964/2
@@ -452,7 +454,6 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
           '((files "File" 30 nil "%s")
             (id "Id" 10 nil identity)
             (created "Created" 20 nil "%D %R")
-            ;; zsh:1: no matches found: *.cpp
             (visibility "Visibility" 10 nil
                         (lambda
                           (public)

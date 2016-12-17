@@ -195,6 +195,9 @@
 ;;       (setq inferior-js-program-command "node"))))
 
 (defun zilongshanren-programming/post-init-web-mode ()
+  (with-eval-after-load "web-mode"
+    (web-mode-toggle-current-element-highlight)
+    (web-mode-dom-errors-show))
   (setq company-backends-web-mode '((company-dabbrev-code
                                      company-keywords
                                      company-etags)
@@ -341,6 +344,9 @@
 
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
+    ;; add your own keywords highlight here
+    (font-lock-add-keywords 'js2-mode
+                            '(("\\<\\(cc\\)\\>" 1 font-lock-type-face)))
 
     (spacemacs/declare-prefix-for-mode 'js2-mode "ms" "repl")
 
@@ -351,7 +357,7 @@
         (setq-default js2-allow-rhino-new-expr-initializer nil)
         (setq-default js2-auto-indent-p nil)
         (setq-default js2-enter-indents-newline nil)
-        (setq-default js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
+        (setq-default js2-global-externs '("module" "ccui" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
         (setq-default js2-idle-timer-delay 0.2)
         (setq-default js2-mirror-mode nil)
         (setq-default js2-strict-inconsistent-return-warning nil)
