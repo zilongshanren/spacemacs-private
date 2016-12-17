@@ -210,13 +210,11 @@ unwanted space when exporting org-mode to html."
           (ad-set-arg 1 fixed-contents)))
 
       ;; define the refile targets
-      (setq org-agenda-file-note (expand-file-name "note.org" org-agenda-dir))
-      (setq org-agenda-file-task (expand-file-name "task.org" org-agenda-dir))
-      (setq org-agenda-file-project (expand-file-name "project.org" org-agenda-dir))
+      (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
+      (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+      (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
       (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
-      (setq org-agenda-file-gtd-archive (expand-file-name "task.org_archive" org-agenda-dir))
-      (setq org-agenda-files `(,org-agenda-file-note ,org-agenda-file-task ,org-agenda-file-project, org-agenda-file-code-snippet)) ;;,org-agenda-file-gtd-archive
-      (setq org-default-notes-file org-agenda-file-task)
+      (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
 
       (with-eval-after-load 'org-agenda
         (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
@@ -227,29 +225,29 @@ unwanted space when exporting org-mode to html."
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
       ;;add multi-file journal
       (setq org-capture-templates
-            '(("t" "Todo" entry (file+headline "~/org-notes/gtd.org" "Workspace")
+            '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
                "* TODO [#B] %?\n  %i\n"
                :empty-lines 1)
-              ("n" "notes" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+              ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
                "* %?\n  %i\n %U"
                :empty-lines 1)
-              ("b" "Blog Ideas" entry (file+headline "~/org-notes/notes.org" "Blog Ideas")
+              ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
                "* TODO [#B] %?\n  %i\n %U"
                :empty-lines 1)
               ("s" "Code Snippet" entry
-               (file "~/org-notes/snippets.org")
+               (file org-agenda-file-code-snippet)
                "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-              ("w" "work" entry (file+headline "~/org-notes/gtd.org" "Cocos2D-X")
+              ("w" "work" entry (file+headline org-agenda-file-gtd "Cocos2D-X")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
-              ("c" "Chrome" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+              ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
                "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
                :empty-lines 1)
-              ("l" "links" entry (file+headline "~/org-notes/notes.org" "Quick notes")
+              ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
                "* TODO [#C] %?\n  %i\n %a \n %U"
                :empty-lines 1)
               ("j" "Journal Entry"
-               entry (file+datetree "~/org-notes/journal.org")
+               entry (file+datetree org-agenda-file-journal)
                "* %?"
                :empty-lines 1)))
 
