@@ -210,8 +210,13 @@ unwanted space when exporting org-mode to html."
           (ad-set-arg 1 fixed-contents)))
 
       ;; define the refile targets
-      (setq org-agenda-files (quote ("~/org-notes" )))
-      (setq org-default-notes-file "~/org-notes/gtd.org")
+      (setq org-agenda-file-note (expand-file-name "note.org" org-agenda-dir))
+      (setq org-agenda-file-task (expand-file-name "task.org" org-agenda-dir))
+      (setq org-agenda-file-project (expand-file-name "project.org" org-agenda-dir))
+      (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
+      (setq org-agenda-file-gtd-archive (expand-file-name "task.org_archive" org-agenda-dir))
+      (setq org-agenda-files `(,org-agenda-file-note ,org-agenda-file-task ,org-agenda-file-project, org-agenda-file-code-snippet)) ;;,org-agenda-file-gtd-archive
+      (setq org-default-notes-file org-agenda-file-task)
 
       (with-eval-after-load 'org-agenda
         (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
@@ -460,5 +465,5 @@ holding contextual information."
     (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
     (setq deft-recursive t)
     (setq deft-extension "org")
-    (setq deft-directory "~/org-notes")))
+    (setq deft-directory deft-dir)))
 ;;; packages.el ends here
