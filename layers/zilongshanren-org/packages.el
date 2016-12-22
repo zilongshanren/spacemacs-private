@@ -215,6 +215,7 @@ unwanted space when exporting org-mode to html."
       (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
       (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
       (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
+      (setq org-agenda-files (list org-agenda-dir))
 
       (with-eval-after-load 'org-agenda
         (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
@@ -320,7 +321,6 @@ unwanted space when exporting org-mode to html."
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "tl" 'org-toggle-link-display)
       (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-      (setq org-mobile-directory "~/org-notes/org")
 
       ;; hack for org headline toc
       (defun org-html-headline (headline contents info)
@@ -424,11 +424,11 @@ holding contextual information."
       (evilified-state-evilify org-octopress-summary-mode org-octopress-summary-mode-map)
       (add-hook 'org-octopress-summary-mode-hook
                 #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
-      (setq org-blog-dir "~/4gamers.cn/")
+      (setq org-blog-dir blog-admin-dir)
       (setq org-octopress-directory-top org-blog-dir)
       (setq org-octopress-directory-posts (concat org-blog-dir "source/_posts"))
       (setq org-octopress-directory-org-top org-blog-dir)
-      (setq org-octopress-directory-org-posts (concat org-blog-dir "blog"))
+      (setq org-octopress-directory-org-posts (expand-file-name  "blog" blog-admin-dir))
       (setq org-octopress-setup-file (concat org-blog-dir "setupfile.org"))
 
       )))
