@@ -1,0 +1,70 @@
+* 子龙山人的 Emacs 配置
+Hacking 始于 2013 年。
+
+** Emacs 爱好者交流平台
+https://slackin-emacs-cn.herokuapp.com/
+(邀请制限制已解除，欢迎大家加入，一起 Happy Hacking Emacs :smile:）
+
+** Mac 平台推荐安装 Emacs 的方法
+
+#+BEGIN_SRC sh
+brew tap railwaycat/emacsmacport;
+brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
+#+END_SRC
+
+注： =--with-gnutls= 是用来支持 ssl 的
+
+** Windows 平台推荐安装 Emacs方法
+1. 使用 https://sourceforge.net/projects/emacsbinw64/files/release/ 上面的 Emacs 版本，我目前使用的 Emacs 25.1
+
+2. 安装 pt, 这样 helm-ag 也可以使用 pt 来搜索 。pt 的下载地址： https://github.com/monochromegane/the_platinum_searcher
+
+3. 安装 ispell，用来做拼写检查。你需要下载 aspell 和 对应的 English 字典。 https://www.emacswiki.org/emacs/AspellWindows
+
+4. 安装 SharpKeys, 把左 window 键修改成 app 键 ，把大写键修改成 Ctrl 键 。 https://sharpkeys.codeplex.com/
+
+5. 安装 ctags： http://ctags.sourceforge.net/
+
+** 使用方法
+
+#+BEGIN_SRC sh
+  #clone spacemacs repo and use develop branch
+  git clone https://github.com/syl20bnr/spacemacs.git ~/.emacs.d -b develop
+
+  #clone zilongshanren layer and checkout develop branch
+  git clone https://github.com/zilongshanren/spacemacs-private.git ~/.spacemacs.d/
+#+END_SRC
+
+现在可以打开 Emacs 24.5+ 开始使用我的配置了。
+
+** 安装 SourceCodePro 字体
+下载地址：https://github.com/adobe-fonts/source-code-pro/releases
+
+** 配置说明
+1. 我的配置主要分成 5 个 layer
+  - zilongshanren-ui: 定制 mode-line，font face 等配置。
+  - zilongshanren-programming：和编程相关的配置。
+  - zilongshanren-misc：一些杂项，不属于其它分类的都放在这里面。
+  - zilongshanren-org：和 org 相关的配置
+  - zilongshanren-better-defaults: 增强 Emacs 自带的 package 和功能
+
+2. Spacemacs Rocks 系统视频演示：https://github.com/zilongshanren/Spacemacs-rocks/issues/5 , 让你从此爱上 Emacs :smile:
+
+** 为什么要使用我的配置？
+1. 使用我的配置有个好处是我每周会同步最新的 spacemacs 并且 update 所有的 package，保证配置可以用起来。
+   （package 作者和 spacemacs 作者引入 的 bug 除外），不想折腾的人可以快速上手。
+
+2. 另外关于我配置里面不懂的可以用中文给我提 issue。
+
+3. 我的配置用了很长时间了，有些代码你可以 copy 过去，相信你也会喜欢的。
+
+4. 最后，我的 spacemacs rocks 视频系列也是基于这份配置，看视频有疑问也可以看看配置。
+
+** 为什么不使用我的配置？
+因为每个人的 Emacs 配置都不尽相同，你可以参考我的配置，然后建立自己的 layer 和配置。
+
+** 可能会遇到的问题
+1. 如果使用了 =.spacemacs.d= 目录来保存你的 spacemacs 配置，就不需要在 HOME 目录维护一个 =.spacemacs= 文件了。 至于为什么要使用 =.spacemacs.d= 目录而不是 =.spacemacs= 文件，主要是方便分离自己的配置与 spacemacs 的配置，更新更容易。
+2. 如果发现添加在 =.spacemacs.d/init.el= 里面的配置没有生效，检查一下是否你的 HOME 目录还存在一个 =.spacemacs= 文件。
+
+** Happy Hacking:smile: 
