@@ -75,9 +75,9 @@ values."
      lua
      html
      javascript
-     (typescript :variables
-                 typescript-fmt-on-save nil
-                 typescript-fmt-tool 'typescript-formatter)
+     ;; (typescript :variables
+     ;;            typescript-fmt-on-save nil
+     ;;            typescript-fmt-tool 'typescript-formatter)
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
      racket
@@ -379,7 +379,7 @@ values."
   (setq split-width-threshold 120)
   (linum-relative-on)
 
-  (spacemacs|add-company-hook 'text-mode)
+  (spacemacs|add-company-backends :modes text-mode)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 

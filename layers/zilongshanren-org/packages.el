@@ -40,9 +40,7 @@
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (with-eval-after-load 'org
     (progn
-      ;; https://github.com/syl20bnr/spacemacs/issues/2994#issuecomment-139737911
-      ;; (when (configuration-layer/package-usedp 'company)
-      ;;   (spacemacs|add-company-hook org-mode))
+      
       (spacemacs|disable-company org-mode)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "," 'org-priority)

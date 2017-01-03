@@ -575,17 +575,8 @@
           company-idle-delay 0.08)
 
     (when (configuration-layer/package-usedp 'company)
-      (spacemacs|add-company-hook shell-script-mode)
-      (spacemacs|add-company-hook makefile-bsdmake-mode)
-      (spacemacs|add-company-hook sh-mode)
-      (spacemacs|add-company-hook lua-mode)
-      (spacemacs|add-company-hook nxml-mode)
-      (spacemacs|add-company-hook conf-unix-mode)
-      (spacemacs|add-company-hook json-mode)
-      (spacemacs|add-company-hook graphviz-dot-mode)
-      )
+      (spacemacs|add-company-backends :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode))
     ))
-
 (defun zilongshanren-programming/post-init-company-c-headers ()
   (progn
     (setq company-c-headers-path-system
