@@ -36,9 +36,9 @@
    ((string= "0" str) "➓")))
 
 (defun window-number-mode-line ()
-  "The current window number. Requires `window-numbering-mode' to be enabled."
-  (when (bound-and-true-p window-numbering-mode)
-    (let* ((num (window-numbering-get-number))
+  "The current window number. Requires `winum-mode' to be enabled."
+  (when (bound-and-true-p winum-mode)
+    (let* ((num (winum-get-number))
            (str (when num (int-to-string num))))
       (spaceline--unicode-number str))))
 
