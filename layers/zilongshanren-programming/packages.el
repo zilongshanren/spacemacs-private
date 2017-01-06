@@ -42,7 +42,7 @@
         dumb-jump
         graphviz-dot-mode
         cider
-        editorconfig
+        ;; editorconfig
         robe
         ))
 
