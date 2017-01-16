@@ -59,7 +59,8 @@
       (setq org-stuck-projects
             '("TODO={.+}/-DONE" nil nil "SCHEDULED:\\|DEADLINE:"))
 
-      (setq org-agenda-inhibit-startup t)   ;; ~50x speedup
+      (setq org-agenda-inhibit-startup t) ;; ~50x speedup
+      (setq org-agenda-span 'day)
       (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
       (setq org-agenda-window-setup 'current-window)
       (setq org-log-done t)
