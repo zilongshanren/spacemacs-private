@@ -63,7 +63,7 @@
               ("\\.md\\'" "open")))
 
       (setq dired-omit-files
-      (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$"))
+      (concat dired-omit-files "\\|^.DS_Store$\\|^.projectile$\\|\\.js\\.meta$"))
 
       ;; always delete and copy recursively
       (setq dired-recursive-deletes 'always)
