@@ -1010,8 +1010,9 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/init-moz-controller ()
   (use-package moz-controller
     :init
-    (moz-controller-global-mode t)
-    :diminish moz-controller-mode))
+    (progn
+      (moz-controller-global-mode t)
+      (spacemacs|hide-lighter moz-controller-mode))))
 
 
 (defun zilongshanren-misc/init-ag ()

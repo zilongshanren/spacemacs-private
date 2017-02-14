@@ -249,10 +249,8 @@
 (defun zilongshanren-programming/init-lispy ()
   (use-package lispy
     :defer t
-    :diminish (lispy-mode)
     :init
     (progn
-
       (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'ielm-mode-hook (lambda () (lispy-mode 1)))
       (add-hook 'inferior-emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
@@ -265,6 +263,7 @@
     (progn
       (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
 
+      (spacemacs|hide-lighter lispy-mode)
       (define-key lispy-mode-map (kbd "s-j") 'lispy-splice)
       (define-key lispy-mode-map (kbd "s-k") 'paredit-splice-sexp-killing-backward)
 
