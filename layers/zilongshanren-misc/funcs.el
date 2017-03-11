@@ -515,6 +515,10 @@ With PREFIX, cd to project root."
   (with-ivy-window
     (insert x)))
 
+(defun ivy-kill-new-action (x)
+  (with-ivy-window
+    (kill-new x)))
+
 (defun counsel-goto-recent-directory ()
   "Recent directories"
   (interactive)

@@ -1070,7 +1070,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
          t
          '(("f" my-find-file-in-git-repo "find files")
            ("!" my-open-file-in-external-app "Open file in external app")
-           ("I" ivy-insert-action "insert")))
+           ("I" ivy-insert-action "insert")
+           ("C" ivy-kill-new-action "copy")))
 
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
         (spacemacs/set-leader-keys "faf" 'counsel-find-file-recent-directory)
