@@ -176,3 +176,7 @@ Single Capitals as you type."
             ',variable ,value))
 
 (csetq ediff-diff-options "-w")
+
+(setq backup-by-copying t
+      make-backup-files nil
+      create-lockfiles nil)
