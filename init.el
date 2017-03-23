@@ -57,36 +57,32 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       :disabled-for org markdown)
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
-     restclient
+     ;; restclient
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
-     (shell :variables shell-default-shell 'eshell)
-     docker
+     (shell :variables shell-default-shell 'shell)
+     ;; docker
      ;; latex
      deft
      markdown
      org
-     shaders
-     yaml
-     react
-     (python :variables
-             python-test-runner '(nose pytest))
-     (ruby :variables ruby-version-manager 'chruby)
-     ruby-on-rails
-     lua
+     ;; shaders
+     ;; yaml
+     ;; react
+     ;; (python :variables
+     ;;         python-test-runner '(nose pytest))
+     ;; (ruby :variables ruby-version-manager 'chruby)
+     ;; ruby-on-rails
+     ;; lua
      html
-     javascript
-     (typescript :variables
-                typescript-fmt-on-save nil
-                typescript-fmt-tool 'typescript-formatter)
      emacs-lisp
-     (clojure :variables clojure-enable-fancify-symbols t)
+     ;; (clojure :variables clojure-enable-fancify-symbols t)
      racket
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
      zilongshanren
-     (chinese :packages youdao-dictionary fcitx
-              :variables chinese-enable-fcitx nil
-              chinese-enable-youdao-dict t)
+     chinese
+     (chinese :variables chinese-enable-youdao-dict t)
+     ;; (chinese :packages youdao-dictionary fcitx chinese-pyim
+     ;;          :variables chinese-enable-fcitx nil
+     ;;          chinese-enable-youdao-dict t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -358,6 +354,8 @@ values."
   )
 
 (defun dotspacemacs/user-config ()
+  (setq pyim-default-scheme 'pyim-shuangpin)
+  (chinese-pyim-basedict-enable)
   ;;解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
@@ -398,16 +396,16 @@ values."
   (add-to-list 'auto-mode-alist
                '("Capstanfile\\'" . yaml-mode))
 
-  (defun js-indent-line ()
-    "Indent the current line as JavaScript."
-    (interactive)
-    (let* ((parse-status
-            (save-excursion (syntax-ppss (point-at-bol))))
-           (offset (- (point) (save-excursion (back-to-indentation) (point)))))
-      (if (nth 3 parse-status)
-          'noindent
-        (indent-line-to (js--proper-indentation parse-status))
-        (when (> offset 0) (forward-char offset)))))
+  ;; (defun js-indent-line ()
+  ;;   "Indent the current line as JavaScript."
+  ;;   (interactive)
+  ;;   (let* ((parse-status
+  ;;           (save-excursion (syntax-ppss (point-at-bol))))
+  ;;          (offset (- (point) (save-excursion (back-to-indentation) (point)))))
+  ;;     (if (nth 3 parse-status)
+  ;;         'noindent
+  ;;       (indent-line-to (js--proper-indentation parse-status))
+  ;;       (when (> offset 0) (forward-char offset)))))
 
   (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
   (defun un-indent-by-removing-4-spaces ()
