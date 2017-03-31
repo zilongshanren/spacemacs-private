@@ -33,7 +33,7 @@ values."
    '(
      ivy
      better-defaults
-     github
+     ;; github
      ranger
      colors
      prodigy
