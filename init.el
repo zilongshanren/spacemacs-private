@@ -354,6 +354,7 @@ values."
   )
 
 (defun dotspacemacs/user-config ()
+  (setq org-export-backends (quote (ascii html icalendar latex md)))
   (setq pyim-default-scheme 'pyim-shuangpin)
   (chinese-pyim-basedict-enable)
   ;;解决org表格里面中英文对齐的问题
