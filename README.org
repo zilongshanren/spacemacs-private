@@ -2,10 +2,10 @@
 Hacking journey begins start from 2013.
 
 ** What's the highlight of this configuration
-1. It's a highly customize optimized Spacemacs configuration, it's relied on the develop branch of the officially Spacemacs.
+1. It's a highly optimized Spacemacs configuration, you should use the configuration together with the develop branch of the officially Spacemacs.
 2. I prefer to the =Ivy= completion interface, so I removed many helm related packages but keep the =helm-ag= package. The =counsel-ag= counterpart is not powerful as =helm-ag=.
-3. I also removed some packages I don't have any chance to use. The complete lists are in the exclude section of the =init.el= file.
-4. I also exclude the =Spaceline= package, cause it's easy to frozen the Emacs with this package enabled. So I create my own mode line configuration based =Spaceline=.
-5. The =Swiper= package sometimes frozen the Emacs UI only when you split the window. You could use `pkill -SIGUSR2 -i emacs` command line to rescue.
+3. I also removed some packages I don't have any chance to use. The complete list lies in the exclude section of the =init.el= file.
+4. I also exclude the =Spaceline= package, cause it's easy to frozen the Emacs with this package enabled. So I create my own mode line configuration based on =Spaceline=.
+5. The =Swiper= package sometimes frozen the Emacs UI when you split the window with very long lines. You could use `pkill -SIGUSR2 -i emacs` command line to break the frozen.
 
 ** Happing Hacking
