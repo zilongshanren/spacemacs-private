@@ -489,6 +489,9 @@ With PREFIX, cd to project root."
                 (secure-hash algo (current-buffer))))
     (message "Checksum copied to kill-ring.")))
 
+(defun ivy-ff-checksum-action (x)
+  (ivy-ff-checksum))
+
 (defun my-find-file-in-git-repo (repo)
   (if (file-directory-p repo)
       (let* ((default-directory repo)
