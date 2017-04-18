@@ -480,7 +480,7 @@ With PREFIX, cd to project root."
 (defun ivy-ff-checksum ()
   (interactive)
   "Calculate the checksum of FILE. The checksum is copied to kill-ring."
-  (let ((file (expand-file-name ivy--current ivy--directory))
+  (let ((file (expand-file-name (ivy-state-current ivy-last) ivy--directory))
         (algo (intern (ivy-read
                        "Algorithm: "
                        '(md5 sha1 sha224 sha256 sha384 sha512)))))
