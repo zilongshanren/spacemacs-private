@@ -666,6 +666,9 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     (setcdr evil-insert-state-map nil)
     (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
+    ;; disable highlight when use swiper or evil ex search, this option won't effect evil-ex-search-next command
+    (setq-default evil-ex-search-persistent-highlight nil)
+
     (push "TAGS" spacemacs-useless-buffers-regexp)
 
     (adjust-major-mode-keymap-with-evil "git-timemachine")
