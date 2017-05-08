@@ -42,7 +42,13 @@
         ranger
         golden-ratio
         (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
+        browse-at-remote
         ))
+
+(defun zilongshanren-misc/init-browse-at-remote ()
+  (use-package browse-at-remote
+    :defer t
+    :init (spacemacs/set-leader-keys "gho" 'browse-at-remote)))
 
 (defun zilongshanren-misc/init-highlight-global ()
   (use-package highlight-global
