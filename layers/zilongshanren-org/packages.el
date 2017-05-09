@@ -15,16 +15,47 @@
   '(
     (org :location built-in)
     org-mac-link
-    org-octopress
     org-pomodoro
     deft
+    (blog-admin :location (recipe
+                           :fetcher github
+                           :repo "codefalling/blog-admin"))
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
     ;; org-download
     ;; plain-org-wiki
     )
-)
+  )
+
+(defun zilongshanren-org/init-blog-admin ()
+  (use-package blog-admin
+    :defer t
+    :commands blog-admin-start
+    :init
+    (progn
+      ;; do your configuration here
+      (setq blog-admin-backend-type 'hexo           ;; 后台类型
+            blog-admin-backend-path "~/org/blog"    ;; hexo 博客所在路径
+            blog-admin-backend-new-post-in-drafts t ;; 默认在drafts创建文章
+            blog-admin-backend-new-post-with-same-name-dir nil ;; 默认不创建相应的目录，因为我目前没有发现这个目录的作用，先干掉
+            ;; blog-admin-backend-org-page-drafts "_drafts"     ;;
+            blog-admin-backend-hexo-config-file "_config.yml" ;; hexo 配置文件
+            )
+      ;; (evilified-state-evilify-map blog-admin-mode-map :mode blog-admin-mode)
+      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
+
+      (setq blog-admin-backend-hexo-template-org-post ;; post模板
+            "#+TITLE: %s
+			 #+AUTHOR: weychen
+			 #+EMAIL: weychen@163.com
+			 #+DATE: %s
+			 #+LAYOUT: post
+			 #+TAGS:
+			 #+CATEGORIES:
+			 #+DESCRIPTON:
+			 ")
+      )))
 
 (defun zilongshanren-org/post-init-org-pomodoro ()
   (progn
@@ -414,23 +445,6 @@ holding contextual information."
 
 (defun zilongshanren-org/post-init-ox-reveal ()
   (setq org-reveal-root "file:///Users/guanghui/.emacs.d/reveal-js"))
-
-(defun zilongshanren-org/init-org-octopress ()
-  (use-package org-octopress
-    :commands (org-octopress org-octopress-setup-publish-project)
-    :init
-    (progn
-      (evilified-state-evilify org-octopress-summary-mode org-octopress-summary-mode-map)
-      (add-hook 'org-octopress-summary-mode-hook
-                #'(lambda () (local-set-key (kbd "q") 'bury-buffer)))
-      (setq org-blog-dir blog-admin-dir)
-      (setq org-octopress-directory-top org-blog-dir)
-      (setq org-octopress-directory-posts (concat org-blog-dir "source/_posts"))
-      (setq org-octopress-directory-org-top org-blog-dir)
-      (setq org-octopress-directory-org-posts (expand-file-name  "blog" blog-admin-dir))
-      (setq org-octopress-setup-file (concat org-blog-dir "setupfile.org"))
-
-      )))
 
 
 (defun zilongshanren-org/init-org-tree-slide ()
