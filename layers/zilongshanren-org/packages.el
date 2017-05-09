@@ -35,23 +35,12 @@
     :init
     (progn
       ;; do your configuration here
-      (setq blog-admin-backend-type 'hexo           ;; 后台类型
-            blog-admin-backend-path blog-admin-dir  ;; hexo 博客所在路径
+      (setq blog-admin-backend-type 'hexo
+            blog-admin-backend-path blog-admin-dir
             blog-admin-backend-new-post-with-same-name-dir nil
-            blog-admin-backend-hexo-config-file "_config.yml" ;; hexo 配置文件
+            blog-admin-backend-hexo-config-file "_config.yml"
             )
-      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
-
-      (setq blog-admin-backend-hexo-template-org-post ;; post模板
-            "#+TITLE: %s
-			 #+AUTHOR: guanghui
-			 #+EMAIL: guanghui8827@gmail.com
-			 #+DATE: %s
-			 #+LAYOUT: post
-			 #+TAGS:
-			 #+CATEGORIES:
-			 #+DESCRIPTON:
-			 ")
+      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
       )))
 
 (defun zilongshanren-org/post-init-org-pomodoro ()
