@@ -232,8 +232,3 @@
     (unless noinsert
       (insert output-string))
     output-string))
-
-(defun zilongshanren/org-save-and-export ()
-  (interactive)
-  (org-octopress-setup-publish-project)
-  (org-publish-project "octopress" t))

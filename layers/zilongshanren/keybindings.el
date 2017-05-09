@@ -126,7 +126,7 @@
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
 (spacemacs/set-leader-keys "ox" 'org-open-at-point)
-(spacemacs/set-leader-keys "oac" 'zilongshanren/browser-refresh--chrome-applescript)
+(spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
 
 (spacemacs/set-leader-keys "rh" 'helm-resume)
 (spacemacs/set-leader-keys "sj" 'counsel-imenu)

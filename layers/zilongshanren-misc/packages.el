@@ -410,7 +410,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
   (progn
     (defhydra hydra-hotspots (:color blue)
       "Hotspots"
-      ("b" org-octopress "blog")
+      ("b" blog-admin-start "blog")
       ("g" helm-github-stars "helm github stars")
       ("r" zilongshanren/run-current-file "run current file"))
 
