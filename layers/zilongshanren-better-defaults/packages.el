@@ -109,9 +109,10 @@
         "n" 'peep-dired-next-file
         "z" 'dired-get-size
         "c" 'dired-copy-file-here
+        "J" 'counsel-find-file
+        "f" 'zilongshanren/open-file-with-projectile-or-counsel-git
         ")" 'dired-omit-mode)
-      )
-    ))
+      )))
 
 
 (defun zilongshanren-better-defaults/init-profiler ()
