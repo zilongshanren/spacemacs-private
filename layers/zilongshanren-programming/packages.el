@@ -450,16 +450,16 @@
     ;; (add-hook 'lua-mode-hook 'smartparens-mode)
     (setq lua-indent-level 2)
 
-;;; add lua language, basic, string and table keywords.
-    (with-eval-after-load 'lua-mode
-      (require 'company-keywords)
-      (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif" "self" "resume" "yield"
-                        "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
-                        "until" "while" "__index" "dofile" "getmetatable" "ipairs" "pairs" "print" "rawget" "status"
-                        "rawset" "select" "_G" "assert" "collectgarbage" "error" "pcall" "coroutine"
-                        "rawequal" "require" "load" "tostring" "tonumber" "xpcall" "gmatch" "gsub"
-                        "rep" "reverse" "sub" "upper" "concat" "pack" "insert" "remove" "unpack" "sort"
-                        "lower") company-keywords-alist))
+    ;; add lua language, basic, string and table keywords.
+    ;; (with-eval-after-load 'lua-mode
+    ;;   (require 'company-keywords)
+    ;;   (push '(lua-mode  "setmetatable" "local" "function" "and" "break" "do" "else" "elseif" "self" "resume" "yield"
+    ;;                     "end" "false" "for" "function" "goto" "if" "nil" "not" "or" "repeat" "return" "then" "true"
+    ;;                     "until" "while" "__index" "dofile" "getmetatable" "ipairs" "pairs" "print" "rawget" "status"
+    ;;                     "rawset" "select" "_G" "assert" "collectgarbage" "error" "pcall" "coroutine"
+    ;;                     "rawequal" "require" "load" "tostring" "tonumber" "xpcall" "gmatch" "gsub"
+    ;;                     "rep" "reverse" "sub" "upper" "concat" "pack" "insert" "remove" "unpack" "sort"
+    ;;                     "lower") company-keywords-alist))
 
     ))
 
