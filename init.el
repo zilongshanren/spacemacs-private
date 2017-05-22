@@ -33,7 +33,6 @@ values."
    '(
      ivy
      better-defaults
-     ;; github
      ranger
      colors
      prodigy
@@ -62,7 +61,7 @@ values."
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      (shell :variables shell-default-shell 'eshell)
      docker
-     ;; latex
+     latex
      deft
      markdown
      org
@@ -71,8 +70,8 @@ values."
      react
      (python :variables
              python-test-runner '(nose pytest))
-     (ruby :variables ruby-version-manager 'chruby)
-     ruby-on-rails
+     ;; (ruby :variables ruby-version-manager 'chruby)
+     ;; ruby-on-rails
      lua
      html
      javascript
