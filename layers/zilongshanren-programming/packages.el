@@ -81,7 +81,7 @@
     :init
     (progn
       (defun conditional-enable-editorconfig ()
-        (if (and (zilongshanren/vcs-project-root)
+        (if (and (zilongshanren/git-project-root)
                  (locate-dominating-file default-directory ".editorconfig"))
             (editorconfig-apply)))
       (add-hook 'prog-mode-hook 'conditional-enable-editorconfig))))
