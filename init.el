@@ -338,8 +338,6 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  ;; https://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
-  (setq vc-handled-backends ())
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "https://elpa.zilongshanren.com/org/")

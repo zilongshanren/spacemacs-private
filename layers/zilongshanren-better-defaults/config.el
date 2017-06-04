@@ -65,6 +65,8 @@
 
 ;; https://www.reddit.com/r/emacs/comments/4c0mi3/the_biggest_performance_improvement_to_emacs_ive/
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
+;; https://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
+(setq vc-handled-backends ())
 
 
 (setq large-file-warning-threshold 100000000)
