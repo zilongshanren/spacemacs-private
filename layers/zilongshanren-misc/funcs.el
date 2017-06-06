@@ -571,18 +571,25 @@ With PREFIX, cd to project root."
   (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
   (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
+(defun github-browse-file--relative-url ()
+  "Return \"username/repo\" for current repository.
+
+Error out if this isn't a GitHub repo."
+  (require 'vc-git)
+  (let ((url (vc-git--run-command-string nil "config" "remote.origin.url")))
+    (unless url (error "Not in a GitHub repo"))
+    (when (and url (string-match "github.com:?/?\\(.*\\)" url))
+      (replace-regexp-in-string "\\.git$" "" (match-string 1 url)))))
+
 (defun zilong/github-browse-commit ()
   "Show the GitHub page for the current commit."
   (interactive)
-  (use-package github-browse-file
-    :commands (github-browse-file--relative-url))
-
   (let* ((commit git-messenger:last-commit-id)
          (url (concat "https://github.com/"
                       (github-browse-file--relative-url)
                       "/commit/"
                       commit)))
-    (github-browse--save-and-view url)
+    (browse-url url)
     (git-messenger:popup-close)))
 
 (defun zilongshanren/search-in-fireball ()
