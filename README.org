@@ -1,6 +1,8 @@
 * My personal Emacs configuration
 Hacking journey begins start from 2013.
 
+It was written for Emacs 25.1+ on MacOS 10.11+
+
 ** What's the highlight of this configuration
 1. It's a highly optimized Spacemacs configuration, you should use the configuration together with the *develop* branch of the officially Spacemacs.
 2. I prefer to the =Ivy= completion interface, so I removed many helm related packages but keep the =helm-ag= package. The =counsel-ag= counterpart is not powerful as =helm-ag=.
