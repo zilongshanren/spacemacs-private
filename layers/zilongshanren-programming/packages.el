@@ -20,7 +20,6 @@
         cmake-font-lock
         cmake-mode
         flycheck
-        impatient-mode
         nodejs-repl
         (nodejs-repl-eval :location local)
         js2-mode
@@ -271,19 +270,6 @@
 
 (defun zilongshanren-programming/post-init-eldoc ()
   (setq eldoc-idle-delay 0.4))
-
-
-(defun zilongshanren-programming/init-impatient-mode ()
-  "Initialize impatient mode"
-  (use-package impatient-mode
-    :init
-    (progn
-      (add-hook 'web-mode-hook 'zilongshanren/impatient-mode-hook)
-      (spacemacs/set-leader-keys-for-major-mode 'web-mode
-        "p" 'imp-visit-buffer)
-      )))
-
-
 
 
 (defun zilongshanren-programming/post-init-js2-refactor ()

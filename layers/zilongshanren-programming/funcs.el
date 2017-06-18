@@ -143,12 +143,6 @@ version 2015-08-21"
     (setq new-buffer-name (concat "cmake-" parent-dir))
     (rename-buffer new-buffer-name t)))
 
-(defun zilongshanren/impatient-mode-hook ()
-  "my web mode hook for HTML REPL"
-  (interactive)
-  (impatient-mode)
-  (spacemacs|hide-lighter impatient-mode)
-  (httpd-start))
 
 (defun my-js2-mode-hook ()
   (progn
