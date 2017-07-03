@@ -3,6 +3,16 @@ Hacking journey begins start from 2013.
 
 It was written for Emacs 25.1+ on MacOS 10.11+
 
+** How to use
+Follow the install instruction here: https://github.com/zilongshanren/spacemacs#install ,
+make sure your are using the fork repo: https://github.com/zilongshanren/spacemacs
+
+Why use the forked repo?  What's the difference between the forked repo and the original repo?
+
+*Nothing difference!*
+
+The forked version is only a few commits behind the original repo, becuase sometimes the original repo can't functional well.
+
 ** What's the highlight of this configuration
 1. It's a highly optimized Spacemacs configuration, you should use the configuration together with the *develop* branch of the officially Spacemacs.
 2. I prefer to the =Ivy= completion interface, so I removed many helm related packages but keep the =helm-ag= package. The =counsel-ag= counterpart is not powerful as =helm-ag=.
