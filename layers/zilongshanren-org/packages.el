@@ -459,7 +459,6 @@ holding contextual information."
 (defun zilongshanren-org/post-init-deft ()
   (progn
     (setq deft-use-filter-string-for-filename t)
-    (spacemacs/set-leader-keys-for-major-mode 'deft-mode "q" 'quit-window)
     (setq deft-recursive t)
     (setq deft-extension "org")
     (setq deft-directory deft-dir)))
