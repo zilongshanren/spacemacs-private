@@ -10,7 +10,7 @@
 (setq-default
  org-agenda-dir "~/org-notes"
  deft-dir "~/org-notes"
- blog-admin-dir "~/4gamers.cn")
+ blog-admin-dir "~/zilongshanren.com")
 
 ;;load sensitive data
 ;; or (like spacemacs init.el)put the above variable into it ,then the own value separated from public config
