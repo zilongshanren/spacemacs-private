@@ -96,7 +96,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
-   '(magit-gh-pulls magit-gitflow org-projectile evil-mc realgud
+   '(magit-gh-pulls magit-gitflow org-projectile evil-mc realgud tern company-tern
                     evil-args evil-ediff evil-exchange evil-unimpaired
                     evil-indent-plus volatile-highlights smartparens
                     spaceline holy-mode skewer-mode rainbow-delimiters
@@ -430,6 +430,7 @@ values."
   (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (setq inhibit-compacting-font-caches t)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/7749
   (defun spacemacs/ivy-persp-switch-project (arg)
