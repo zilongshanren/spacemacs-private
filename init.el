@@ -33,7 +33,6 @@ values."
    '(
      ivy
      better-defaults
-     github
      ranger
      colors
      prodigy
@@ -56,6 +55,7 @@ values."
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
                       :disabled-for org markdown)
+;;<<<<<<< develop
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English")
      ;; restclient
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
@@ -73,6 +73,26 @@ values."
      ;; (ruby :variables ruby-version-manager 'chruby)
      ;; ruby-on-rails
      ;; lua
+;;=======
+;;     (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
+;;          osx-command-as 'super)
+;;     restclient
+;;     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
+;;     (shell :variables shell-default-shell 'eshell)
+;;     ;; docker
+;;     latex
+;;     deft
+;;     markdown
+;;     (org :variables org-want-todo-bindings t)
+;;     gpu
+;;     yaml
+;;     react
+;;     (python :variables
+;;             python-test-runner '(nose pytest))
+;;     ;; (ruby :variables ruby-version-manager 'chruby)
+;;     ;; ruby-on-rails
+;;     lua
+;;>>>>>>> develop
      html
      emacs-lisp
      ;; (clojure :variables clojure-enable-fancify-symbols t)
@@ -92,14 +112,14 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
-   '(magit-gh-pulls magit-gitflow org-projectile evil-mc
+   '(magit-gh-pulls magit-gitflow org-projectile evil-mc realgud
                     evil-args evil-ediff evil-exchange evil-unimpaired
                     evil-indent-plus volatile-highlights smartparens
                     spaceline holy-mode skewer-mode rainbow-delimiters
                     highlight-indentation vi-tilde-fringe eyebrowse
                     org-bullets smooth-scrolling org-repo-todo org-download org-timer
                     livid-mode git-gutter git-gutter-fringe  evil-escape
-                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum
+                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
                     ac-ispell ace-jump-mode auto-complete auto-dictionary
                     clang-format define-word google-translate disaster epic
                     fancy-battery org-present orgit orglue spacemacs-theme
@@ -335,9 +355,9 @@ values."
 
 (defun dotspacemacs/user-init ()
   (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "https://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")))
+        '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "https://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)

@@ -80,7 +80,7 @@
       (setq basename (format-time-string "%Y%m%d_%H%M%S")))
   (setq fullpath
         (concat (file-name-directory (buffer-file-name))
-                "../source/img/"
+                "../img/"
                 (file-name-base (buffer-file-name))
                 "_"
                 basename))
@@ -97,7 +97,7 @@
             (progn
               (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
               (shell-command-to-string resize-command-str)))
-        (zilongshanren//insert-org-or-md-img-link "https://zilongshanren.com/img/" relativepath))
+        (zilongshanren//insert-org-or-md-img-link "../img/" relativepath))
     (progn
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
       (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png"))))
@@ -232,8 +232,3 @@
     (unless noinsert
       (insert output-string))
     output-string))
-
-(defun zilongshanren/org-save-and-export ()
-  (interactive)
-  (org-octopress-setup-publish-project)
-  (org-publish-project "octopress" t))

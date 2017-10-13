@@ -172,7 +172,7 @@ org-files and bookmarks"
   `((name . "Mail and News")
     (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
                    ("RSS" . elfeed)
-                   ("Blog" . org-octopress)
+                   ("Blog" . blog-admin-start)
                    ("Github" . (lambda() (helm-github-stars)))
                    ("Calculator" . (lambda () (helm-calcul-expression)))
                    ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
@@ -224,10 +224,11 @@ e.g. Sunday, September 17, 2000."
 
 (defun zilongshanren/open-file-with-projectile-or-counsel-git ()
   (interactive)
-  (if (or (zilongshanren/vcs-project-root)
-          (projectile-project-p))
-      (projectile-find-file)
-    (counsel-file-jump)))
+  (if (zilongshanren/git-project-root)
+      (counsel-git)
+    (if (projectile-project-p)
+        (projectile-find-file)
+      (counsel-file-jump))))
 
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
@@ -407,12 +408,10 @@ e.g. Sunday, September 17, 2000."
           (lambda () (backward-char 2))
         (evil-ex command-string)))))
 
-(defun zilongshanren/vcs-project-root ()
+(defun zilongshanren/git-project-root ()
   "Return the project root for current buffer."
   (let ((directory default-directory))
-    (or (locate-dominating-file directory ".git")
-        (locate-dominating-file directory ".svn")
-        (locate-dominating-file directory ".hg"))))
+    (locate-dominating-file directory ".git")))
 
 
 ;; "http://xuchunyang.me/Opening-iTerm-From-an-Emacs-Buffer/"
@@ -422,7 +421,7 @@ With PREFIX, cd to project root."
   (interactive (list (read-shell-command
                       "iTerm Shell Command: ")
                      current-prefix-arg))
-  (let* ((dir (if prefix (zilongshanren/vcs-project-root)
+  (let* ((dir (if prefix (zilongshanren/git-project-root)
                 default-directory))
          ;; if COMMAND is empty, just change directory
          (cmd (format "cd %s ;%s" dir command)))
@@ -480,7 +479,7 @@ With PREFIX, cd to project root."
 (defun ivy-ff-checksum ()
   (interactive)
   "Calculate the checksum of FILE. The checksum is copied to kill-ring."
-  (let ((file (expand-file-name ivy--current ivy--directory))
+  (let ((file (expand-file-name (ivy-state-current ivy-last) ivy--directory))
         (algo (intern (ivy-read
                        "Algorithm: "
                        '(md5 sha1 sha224 sha256 sha384 sha512)))))
@@ -488,6 +487,9 @@ With PREFIX, cd to project root."
                 (insert-file-contents-literally file)
                 (secure-hash algo (current-buffer))))
     (message "Checksum copied to kill-ring.")))
+
+(defun ivy-ff-checksum-action (x)
+  (ivy-ff-checksum))
 
 (defun my-find-file-in-git-repo (repo)
   (if (file-directory-p repo)
@@ -501,7 +503,7 @@ With PREFIX, cd to project root."
 (defun my-open-file-in-external-app (file)
   "Open file in external application."
   (interactive)
-  (let ((default-directory (zilongshanren/vcs-project-root))
+  (let ((default-directory (zilongshanren/git-project-root))
         (file-path file))
     (if file-path
         (cond
@@ -569,18 +571,25 @@ With PREFIX, cd to project root."
   (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name) "5000")
   (browse-url (format "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
+(defun github-browse-file--relative-url ()
+  "Return \"username/repo\" for current repository.
+
+Error out if this isn't a GitHub repo."
+  (require 'vc-git)
+  (let ((url (vc-git--run-command-string nil "config" "remote.origin.url")))
+    (unless url (error "Not in a GitHub repo"))
+    (when (and url (string-match "github.com:?/?\\(.*\\)" url))
+      (replace-regexp-in-string "\\.git$" "" (match-string 1 url)))))
+
 (defun zilong/github-browse-commit ()
   "Show the GitHub page for the current commit."
   (interactive)
-  (use-package github-browse-file
-    :commands (github-browse-file--relative-url))
-
   (let* ((commit git-messenger:last-commit-id)
          (url (concat "https://github.com/"
                       (github-browse-file--relative-url)
                       "/commit/"
                       commit)))
-    (github-browse--save-and-view url)
+    (browse-url url)
     (git-messenger:popup-close)))
 
 (defun zilongshanren/search-in-fireball ()

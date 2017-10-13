@@ -1,6 +1,6 @@
 ;;; config.el --- zilongshanren Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2015-2016 zilongshanren
+;; Copyright (c) 2014-2016 zilongshanren
 ;;
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/spacemacs-private
@@ -65,6 +65,11 @@
 
 ;; https://www.reddit.com/r/emacs/comments/4c0mi3/the_biggest_performance_improvement_to_emacs_ive/
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
+;; https://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
+;; this settings will cause command `vc-annotate` failed.
+;; 如果把 vc-handled-backends去掉，那么 vc-follow-symlinks 这个选项就会失效
+;; 进而，如果你访问一个在版本控制里面的alias的话，它不会自动去访问原文件，这个是非常不爽的
+;; (setq vc-handled-backends ())
 
 
 (setq large-file-warning-threshold 100000000)

@@ -8,9 +8,15 @@
   "blog-admin files location")
 
 (setq-default
+;;<<<<<<< develop
  org-agenda-dir "~/document/org"
  deft-dir "~/document/org"
  blog-admin-dir "~/4gamers.cn")
+;;=======
+;; org-agenda-dir "~/org-notes"
+;; deft-dir "~/org-notes"
+;; blog-admin-dir "~/zilongshanren.com")
+;;>>>>>>> develop
 
 ;;load sensitive data
 ;; or (like spacemacs init.el)put the above variable into it ,then the own value separated from public config

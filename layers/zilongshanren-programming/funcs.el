@@ -143,16 +143,10 @@ version 2015-08-21"
     (setq new-buffer-name (concat "cmake-" parent-dir))
     (rename-buffer new-buffer-name t)))
 
-(defun zilongshanren/impatient-mode-hook ()
-  "my web mode hook for HTML REPL"
-  (interactive)
-  (impatient-mode)
-  (spacemacs|hide-lighter impatient-mode)
-  (httpd-start))
 
 (defun my-js2-mode-hook ()
   (progn
-    (define-key js2-mode-map "\C-ci" 'my-js-doc-insert-function-doc-snippet)
+    (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc-snippet)
     (define-key js2-mode-map "@" 'js-doc-insert-tag)
     (modify-syntax-entry ?_ "w")
     (which-function-mode t)
