@@ -983,7 +983,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       :name "Hexo Server"
       :command "hexo"
       :args '("server")
-      :cwd "~/4gamers.cn"
+      :cwd blog-admin-dir
       :tags '(hexo server)
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)
@@ -992,7 +992,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       :name "Hexo Deploy"
       :command "hexo"
       :args '("deploy" "--generate")
-      :cwd "~/4gamers.cn"
+      :cwd blog-admin-dir
       :tags '(hexo deploy)
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)

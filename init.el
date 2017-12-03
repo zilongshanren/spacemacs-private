@@ -430,22 +430,6 @@ values."
   (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
-
-  ;; https://github.com/syl20bnr/spacemacs/issues/7749
-  (defun spacemacs/ivy-persp-switch-project (arg)
-    (interactive "P")
-    (ivy-read "Switch to Project Perspective: "
-              (if (projectile-project-p)
-                  (cons (abbreviate-file-name (projectile-project-root))
-                        (projectile-relevant-known-projects))
-                projectile-known-projects)
-              :action (lambda (project)
-                        (let ((persp-reset-windows-on-nil-window-conf t))
-                          (persp-switch project)
-                          (let ((projectile-completion-system 'ivy)
-                                (old-default-directory default-directory))
-                            (projectile-switch-project-by-name project)
-                            (setq default-directory old-default-directory))))))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
