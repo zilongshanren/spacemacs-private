@@ -14,12 +14,12 @@
 (defconst zilongshanren-org-packages
   '(
     (org :location built-in)
-    org-mac-link
+    ;; org-mac-link
     org-pomodoro
     deft
-    (blog-admin :location (recipe
-                           :fetcher github
-                           :repo "codefalling/blog-admin"))
+    ;; (blog-admin :location (recipe
+    ;;                        :fetcher github
+    ;;                        :repo "codefalling/blog-admin"))
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
