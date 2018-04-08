@@ -26,6 +26,9 @@
 (global-prettify-symbols-mode 1)
 (setq-default fill-column 80)
 
+;; prevent dired window press o to split into three column
+(setq-default split-width-threshold 200)
+
 (setq recenter-positions '(top middle bottom))
 ;; delete the selection with a key press
 (delete-selection-mode t)
