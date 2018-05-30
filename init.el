@@ -338,10 +338,10 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "https://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
+	(setq-default configuration-layer-elpa-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
@@ -377,7 +377,7 @@ values."
 
   ;; force horizontal split window
   (setq split-width-threshold 120)
-  (linum-relative-on)
+  ;; (linum-relative-on)
 
   (spacemacs|add-company-backends :modes text-mode)
 
