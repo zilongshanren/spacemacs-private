@@ -200,7 +200,7 @@
        'org-babel-load-languages
        '((perl . t)
          (ruby . t)
-         (sh . t)
+         (shell . t)
          (dot . t)
          (js . t)
          (latex .t)
