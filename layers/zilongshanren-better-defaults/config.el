@@ -144,7 +144,8 @@ Single Capitals as you type."
            (hl-line-mode -1)))
   (if (and (executable-find "wc")
            (> (string-to-number (shell-command-to-string (format "wc -l %s" (buffer-file-name))))
-              5000))))
+              5000))
+      nil))
 
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
