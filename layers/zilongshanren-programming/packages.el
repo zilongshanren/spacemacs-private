@@ -289,6 +289,8 @@
     (setq company-backends-js2-mode '((company-dabbrev-code :with company-keywords company-etags)
                                       company-files company-dabbrev))
 
+    (setq company-backends-js-mode '((company-dabbrev-code :with company-keywords company-etags)
+                                     company-files company-dabbrev))
 
     (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
@@ -521,7 +523,7 @@
           company-idle-delay 0.08)
 
     (when (configuration-layer/package-usedp 'company)
-      (spacemacs|add-company-backends :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode))
+      (spacemacs|add-company-backends :modes shell-script-mode makefile-bsdmake-mode sh-mode lua-mode nxml-mode conf-unix-mode json-mode graphviz-dot-mode js2-mode js-mode))
     ))
 (defun zilongshanren-programming/post-init-company-c-headers ()
   (progn

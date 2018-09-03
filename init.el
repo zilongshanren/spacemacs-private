@@ -68,8 +68,8 @@ values."
      gpu
      yaml
      react
-     (python :variables
-             python-test-runner '(nose pytest))
+     ;; (python :variables
+     ;;         python-test-runner '(nose pytest))
      ;; (ruby :variables ruby-version-manager 'chruby)
      ;; ruby-on-rails
      lua
@@ -431,6 +431,17 @@ values."
 
   (setq inhibit-compacting-font-caches t)
   (global-display-line-numbers-mode -1)
+
+  (defun moon-override-yank-pop (&optional arg)
+      "Delete the region before inserting poped string."
+      (when (and evil-mode (eq 'visual evil-state))
+        (kill-region (region-beginning) (region-end))))
+  (defvar projectile-keymap-prefix (kbd "C-c C-p")
+  "Default projectile-keymap-prefix.
+   Required by counsel-projectile to work.
+   Must not be nil")
+
+(advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
   )
