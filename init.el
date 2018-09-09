@@ -31,7 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ivy
+     (ivy :variables ivy-enable-advanced-buffer-information t)
      better-defaults
      ranger
      colors
