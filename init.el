@@ -31,7 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ivy
+     (ivy :variables ivy-enable-advanced-buffer-information t)
      better-defaults
      ranger
      colors
@@ -68,8 +68,8 @@ values."
      gpu
      yaml
      react
-     ;; (python :variables
-     ;;         python-test-runner '(nose pytest))
+     (python :variables
+             python-test-runner '(nose pytest))
      ;; (ruby :variables ruby-version-manager 'chruby)
      ;; ruby-on-rails
      lua
@@ -111,6 +111,7 @@ values."
                     helm-c-yasnippet ace-jump-helm-line helm-make magithub
                     helm-themes helm-swoop helm-spacemacs-help smeargle
                     ido-vertical-mode flx-ido company-quickhelp
+                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
                     )
    dotspacemacs-install-packages 'used-only
    dotspacemacs-delete-orphan-packages t))
@@ -323,7 +324,7 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -435,10 +436,6 @@ values."
       "Delete the region before inserting poped string."
       (when (and evil-mode (eq 'visual evil-state))
         (kill-region (region-beginning) (region-end))))
-  (defvar projectile-keymap-prefix (kbd "C-c C-p")
-  "Default projectile-keymap-prefix.
-   Required by counsel-projectile to work.
-   Must not be nil")
 
 (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
 
