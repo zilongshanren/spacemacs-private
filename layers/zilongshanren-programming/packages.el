@@ -17,6 +17,7 @@
         css-mode
         paredit
         lispy
+        caps-lock
         cmake-font-lock
         cmake-mode
         flycheck
@@ -74,6 +75,12 @@
         "sl" 'zilongshanren/ruby-send-current-line
         "sL" 'zilongshanren/ruby-send-current-line-and-go
         "sI" 'zilongshanren/start-inf-ruby-and-robe))))
+
+(defun zilongshanren-programming/init-caps-lock ()
+  (use-package caps-lock
+    :init
+    (progn
+      (bind-key* "s-e" 'caps-lock-mode))))
 
 (defun zilongshanren-programming/init-editorconfig ()
   (use-package editorconfig

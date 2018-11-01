@@ -145,3 +145,7 @@ open and unsaved."
   "goto up directory and resue buffer"
   (interactive)
   (find-alternate-file ".."))
+
+(defun zilongshanren/insert-space-after-point ()
+  (interactive)
+  (save-excursion (insert " ")))

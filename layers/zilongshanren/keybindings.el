@@ -77,6 +77,7 @@
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 (bind-key* "C-c k" 'which-key-show-top-level)
 (bind-key* "s-y" 'aya-expand)
+(bind-key* "C-." 'zilongshanren/insert-space-after-point)
 ;; (bind-key* "C-l" 'recenter)
 
 
