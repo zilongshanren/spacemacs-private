@@ -78,6 +78,10 @@
 (bind-key* "C-c k" 'which-key-show-top-level)
 (bind-key* "s-y" 'aya-expand)
 (bind-key* "C-." 'zilongshanren/insert-space-after-point)
+(bind-key* "M-i" 'string-inflection-java-style-cycle)
+(bind-key* "M-u" 'dakra-upcase-dwim)
+(bind-key* "M-l" 'dakra-downcase-dwim)
+(bind-key* "M-c" 'dakra-capitalize-dwim)
 ;; (bind-key* "C-l" 'recenter)
 
 
