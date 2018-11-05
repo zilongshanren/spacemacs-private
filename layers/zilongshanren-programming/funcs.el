@@ -167,6 +167,17 @@ version 2015-08-21"
 (defun js2-imenu-make-index ()
   (interactive)
   (save-excursion
+    ;; this imenu generic expression aims to exclude for, while, if when aims to match functions in
+    ;; es6 js, e.g. ComponentDidMount(), render() function in React
+    ;; https://emacs-china.org/t/topic/4538/7
+    (defun js-exception-imenu-generic-expression-regexp ()
+      ;; (async)? xxx (e) { }
+      (if (re-search-backward "^[ \t]*\\(async\\)?[ \t]*\\([A-Za-z_$][A-Za-z0-9_$]+\\)[ \t]*([a-zA-Z0-9, ]*) *\{ *$" nil t)
+          (progn
+            (if (member (match-string 2) '("for" "if" "while" "switch"))
+                (js-exception-imenu-generic-expression-regexp)
+              t))
+        nil))
     ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
     (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
                                ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
@@ -188,14 +199,19 @@ version 2015-08-21"
                                ("OnChange" "[ \t]*\$(['\"]\\([^'\"]*\\)['\"]).*\.change *( *function" 1)
                                ("OnClick" "[ \t]*\$([ \t]*['\"]\\([^'\"]*\\)['\"]).*\.click *( *function" 1)
                                ("Watch" "[. \t]\$watch( *['\"]\\([^'\"]+\\)" 1)
+
+
+                               ("Function" js-exception-imenu-generic-expression-regexp 2) ;; (async)? xxx (e) { }
                                ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
                                ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
                                ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
                                ("Function" "^[ \t]*\\([^while|for ][a-zA-Z0-9_$]*\\)[ \t]*([a-zA-Z0-9_$,/\\* ]*)[ \t]*" 1)
                                ("Function" "^[ \t]*static[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
                                ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
+
                                ("Class" "^[ \t]*var[ \t]*\\([0-9a-zA-Z]+\\)[ \t]*=[ \t]*\\([a-zA-Z]*\\).extend" 1)
                                ("Class" "^[ \t]*cc\.\\(.+\\)[ \t]*=[ \t]*cc\.\\(.+\\)\.extend" 1)
+
                                ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
 
 (defun my-doxymacs-font-lock-hook ()
