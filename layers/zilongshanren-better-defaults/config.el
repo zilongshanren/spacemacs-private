@@ -189,5 +189,8 @@ Single Capitals as you type."
       make-backup-files nil
       create-lockfiles nil)
 
-(when (and (spacemacs/system-is-mswindows) window-system)
-  (setq w32-pipe-read-delay 0))
+;; (when (and (spacemacs/system-is-mswindows) window-system)
+;;   (setq w32-pipe-read-delay 0.5))
+
+(when (spacemacs/system-is-mswindows)
+  (setq counsel-ag-base-command (concat (expand-file-name "~/.spacemacs.d/ag.exe") "  --vimgrep --nocolor --nogroup %s")))
