@@ -188,3 +188,6 @@ Single Capitals as you type."
 (setq backup-by-copying t
       make-backup-files nil
       create-lockfiles nil)
+
+(when (and (spacemacs/system-is-mswindows) window-system)
+  (setq w32-pipe-read-delay 0))

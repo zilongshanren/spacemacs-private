@@ -246,6 +246,15 @@ e.g. Sunday, September 17, 2000."
         (projectile-find-file)
       (counsel-file-jump))))
 
+(defun zilongshanren/pomodoro-notification ()
+  "show notifications when pomodoro end"
+  (if (spacemacs/system-is-mswindows)
+      (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav")))))
+    (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
+             (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
+             (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t))))))
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
 (defun zilongshanren/growl-notification (title message &optional sticky)
