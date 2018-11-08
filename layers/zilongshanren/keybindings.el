@@ -105,7 +105,8 @@
          (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
 
 (bb/define-key ivy-occur-grep-mode-map
-  (kbd "C-d") 'evil-scroll-down)
+  (kbd "C-d") 'evil-scroll-down
+  "d" 'ivy-occur-delete-candidate)
 
 (with-eval-after-load 'company
   (progn
