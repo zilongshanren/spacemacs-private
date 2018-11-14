@@ -192,5 +192,7 @@ Single Capitals as you type."
 ;; (when (and (spacemacs/system-is-mswindows) window-system)
 ;;   (setq w32-pipe-read-delay 0.5))
 
+;; FIXME: --vimgrep will break ivy-occur with wgrep
 (when (spacemacs/system-is-mswindows)
-  (setq counsel-ag-base-command (concat (expand-file-name "~/.spacemacs.d/ag.exe") "  --vimgrep --nocolor --nogroup %s")))
+  (setq counsel-async-split-string-re "\r?\n")
+  (setq counsel-ag-base-command (concat (expand-file-name "~/.spacemacs.d/ag.exe") " --vimgrep --nocolor --nogroup %s")))
