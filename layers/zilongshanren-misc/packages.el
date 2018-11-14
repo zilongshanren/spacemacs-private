@@ -1083,6 +1083,14 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       (progn
         (spacemacs|hide-lighter ivy-mode)
 
+        (defun ivy-call-and-recenter ()
+          "Call action and recenter window according to the selected candidate."
+          (interactive)
+          (ivy-call)
+          (with-ivy-window
+            (evil-scroll-line-to-center (line-number-at-pos))))
+
+
         (ivy-set-actions
          t
          '(("f" my-find-file-in-git-repo "find files")

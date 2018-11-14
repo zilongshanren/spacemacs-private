@@ -172,7 +172,7 @@ version 2015-08-21"
     ;; https://emacs-china.org/t/topic/4538/7
     (defun js-exception-imenu-generic-expression-regexp ()
       ;; (async)? xxx (e) { }
-      (if (re-search-backward "^[ \t]*\\(async\\)?[ \t]*\\([A-Za-z_$][A-Za-z0-9_$]+\\)[ \t]*([\{a-zA-Z0-9, \t\n\}]*) *\{ *" nil t)
+      (if (re-search-backward "^[ \t]*\\(async\\)?[ \t]*\\([A-Za-z_$][A-Za-z0-9_$]+\\)[ \t]*([\{a-zA-Z0-9, \"=\t\n\}]*) *\{ *" nil t)
           (progn
             (if (member (match-string 2) '("for" "if" "while" "switch"))
                 (js-exception-imenu-generic-expression-regexp)
