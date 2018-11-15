@@ -196,3 +196,32 @@ Single Capitals as you type."
 (when (spacemacs/system-is-mswindows)
   (setq counsel-async-split-string-re "\r?\n")
   (setq counsel-ag-base-command (concat (expand-file-name "~/.spacemacs.d/ag.exe") " --vimgrep --nocolor --nogroup %s")))
+
+;; https://emacs-china.org/t/advice/7566
+(defun chunyang-advice-remove-button (function)
+  "Add a button to remove advice."
+  (when (get-buffer "*Help*")
+    (with-current-buffer "*Help*"
+      (save-excursion
+        (goto-char (point-min))
+        ;; :around advice: ‘shell-command--shell-command-with-editor-mode’
+        (while (re-search-forward "^:[-a-z]+ advice: [‘'`]\\(.+\\)[’'']$" nil t)
+          (let ((advice (intern-soft (match-string 1))))
+            (when (and advice (fboundp advice))
+              (let ((inhibit-read-only t))
+                (insert " » ")
+                (insert-text-button
+                 "Remove"
+                 'action
+                 ;; In case lexical-binding is off
+                 `(lambda (_)
+                    (message "Removing %s of advice from %s" ',function ',advice)
+                    (advice-remove ',function #',advice)
+                    (revert-buffer nil t))
+                 'follow-link t)))))))))
+
+(advice-add 'describe-function-1 :after #'chunyang-advice-remove-button)
+
+
+;; 使用 counsel-git 查找文件的时候，忽略指定后缀的文件
+(setq counsel-git-cmd "git ls-files --full-name -- \":!:*.js.meta\" \":!:*.meta\"")
