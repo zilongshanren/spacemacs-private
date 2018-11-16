@@ -195,7 +195,22 @@ Single Capitals as you type."
 ;; FIXME: --vimgrep will break ivy-occur with wgrep
 (when (spacemacs/system-is-mswindows)
   (setq counsel-async-split-string-re "\r?\n")
-  (setq counsel-ag-base-command (concat (expand-file-name "~/.spacemacs.d/ag.exe") " --vimgrep --nocolor --nogroup %s")))
+  ;; -M 220不搜索超过220行的匹配项
+  ;; (setq counsel-rg-base-command  "rg -S -M 220 --no-heading --line-number --color never %s .")
+  )
+
+(defvar spacemacs--counsel-commands
+  '(;; --line-number forces line numbers (disabled by default on windows)
+    ;; no --vimgrep because it adds column numbers that wgrep can't handle
+    ;; see https://github.com/syl20bnr/spacemacs/pull/8065
+    ("rg" . "rg --smart-case --no-heading --color never --line-number --max-columns 220 %s %S .")
+    ("ag" . "ag --nocolor --nogroup %s %S .")
+    ("pt" . "pt -e --nocolor --nogroup %s %S .")
+    ("ack" . "ack --nocolor --nogroup %s %S .")
+    ("grep" . "grep -nrP %s %S ."))
+  "An alist of search commands and their corresponding commands
+with options to run in the shell.")
+
 
 ;; https://emacs-china.org/t/advice/7566
 (defun chunyang-advice-remove-button (function)

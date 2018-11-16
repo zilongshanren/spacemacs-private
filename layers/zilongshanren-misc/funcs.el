@@ -16,9 +16,9 @@
     (funcall cmd)))
 
 ;; Example 1
-(defun counsel-ag-thing-at-point ()
+(defun counsel-rg-thing-at-point ()
   (interactive)
-  (ivy-with-thing-at-point 'counsel-ag))
+  (ivy-with-thing-at-point 'counsel-rg))
 
 ;; Example 2
 ;; (defun swiper-thing-at-point ()

@@ -171,7 +171,6 @@
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
 
 (bind-key* "s-p" 'find-file-in-project)
-(spacemacs/set-leader-keys "os" 'counsel-ag-thing-at-point)
 
 (spacemacs/set-leader-keys "pa" 'projectile-find-other-file)
 (spacemacs/set-leader-keys "pA" 'projectile-find-other-file-other-window)
