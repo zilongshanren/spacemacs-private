@@ -780,6 +780,22 @@
           (with-ivy-window
             (evil-scroll-line-to-center (line-number-at-pos))))
 
+        ;; .projectile file will specify the search root
+        ;; add / to search when use expand region
+        (when (configuration-layer/package-used-p 'counsel)
+          (defadvice er/prepare-for-more-expansions-internal
+              (around ivy-rg/prepare-for-more-expansions-internal activate)
+            ad-do-it
+            (let ((new-msg (concat (car ad-return-value)
+                                   ", / to search in project, "))
+                  (new-bindings (cdr ad-return-value)))
+              (cl-pushnew
+               '("/" (lambda ()
+                       (call-interactively
+                        'spacemacs/search-project-auto-region-or-symbol)))
+               new-bindings)
+              (setq ad-return-value (cons new-msg new-bindings)))))
+
 
         (ivy-set-actions
          t

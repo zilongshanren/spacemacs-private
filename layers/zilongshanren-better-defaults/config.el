@@ -196,7 +196,7 @@ Single Capitals as you type."
 (when (spacemacs/system-is-mswindows)
   (setq counsel-async-split-string-re "\r?\n")
   ;; -M 220不搜索超过220行的匹配项
-  ;; (setq counsel-rg-base-command  "rg -S -M 220 --no-heading --line-number --color never %s .")
+  (setq counsel-rg-base-command  "rg -S -M 220 --no-heading --line-number --color never %s .")
   )
 
 (defvar spacemacs--counsel-commands
