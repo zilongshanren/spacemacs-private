@@ -375,7 +375,8 @@
 
     ;; ;; change evil initial mode state
     (loop for (mode . state) in
-          '((shell-mode . normal))
+          '((shell-mode . normal)
+            (minibuffer-inactive-mode . emacs))
           do (evil-set-initial-state mode state))
 
     ;;mimic "nzz" behaviou in vim
@@ -772,6 +773,8 @@
       :config
       (progn
         (spacemacs|hide-lighter ivy-mode)
+
+        (setq ivy-dynamic-exhibit-delay-ms 300)
 
         (defun ivy-call-and-recenter ()
           "Call action and recenter window according to the selected candidate."
