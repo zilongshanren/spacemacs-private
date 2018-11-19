@@ -238,5 +238,6 @@ with options to run in the shell.")
 (advice-add 'describe-function-1 :after #'chunyang-advice-remove-button)
 
 
-;; 使用 counsel-git 查找文件的时候，忽略指定后缀的文件
-(setq counsel-git-cmd "git ls-files --full-name -- \":!:*.js.meta\" \":!:*.meta\"")
+(when (spacemacs/system-is-mswindows)
+  ;; 使用 counsel-git 查找文件的时候，忽略指定后缀的文件
+  (setq counsel-git-cmd "git ls-files --full-name -- \":!:*.js.meta\" \":!:*.meta\""))
