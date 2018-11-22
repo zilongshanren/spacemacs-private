@@ -433,14 +433,19 @@ values."
   (global-display-line-numbers-mode -1)
 
   (defun moon-override-yank-pop (&optional arg)
-      "Delete the region before inserting poped string."
-      (when (and evil-mode (eq 'visual evil-state))
-        (kill-region (region-beginning) (region-end))))
+    "Delete the region before inserting poped string."
+    (when (and evil-mode (eq 'visual evil-state))
+      (kill-region (region-beginning) (region-end))))
 
-(advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
+  (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
+
+  ;; boost find file and load saved persp layout  performance
+  (setq find-file-hook nil)
+  (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))
+
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
-  )
+    )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)

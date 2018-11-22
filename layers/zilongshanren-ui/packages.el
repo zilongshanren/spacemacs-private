@@ -135,7 +135,7 @@
                            minor-mode-alist))
                  " "
                  ;; git info
-                 '(:eval (when (> (window-width) 120)
+                 '(:eval (when (> (window-width) 90)
                            `(vc-mode vc-mode)))
 
                  " "

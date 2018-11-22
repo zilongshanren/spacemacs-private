@@ -77,6 +77,6 @@
             (2 "CR  "))
           (let ((sys (coding-system-plist buffer-file-coding-system)))
             (cond ((memq (plist-get sys :category) '(coding-category-undecided coding-category-utf-8))
-                   "UTF-8")
+                   "UTF8")
                   (t (upcase (symbol-name (plist-get sys :name))))))
           "  "))
