@@ -237,6 +237,18 @@ with options to run in the shell.")
 
 (advice-add 'describe-function-1 :after #'chunyang-advice-remove-button)
 
+(defun zilong-ag-edit (function)
+  (when (get-buffer "*helm-ag-edit*")
+    (kill-buffer "*helm-ag-edit*"))
+  (if (not (= (count-windows) 2))
+      (progn
+        (split-window-right))))
+
+;; (defun zilong-after-ag-edit (function)
+;;   (ivy-occur-grep-mode))
+
+(advice-add 'helm-ag--edit :before #'zilong-ag-edit)
+;; (advice-add 'helm-ag--edit :after #'zilong-after-ag-edit)
 
 (when (spacemacs/system-is-mswindows)
   ;; 使用 counsel-git 查找文件的时候，忽略指定后缀的文件

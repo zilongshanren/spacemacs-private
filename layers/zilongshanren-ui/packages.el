@@ -24,6 +24,8 @@
     )
   )
 
+
+
 (defun zilongshanren-ui/init-zilong-mode-line ()
   (defun zilongshanren/display-mode-indent-width ()
     (let ((mode-indent-level
@@ -78,6 +80,7 @@
                           'face
                           'font-lock-type-face))
                  " "
+                 '(:eval (zilong/modeline--evil-substitute))
                  '(:eval (zilongshanren/update-persp-name))
 
                  "%1 "
@@ -141,7 +144,7 @@
                  '(:eval (when (> (window-width) 120)
                            mode-line-misc-info))
 
-                 (mode-line-fill 'mode-line 20)
+                 (mode-line-fill 'mode-line 25)
 
                  '(:eval (zilongshanren/display-mode-indent-width))
                  ;; line and column
