@@ -31,7 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     (ivy :variables ivy-enable-advanced-buffer-information t)
+     (ivy :variables ivy-enable-advanced-buffer-information nil)
      better-defaults
      ranger
      colors
@@ -110,7 +110,7 @@ values."
                     helm-flyspell flyspell-correct-helm clean-aindent-mode
                     helm-c-yasnippet ace-jump-helm-line helm-make magithub
                     helm-themes helm-swoop helm-spacemacs-help smeargle
-                    ido-vertical-mode flx-ido company-quickhelp
+                    ido-vertical-mode flx-ido company-quickhelp ivy-rich
                     window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
                     )
    dotspacemacs-install-packages 'used-only
