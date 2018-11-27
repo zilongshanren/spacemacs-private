@@ -85,16 +85,17 @@
                (count (length after)))
           (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count 1))))
 
-      (define-key symbol-overlay-map (kbd "<") 'symbol-overlay-switch-first)
-      (define-key symbol-overlay-map (kbd ">") 'symbol-overlay-switch-last)
 
 
       (spacemacs/set-leader-keys "hh" 'symbol-overlay-put)
       (spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
       (global-set-key (kbd "M-h") 'symbol-overlay-put)
       (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
-      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
-      )))
+      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward))
+    :config
+    (progn
+      (define-key symbol-overlay-map (kbd "<") 'symbol-overlay-switch-first)
+      (define-key symbol-overlay-map (kbd ">") 'symbol-overlay-switch-last))))
 
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio
