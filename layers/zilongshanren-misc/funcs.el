@@ -599,13 +599,15 @@ With PREFIX, cd to project root."
       (message "No remote branch"))
      (t
       (browse-url
-       (format "https://github.com/%s/pull/new/%s"
-               (replace-regexp-in-string
-                "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-                (magit-get "remote"
-                           (magit-get-remote)
-                           "url"))
-               remote-branch))))))
+       (if (spacemacs/system-is-mswindows)
+           "https://git.code.oa.com/lionqu/HLMJ_js/merge_requests/new"
+         (format "https://github.com/%s/pull/new/%s"
+                 (replace-regexp-in-string
+                  "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+                  (magit-get "remote"
+                             (magit-get-remote)
+                             "url"))
+                 remote-branch)))))))
 
 (defun zilongshanren/markdown-to-html ()
   (interactive)

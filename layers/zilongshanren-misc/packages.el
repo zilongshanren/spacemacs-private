@@ -41,7 +41,8 @@
         wrap-region
         ranger
         golden-ratio
-        (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
+        ;; (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
+        symbol-overlay
         browse-at-remote
         ))
 
@@ -50,17 +51,27 @@
     :defer t
     :init (spacemacs/set-leader-keys "gho" 'browse-at-remote)))
 
-(defun zilongshanren-misc/init-highlight-global ()
-  (use-package highlight-global
+;; (defun zilongshanren-misc/init-highlight-global ()
+;;   (use-package highlight-global
+;;     :init
+;;     (progn
+;;       (spacemacs/set-leader-keys "hh" 'highlight-frame-toggle)
+;;       (spacemacs/set-leader-keys "hc" 'clear-highlight-frame)
+;;       (setq-default highlight-faces
+;;         '(('hi-red-b . 0)
+;;           ('hi-yellow . 0)
+;;           ('hi-pink . 0)
+;;           ('hi-blue-b . 0))))))
+
+(defun zilongshanren-misc/init-symbol-overlay ()
+  (use-package symbol-overlay
     :init
     (progn
-      (spacemacs/set-leader-keys "hh" 'highlight-frame-toggle)
-      (spacemacs/set-leader-keys "hc" 'clear-highlight-frame)
-      (setq-default highlight-faces
-        '(('hi-red-b . 0)
-          ('hi-yellow . 0)
-          ('hi-pink . 0)
-          ('hi-blue-b . 0))))))
+      (spacemacs/set-leader-keys "hh" 'symbol-overlay-put)
+      (spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
+      (global-set-key (kbd "M-h") 'symbol-overlay-put)
+      (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward))))
 
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio

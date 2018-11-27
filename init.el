@@ -440,12 +440,16 @@ values."
   (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
 
   ;; boost find file and load saved persp layout  performance
-  (setq find-file-hook nil)
-  (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))
+  ;; which will break some function on windows platform
+  ;; eg. known issues: magit related buffer color, reopen will fix it
+  (when (spacemacs/system-is-mswindows)
+    (progn (setq find-file-hook nil)
+           (add-hook 'find-file-hook 'spacemacs/check-large-file)
+           (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
 
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
-    )
+  )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
