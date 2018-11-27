@@ -75,10 +75,10 @@
   (setq-default mode-line-format
                 (list
                  " %1"
-                 '(:eval (propertize
-                          (window-number-mode-line)
-                          'face
-                          'font-lock-type-face))
+                 '(:eval (when (bound-and-true-p winum-mode) (propertize
+                                                              (window-number-mode-line)
+                                                              'face
+                                                              'font-lock-type-face)))
                  " "
                  '(:eval (zilong/modeline--evil-substitute))
                  '(:eval (zilongshanren/update-persp-name))
