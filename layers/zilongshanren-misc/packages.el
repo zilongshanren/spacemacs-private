@@ -548,7 +548,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/post-init-flyspell-correct ()
   (progn
     (with-eval-after-load 'flyspell
-      (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous-word-generic))
+      (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous))
     (setq flyspell-correct-interface 'flyspell-correct-ivy)))
 
 (defun zilongshanren-misc/post-init-smartparens ()
