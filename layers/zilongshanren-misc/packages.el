@@ -42,6 +42,7 @@
         ranger
         golden-ratio
         (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
+        symbol-overlay
         browse-at-remote
         ))
 
@@ -54,13 +55,77 @@
   (use-package highlight-global
     :init
     (progn
-      (spacemacs/set-leader-keys "hh" 'highlight-frame-toggle)
-      (spacemacs/set-leader-keys "hc" 'clear-highlight-frame)
+      (when (configuration-layer/package-used-p 'helm-ag)
+        (defadvice er/prepare-for-more-expansions-internal
+            (around helm-ag/prepare-for-more-expansions-internal activate)
+          ad-do-it
+          (let ((new-msg (concat (car ad-return-value)
+                                 ", H to highlight in buffers"
+                                 ", / to search in project, "
+                                 "f to search in files, "
+                                 "b to search in opened buffers"))
+                (new-bindings (cdr ad-return-value)))
+            (cl-pushnew
+             '("H" (lambda ()
+                     (call-interactively
+                      'zilongshanren/highlight-dwim)))
+             new-bindings)
+            (cl-pushnew
+             '("/" (lambda ()
+                     (call-interactively
+                      'spacemacs/helm-project-smart-do-search-region-or-symbol)))
+             new-bindings)
+            (cl-pushnew
+             '("f" (lambda ()
+                     (call-interactively
+                      'spacemacs/helm-files-smart-do-search-region-or-symbol)))
+             new-bindings)
+            (cl-pushnew
+             '("b" (lambda ()
+                     (call-interactively
+                      'spacemacs/helm-buffers-smart-do-search-region-or-symbol)))
+             new-bindings)
+            (setq ad-return-value (cons new-msg new-bindings)))))
+
       (setq-default highlight-faces
         '(('hi-red-b . 0)
           ('hi-yellow . 0)
           ('hi-pink . 0)
           ('hi-blue-b . 0))))))
+
+(defun zilongshanren-misc/init-symbol-overlay ()
+  (use-package symbol-overlay
+    :init
+    (progn
+      (defun symbol-overlay-switch-first ()
+        (interactive)
+        (let* ((symbol (symbol-overlay-get-symbol))
+               (keyword (symbol-overlay-assoc symbol))
+               (a-symbol (car keyword))
+               (before (symbol-overlay-get-list a-symbol 'car))
+               (count (length before)))
+          (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count))))
+
+      (defun symbol-overlay-switch-last ()
+        (interactive)
+        (let* ((symbol (symbol-overlay-get-symbol))
+               (keyword (symbol-overlay-assoc symbol))
+               (a-symbol (car keyword))
+               (after (symbol-overlay-get-list a-symbol 'cdr))
+               (count (length after)))
+          (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count 1))))
+
+
+
+      ;; (spacemacs/set-leader-keys "hh" 'symbol-overlay-put)
+      ;; (spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
+      (global-set-key (kbd "M-h") 'symbol-overlay-put)
+      (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward))
+    :config
+    (progn
+      (define-key symbol-overlay-map (kbd "<") 'symbol-overlay-switch-first)
+      (define-key symbol-overlay-map (kbd ">") 'symbol-overlay-switch-last))))
 
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio
@@ -513,7 +578,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/post-init-flyspell-correct ()
   (progn
     (with-eval-after-load 'flyspell
-      (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous-word-generic))
+      (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous))
     (setq flyspell-correct-interface 'flyspell-correct-ivy)))
 
 (defun zilongshanren-misc/post-init-smartparens ()
@@ -685,7 +750,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 
     ;; ;; change evil initial mode state
     (loop for (mode . state) in
-          '((shell-mode . normal))
+          '((shell-mode . normal)
+            (minibuffer-inactive-mode . emacs))
           do (evil-set-initial-state mode state))
 
     ;;mimic "nzz" behaviou in vim
@@ -1083,6 +1149,32 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       (progn
         (spacemacs|hide-lighter ivy-mode)
 
+        (setq ivy-dynamic-exhibit-delay-ms 300)
+
+        (defun ivy-call-and-recenter ()
+          "Call action and recenter window according to the selected candidate."
+          (interactive)
+          (ivy-call)
+          (with-ivy-window
+            (evil-scroll-line-to-center (line-number-at-pos))))
+
+        ;; .projectile file will specify the search root
+        ;; add / to search when use expand region
+        ;; (when (configuration-layer/package-used-p 'counsel)
+        ;;   (defadvice er/prepare-for-more-expansions-internal
+        ;;       (around ivy-rg/prepare-for-more-expansions-internal activate)
+        ;;     ad-do-it
+        ;;     (let ((new-msg (concat (car ad-return-value)
+        ;;                            ", / to search in project, "))
+        ;;           (new-bindings (cdr ad-return-value)))
+        ;;       (cl-pushnew
+        ;;        '("/" (lambda ()
+        ;;                (call-interactively
+        ;;                 'spacemacs/search-project-auto-region-or-symbol)))
+        ;;        new-bindings)
+        ;;       (setq ad-return-value (cons new-msg new-bindings)))))
+
+
         (ivy-set-actions
          t
          '(("f" my-find-file-in-git-repo "find files")
@@ -1107,8 +1199,9 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done-hydra)
         (define-key ivy-minibuffer-map (kbd "C-c C-e") 'spacemacs//counsel-edit)
+        (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-call-and-recenter)
         (define-key ivy-minibuffer-map (kbd "<f3>") 'ivy-occur)
-        (define-key ivy-minibuffer-map (kbd "C-c j") 'ivy-immediate-done)
+        (define-key ivy-minibuffer-map (kbd "C-c d") 'ivy-immediate-done)
         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
         (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 

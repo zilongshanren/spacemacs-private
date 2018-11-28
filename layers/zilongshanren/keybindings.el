@@ -17,6 +17,8 @@
 (define-key 'help-command (kbd "C-l") 'find-library)
 (define-key 'help-command (kbd "C-i") 'info-display-manual)
 
+;; (define-key 'ivy-occur-grep-mode-map (kbd "C-d") 'evil-scroll-down)
+
 (global-set-key [(shift return)] 'zilongshanren/smart-open-line)
 (global-set-key (kbd "s-/") 'hippie-expand)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -102,6 +104,10 @@
   "]s" (lambda (n) (interactive "p")
          (forward-char) (dotimes (c n nil) (insert " ")) (backward-char (1+ n))))
 
+(bb/define-key ivy-occur-grep-mode-map
+  (kbd "C-d") 'evil-scroll-down
+  "d" 'ivy-occur-delete-candidate)
+
 (with-eval-after-load 'company
   (progn
     (bb/define-key company-active-map
@@ -165,11 +171,15 @@
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
 
 (bind-key* "s-p" 'find-file-in-project)
-(spacemacs/set-leader-keys "os" 'zilongshanren/search-in-fireball)
+(spacemacs/set-leader-keys "os" 'counsel-ag-thing-at-point)
 
 (spacemacs/set-leader-keys "pa" 'projectile-find-other-file)
 (spacemacs/set-leader-keys "pA" 'projectile-find-other-file-other-window)
 (spacemacs/set-leader-keys ":" 'counsel-M-x)
+
+;; highlight
+(spacemacs/set-leader-keys "hh" 'zilongshanren/highlight-dwim)
+(spacemacs/set-leader-keys "hc" 'zilongshanren/clearn-highlight)
 
 (when (spacemacs/system-is-mswindows)
   (global-set-key (kbd "s-=") 'spacemacs/scale-up-font)

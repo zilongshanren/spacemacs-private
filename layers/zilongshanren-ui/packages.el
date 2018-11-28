@@ -24,6 +24,8 @@
     )
   )
 
+
+
 (defun zilongshanren-ui/init-zilong-mode-line ()
   (defun zilongshanren/display-mode-indent-width ()
     (let ((mode-indent-level
@@ -73,11 +75,12 @@
   (setq-default mode-line-format
                 (list
                  " %1"
-                 '(:eval (propertize
-                          (window-number-mode-line)
-                          'face
-                          'font-lock-type-face))
+                 '(:eval (when (bound-and-true-p winum-mode) (propertize
+                                                              (window-number-mode-line)
+                                                              'face
+                                                              'font-lock-type-face)))
                  " "
+                 '(:eval (zilong/modeline--evil-substitute))
                  '(:eval (zilongshanren/update-persp-name))
 
                  "%1 "
@@ -132,7 +135,7 @@
                            minor-mode-alist))
                  " "
                  ;; git info
-                 '(:eval (when (> (window-width) 120)
+                 '(:eval (when (> (window-width) 90)
                            `(vc-mode vc-mode)))
 
                  " "
@@ -141,7 +144,7 @@
                  '(:eval (when (> (window-width) 120)
                            mode-line-misc-info))
 
-                 (mode-line-fill 'mode-line 20)
+                 (mode-line-fill 'mode-line 25)
 
                  '(:eval (zilongshanren/display-mode-indent-width))
                  ;; line and column

@@ -21,6 +21,22 @@
                     'face 'font-lock-preprocessor-face
                     'help-echo "Current Layout name.")))))
 
+(defun zilong/modeline--evil-substitute ()
+  "Show number of matches for evil-ex substitutions and highlights in real time."
+  (when (and (bound-and-true-p evil-local-mode)
+             (or (assq 'evil-ex-substitute evil-ex-active-highlights-alist)
+                 (assq 'evil-ex-global-match evil-ex-active-highlights-alist)
+                 (assq 'evil-ex-buffer-match evil-ex-active-highlights-alist)))
+  (propertize
+   (let ((range (if evil-ex-range
+                    (cons (car evil-ex-range) (cadr evil-ex-range))
+                  (cons (line-beginning-position) (line-end-position))))
+         (pattern (car-safe (evil-delimited-arguments evil-ex-argument 2))))
+     (if pattern
+         (format " %s matches " (how-many pattern (car range) (cdr range)))
+       " - "))
+   'face 'font-lock-preprocessor-face)))
+
 (defun spaceline--unicode-number (str)
   "Return a nice unicode representation of a single-digit number STR."
   (cond
@@ -55,7 +71,12 @@
 
 (defun buffer-encoding-abbrev ()
   "The line ending convention used in the buffer."
-  (let ((buf-coding (format "%s" buffer-file-coding-system)))
-    (if (string-match "\\(dos\\|unix\\|mac\\)" buf-coding)
-        (match-string 1 buf-coding)
-      buf-coding)))
+  (concat (pcase (coding-system-eol-type buffer-file-coding-system)
+            (0 "LF  ")
+            (1 "CRLF  ")
+            (2 "CR  "))
+          (let ((sys (coding-system-plist buffer-file-coding-system)))
+            (cond ((memq (plist-get sys :category) '(coding-category-undecided coding-category-utf-8))
+                   "UTF8")
+                  (t (upcase (symbol-name (plist-get sys :name))))))
+          "  "))

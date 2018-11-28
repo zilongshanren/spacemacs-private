@@ -17,9 +17,10 @@
     ;; org-mac-link
     org-pomodoro
     deft
-    (blog-admin :location (recipe
-                           :fetcher github
-                           :repo "codefalling/blog-admin"))
+    sound-wav
+    ;; (blog-admin :location (recipe
+    ;;                        :fetcher github
+    ;;                        :repo "codefalling/blog-admin"))
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -44,11 +45,7 @@
       )))
 
 (defun zilongshanren-org/post-init-org-pomodoro ()
-  (progn
-    (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
-    (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
-    (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t)))
-    ))
+  (zilongshanren/pomodoro-notification))
 
 ;;In order to export pdf to support Chinese, I should install Latex at here: https://www.tug.org/mactex/
 ;; http://freizl.github.io/posts/2012-04-06-export-orgmode-file-in-Chinese.html
@@ -462,4 +459,9 @@ holding contextual information."
     (setq deft-recursive t)
     (setq deft-extension "org")
     (setq deft-directory deft-dir)))
+
+(defun zilongshanren-org/init-sound-wav ()
+  (use-package sound-wav
+    :defer t
+    :init))
 ;;; packages.el ends here

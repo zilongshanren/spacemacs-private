@@ -9,6 +9,35 @@
 ;;
 ;;; License: GPLv3
 
+(defun zilongshanren/highlight-dwim ()
+  (interactive)
+  (if (use-region-p)
+      (progn
+        (highlight-frame-toggle)
+        (deactivate-mark))
+    (symbol-overlay-put)))
+
+(defun zilongshanren/clearn-highlight ()
+    (interactive)
+  (clear-highlight-frame)
+  (symbol-overlay-remove-all))
+
+(defun ivy-with-thing-at-point (cmd)
+  (let ((ivy-initial-inputs-alist
+         (list
+          (cons cmd (thing-at-point 'symbol)))))
+    (funcall cmd)))
+
+;; Example 1
+(defun counsel-ag-thing-at-point ()
+  (interactive)
+  (ivy-with-thing-at-point 'counsel-ag))
+
+;; Example 2
+;; (defun swiper-thing-at-point ()
+;;   (interactive)
+;;   (ivy-with-thing-at-point 'swiper))
+
 ;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
 (defmacro adjust-major-mode-keymap-with-evil (m &optional r)
   `(eval-after-load (quote ,(if r r m))
@@ -223,19 +252,7 @@ e.g. Sunday, September 17, 2000."
 " )))
 
 
-(define-minor-mode
-  shadowsocks-proxy-mode
-  :global t
-  :init-value nil
-  :lighter " SS"
-  (if shadowsocks-proxy-mode
-      (setq url-gateway-method 'socks)
-    (setq url-gateway-method 'native)))
 
-
-(define-global-minor-mode
-  global-shadowsocks-proxy-mode shadowsocks-proxy-mode shadowsocks-proxy-mode
-  :group 'shadowsocks-proxy)
 
 
 (defun zilongshanren/open-file-with-projectile-or-counsel-git ()
@@ -246,6 +263,15 @@ e.g. Sunday, September 17, 2000."
         (projectile-find-file)
       (counsel-file-jump))))
 
+(defun zilongshanren/pomodoro-notification ()
+  "show notifications when pomodoro end"
+  (if (spacemacs/system-is-mswindows)
+      (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav")))))
+    (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
+             (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
+             (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t))))))
 
 ;; http://blog.lojic.com/2009/08/06/send-growl-notifications-from-carbon-emacs-on-osx/
 (defun zilongshanren/growl-notification (title message &optional sticky)
@@ -574,13 +600,15 @@ With PREFIX, cd to project root."
       (message "No remote branch"))
      (t
       (browse-url
-       (format "https://github.com/%s/pull/new/%s"
-               (replace-regexp-in-string
-                "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-                (magit-get "remote"
-                           (magit-get-remote)
-                           "url"))
-               remote-branch))))))
+       (if (spacemacs/system-is-mswindows)
+           "https://git.code.oa.com/lionqu/HLMJ_js/merge_requests/new"
+         (format "https://github.com/%s/pull/new/%s"
+                 (replace-regexp-in-string
+                  "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+                  (magit-get "remote"
+                             (magit-get-remote)
+                             "url"))
+                 remote-branch)))))))
 
 (defun zilongshanren/markdown-to-html ()
   (interactive)
