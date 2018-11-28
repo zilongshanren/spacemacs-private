@@ -9,6 +9,19 @@
 ;;
 ;;; License: GPLv3
 
+(defun zilongshanren/highlight-dwim ()
+  (interactive)
+  (if (use-region-p)
+      (progn
+        (highlight-frame-toggle)
+        (deactivate-mark))
+    (symbol-overlay-put)))
+
+(defun zilongshanren/clearn-highlight ()
+    (interactive)
+  (clear-highlight-frame)
+  (symbol-overlay-remove-all))
+
 (defun ivy-with-thing-at-point (cmd)
   (let ((ivy-initial-inputs-alist
          (list
