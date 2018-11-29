@@ -110,8 +110,7 @@ values."
                     helm-flyspell flyspell-correct-helm clean-aindent-mode
                     helm-c-yasnippet ace-jump-helm-line helm-make magithub
                     helm-themes helm-swoop helm-spacemacs-help smeargle
-                    ido-vertical-mode flx-ido company-quickhelp ivy-rich
-                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
+                    ido-vertical-mode flx-ido company-quickhelp ivy-rich helm-purpose
                     )
    dotspacemacs-install-packages 'used-only
    dotspacemacs-delete-orphan-packages t))
@@ -354,7 +353,7 @@ values."
   (setq byte-compile-warnings '(not obsolete))
   (setq warning-minimum-level :error)
   ;; hack for remove purpose mode
-  (setq purpose-mode nil)
+  ;; (setq purpose-mode nil)
   )
 
 (defun dotspacemacs/user-config ()
