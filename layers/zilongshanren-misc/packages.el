@@ -29,6 +29,7 @@
         4clojure
         persp-mode
         tiny
+        expand-region
         ;; smartparens
         flyspell-correct
         peep-dired
@@ -46,6 +47,40 @@
         browse-at-remote
         ))
 
+(defun zilongshanren-misc/post-init-expand-region ()
+  (with-eval-after-load 'expand-region
+    (when (configuration-layer/package-used-p 'helm-ag)
+      (defadvice er/prepare-for-more-expansions-internal
+          (around helm-ag/prepare-for-more-expansions-internal activate)
+        ad-do-it
+        (let ((new-msg (concat (car ad-return-value)
+                               ", H to highlight in buffers"
+                               ", / to search in project, "
+                               "f to search in files, "
+                               "b to search in opened buffers"))
+              (new-bindings (cdr ad-return-value)))
+          (cl-pushnew
+           '("H" (lambda ()
+                   (call-interactively
+                    'zilongshanren/highlight-dwim)))
+           new-bindings)
+          (cl-pushnew
+           '("/" (lambda ()
+                   (call-interactively
+                    'spacemacs/helm-project-smart-do-search-region-or-symbol)))
+           new-bindings)
+          (cl-pushnew
+           '("f" (lambda ()
+                   (call-interactively
+                    'spacemacs/helm-files-smart-do-search-region-or-symbol)))
+           new-bindings)
+          (cl-pushnew
+           '("b" (lambda ()
+                   (call-interactively
+                    'spacemacs/helm-buffers-smart-do-search-region-or-symbol)))
+           new-bindings)
+          (setq ad-return-value (cons new-msg new-bindings)))))))
+
 (defun zilongshanren-misc/init-browse-at-remote ()
   (use-package browse-at-remote
     :defer t
@@ -55,37 +90,6 @@
   (use-package highlight-global
     :init
     (progn
-      (when (configuration-layer/package-used-p 'helm-ag)
-        (defadvice er/prepare-for-more-expansions-internal
-            (around helm-ag/prepare-for-more-expansions-internal activate)
-          ad-do-it
-          (let ((new-msg (concat (car ad-return-value)
-                                 ", H to highlight in buffers"
-                                 ", / to search in project, "
-                                 "f to search in files, "
-                                 "b to search in opened buffers"))
-                (new-bindings (cdr ad-return-value)))
-            (cl-pushnew
-             '("H" (lambda ()
-                     (call-interactively
-                      'zilongshanren/highlight-dwim)))
-             new-bindings)
-            (cl-pushnew
-             '("/" (lambda ()
-                     (call-interactively
-                      'spacemacs/helm-project-smart-do-search-region-or-symbol)))
-             new-bindings)
-            (cl-pushnew
-             '("f" (lambda ()
-                     (call-interactively
-                      'spacemacs/helm-files-smart-do-search-region-or-symbol)))
-             new-bindings)
-            (cl-pushnew
-             '("b" (lambda ()
-                     (call-interactively
-                      'spacemacs/helm-buffers-smart-do-search-region-or-symbol)))
-             new-bindings)
-            (setq ad-return-value (cons new-msg new-bindings)))))
 
       (setq-default highlight-faces
         '(('hi-red-b . 0)
