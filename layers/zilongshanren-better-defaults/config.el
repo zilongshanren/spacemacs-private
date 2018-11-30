@@ -203,13 +203,17 @@ Single Capitals as you type."
   '(;; --line-number forces line numbers (disabled by default on windows)
     ;; no --vimgrep because it adds column numbers that wgrep can't handle
     ;; see https://github.com/syl20bnr/spacemacs/pull/8065
-    ("rg" . "rg --smart-case --ignore-file '.rgignore' --no-heading --color never --line-number --max-columns 220 %s %S .")
+    ("rg" . "rg  --smart-case --ignore-file '.rgignore' --no-heading --color never --line-number --max-columns 220 %s %S .")
     ("ag" . "ag --nocolor --nogroup %s %S .")
     ("pt" . "pt -e --nocolor --nogroup %s %S .")
     ("ack" . "ack --nocolor --nogroup %s %S .")
     ("grep" . "grep -nrP %s %S ."))
   "An alist of search commands and their corresponding commands
 with options to run in the shell.")
+
+;; search chinse must add this line
+;; https://emacs-china.org/t/emacs-helm-ag/6764
+(modify-coding-system-alist 'process "rg" '(utf-8 . chinese-gbk-dos))
 
 
 ;; https://emacs-china.org/t/advice/7566
