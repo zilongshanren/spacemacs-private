@@ -210,7 +210,9 @@ with options to run in the shell.")
 
 ;; search chinse must add this line
 ;; https://emacs-china.org/t/emacs-helm-ag/6764
-(modify-coding-system-alist 'process "rg" '(utf-8 . chinese-gbk-dos))
+(if (spacemacs/system-is-mswindows)
+    (modify-coding-system-alist 'process "rg" '(utf-8 . chinese-gbk-dos))
+  (modify-coding-system-alist 'process "rg" '(utf-8 . utf-8)))
 
 
 ;; https://emacs-china.org/t/advice/7566
