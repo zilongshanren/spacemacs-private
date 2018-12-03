@@ -193,11 +193,8 @@ Single Capitals as you type."
 ;;   (setq w32-pipe-read-delay 0.5))
 
 ;; FIXME: --vimgrep will break ivy-occur with wgrep
-(when (spacemacs/system-is-mswindows)
-  (setq counsel-async-split-string-re "\r?\n")
-  ;; -M 220不搜索超过220行的匹配项
-  (setq counsel-rg-base-command  "rg -S -M 220 --no-heading --line-number --color never %s .")
-  )
+(setq counsel-async-split-string-re "\r?\n")
+;; (setq counsel-ag-base-command  "ag --vimgrep --nocolor --nogroup %s")
 
 (defvar spacemacs--counsel-commands
   '(;; --line-number forces line numbers (disabled by default on windows)
