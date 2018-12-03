@@ -438,6 +438,10 @@ values."
 
   (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
 
+  (setq ivy-more-chars-alist '((counsel-ag . 2)
+                               (counsel-grep .2)
+                               (t . 3)))
+
   ;; boost find file and load saved persp layout  performance
   ;; which will break some function on windows platform
   ;; eg. known issues: magit related buffer color, reopen will fix it
