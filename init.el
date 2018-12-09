@@ -38,7 +38,8 @@ values."
      prodigy
      search-engine
      graphviz
-     (haskell :variables haskell-enable-hindent t)
+     (haskell :variables haskell-enable-hindent t
+              haskell-completion-backend 'intero)
      (syntax-checking :variables syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
@@ -53,11 +54,9 @@ values."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (auto-completion
-      (haskell :variables haskell-completion-backend 'intero)
-      :variables auto-completion-enable-sort-by-usage t
-      auto-completion-enable-snippets-in-popup t
-      :disabled-for org markdown)
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t
+                      :disabled-for org markdown)
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
           osx-command-as 'super)
      restclient

@@ -44,7 +44,14 @@
         cider
         ;; editorconfig
         robe
+        helm-hoogle
         ))
+(defun zilongshanren-programming/init-helm-hoogle ()
+  (use-package helm-hoogle
+    :defer t
+    :init
+    (dolist (mode haskell-modes)
+      (spacemacs/set-leader-keys-for-major-mode mode "hf" 'helm-hoogle))))
 
 (defun zilongshanren-programming/post-init-robe ()
   (progn
