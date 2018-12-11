@@ -285,20 +285,23 @@
 (defun js2r-toggle-object-property-access-style ()
   "Convert the string at point into a template string."
   (interactive)
-  (let ((node (js2-node-at-point)))
-    (if (js2-string-node-p node)
-        (let* ((start (js2-node-abs-pos node))
-               (end (+ start (js2-node-len node))))
-          (when (memq (char-before start) '(?\[))
-            (save-excursion
-              (goto-char (-  end 1)) (delete-char 2)
-              (goto-char (+ start 1)) (delete-char -2) (insert "."))))
-      (let* ((start (js2-node-abs-pos node))
-             (end (+ start (js2-node-len node))))
-        (when (memq (char-before start) '(?.))
-          (save-excursion
-            (goto-char end) (insert "\']")
-            (goto-char start) (delete-char -1) (insert "[\'")))))))
+  (js2r--guard)
+  (js2r--wait-for-parse
+   (save-excursion
+     (let ((node (js2-node-at-point)))
+       (if (js2-string-node-p node)
+           (let* ((start (js2-node-abs-pos node))
+                  (end (+ start (js2-node-len node))))
+             (when (memq (char-before start) '(?\[))
+               (save-excursion
+                 (goto-char (-  end 1)) (delete-char 2)
+                 (goto-char (+ start 1)) (delete-char -2) (insert "."))))
+         (let* ((start (js2-node-abs-pos node))
+                (end (+ start (js2-node-len node))))
+           (when (memq (char-before start) '(?.))
+             (save-excursion
+               (goto-char end) (insert "\']")
+               (goto-char start) (delete-char -1) (insert "[\'")))))))))
 
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "r>" 'js2r-forward-slurp
