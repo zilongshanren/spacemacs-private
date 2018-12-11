@@ -281,9 +281,23 @@
 
 (defun zilongshanren-programming/post-init-js2-refactor ()
   (progn
+    
+(defun js2r-dot-to-object-bracket ()
+  "Convert the string at point into a template string."
+  (interactive)
+  (let ((node (js2-node-at-point)))
+    (when (js2-node-p node)
+      (let* ((start (js2-node-abs-pos node))
+             (end (+ start (js2-node-len node))))
+        (when (memq (char-before start) '(?.))
+          (save-excursion
+            (goto-char end) (insert "\']")
+            (goto-char start) (delete-char -1) (insert "[\'")))))))
+
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "r>" 'js2r-forward-slurp
-      "r<" 'js2r-forward-barf)))
+      "r<" 'js2r-forward-barf
+      "r." 'js2r-dot-to-object-bracket)))
 
 (defun zilongshanren-programming/post-init-js2-mode ()
   (progn

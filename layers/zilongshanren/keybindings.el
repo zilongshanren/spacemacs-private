@@ -169,6 +169,7 @@
 (spacemacs/set-leader-keys "ob" 'popwin:display-last-buffer)
 (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
+(spacemacs/set-leader-keys "sS" 'spacemacs/swiper-region-or-symbol)
 
 (bind-key* "s-p" 'find-file-in-project)
 (spacemacs/set-leader-keys "os" 'counsel-ag-thing-at-point)
