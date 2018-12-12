@@ -453,6 +453,13 @@ values."
            (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
 
 
+  (defun counsel-locate-cmd-es (input)
+    "Return a shell command based on INPUT."
+    (counsel-require-program "es.exe")
+    (encode-coding-string (format "es.exe -i -r -p %s"
+                                  (counsel-unquote-regex-parens
+                                   (ivy--regex input t)))
+                          'gbk))
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
   )
 
