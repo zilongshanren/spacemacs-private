@@ -290,7 +290,7 @@
   (progn
     
 (defun js2r-toggle-object-property-access-style ()
-  "Convert the string at point into a template string."
+  "Toggle js object property access style."
   (interactive)
   (js2r--guard)
   (js2r--wait-for-parse
