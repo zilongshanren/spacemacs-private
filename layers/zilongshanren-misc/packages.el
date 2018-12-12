@@ -1194,12 +1194,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (setq ivy-wrap t)
         (setq confirm-nonexistent-file-or-buffer t)
 
-        ;; (when (not (configuration-layer/layer-usedp 'helm))
-        ;;   (spacemacs/set-leader-keys "sp" 'counsel-git-grep)
-        ;;   (spacemacs/set-leader-keys "sP" 'spacemacs/counsel-git-grep-region-or-symbol))
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
-        ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-call)
-        ;; (define-key ivy-minibuffer-map (kbd "C-s-m") 'ivy-partial-or-done)
         (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done-hydra)
         (define-key ivy-minibuffer-map (kbd "C-c C-e") 'spacemacs//counsel-edit)
