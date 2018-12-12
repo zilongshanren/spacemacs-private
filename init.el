@@ -38,6 +38,8 @@ values."
      prodigy
      search-engine
      graphviz
+     (haskell :variables haskell-enable-hindent t
+              haskell-completion-backend 'intero)
      (syntax-checking :variables syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
