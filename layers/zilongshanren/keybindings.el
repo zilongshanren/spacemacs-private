@@ -135,6 +135,7 @@
 (spacemacs/set-leader-keys "bmj" 'counsel-bookmark)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
+(spacemacs/set-leader-keys "ok" 'zilongshanren-kill-other-persp-buffers)
 (spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
 (spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
 

@@ -943,8 +943,18 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     ))
 
 (defun zilongshanren-misc/post-init-persp-mode ()
-  (setq persp-kill-foreign-buffer-action 'kill)
+  (setq persp-kill-foreign-buffer-behaviour 'kill)
   (setq persp-lighter nil)
+
+  (defun zilongshanren-kill-other-persp-buffers (&optional arg)
+    "Kill all other buffers in current persp layout"
+    (interactive)
+    (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
+                               (buffer-name)))
+      (mapc 'persp-kill-buffer (delq (current-buffer) (persp-buffer-list)))
+      (persp-add-buffer (current-buffer))
+      (message "Buffers deleted!")))
+
   (when (fboundp 'spacemacs|define-custom-layout)
     (spacemacs|define-custom-layout "@Cocos2D-X"
       :binding "c"
