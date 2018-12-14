@@ -785,6 +785,11 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
     (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
+    (define-key evil-normal-state-map (kbd "g[")
+      (lambda () (interactive) (beginning-of-defun)))
+
+    (define-key evil-normal-state-map (kbd "g]")
+      (lambda () (interactive) (end-of-defun)))
 
     (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
     (define-key evil-normal-state-map (kbd "] b") 'next-buffer)

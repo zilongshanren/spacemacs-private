@@ -449,7 +449,7 @@ values."
   ;; eg. known issues: magit related buffer color, reopen will fix it
   (when (spacemacs/system-is-mswindows)
     (progn (setq find-file-hook nil)
-           (setq vc-handled-backends (delq 'Git vc-handled-backends))
+           (setq vc-handled-backends nil)
            (setq magit-refresh-status-buffer nil)
            (add-hook 'find-file-hook 'spacemacs/check-large-file)
            (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))

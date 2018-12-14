@@ -244,7 +244,7 @@
       (push '(cider-repl-mode . ("[`'~@]+" "#" "#\\?@?")) lispy-parens-preceding-syntax-alist)
 
       (spacemacs|hide-lighter lispy-mode)
-      (define-key lispy-mode-map (kbd "s-j") 'lispy-splice)
+      (define-key lispy-mode-map (kbd "M-s") 'lispy-splice)
       (define-key lispy-mode-map (kbd "s-k") 'paredit-splice-sexp-killing-backward)
 
       (with-eval-after-load 'cider-repl
@@ -254,6 +254,7 @@
        'minibuffer-setup-hook
        'conditionally-enable-lispy)
       (define-key lispy-mode-map (kbd "s-m") 'lispy-mark-symbol)
+      (define-key lispy-mode-map (kbd "s-u") 'lispy-undo)
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
 
