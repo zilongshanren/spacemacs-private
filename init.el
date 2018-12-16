@@ -594,6 +594,7 @@ dump."
            (setq magit-refresh-status-buffer nil)
            (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
+           ;; emax.7z in not under pdumper release
            ;; https://github.com/m-parashar/emax64/releases/tag/pdumper-20180619
            (defvar emax-root (concat (expand-file-name "~") "/emax"))
 
