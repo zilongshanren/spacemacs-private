@@ -610,6 +610,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/post-init-helm ()
   (with-eval-after-load 'helm
     (progn
+      (setq helm-buffer-max-length 56)
+
       ;; limit max number of matches displayed for speed
       (setq helm-candidate-number-limit 100)
       ;; ignore boring files like .o and .a
