@@ -161,7 +161,13 @@
                  ;;                     'help-echo
                  ;;                     (concat (format-time-string "%c; ")
                  ;;                             (emacs-uptime "Uptime:%hh"))))
-                 )))
+                 ))
+
+  ;; remove which func from modeline
+  (setq mode-line-misc-info (cdr mode-line-misc-info))
+  ;; git branch on mode line may have some performance issue
+  ;; (setq auto-revert-check-vc-info t)
+  )
 
 (defun zilongshanren-ui/post-init-diminish ()
   (progn
