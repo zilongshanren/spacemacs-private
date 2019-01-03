@@ -7,15 +7,15 @@
 (defvar blog-admin-dir ""
   "blog-admin files location")
 
-(if (and (spacemacs/system-is-mswindows) window-system)
+(if (spacemacs/system-is-mswindows)
+    (setq
+     org-agenda-dir "f:/org-notes"
+     deft-dir "f:/org-notes"
+     blog-admin-dir "f:/zilongshanren.com")
   (setq
- org-agenda-dir "f:/org-notes"
- deft-dir "f:/org-notes"
- blog-admin-dir "f:/zilongshanren.com")
-  (setq
- org-agenda-dir "~/org-notes"
- deft-dir "~/org-notes"
- blog-admin-dir "~/zilongshanren.com"))
+   org-agenda-dir "~/org-notes"
+   deft-dir "~/org-notes"
+   blog-admin-dir "~/zilongshanren.com"))
 
 
 ;;load sensitive data

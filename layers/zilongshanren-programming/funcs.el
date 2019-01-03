@@ -83,7 +83,7 @@ comment box."
     (progn
       (yas-global-mode 1)
       (setq my-snippet-dir (expand-file-name "~/.spacemacs.d/snippets"))
-      (setq yas-snippet-dirs  my-snippet-dir)
+      (setq yas-snippet-dirs '(my-snippet-dir))
       (yas-load-directory my-snippet-dir)
       (setq yas-wrap-around-region t)))
   (yas-minor-mode 1))

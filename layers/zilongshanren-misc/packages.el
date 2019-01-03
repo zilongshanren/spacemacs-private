@@ -610,6 +610,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/post-init-helm ()
   (with-eval-after-load 'helm
     (progn
+      (setq helm-buffer-max-length 56)
+
       ;; limit max number of matches displayed for speed
       (setq helm-candidate-number-limit 100)
       ;; ignore boring files like .o and .a
@@ -785,6 +787,11 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
     (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
+    (define-key evil-normal-state-map (kbd "g[")
+      (lambda () (interactive) (beginning-of-defun)))
+
+    (define-key evil-normal-state-map (kbd "g]")
+      (lambda () (interactive) (end-of-defun)))
 
     (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
     (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
@@ -938,8 +945,18 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     ))
 
 (defun zilongshanren-misc/post-init-persp-mode ()
-  (setq persp-kill-foreign-buffer-action 'kill)
+  (setq persp-kill-foreign-buffer-behaviour 'kill)
   (setq persp-lighter nil)
+
+  (defun zilongshanren-kill-other-persp-buffers (&optional arg)
+    "Kill all other buffers in current persp layout"
+    (interactive)
+    (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
+                               (buffer-name)))
+      (mapc 'persp-kill-buffer (delq (current-buffer) (persp-buffer-list)))
+      (persp-add-buffer (current-buffer))
+      (message "Buffers deleted!")))
+
   (when (fboundp 'spacemacs|define-custom-layout)
     (spacemacs|define-custom-layout "@Cocos2D-X"
       :binding "c"
@@ -1194,12 +1211,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (setq ivy-wrap t)
         (setq confirm-nonexistent-file-or-buffer t)
 
-        ;; (when (not (configuration-layer/layer-usedp 'helm))
-        ;;   (spacemacs/set-leader-keys "sp" 'counsel-git-grep)
-        ;;   (spacemacs/set-leader-keys "sP" 'spacemacs/counsel-git-grep-region-or-symbol))
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
-        ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-call)
-        ;; (define-key ivy-minibuffer-map (kbd "C-s-m") 'ivy-partial-or-done)
         (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
         (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done-hydra)
         (define-key ivy-minibuffer-map (kbd "C-c C-e") 'spacemacs//counsel-edit)

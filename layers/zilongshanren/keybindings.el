@@ -74,7 +74,6 @@
 (bind-key* "s-," 'zilongshanren/insert-comma-at-the-end-of-this-line)
 ;; (bind-key* "C-s-," 'zilongshanren/delete-comma-at-the-end-of-this-line)
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
-;; (bind-key* "M-s o" 'occur-dwim)
 (bind-key* "C-=" 'er/expand-region)
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 (bind-key* "C-c k" 'which-key-show-top-level)
@@ -136,6 +135,7 @@
 (spacemacs/set-leader-keys "bmj" 'counsel-bookmark)
 
 (spacemacs/set-leader-keys "od" 'occur-dwim)
+(spacemacs/set-leader-keys "ok" 'zilongshanren-kill-other-persp-buffers)
 (spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
 (spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
 
@@ -169,6 +169,7 @@
 (spacemacs/set-leader-keys "ob" 'popwin:display-last-buffer)
 (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
+(spacemacs/set-leader-keys "sS" 'spacemacs/swiper-region-or-symbol)
 
 (bind-key* "s-p" 'find-file-in-project)
 (spacemacs/set-leader-keys "os" 'counsel-ag-thing-at-point)
