@@ -61,7 +61,8 @@ values."
           osx-command-as 'super)
      restclient
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
-     (shell :variables shell-default-shell 'eshell)
+     (shell :variables shell-default-shell 'ansi-term
+            shell-default-term-shell "/bin/zsh")
      ;; docker
      latex
      deft
@@ -439,7 +440,6 @@ values."
       (kill-region (region-beginning) (region-end))))
 
   (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
-
   (setq ivy-more-chars-alist '((counsel-ag . 2)
                                (counsel-grep .2)
                                (t . 3)))
