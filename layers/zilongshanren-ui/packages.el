@@ -284,7 +284,8 @@ This segment overrides the modeline functionality of `org-mode-line-string'."
 
 (defun zilongshanren-ui/post-init-popwin ()
   (progn
-    (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
+    ;FIXME: 
+    ;; (push "*zilongshanren/run-current-file output*" popwin:special-display-config)
     (delete "*Async Shell Command*" popwin:special-display-config)))
 
 (defun zilongshanren-ui/post-init-whitespace ()

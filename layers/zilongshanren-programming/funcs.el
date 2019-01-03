@@ -47,8 +47,8 @@ comment box."
 (defun zilongshanren/run-current-file ()
   "Compile and/or Execute the current file."
   (interactive)
-  (compile-dwim-compile)
-  (compile-dwim-run))
+  ;; (call-interactively #'compile-dwim-compile)
+  (call-interactively #'compile-dwim-run))
 
 
 
