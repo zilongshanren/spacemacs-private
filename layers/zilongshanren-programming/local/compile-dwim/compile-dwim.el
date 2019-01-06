@@ -5,6 +5,7 @@
 ;; Author: Ye Wenbin <wenbinye@gmail.com>
 ;; Maintainer: Ye Wenbin <wenbinye@gmail.com>
 ;; Created: 8 Dec 2007
+;; Modified: 6 Jan 2019 by zilongshanren
 ;; Version: 0.01
 ;; Package-Version: 20090830.1840
 ;; Keywords: tools
@@ -83,10 +84,10 @@ Its value should be 'always or list like (filename run compile).")
           "javac %f" "java %n" "%n.class")
     (python (or (name . "\\.py$")
                 (mode . python-mode))
-            "%i %f" "%i %f")
+            "python %f" "python %f")
     (javascript (or (name . "\\.js$")
                     (mode . javascript-mode))
-                "smjs -f %f" "smjs -f %f")
+                "node  %f" "node  %f")
     (tex   (or (name . "\\.tex$")
                (name . "\\.ltx$")
                (mode . tex-mode)
@@ -326,6 +327,7 @@ that alist."
           (if (not (file-exists-p exe))
               (progn
                 (compile-dwim-compile t 'compile-dwim-prompt-run)
+                (setq compile-dwim-run-buffer (current-buffer))
                 (setq cancel t))
               (when (and (file-exists-p exe)
                          (time-less-p (nth 5 (file-attributes exe))
