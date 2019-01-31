@@ -14,10 +14,10 @@ Why use the forked repo?  What's the difference between the forked repo and the 
 The forked version is only a few commits behind the original repo, becuase sometimes the original repo can't functional well.
 
 ** What's the highlight of this configuration
-1. It's a highly optimized Spacemacs configuration, you should use the configuration together with the *develop* branch of the officially Spacemacs.
+1. It's a highly optimized Spacemacs configuration, you should use the configuration together with the *develop* branch of the forked Spacemacs.
 2. I prefer to the =Ivy= completion interface, so I removed many helm related packages but keep the =helm-ag= package. The =counsel-ag= counterpart is not powerful as =helm-ag=.
 3. I also removed some packages I don't have any chance to use. The complete list lies in the exclude section of the =init.el= file.
 4. I also exclude the =Spaceline= package, cause it's easy to frozen the Emacs with this package enabled. So I create my own mode line configuration based on =Spaceline=.
-5. The =Swiper= package sometimes frozen the Emacs UI when you split the window with very long lines. You could use `pkill -SIGUSR2 -i emacs` command line to break the frozen.
+5. The =Swiper= package sometimes frozen the Emacs UI when you split the window with very long lines. You could use `pkill -SIGUSR2 -i emacs` in command line to save the frozen Emacs.
 
 ** Happing Hacking
