@@ -23,6 +23,7 @@
         flycheck
         nodejs-repl
         (nodejs-repl-eval :location local)
+        (compile-dwim :location local)
         js2-mode
         js2-refactor
         json-mode
@@ -46,6 +47,11 @@
         robe
         exec-path-from-shell
         ))
+
+(defun zilongshanren-programming/init-compile-dwim ()
+  (use-package compile-dwim
+    :commands (compile-dwim-run compile-dwim-compile)
+    :init))
 
 (defun zilongshanren-programming/init-exec-path-from-shell ()
   (use-package exec-path-from-shell

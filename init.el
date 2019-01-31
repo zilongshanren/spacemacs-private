@@ -61,7 +61,8 @@ This function should only modify configuration layer settings."
           osx-command-as 'super)
      restclient
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
-     (shell :variables shell-default-shell 'eshell)
+     (shell :variables shell-default-shell 'ansi-term
+            shell-default-term-shell "/bin/zsh")
      ;; docker
      latex
      deft
@@ -580,7 +581,6 @@ dump."
       (kill-region (region-beginning) (region-end))))
 
   (advice-add 'counsel-yank-pop :before #'moon-override-yank-pop)
-
   (setq ivy-more-chars-alist '((counsel-ag . 2)
                                (counsel-grep .2)
                                (t . 3)))
@@ -616,7 +616,6 @@ dump."
                (setenv "PATH" (concat emax-mingw64 ";" (getenv "PATH")))))
 
            (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
-
 
   (defun counsel-locate-cmd-es (input)
     "Return a shell command based on INPUT."
