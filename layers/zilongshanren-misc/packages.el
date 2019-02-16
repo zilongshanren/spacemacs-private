@@ -119,17 +119,22 @@
                (count (length after)))
           (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count 1))))
 
+      (defhydra hydra-hilight-jump (:hint nil)
+        "\n <-- _p_rev _n_ext _t_oggle _<_first _>_last -->\n"
+        ("n" symbol-overlay-jump-next)
+        ("p" symbol-overlay-jump-prev)
+        ("t" symbol-overlay-toggle-in-scope)
+        (">" symbol-overlay-switch-last)
+        ("<" symbol-overlay-switch-first))
 
-
-      ;; (spacemacs/set-leader-keys "hh" 'symbol-overlay-put)
-      ;; (spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
-      (global-set-key (kbd "M-h") 'symbol-overlay-put)
-      (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
-      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward))
-    :config
-    (progn
-      (define-key symbol-overlay-map (kbd "<") 'symbol-overlay-switch-first)
-      (define-key symbol-overlay-map (kbd ">") 'symbol-overlay-switch-last))))
+      (defvar symbol-overlay-map
+        (let ((map (make-sparse-keymap)))
+          (define-key map (kbd "n") 'hydra-hilight-jump/body)
+          (define-key map (kbd "p") 'hydra-hilight-jump/body)
+          map)
+        "Keymap automatically activated inside overlays.
+You can re-bind the commands to any keys you prefer.")
+      ))
 
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio
