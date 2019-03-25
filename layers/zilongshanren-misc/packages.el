@@ -885,6 +885,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       (bind-key* "C-s-l" 'mc/edit-lines)
       (bind-key* "C-s-f" 'mc/mark-all-dwim)
       (bind-key* "C-s-." 'mc/mark-next-like-this)
+      (bind-key* "s-." 'mc/mark-next-like-this)
       (bind-key* "C-s-," 'mc/mark-previous-like-this)
       (bind-key* "s->" 'mc/unmark-next-like-this)
       (bind-key* "s-<" 'mc/unmark-previous-like-this)
