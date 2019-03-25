@@ -625,6 +625,8 @@ dump."
                                    (ivy--regex input t)))
                           'gbk))
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
+
+
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
