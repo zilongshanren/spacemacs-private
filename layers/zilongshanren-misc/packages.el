@@ -97,45 +97,13 @@
           ('hi-pink . 0)
           ('hi-blue-b . 0))))))
 
-(defun zilongshanren-misc/init-symbol-overlay ()
-  (use-package symbol-overlay
-    :init
+(defun zilongshanren-misc/post-init-symbol-overlay ()
+  (with-eval-after-load 'symbol-overlay
     (progn
-      (defun symbol-overlay-switch-first ()
-        (interactive)
-        (let* ((symbol (symbol-overlay-get-symbol))
-               (keyword (symbol-overlay-assoc symbol))
-               (a-symbol (car keyword))
-               (before (symbol-overlay-get-list a-symbol 'car))
-               (count (length before)))
-          (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count))))
-
-      (defun symbol-overlay-switch-last ()
-        (interactive)
-        (let* ((symbol (symbol-overlay-get-symbol))
-               (keyword (symbol-overlay-assoc symbol))
-               (a-symbol (car keyword))
-               (after (symbol-overlay-get-list a-symbol 'cdr))
-               (count (length after)))
-          (symbol-overlay-jump-call 'symbol-overlay-basic-jump (- count 1))))
-
-      (defhydra hydra-hilight-jump (:hint nil)
-        "\n <-- _p_rev _n_ext _t_oggle _<_first _>_last -->\n"
-        ("n" symbol-overlay-jump-next)
-        ("p" symbol-overlay-jump-prev)
-        ("t" symbol-overlay-toggle-in-scope)
-        (">" symbol-overlay-switch-last)
-        ("<" symbol-overlay-switch-first))
-
-      (defvar symbol-overlay-map
-        (let ((map (make-sparse-keymap)))
-          (define-key map (kbd "n") 'hydra-hilight-jump/body)
-          (define-key map (kbd "p") 'hydra-hilight-jump/body)
-          map)
-        "Keymap automatically activated inside overlays.
-You can re-bind the commands to any keys you prefer.")
-      ))
-)
+      (spacemacs/transient-state-register-add-bindings 'symbol-overlay
+      '((">" symbol-overlay-jump-last)
+        ("s" spacemacs/swiper-region-or-symbol)
+        ("<" symbol-overlay-jump-first))))))
 
 (defun zilongshanren-misc/post-init-golden-ratio ()
   (with-eval-after-load 'golden-ratio

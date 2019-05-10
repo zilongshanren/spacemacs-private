@@ -15,7 +15,7 @@
       (progn
         (highlight-frame-toggle)
         (deactivate-mark))
-    (symbol-overlay-put)))
+    (spacemacs/symbol-overlay)))
 
 (defun zilongshanren/clearn-highlight ()
     (interactive)
