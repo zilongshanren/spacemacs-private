@@ -20,4 +20,7 @@ The forked version is only a few commits behind the original repo, becuase somet
 4. I also exclude the =Spaceline= package, cause it's easy to frozen the Emacs with this package enabled. So I create my own mode line configuration based on =Spaceline=.
 5. The =Swiper= package sometimes frozen the Emacs UI when you split the window with very long lines. You could use `pkill -SIGUSR2 -i emacs` in command line to save the frozen Emacs.
 
+** Optional    
+*** Install Imagemagick 
+
 ** Happing Hacking
