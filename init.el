@@ -67,7 +67,8 @@ This function should only modify configuration layer settings."
      latex
      deft
      markdown
-     (org :variables org-want-todo-bindings t)
+     (org :variables org-want-todo-bindings t
+          org-enable-hugo-support t)
      gpu
      yaml
      react
@@ -481,10 +482,10 @@ dump."
   )
 
 (defun dotspacemacs/user-init ()
-	(setq-default configuration-layer-elpa-archives
-      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-        ("org-cn"   . "http://elpa.emacs-china.org/org/")
-        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+	;; (setq-default configuration-layer-elpa-archives
+    ;;   '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+    ;;     ("org-cn"   . "http://elpa.emacs-china.org/org/")
+    ;;     ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)

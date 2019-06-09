@@ -8,6 +8,14 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
+(defun browse-hugo-maybe ()
+  (interactive)
+  (let ((hugo-service-name "Hugo Server")
+        (hugo-service-port "1313"))
+    (if (prodigy-service-started-p (prodigy-find-service hugo-service-name))
+        (progn
+          (message "Hugo detected, launching browser...")
+          (browse-url (concat "http://localhost:" hugo-service-port))))))
 
 (defun zilongshanren/highlight-dwim ()
   (interactive)
@@ -217,7 +225,7 @@ org-files and bookmarks"
   `((name . "Mail and News")
     (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
                    ("RSS" . elfeed)
-                   ("Blog" . blog-admin-start)
+                   ("Blog" . browse-hugo-maybe)
                    ("Random Todo" . org-random-entry)
                    ("Github" . (lambda() (helm-github-stars)))
                    ("Calculator" . (lambda () (helm-calcul-expression)))

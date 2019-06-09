@@ -1023,66 +1023,31 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       :env '(("LANG" "en_US.UTF-8")
              ("LC_ALL" "en_US.UTF-8")))
     ;; define service
-    (prodigy-define-service
-      :name "Preview cocos2d-x web"
-      :command "python"
-      :args '("-m" "SimpleHTTPServer" "6001")
-      :cwd "~/cocos2d-x/web"
-      :tags '(work)
-      :kill-signal 'sigkill
-      :kill-process-buffer-on-stop t)
+    
 
     (prodigy-define-service
-      :name "Preview creator engine"
-      :command "python"
-      :args '("-m" "SimpleHTTPServer" "6004")
-      :cwd "~/Github/fireball/engine"
-      :tags '(work)
-      :kill-signal 'sigkill
-      :kill-process-buffer-on-stop t)
-
-    (prodigy-define-service
-      :name "Hexo Server"
-      :command "hexo"
-      :args '("server")
+      :name "Hugo Server"
+      :command "hugo"
+      :args '("server" "-D" "--navigateToChanged" "-t" "even")
       :cwd blog-admin-dir
-      :tags '(hexo server)
+      :tags '(hugo server)
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)
 
     (prodigy-define-service
       :name "Hexo Deploy"
-      :command "hexo"
-      :args '("deploy" "--generate")
+      :command "bash"
+      :args '("./deploy.sh" )
       :cwd blog-admin-dir
       :tags '(hexo deploy)
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)
 
-    (prodigy-define-service
-      :name "Debug Fireball"
-      :command "npm"
-      :args '("start" "--" "--nologin" "/Users/guanghui/Github/example-cases")
-      :cwd "~/Github/fireball/"
-      :tags '(work)
-      :kill-signal 'sigkill
-      :kill-process-buffer-on-stop t)
-
-    (prodigy-define-service
-      :name "Org wiki preview"
-      :command "python"
-      :args '("-m" "SimpleHTTPServer" "8088")
-      :cwd "~/org-notes/public_html"
-      :tags '(org-mode)
-      :init (lambda () (browse-url "http://localhost:8088"))
-      :kill-signal 'sigkill
-      :kill-process-buffer-on-stop t)
-
-    (defun refresh-chrome-current-tab (beg end length-before)
-      (call-interactively 'zilongshanren/browser-refresh--chrome-applescript))
-    ;; add watch for prodigy-view-mode buffer change event
-    (add-hook 'prodigy-view-mode-hook
-              #'(lambda() (set (make-local-variable 'after-change-functions) #'refresh-chrome-current-tab)))
+    ;; (defun refresh-chrome-current-tab (beg end length-before)
+    ;;   (call-interactively 'zilongshanren/browser-refresh--chrome-applescript))
+    ;; ;; add watch for prodigy-view-mode buffer change event
+    ;; (add-hook 'prodigy-view-mode-hook
+    ;;           #'(lambda() (set (make-local-variable 'after-change-functions) #'refresh-chrome-current-tab)))
 
     ))
 
