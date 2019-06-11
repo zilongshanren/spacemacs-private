@@ -34,6 +34,7 @@ This function should only modify configuration layer settings."
      (ivy :variables ivy-enable-advanced-buffer-information nil)
      better-defaults
      ranger
+     emoji
      colors
      prodigy
      search-engine
@@ -503,7 +504,7 @@ dump."
 
 (defun dotspacemacs/user-config ()
   ;;解决org表格里面中英文对齐的问题
-
+   
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))

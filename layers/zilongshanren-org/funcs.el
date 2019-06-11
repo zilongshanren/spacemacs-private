@@ -29,29 +29,14 @@
   (interactive "sScreenshot name: ")
   (if (equal basename "")
       (setq basename (format-time-string "%Y%m%d_%H%M%S")))
-  (setq fullpath
-        (concat (file-name-directory (buffer-file-name))
-                "../img/"
-                (file-name-base (buffer-file-name))
-                "_"
-                basename))
-  (setq relativepath
-        (concat (file-name-base (buffer-file-name))
-                "_"
-                basename
-                ".png"))
-  (if (file-exists-p (file-name-directory fullpath))
-      (progn
-        (setq final-image-full-path (concat fullpath ".png"))
-        (call-process "screencapture" nil nil nil "-s" final-image-full-path)
-        (if (executable-find "convert")
-            (progn
-              (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
-              (shell-command-to-string resize-command-str)))
-        (zilongshanren//insert-org-or-md-img-link "../img/" relativepath))
-    (progn
-      (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
-      (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png"))))
+  (progn
+    (setq final-image-full-path (concat basename ".png"))
+    (call-process "screencapture" nil nil nil "-s" final-image-full-path)
+    (if (executable-find "convert")
+        (progn
+          (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
+          (shell-command-to-string resize-command-str)))
+    (zilongshanren//insert-org-or-md-img-link "./" (concat basename ".png")))
   (insert "\n"))
 
 (defun zilongshanren/org-archive-done-tasks ()
