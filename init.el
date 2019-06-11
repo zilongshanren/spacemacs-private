@@ -626,6 +626,9 @@ dump."
                           'gbk))
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
+  (add-hook 'org-mode-hook 'emojify-mode)
+  (add-hook 'org-mode-hook 'company-emoji-init)
+
   (with-eval-after-load 'transient
     (transient-bind-q-to-quit))
 
