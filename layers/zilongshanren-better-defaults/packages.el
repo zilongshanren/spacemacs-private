@@ -107,6 +107,7 @@
         "`" 'dired-open-term
         "p" 'peep-dired-prev-file
         "n" 'peep-dired-next-file
+        "g" 'revert-buffer
         "z" 'dired-get-size
         "c" 'dired-copy-file-here
         "J" 'counsel-find-file
