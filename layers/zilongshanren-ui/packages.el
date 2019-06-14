@@ -21,7 +21,7 @@
     ;; spaceline
     ;; beacon
     ;; evil-vimish-fold
-    company-box
+    ;; company-box
     )
   )
 

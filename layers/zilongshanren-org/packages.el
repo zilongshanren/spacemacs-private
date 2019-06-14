@@ -282,6 +282,7 @@ unwanted space when exporting org-mode to html."
       (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
       (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
       (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
+      (setq org-agenda-file-blogposts (expand-file-name "all-posts.org" org-agenda-dir))
       (setq org-agenda-files (list org-agenda-dir))
 
       (with-eval-after-load 'org-agenda
@@ -318,6 +319,31 @@ unwanted space when exporting org-mode to html."
                entry (file+datetree org-agenda-file-journal)
                "* %?"
                :empty-lines 1)))
+
+      (with-eval-after-load 'org-capture
+        (defun org-hugo-new-subtree-post-capture-template ()
+          "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+          (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+                 (fname (org-hugo-slug title)))
+            (mapconcat #'identity
+                       `(
+                         ,(concat "* TODO " title)
+                         ":PROPERTIES:"
+                         ,(concat ":EXPORT_FILE_NAME: " fname)
+                         ":END:"
+                         "%?\n")        ;Place the cursor here finally
+                       "\n")))
+
+        (add-to-list 'org-capture-templates
+                     '("h"              ;`org-capture' binding + h
+                       "Hugo post"
+                       entry
+                       ;; It is assumed that below file is present in `org-directory'
+                       ;; and that it has a "Blog Ideas" heading. It can even be a
+                       ;; symlink pointing to the actual location of all-posts.org!
+                       (file+headline org-agenda-file-blogposts "Blog Ideas")
+                       (function org-hugo-new-subtree-post-capture-template))))
 
       ;;An entry without a cookie is treated just like priority ' B '.
       ;;So when create new task, they are default 重要且紧急

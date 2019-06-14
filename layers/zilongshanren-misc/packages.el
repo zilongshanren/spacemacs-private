@@ -1035,11 +1035,11 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       :kill-process-buffer-on-stop t)
 
     (prodigy-define-service
-      :name "Hexo Deploy"
+      :name "hugo Deploy"
       :command "bash"
       :args '("./deploy.sh" )
       :cwd blog-admin-dir
-      :tags '(hexo deploy)
+      :tags '(hugo deploy)
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)
 

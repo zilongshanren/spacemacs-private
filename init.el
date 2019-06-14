@@ -627,7 +627,20 @@ dump."
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   (add-hook 'org-mode-hook 'emojify-mode)
-  (add-hook 'org-mode-hook 'company-emoji-init)
+  (add-hook 'org-mode-hook 'auto-fill-mode)
+
+  ;; https://emacs-china.org/t/ox-hugo-auto-fill-mode-markdown/9547/4
+  (defadvice org-hugo-paragraph (before org-hugo-paragraph-advice
+                                        (paragraph contents info) activate)
+    "Join consecutive Chinese lines into a single long line without
+unwanted space when exporting org-mode to hugo markdown."
+    (let* ((origin-contents (ad-get-arg 1))
+           (fix-regexp "[[:multibyte:]]")
+           (fixed-contents
+            (replace-regexp-in-string
+             (concat
+              "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
+      (ad-set-arg 1 fixed-contents)))
 
   (with-eval-after-load 'transient
     (transient-bind-q-to-quit))
