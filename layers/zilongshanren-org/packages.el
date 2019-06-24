@@ -18,6 +18,7 @@
     org-pomodoro
     deft
     sound-wav
+    ob-typescript
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -253,6 +254,7 @@
          (ruby . t)
          (shell . t)
          (dot . t)
+         (typescript . t)
          (js . t)
          (latex .t)
          (python . t)
@@ -524,6 +526,10 @@ holding contextual information."
   (use-package plain-org-wiki
     :init
     (setq pow-directory "~/org-notes")))
+
+(defun zilongshanren-org/init-ob-typescript ()
+  (use-package ob-typescript
+    :init))
 
 (defun zilongshanren-org/init-worf ()
   (use-package worf
