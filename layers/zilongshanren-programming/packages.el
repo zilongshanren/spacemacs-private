@@ -320,7 +320,8 @@
     (spacemacs/set-leader-keys-for-major-mode 'js2-mode
       "r>" 'js2r-forward-slurp
       "r<" 'js2r-forward-barf
-      "r." 'js2r-toggle-object-property-access-style)))
+      "r." 'js2r-toggle-object-property-access-style
+      "rep" 'js2r-expand-call-args)))
 
 (defun zilongshanren-programming/post-init-js2-mode ()
   (progn

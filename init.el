@@ -57,6 +57,7 @@ This function should only modify configuration layer settings."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
+                      auto-completion-tab-key-behavior nil
                       :disabled-for org markdown)
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
           osx-command-as 'super)
@@ -644,7 +645,6 @@ unwanted space when exporting org-mode to hugo markdown."
 
   (with-eval-after-load 'transient
     (transient-bind-q-to-quit))
-
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
