@@ -21,7 +21,6 @@
         cmake-font-lock
         cmake-mode
         flycheck
-        nodejs-repl
         (nodejs-repl-eval :location local)
         (compile-dwim :location local)
         js2-mode
@@ -224,10 +223,6 @@
     "ti" 'my-toggle-web-indent))
 
 
-(defun zilongshanren-programming/init-nodejs-repl ()
-  (use-package nodejs-repl
-    :init
-    :defer t))
 
 (defun zilongshanren-programming/init-flycheck-package ()
   (use-package flycheck-package))
