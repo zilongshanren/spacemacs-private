@@ -38,6 +38,13 @@
   (with-eval-after-load 'org
     (progn
 
+      ;; Allow multiple line Org emphasis markup.
+      ;; http://emacs.stackexchange.com/a/13828/115
+      (setcar (nthcdr 4 org-emphasis-regexp-components) 20) ;Up to 20 lines, default is just 1
+      ;; Below is needed to apply the modified `org-emphasis-regexp-components'
+      ;; settings from above.
+      (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
       ;; ;; Some usages
