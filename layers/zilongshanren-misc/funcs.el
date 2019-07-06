@@ -609,7 +609,7 @@ With PREFIX, cd to project root."
       (message "No remote branch"))
      (t
       (browse-url
-       (if (spacemacs/system-is-mswindows)
+       (if (or 1 (spacemacs/system-is-mswindows))
            "https://git.code.oa.com/lionqu/HLMJ_js/merge_requests/new"
          (format "https://github.com/%s/pull/new/%s"
                  (replace-regexp-in-string

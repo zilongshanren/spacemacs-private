@@ -618,6 +618,9 @@ dump."
 
            (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
 
+  (setq exec-path (cons "/Users/lionqu/.nvm/versions/node/v10.16.0/bin/" exec-path))
+  (setenv "PATH" (concat "/Users/lionqu/.nvm/versions/node/v10.16.0/bin:" (getenv "PATH")))
+
   (defun counsel-locate-cmd-es (input)
     "Return a shell command based on INPUT."
     (counsel-require-program "es.exe")
