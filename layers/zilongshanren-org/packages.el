@@ -341,7 +341,7 @@ See `org-capture-templates' for more information."
                          ":PROPERTIES:"
                          ,(concat ":EXPORT_FILE_NAME: " fname)
                          ":END:"
-                         "%?\n")        ;Place the cursor here finally
+                         "\n\n")        ;Place the cursor here finally
                        "\n")))
 
         (add-to-list 'org-capture-templates
