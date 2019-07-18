@@ -37,6 +37,7 @@ This function should only modify configuration layer settings."
      emoji
      colors
      prodigy
+     github
      search-engine
      graphviz
      (haskell :variables haskell-enable-hindent t
