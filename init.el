@@ -35,9 +35,11 @@ This function should only modify configuration layer settings."
      better-defaults
      ranger
      emoji
+     lsp
+     dap
      colors
      prodigy
-     github
+     ;; github
      search-engine
      graphviz
      (haskell :variables haskell-enable-hindent t
@@ -81,10 +83,11 @@ This function should only modify configuration layer settings."
      ;; ruby-on-rails
      lua
      html
-     (javascript :variables javascript-backend 'nil)
+     (javascript :variables javascript-backend 'lsp)
      (typescript :variables
-                typescript-fmt-on-save nil
-                typescript-fmt-tool 'typescript-formatter)
+                 typescript-fmt-on-save nil
+                 typescript-fmt-tool 'typescript-formatter
+                typescript-backend 'lsp)
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols t)
      racket

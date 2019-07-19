@@ -257,6 +257,8 @@
       (define-key lispy-mode-map (kbd "s-m") 'lispy-mark-symbol)
       (define-key lispy-mode-map (kbd "s-u") 'lispy-undo)
       (define-key lispy-mode-map (kbd "s-1") 'lispy-describe-inline)
+      ;; fix for emacs 27 bugs
+      (define-key lispy-mode-map (kbd "s-c") 'lispy-describe-inline)
       (define-key lispy-mode-map (kbd "s-2") 'lispy-arglist-inline))))
 
 

@@ -226,6 +226,7 @@ org-files and bookmarks"
     (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
                    ("RSS" . elfeed)
                    ("Blog" . browse-hugo-maybe)
+                   ("Search" . (lambda () (call-interactively #'engine/search-google)))
                    ("Random Todo" . org-random-entry)
                    ("Github" . (lambda() (helm-github-stars)))
                    ("Calculator" . (lambda () (helm-calcul-expression)))
