@@ -294,6 +294,9 @@ unwanted space when exporting org-mode to html."
       (setq org-agenda-file-blogposts (expand-file-name "all-posts.org" org-agenda-dir))
       (setq org-agenda-files (list org-agenda-dir))
 
+      ;; C-n for the next org agenda item
+      (define-key org-agenda-mode-map (kbd "C-p") 'org-agenda-previous-item)
+
       (with-eval-after-load 'org-agenda
         (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
