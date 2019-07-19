@@ -657,6 +657,7 @@ unwanted space when exporting org-mode to hugo markdown."
   (with-eval-after-load 'transient
     (transient-bind-q-to-quit))
 
+  ;; fix for the lsp error
   (defvar spacemacs-jump-handlers-fundamental-mode nil)
   )
 
