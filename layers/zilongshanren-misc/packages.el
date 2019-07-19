@@ -1149,6 +1149,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (setq ivy-initial-inputs-alist nil)
         (setq ivy-wrap t)
         (setq confirm-nonexistent-file-or-buffer t)
+        (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-previous-line)
+        (define-key ivy-switch-buffer-map (kbd "C-d") 'ivy-switch-buffer-kill)
 
         (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
         (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
