@@ -21,21 +21,28 @@
                     'face 'font-lock-preprocessor-face
                     'help-echo "Current Layout name.")))))
 
+(defun zilongshanren/modeline-winum-mode ()
+  "update winum mode line"
+  (when (bound-and-true-p winum-mode) (propertize
+                                       (window-number-mode-line)
+                                       'face
+                                       'font-lock-type-face)))
+
 (defun zilong/modeline--evil-substitute ()
   "Show number of matches for evil-ex substitutions and highlights in real time."
   (when (and (bound-and-true-p evil-local-mode)
              (or (assq 'evil-ex-substitute evil-ex-active-highlights-alist)
                  (assq 'evil-ex-global-match evil-ex-active-highlights-alist)
                  (assq 'evil-ex-buffer-match evil-ex-active-highlights-alist)))
-  (propertize
-   (let ((range (if evil-ex-range
-                    (cons (car evil-ex-range) (cadr evil-ex-range))
-                  (cons (line-beginning-position) (line-end-position))))
-         (pattern (car-safe (evil-delimited-arguments evil-ex-argument 2))))
-     (if pattern
-         (format " %s matches " (how-many pattern (car range) (cdr range)))
-       " - "))
-   'face 'font-lock-preprocessor-face)))
+    (propertize
+     (let ((range (if evil-ex-range
+                      (cons (car evil-ex-range) (cadr evil-ex-range))
+                    (cons (line-beginning-position) (line-end-position))))
+           (pattern (car-safe (evil-delimited-arguments evil-ex-argument 2))))
+       (if pattern
+           (format " %s matches " (how-many pattern (car range) (cdr range)))
+         " - "))
+     'face 'font-lock-preprocessor-face)))
 
 (defun spaceline--unicode-number (str)
   "Return a nice unicode representation of a single-digit number STR."

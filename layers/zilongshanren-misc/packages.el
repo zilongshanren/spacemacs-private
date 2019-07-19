@@ -44,7 +44,7 @@
         golden-ratio
         (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
         symbol-overlay
-        browse-at-remote
+        ;; browse-at-remote
         ))
 
 (defun zilongshanren-misc/post-init-expand-region ()
