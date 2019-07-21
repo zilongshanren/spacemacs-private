@@ -291,6 +291,7 @@ e.g. Sunday, September 17, 2000."
   (magit-with-toplevel
     (magit-run-git "update-index" "--assume-unchanged" "--" file)))
 
+;FIXME: not working for files with directory path
 (defun magit-no-assume-unchanged (file)
   "Call \"git update-index --no-assume-unchanged FILE\"."
   (interactive (list (magit-read-file-choice "Do not assume unchanged for: "
