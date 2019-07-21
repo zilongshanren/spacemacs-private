@@ -45,7 +45,11 @@
         ;; editorconfig
         robe
         exec-path-from-shell
+        lsp-mode
         ))
+
+(defun zilongshanren-programming/post-init-lsp-mode ()
+    (add-hook 'lsp-after-open-hook 'my-js2-mode-hook))
 
 (defun zilongshanren-programming/init-compile-dwim ()
   (use-package compile-dwim
