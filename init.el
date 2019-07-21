@@ -93,7 +93,8 @@ This function should only modify configuration layer settings."
      (clojure :variables clojure-enable-fancify-symbols t)
      racket
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-backend 'lsp-ccls)
      zilongshanren
      (chinese :packages youdao-dictionary fcitx
               :variables chinese-enable-fcitx nil

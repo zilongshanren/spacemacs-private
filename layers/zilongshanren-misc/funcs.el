@@ -266,7 +266,10 @@ e.g. Sunday, September 17, 2000."
 (defun magit-skip-assume-unchanged-files ()
   (--keep (and (and (= (aref it 0) ?h)
                     (substring it 2)))
-          (magit-git-items "ls-files" "-v" "-z")))
+          (magit-git-items "ls-files"
+                           (string-trim
+                            (car (magit-git-items "rev-parse" "--show-toplevel")))
+                           "-v" "--full-name" "-z")))
 
 (defun magit-insert-assume-unchanged-files ()
   "Insert a tree of assume unchanged files.
@@ -282,11 +285,17 @@ e.g. Sunday, September 17, 2000."
         (magit-insert-files files base)
         (insert ?\n)))))
 
+(defun magit-list-all-files ()
+    (magit-with-toplevel
+      (with-temp-buffer
+        (apply #'magit-git-insert '("ls-files" "-z" "--full-name"))
+        (split-string (buffer-string) "\0" t))))
+
 (defun magit-assume-unchanged (file)
   "Call \"git update-index --assume-unchanged FILE\"."
   (interactive (list (magit-read-file-choice "Assume unchanged for: "
                                              (cl-set-difference
-                                              (magit-list-files)
+                                              (magit-list-all-files)
                                               (magit-skip-assume-unchanged-files)))))
   (magit-with-toplevel
     (magit-run-git "update-index" "--assume-unchanged" "--" file)))
