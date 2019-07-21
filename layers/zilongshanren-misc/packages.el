@@ -1181,7 +1181,20 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (setq magit-completing-read-function 'magit-builtin-completing-read)
 
         (magit-define-popup-switch 'magit-push-popup ?u
-          "Set upstream" "--set-upstream")
+                                   "Set upstream" "--set-upstream")
+
+
+        (magit-add-section-hook 'magit-status-sections-hook
+                                'magit-insert-assume-unchanged-files nil t)
+
+        ;; insert the hidden files section in the magit status buffer.
+        (magit-add-section-hook 'magit-status-sections-hook
+                                'magit-insert-skip-worktree-files nil t)
+
+        ;; define jump 
+        (magit-define-section-jumper magit-jump-to-assume-unchanged "Assume-unchanged files" assume-unchanged)
+        (define-key magit-status-mode-map "ga" 'magit-jump-to-assume-unchanged)
+        
         ))
 
     ;; prefer two way ediff
