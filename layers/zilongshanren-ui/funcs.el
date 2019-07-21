@@ -27,7 +27,8 @@
     (propertize
      (window-number-mode-line)
      'face
-     'font-lock-type-face)))
+     'font-lock-type-face))
+  "")
 
 (defun zilong/modeline--evil-substitute ()
   "Show number of matches for evil-ex substitutions and highlights in real time."
