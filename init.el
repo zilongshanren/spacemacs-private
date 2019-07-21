@@ -510,9 +510,7 @@ dump."
 
 (defun dotspacemacs/user-config ()
   ;;解决org表格里面中英文对齐的问题
-
-  ;; (magit-add-section-hook 'magit-status-sections-hook
-  ;;                       'magit-insert-skip-worktree-files nil t)
+  
    
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
