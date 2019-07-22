@@ -94,7 +94,8 @@ This function should only modify configuration layer settings."
      racket
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-backend 'lsp-ccls)
+            c-c++-backend 'lsp-ccls
+            c-c++-lsp-executable (file-truename "/usr/local/bin/ccls"))
      zilongshanren
      (chinese :packages youdao-dictionary fcitx
               :variables chinese-enable-fcitx nil
@@ -511,7 +512,6 @@ dump."
 
 (defun dotspacemacs/user-config ()
   ;;解决org表格里面中英文对齐的问题
-  
    
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)

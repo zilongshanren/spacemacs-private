@@ -50,7 +50,15 @@
 
 (defun zilongshanren-programming/post-init-lsp-mode ()
   (progn
-    
+    (defun zilongshanren-refresh-imenu-index ()
+      (when (or (eq major-mode 'js2-mode)
+                (eq major-mode 'typescript-mode))
+        (setq imenu-create-index-function 'js2-imenu-make-index)))
+
+    (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
+
+    (setq lsp-auto-configure t)
+    (setq lsp-prefer-flymake nil)
     
     (defun merge-company-dabbrev-code-to-company-lsp ()
       (when (memq 'company-lsp company-backends)
@@ -60,7 +68,6 @@
 
     (advice-add 'lsp :after #'merge-company-dabbrev-code-to-company-lsp)
     
-    (add-hook 'lsp-after-open-hook 'my-js2-mode-hook)
     ))
 
 (defun zilongshanren-programming/init-compile-dwim ()
@@ -209,6 +216,7 @@
 (defun zilongshanren-programming/post-init-yasnippet ()
   (progn
     (set-face-background 'secondary-selection "gray")
+    (define-key yas-minor-mode-map (kbd "TAB") 'yas-next-field)
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
                                                                       org-mode-hook
