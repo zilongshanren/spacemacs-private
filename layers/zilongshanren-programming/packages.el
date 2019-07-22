@@ -56,14 +56,15 @@
         (progn
           (setq imenu-create-index-function 'js2-imenu-make-index)
           (when (memq 'company-lsp company-backends)
+            (flycheck-mode -1)
             (setq-local company-backends (remove 'company-lsp company-backends))
             (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate))))))
 
     (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
 
+
     (setq lsp-auto-configure t)
     (setq lsp-prefer-flymake nil)
-    (setq lsp-clients-go-diagnostics-enabled nil)
     ))
 
 (defun zilongshanren-programming/init-compile-dwim ()
