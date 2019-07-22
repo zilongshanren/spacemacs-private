@@ -46,7 +46,11 @@
         robe
         exec-path-from-shell
         lsp-mode
+        typescript-mode
         ))
+
+(defun zilongshanren-programming/post-init-typescript-mode ()
+  (add-hook 'typescript-mode-hook 'my-ts-mode-hook))
 
 (defun zilongshanren-programming/post-init-lsp-mode ()
   (progn
@@ -55,8 +59,9 @@
                 (eq major-mode 'typescript-mode))
         (progn
           (setq imenu-create-index-function 'js2-imenu-make-index)
+
+
           (when (memq 'company-lsp company-backends)
-            (flycheck-mode -1)
             (setq-local company-backends (remove 'company-lsp company-backends))
             (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate))))))
 

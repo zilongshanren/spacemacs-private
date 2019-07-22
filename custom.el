@@ -20,7 +20,6 @@
  '(expand-region-contract-fast-key "V")
  '(expand-region-exclude-text-mode-expansions '(html-mode nxml-mode web-mode))
  '(expand-region-reset-fast-key "r")
- '(flycheck-error-list-minimum-level 'error)
  '(global-command-log-mode nil)
  '(helm-buffer-max-length 56)
  '(helm-move-to-line-cycle-in-source t)
@@ -50,9 +49,7 @@
    '((eval progn
            (pp-buffer)
            (indent-buffer))
-     (typescript-backend . tide)
      (typescript-backend . lsp)
-     (javascript-backend . tern)
      (javascript-backend . lsp)
      (eval setenv "PYTHONPATH" "/Users/guanghui/cocos2d-x/tools/cocos2d-console/plugins:/Users/guanghui/cocos2d-x/tools/cocos2d-console/bin")))
  '(sp-show-pair-from-inside t)

@@ -103,6 +103,12 @@ comment box."
     (setq new-buffer-name (concat "cmake-" parent-dir))
     (rename-buffer new-buffer-name t)))
 
+(defun my-ts-mode-hook ()
+  (when (eq major-mode 'typescript-mode)
+    (progn
+      (with-eval-after-load 'flycheck
+        (add-to-list 'flycheck-disabled-checkers 'javascript-eslint)
+        (flycheck-disable-checker 'javascript-eslint)))))
 
 (defun my-js2-mode-hook ()
   (progn
