@@ -53,21 +53,17 @@
     (defun zilongshanren-refresh-imenu-index ()
       (when (or (eq major-mode 'js2-mode)
                 (eq major-mode 'typescript-mode))
-        (setq imenu-create-index-function 'js2-imenu-make-index)))
+        (progn
+          (setq imenu-create-index-function 'js2-imenu-make-index)
+          (when (memq 'company-lsp company-backends)
+            (setq-local company-backends (remove 'company-lsp company-backends))
+            (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate))))))
 
     (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
 
     (setq lsp-auto-configure t)
     (setq lsp-prefer-flymake nil)
-    
-    (defun merge-company-dabbrev-code-to-company-lsp ()
-      (when (memq 'company-lsp company-backends)
-        (setq-local company-backends (remove 'company-lsp company-backends))
-        (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate))))
-
-
-    (advice-add 'lsp :after #'merge-company-dabbrev-code-to-company-lsp)
-    
+    (setq lsp-clients-go-diagnostics-enabled nil)
     ))
 
 (defun zilongshanren-programming/init-compile-dwim ()
@@ -216,7 +212,12 @@
 (defun zilongshanren-programming/post-init-yasnippet ()
   (progn
     (set-face-background 'secondary-selection "gray")
-    (define-key yas-minor-mode-map (kbd "TAB") 'yas-next-field)
+    
+    (with-eval-after-load 'yasnippet
+      (progn
+        (define-key yas-keymap [(tab)]       (yas-filtered-definition 'yas-next-field))
+        (define-key yas-keymap (kbd "TAB")   (yas-filtered-definition 'yas-next-field))))
+
     (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
     (mapc #'(lambda (hook) (remove-hook hook 'spacemacs/load-yasnippet)) '(prog-mode-hook
                                                                       org-mode-hook

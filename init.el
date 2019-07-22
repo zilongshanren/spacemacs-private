@@ -79,7 +79,10 @@ This function should only modify configuration layer settings."
      yaml
      react
      (python :variables
-             python-test-runner '(nose pytest))
+             python-test-runner '(nose pytest)
+             python-backend 'lsp
+             python-lsp-server 'mspyls
+             python-lsp-git-root "~/Github/python-language-server")
      ;; (ruby :variables ruby-version-manager 'chruby)
      ;; ruby-on-rails
      lua
@@ -113,7 +116,7 @@ This function should only modify configuration layer settings."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
-   '(org-brain magit-gh-pulls magit-gitflow  evil-mc realgud tern company-tern
+   '(org-projectile org-brain magit-gh-pulls magit-gitflow  evil-mc realgud tern company-tern
                     evil-args evil-ediff evil-exchange evil-unimpaired
                     evil-indent-plus volatile-highlights smartparens
                     spaceline holy-mode skewer-mode rainbow-delimiters
@@ -491,10 +494,12 @@ dump."
   )
 
 (defun dotspacemacs/user-init ()
-	;; (setq-default configuration-layer-elpa-archives
-    ;;   '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-    ;;     ("org-cn"   . "http://elpa.emacs-china.org/org/")
-    ;;     ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  (setq-default configuration-layer-elpa-archives
+                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+                  ("org-cn"   . "http://elpa.emacs-china.org/org/")
+                  ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+
+  
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
