@@ -60,6 +60,9 @@
         (progn
           (setq imenu-create-index-function 'js2-imenu-make-index)
 
+          (when (eq major-mode 'typescript-mode)
+            (setq imenu-create-index-function 'lsp--imenu-create-index))
+
 
           (when (memq 'company-lsp company-backends)
             (setq-local company-backends (remove 'company-lsp company-backends))
