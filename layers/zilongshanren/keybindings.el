@@ -177,6 +177,7 @@
 (spacemacs/set-leader-keys "pa" 'projectile-find-other-file)
 (spacemacs/set-leader-keys "pA" 'projectile-find-other-file-other-window)
 (spacemacs/set-leader-keys ":" 'counsel-M-x)
+(spacemacs/set-leader-keys "xe" 'set-buffer-file-coding-system)
 
 ;; highlight
 (spacemacs/set-leader-keys "hh" 'zilongshanren/highlight-dwim)
