@@ -1173,8 +1173,6 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (add-to-list 'magit-no-confirm 'stage-all-changes)
         (define-key magit-log-mode-map (kbd "W") 'magit-copy-section-value)
         (define-key magit-status-mode-map (kbd "s-1") 'magit-jump-to-unstaged)
-        ;; fix for emacs 27 bugs
-        (define-key magit-status-mode-map (kbd "s-c") 'magit-jump-to-unstaged)
         (define-key magit-status-mode-map (kbd "s-2") 'magit-jump-to-untracked)
         (define-key magit-status-mode-map (kbd "s-3") 'magit-jump-to-staged)
         (define-key magit-status-mode-map (kbd "s-4") 'magit-jump-to-stashes)
