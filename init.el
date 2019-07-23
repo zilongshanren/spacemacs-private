@@ -500,6 +500,7 @@ dump."
                   ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   
+  (setq term-char-mode-point-at-process-mark nil)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-mode nil)
