@@ -293,17 +293,16 @@ e.g. Sunday, September 17, 2000."
 
 (defun magit-assume-unchanged (file)
   "Call \"git update-index --assume-unchanged FILE\"."
-  (interactive (list (magit-read-file-choice "Assume unchanged for: "
+  (interactive (list (magit-read-file-choice "Assume unchanged for"
                                              (cl-set-difference
                                               (magit-list-all-files)
                                               (magit-skip-assume-unchanged-files)))))
   (magit-with-toplevel
     (magit-run-git "update-index" "--assume-unchanged" "--" file)))
 
-;FIXME: not working for files with directory path
 (defun magit-no-assume-unchanged (file)
   "Call \"git update-index --no-assume-unchanged FILE\"."
-  (interactive (list (magit-read-file-choice "Do not assume unchanged for: "
+  (interactive (list (magit-read-file-choice "Do not assume unchanged for"
                                              (magit-skip-assume-unchanged-files))))
   (magit-with-toplevel
     (magit-run-git "update-index" "--no-assume-unchanged" "--" file)))
