@@ -70,6 +70,24 @@
 
     (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
 
+    (defun hidden-lsp-ui-sideline ()
+      (interactive)
+      (if (< (window-width) 180)
+          (progn
+            
+            (setq lsp-ui-sideline-show-code-actions nil)
+            (setq lsp-ui-sideline-show-diagnostics nil)
+            (setq lsp-ui-sideline-show-hover nil)
+            (setq lsp-ui-sideline-show-symbol nil))
+        (progn
+            
+          ;; (setq lsp-ui-sideline-show-code-actions t)
+          ;; (setq lsp-ui-sideline-show-diagnostics t)
+          (setq lsp-ui-sideline-show-hover t)
+          ;; (setq lsp-ui-sideline-show-symbol t)
+          )))
+    
+    (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
 
     (setq lsp-auto-configure t)
     (setq lsp-prefer-flymake nil)
