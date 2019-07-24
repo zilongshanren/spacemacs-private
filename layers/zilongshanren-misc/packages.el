@@ -45,7 +45,12 @@
         (highlight-global :location (recipe :fetcher github :repo "glen-dai/highlight-global"))
         symbol-overlay
         ;; browse-at-remote
+        chinese-conv
         ))
+
+(defun zilongshanren-misc/post-init-chinese-conv ()
+  (setq chinese-conv-opencc-program "/usr/local/bin/opencc")
+  (setq chinese-conv-opencc-data "/usr/local/share/opencc/"))
 
 (defun zilongshanren-misc/post-init-expand-region ()
   (with-eval-after-load 'expand-region

@@ -100,8 +100,7 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "/usr/local/bin/ccls"))
      zilongshanren
-     (chinese :packages youdao-dictionary fcitx
-              :variables chinese-enable-fcitx nil
+     (chinese :variables chinese-default-input-method 'wubi
               chinese-enable-youdao-dict t)
      )
    ;; List of additional packages that will be installed without being
@@ -494,10 +493,10 @@ dump."
   )
 
 (defun dotspacemacs/user-init ()
-  (setq-default configuration-layer-elpa-archives
-                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-                  ("org-cn"   . "http://elpa.emacs-china.org/org/")
-                  ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; (setq-default configuration-layer-elpa-archives
+  ;;               '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+  ;;                 ("org-cn"   . "http://elpa.emacs-china.org/org/")
+  ;;                 ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   
   (setq term-char-mode-point-at-process-mark nil)
