@@ -274,9 +274,9 @@ e.g. Sunday, September 17, 2000."
 (defun magit-insert-assume-unchanged-files ()
   "Insert a tree of assume unchanged files.
 
-    If the first element of `magit-buffer-diff-files' is a
-    directory, then limit the list to files below that.  The value
-    of that variable can be set using \"D -- DIRECTORY RET g\"."
+If the first element of `magit-buffer-diff-files' is a
+directory, then limit the list to files below that.  The value
+of that variable can be set using \"D -- DIRECTORY RET g\"."
   (when-let ((files (magit-skip-assume-unchanged-files)))
     (let* ((base (car magit-buffer-diff-files))
            (base (and base (file-directory-p base) base)))
