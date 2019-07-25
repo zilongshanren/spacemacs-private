@@ -240,3 +240,16 @@ comment box."
       (message "load tags for fireball engine repo...")
       ;; html project donot need C++ tags
       (setq tags-table-list (list (my-create-tags-if-needed "~/Github/fireball/engine/cocos2d")))))))
+
+(defun zilongshanren-refresh-imenu-index ()
+  (interactive)
+  (when (or (eq major-mode 'js2-mode)
+            (eq major-mode 'typescript-mode))
+    (progn
+      (setq imenu-create-index-function 'js2-imenu-make-index)
+
+      (when (eq major-mode 'typescript-mode)
+        (setq imenu-create-index-function 'lsp--imenu-create-index))
+
+      (setq-local company-backends (remove 'company-lsp company-backends))
+      (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate)))))

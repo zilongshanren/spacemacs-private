@@ -54,21 +54,32 @@
 
 (defun zilongshanren-programming/post-init-lsp-mode ()
   (progn
-    (setq lsp-typescript-suggest-auto-imports nil)
-    (defun zilongshanren-refresh-imenu-index ()
-      (when (or (eq major-mode 'js2-mode)
-                (eq major-mode 'typescript-mode))
-        (progn
-          (setq imenu-create-index-function 'js2-imenu-make-index)
+    (defun lsp--auto-configure ()
+      "Autoconfigure `lsp-ui', `company-lsp' if they are installed."
 
-          (when (eq major-mode 'typescript-mode)
-            (setq imenu-create-index-function 'lsp--imenu-create-index))
+      (with-no-warnings
+        (when (functionp 'lsp-ui-mode)
+          (lsp-ui-mode))
 
+        (cond
+         ((eq :none lsp-prefer-flymake))
+         ((and (not (version< emacs-version "26.1")) lsp-prefer-flymake)
+          (lsp--flymake-setup))
+         ((and (functionp 'lsp-ui-mode) (featurep 'flycheck))
+          (require 'lsp-ui-flycheck)
+          (lsp-ui-flycheck-enable t)
+          (flycheck-mode 1)))
 
-          (when (memq 'company-lsp company-backends)
-            (setq-local company-backends (remove 'company-lsp company-backends))
-            (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate))))))
+        (when (functionp 'company-lsp)
+          (company-mode 1)
 
+          ;; make sure that company-capf is disabled since it is not indented to be
+          ;; used in combination with lsp-mode (see #884)
+          (setq-local company-backends (remove 'company-capf company-backends))
+
+          (when (functionp 'yas-minor-mode)
+            (yas-minor-mode t)))))
+    
     (add-hook 'lsp-after-open-hook 'zilongshanren-refresh-imenu-index)
 
     (defun hidden-lsp-ui-sideline ()
@@ -91,8 +102,7 @@
     (advice-add 'lsp-ui-sideline--run :after 'hidden-lsp-ui-sideline)
 
     (setq lsp-auto-configure t)
-    (setq lsp-prefer-flymake nil)
-    ))
+    (setq lsp-prefer-flymake nil)))
 
 (defun zilongshanren-programming/init-compile-dwim ()
   (use-package compile-dwim
