@@ -937,12 +937,10 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       (message "Buffers deleted!")))
 
   (when (fboundp 'spacemacs|define-custom-layout)
-    (spacemacs|define-custom-layout "@Cocos2D-X"
-      :binding "c"
+    (spacemacs|define-custom-layout "@work"
+      :binding "w"
       :body
-      (find-file "~/cocos2d-x/cocos/ui/UIWidget.cpp")
-      (split-window-right)
-      (find-file "~/cocos2d-x/cocos/cocos2d.cpp"))))
+      (find-file "~/Github/HlMJ_js/assets/scripts/Login/LoginScene.js"))))
 
 (defun zilongshanren-misc/post-init-chinese-wbim ()
   (progn

@@ -54,6 +54,7 @@
 
 (defun zilongshanren-programming/post-init-lsp-mode ()
   (progn
+    (setq lsp-typescript-suggest-auto-imports nil)
     (defun zilongshanren-refresh-imenu-index ()
       (when (or (eq major-mode 'js2-mode)
                 (eq major-mode 'typescript-mode))
