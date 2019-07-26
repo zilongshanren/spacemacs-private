@@ -54,6 +54,9 @@
 
 (defun zilongshanren-programming/post-init-lsp-mode ()
   (progn
+
+    (setq lsp-ui-doc-enable nil)
+    
     (defun lsp--auto-configure ()
       "Autoconfigure `lsp-ui', `company-lsp' if they are installed."
 

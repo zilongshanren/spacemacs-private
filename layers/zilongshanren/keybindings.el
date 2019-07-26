@@ -155,6 +155,8 @@
 (spacemacs/set-leader-keys "o(" 'ielm)
 
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+(spacemacs/set-leader-keys "gn" 'smerge-next)
+(spacemacs/set-leader-keys "gp" 'smerge-prev)
 (spacemacs/set-leader-keys "og" 'my-git-timemachine)
 
 (spacemacs/set-leader-keys "sj" 'zilongshanren/counsel-imenu)

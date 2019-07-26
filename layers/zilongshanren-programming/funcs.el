@@ -252,4 +252,4 @@ comment box."
         (setq imenu-create-index-function 'lsp--imenu-create-index))
 
       (setq-local company-backends (remove 'company-lsp company-backends))
-      (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code :separate)))))
+      (add-to-list 'company-backends '(company-lsp :with company-dabbrev-code company-dabbrev)))))
