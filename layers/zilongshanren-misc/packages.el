@@ -46,6 +46,7 @@
         symbol-overlay
         ;; browse-at-remote
         chinese-conv
+        chinese-wbim
         ))
 
 (defun zilongshanren-misc/post-init-chinese-conv ()
@@ -944,12 +945,17 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 
 (defun zilongshanren-misc/post-init-chinese-wbim ()
   (progn
-    (bind-key* ";" 'chinese-wbim-insert-ascii)
-    (setq chinese-wbim-punc-translate-p nil)
+    
+    ;; (bind-key* ";" 'chinese-wbim-insert-ascii)
+    ;; (setq chinese-wbim-punc-translate-p nil)
+
     (spacemacs/declare-prefix "ot" "Toggle")
     (spacemacs/set-leader-keys
       "otp" 'chinese-wbim-punc-translate-toggle)
     (setq chinese-wbim-wb-use-gbk t)
+
+    (setq chinese-wbim-use-tooltip t)
+    
     (add-hook 'chinese-wbim-wb-load-hook
               (lambda ()
                 (let ((map (chinese-wbim-mode-map)))
