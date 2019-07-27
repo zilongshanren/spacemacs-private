@@ -36,8 +36,9 @@
 (defun zilongshanren-org/post-init-org ()
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (with-eval-after-load 'org
-    (progn
+    progn
 
+      require 'org-tempo
       ;; Allow multiple line Org emphasis markup.
       ;; http://emacs.stackexchange.com/a/13828/115
       (setcar (nthcdr 4 org-emphasis-regexp-components) 20) ;Up to 20 lines, default is just 1
@@ -492,7 +493,7 @@ holding contextual information."
                         ;; `org-info.js'.
                         (if (eq (org-element-type first-content) 'section) contents
                           (concat (org-html-section first-content "" info) contents))
-                        (org-html--container headline info))))))))))
+                        (org-html--container headline info)))))))))
 
 (defun zilongshanren-org/init-org-mac-link ()
   (use-package org-mac-link

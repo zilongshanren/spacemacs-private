@@ -992,11 +992,12 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 
         (setq-default pyim-english-input-switch-functions
                       '(pyim-probe-program-mode
+                        pyim-probe-auto-english
                         pyim-probe-org-structure-template))
 
 
         ;; 不用频率切换输入法了。这个东西太好使了
-        ;; (bind-key* "s-j" 'pyim-convert-code-at-point)
+        (bind-key* "s-j" 'pyim-convert-code-at-point)
 
         (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
         ;; 使用这个来查看当前输入法有哪些，不错
