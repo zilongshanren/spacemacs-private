@@ -100,7 +100,7 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "/usr/local/bin/ccls"))
      zilongshanren
-     (chinese :variables chinese-default-input-method 'wubi
+     (chinese :variables chinese-default-input-method 'pinyin
               chinese-enable-youdao-dict t)
      )
    ;; List of additional packages that will be installed without being

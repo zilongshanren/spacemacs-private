@@ -46,7 +46,8 @@
         symbol-overlay
         ;; browse-at-remote
         chinese-conv
-        chinese-wbim
+        ;; chinese-wbim
+        pyim
         ))
 
 (defun zilongshanren-misc/post-init-chinese-conv ()
@@ -943,12 +944,36 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       :body
       (find-file "~/Github/HlMJ_js/assets/scripts/Login/LoginScene.js"))))
 
+(defun zilongshanren-misc/post-init-pyim ()
+  (progn
+    ;; use librime as wubi input
+
+    (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
+    (require 'liberime)
+
+    (setq default-input-method "pyim")
+    (setq pyim-page-tooltip 'posframe)
+    (setq pyim-page-length 9)
+
+
+    ;; 这个怕是 很牛逼了 可以啊 好东西啊 太爽了 不错啊 无敌了 无解 爽
+    
+    (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
+    ;; 使用这个来查看当前输入法有哪些
+    ;; (liberime-get-schema-list)
+    
+    (liberime-select-schema "wubi_pinyin")
+    (setq pyim-default-scheme 'rime)
+    ))
+
+;; deprecated
 (defun zilongshanren-misc/post-init-chinese-wbim ()
   (progn
     
     ;; (bind-key* ";" 'chinese-wbim-insert-ascii)
     ;; (setq chinese-wbim-punc-translate-p nil)
 
+    (setq chinese-wbim-tooltip-timeout 5)
     (spacemacs/declare-prefix "ot" "Toggle")
     (spacemacs/set-leader-keys
       "otp" 'chinese-wbim-punc-translate-toggle)
