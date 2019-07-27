@@ -972,31 +972,6 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (cons x y)))
 
 
-    (defun get-point-pixel-position ()
-      "Return the position of point in pixels within the frame."
-      (let ((point-pos (th-point-position)))
-        (th-get-pixel-position (car point-pos) (cdr point-pos))))
-
-
-    (defun th-get-pixel-position (x y)
-      "Return the pixel position of location X Y (1-based) within the frame."
-      (let ((old-mouse-pos (mouse-position)))
-        (set-mouse-position (selected-frame)
-                            ;; the fringe is the 0th column, so x is OK
-                            x
-                            (1- y))
-        (let ((point-x (car (cdr (mouse-pixel-position))))
-              (point-y (cdr (cdr (mouse-pixel-position)))))
-          ;; on Linux with the Enlightenment window manager restoring the
-          ;; mouse coordinates didn't work well, so for the time being it
-          ;; is enabled for Windows only
-          (when (eq window-system 'w32)        
-            (set-mouse-position 
-             (selected-frame)
-             (cadr old-mouse-pos)
-             (cddr old-mouse-pos)))
-          (cons point-x point-y))))
-
     (defun display-current-input-method-title (arg1 &optional arg2 arg3)
       "display current input method name"
       (when current-input-method-title
@@ -1016,18 +991,17 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (setq pyim-page-length 9)
 
         (setq-default pyim-english-input-switch-functions
-                      '(pyim-probe-dynamic-english
-                        pyim-probe-program-mode
+                      '(pyim-probe-program-mode
                         pyim-probe-org-structure-template))
 
 
-        ;; 不用频率切换输入法了。
-        (bind-key* "s-j" 'pyim-convert-code-at-point)
-    
+        ;; 不用频率切换输入法了。这个东西太好使了
+        ;; (bind-key* "s-j" 'pyim-convert-code-at-point)
+
         (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
-        ;; 使用这个来查看当前输入法有哪些
+        ;; 使用这个来查看当前输入法有哪些，不错
         ;; (liberime-get-schema-list)
-    
+
         (liberime-select-schema "wubi_pinyin")
         (setq pyim-default-scheme 'rime)))))
 
