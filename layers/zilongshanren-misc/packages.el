@@ -947,24 +947,89 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 (defun zilongshanren-misc/post-init-pyim ()
   (progn
     ;; use librime as wubi input
+    ;; 参考这个设置 pyim 使用 liberime 库 https://emacs-china.org/t/mac-emacs-rime/ 需要emacs 26的dynamic module功能 
+    ;; 设置极点五笔可以参考https://github.com/zilongshanren/rime-wubi86-jidian  
+    (eval-and-compile
+      (if (fboundp 'window-inside-edges)
+          ;; Emacs devel.
+          (defalias 'th-window-edges
+            'window-inside-edges)
+        ;; Emacs 21
+        (defalias 'th-window-edges
+          'window-edges)
+        ))
 
-    (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
-    (require 'liberime)
+    (defun th-point-position ()
+      "Return the location of POINT as positioned on the selected frame.
+  Return a cons cell (X . Y)"
+      (let* ((w (selected-window))
+             (f (selected-frame))
+             (edges (th-window-edges w))
+             (col (current-column))
+             (row (count-lines (window-start w) (point)))
+             (x (+ (car edges) col))
+             (y (+ (car (cdr edges)) row)))
+        (cons x y)))
 
-    (setq default-input-method "pyim")
-    (setq pyim-page-tooltip 'posframe)
-    (setq pyim-page-length 9)
+
+    (defun get-point-pixel-position ()
+      "Return the position of point in pixels within the frame."
+      (let ((point-pos (th-point-position)))
+        (th-get-pixel-position (car point-pos) (cdr point-pos))))
 
 
-    ;; 这个怕是 很牛逼了 可以啊 好东西啊 太爽了 不错啊 无敌了 无解 爽
+    (defun th-get-pixel-position (x y)
+      "Return the pixel position of location X Y (1-based) within the frame."
+      (let ((old-mouse-pos (mouse-position)))
+        (set-mouse-position (selected-frame)
+                            ;; the fringe is the 0th column, so x is OK
+                            x
+                            (1- y))
+        (let ((point-x (car (cdr (mouse-pixel-position))))
+              (point-y (cdr (cdr (mouse-pixel-position)))))
+          ;; on Linux with the Enlightenment window manager restoring the
+          ;; mouse coordinates didn't work well, so for the time being it
+          ;; is enabled for Windows only
+          (when (eq window-system 'w32)        
+            (set-mouse-position 
+             (selected-frame)
+             (cadr old-mouse-pos)
+             (cddr old-mouse-pos)))
+          (cons point-x point-y))))
+
+    (defun display-current-input-method-title (arg1 &optional arg2 arg3)
+      "display current input method name"
+      (when current-input-method-title
+        (set-mouse-position (selected-frame) (car (th-point-position)) (cdr (th-point-position)))
+        (x-show-tip current-input-method-title (selected-frame) nil 1  20 -30)))
+
+    (advice-add 'evil-insert :after 'display-current-input-method-title)
+
+    (when (functionp 'module-load)
+      (progn
+        (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
+        (require 'liberime)
+        (require 'posframe)
+
+        (setq default-input-method "pyim")
+        (setq pyim-page-tooltip 'posframe)
+        (setq pyim-page-length 9)
+
+        (setq-default pyim-english-input-switch-functions
+                      '(pyim-probe-dynamic-english
+                        pyim-probe-program-mode
+                        pyim-probe-org-structure-template))
+
+
+        ;; 不用频率切换输入法了。
+        (bind-key* "s-j" 'pyim-convert-code-at-point)
     
-    (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
-    ;; 使用这个来查看当前输入法有哪些
-    ;; (liberime-get-schema-list)
+        (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
+        ;; 使用这个来查看当前输入法有哪些
+        ;; (liberime-get-schema-list)
     
-    (liberime-select-schema "wubi_pinyin")
-    (setq pyim-default-scheme 'rime)
-    ))
+        (liberime-select-schema "wubi_pinyin")
+        (setq pyim-default-scheme 'rime)))))
 
 ;; deprecated
 (defun zilongshanren-misc/post-init-chinese-wbim ()
