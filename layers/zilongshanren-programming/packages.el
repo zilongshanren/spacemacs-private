@@ -71,7 +71,7 @@
          ((and (functionp 'lsp-ui-mode) (featurep 'flycheck))
           (require 'lsp-ui-flycheck)
           (lsp-ui-flycheck-enable t)
-          (flycheck-mode 1)))
+          (flycheck-mode -1)))
 
         (when (functionp 'company-lsp)
           (company-mode 1)
