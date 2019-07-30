@@ -1259,10 +1259,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
         (magit-add-section-hook 'magit-status-sections-hook
                                 'magit-insert-skip-worktree-files nil t)
 
-        (magit-define-section-jumper magit-jump-to-assume-unchanged "Assume-unchanged files" assume-unchanged)
         (define-key magit-status-mode-map "ga" 'magit-jump-to-assume-unchanged)
         
-        (magit-define-section-jumper magit-jump-to-skip-worktree "Skip-worktree files" skip-worktree)
         (define-key magit-status-mode-map "gw" 'magit-jump-to-skip-worktree)
         ))
 

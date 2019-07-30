@@ -262,51 +262,6 @@ e.g. Sunday, September 17, 2000."
 " )))
 
 
-;; display assume unchanged files !git ls-files -v | grep \"^[a-z]\"
-(defun magit-skip-assume-unchanged-files ()
-  (--keep (and (and (= (aref it 0) ?h)
-                    (substring it 2)))
-          (magit-git-items "ls-files"
-                           (string-trim
-                            (car (magit-git-items "rev-parse" "--show-toplevel")))
-                           "-v" "--full-name" "-z")))
-
-(defun magit-insert-assume-unchanged-files ()
-  "Insert a tree of assume unchanged files.
-
-If the first element of `magit-buffer-diff-files' is a
-directory, then limit the list to files below that.  The value
-of that variable can be set using \"D -- DIRECTORY RET g\"."
-  (when-let ((files (magit-skip-assume-unchanged-files)))
-    (let* ((base (car magit-buffer-diff-files))
-           (base (and base (file-directory-p base) base)))
-      (magit-insert-section (assume-unchanged nil t)
-        (magit-insert-heading "Assume-unchanged files:")
-        (magit-insert-files files base)
-        (insert ?\n)))))
-
-(defun magit-list-all-files ()
-    (magit-with-toplevel
-      (with-temp-buffer
-        (apply #'magit-git-insert '("ls-files" "-z" "--full-name"))
-        (split-string (buffer-string) "\0" t))))
-
-(defun magit-assume-unchanged (file)
-  "Call \"git update-index --assume-unchanged FILE\"."
-  (interactive (list (magit-read-file-choice "Assume unchanged for"
-                                             (cl-set-difference
-                                              (magit-list-all-files)
-                                              (magit-skip-assume-unchanged-files)))))
-  (magit-with-toplevel
-    (magit-run-git "update-index" "--assume-unchanged" "--" file)))
-
-(defun magit-no-assume-unchanged (file)
-  "Call \"git update-index --no-assume-unchanged FILE\"."
-  (interactive (list (magit-read-file-choice "Do not assume unchanged for"
-                                             (magit-skip-assume-unchanged-files))))
-  (magit-with-toplevel
-    (magit-run-git "update-index" "--no-assume-unchanged" "--" file)))
-
 
 (defun zilongshanren/open-file-with-projectile-or-counsel-git ()
   (interactive)
