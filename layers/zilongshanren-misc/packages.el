@@ -48,7 +48,16 @@
         chinese-conv
         ;; chinese-wbim
         pyim
+        lispyville
         ))
+
+(defun zilongshanren-misc/init-lispyville ()
+  (use-package lispyville
+    :init
+    (progn
+      (add-hook 'lispy-mode-hook #'lispyville-mode)
+      )
+    ))
 
 (defun zilongshanren-misc/post-init-chinese-conv ()
   (setq chinese-conv-opencc-program "/usr/local/bin/opencc")
