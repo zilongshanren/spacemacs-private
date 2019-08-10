@@ -19,6 +19,7 @@
     deft
     sound-wav
     ob-typescript
+    evil-org
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -26,6 +27,17 @@
     ;; plain-org-wiki
     )
   )
+
+(defun zilongshanren-org/post-init-evil-org ()
+  (defun evil-org--populate-navigation-bindings ()
+    "Configures gj/gk/gh/gl for navigation."
+    (let-alist evil-org-movement-bindings
+      (evil-define-key 'motion evil-org-mode-map
+        (kbd (concat "g" .left)) 'org-previous-visible-heading
+        (kbd (concat "g" .right)) 'org-next-visible-heading
+        (kbd (concat "g" .up)) 'org-backward-element
+        (kbd (concat "g" .down)) 'org-forward-element
+        (kbd (concat "g" (capitalize .left))) 'evil-org-top))))
 
 (defun zilongshanren-org/post-init-org-pomodoro ()
   (zilongshanren/pomodoro-notification))

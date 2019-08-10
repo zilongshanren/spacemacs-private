@@ -1001,7 +1001,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 
         (setq-default pyim-english-input-switch-functions
                       '(pyim-probe-program-mode
-                        pyim-probe-auto-english
+                        ;; pyim-probe-auto-english
                         pyim-probe-org-structure-template))
 
 
