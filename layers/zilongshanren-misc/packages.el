@@ -49,7 +49,16 @@
         ;; chinese-wbim
         pyim
         lispyville
+        popup
         ))
+
+(defun zilongshanren-misc/init-popup ()
+  (use-package popup
+    :config
+    (progn
+      (define-key popup-menu-keymap (kbd "C-j") 'popup-next)
+      (define-key popup-menu-keymap (kbd "C-k") 'popup-previous)
+      )))
 
 (defun zilongshanren-misc/init-lispyville ()
   (use-package lispyville
