@@ -625,7 +625,11 @@
 
 (defun zilongshanren-programming/post-init-company ()
   (progn
-    (setq company-dabbrev-code-other-buffers 'code)
+    (setq company-dabbrev-code-other-buffers 'all)
+    ;; enable dabbrev-expand in company completion https://emacs-china.org/t/topic/6381
+    (setq company-dabbrev-char-regexp "[\\.0-9a-z-_'/]")
+
+    
     (setq company-minimum-prefix-length 1
           company-idle-delay 0.08)
 
