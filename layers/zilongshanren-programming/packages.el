@@ -625,6 +625,7 @@
 
 (defun zilongshanren-programming/post-init-company ()
   (progn
+    (setq company-dabbrev-code-other-buffers 'code)
     (setq company-minimum-prefix-length 1
           company-idle-delay 0.08)
 

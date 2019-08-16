@@ -48,6 +48,7 @@
     (progn
       (require 'dired-x)
       (require 'dired-aux)
+      (add-hook 'dired-mode-hook 'dired-async-mode)
       (setq dired-listing-switches "-alh")
       (setq dired-guess-shell-alist-user
             '(("\\.pdf\\'" "open")

@@ -1233,6 +1233,9 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
            ("!" my-open-file-in-external-app "Open file in external app")
            ("I" ivy-insert-action "insert")
            ("C" ivy-kill-new-action "copy")
+           ("d" ivy--kill-buffer-action )
+           ("k" ivy--kill-buffer-action "kill")
+           ("r" ivy--rename-buffer-action "rename")
            ("S" ivy-ff-checksum-action "Checksum")))
 
         (spacemacs/set-leader-keys "fad" 'counsel-goto-recent-directory)
