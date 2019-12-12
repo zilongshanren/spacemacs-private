@@ -36,8 +36,8 @@ This function should only modify configuration layer settings."
      ranger
      emoji
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
-     lsp
-     dap
+     ;; lsp
+     ;; dap
      colors
      prodigy
      ;; github
@@ -171,7 +171,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 300
 
    ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
    ;; This is an advanced option and should not be changed unless you suspect
@@ -493,10 +493,10 @@ dump."
   )
 
 (defun dotspacemacs/user-init ()
-  ;; (setq-default configuration-layer-elpa-archives
-  ;;               '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-  ;;                 ("org-cn"   . "http://elpa.emacs-china.org/org/")
-  ;;                 ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  (setq-default configuration-layer-elpa-archives
+                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+                  ("org-cn"   . "http://elpa.emacs-china.org/org/")
+                  ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
   
   (setq term-char-mode-point-at-process-mark nil)
@@ -520,10 +520,11 @@ dump."
 
 (defun dotspacemacs/user-config ()
    
-  ;;解决org表格里面中英文对齐的问题
+  ;;解决org表格里面中英文对齐的问题 
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
+
 
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)

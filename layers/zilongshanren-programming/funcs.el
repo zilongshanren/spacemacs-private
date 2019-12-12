@@ -106,7 +106,10 @@ comment box."
 (defun my-ts-mode-hook ()
   (when (eq major-mode 'typescript-mode)
     (progn
+      (setq imenu-create-index-function 'js2-imenu-make-index)
+
       (with-eval-after-load 'flycheck
+
         (add-to-list 'flycheck-disabled-checkers 'javascript-eslint)
         (flycheck-disable-checker 'javascript-eslint)))))
 
@@ -248,8 +251,8 @@ comment box."
     (progn
       (setq imenu-create-index-function 'js2-imenu-make-index)
 
-      (when (eq major-mode 'typescript-mode)
-        (setq imenu-create-index-function 'lsp--imenu-create-index))
+      ;; (when (eq major-mode 'typescript-mode)
+      ;;   (setq imenu-create-index-function 'lsp--imenu-create-index))
 
       (setq-local company-backends (remove 'company-lsp company-backends))
       (setq-local company-backends '((company-dabbrev-code :with company-keywords company-etags)
