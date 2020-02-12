@@ -960,7 +960,13 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     (spacemacs|define-custom-layout "@work"
       :binding "w"
       :body
-      (find-file "~/Github/HlMJ_js/assets/scripts/Login/LoginScene.js"))))
+      (find-file "~/Github/HlMJ_js/assets/scripts/Login/LoginScene.ts")))
+  (when (fboundp 'spacemacs|define-custom-layout)
+    (spacemacs|define-custom-layout "@blog"
+      :binding "b"
+      :body
+      (find-file "~/zilongshanren.com/config.toml")))
+  )
 
 (defun zilongshanren-misc/post-init-pyim ()
   (progn

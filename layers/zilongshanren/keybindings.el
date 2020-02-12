@@ -142,6 +142,8 @@
 (spacemacs/set-leader-keys "rh" 'helm-resume)
 (spacemacs/set-leader-keys "sj" 'counsel-imenu)
 
+(spacemacs/set-leader-keys-for-major-mode 'emacs-lisp-mode
+  "gU" 'xref-find-references)
 ;; ivy specific keybindings
 (if (configuration-layer/layer-usedp 'ivy)
     (progn
