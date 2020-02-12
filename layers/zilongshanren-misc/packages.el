@@ -1063,22 +1063,13 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       ;; if the full path of current file is under SUBPROJECT1 or SUBPROJECT2
       ;; OR if I'm reading my personal issue track document,
       (defadvice find-file-in-project (before my-find-file-in-project activate compile)
-        (when (ffip-current-full-filename-match-pattern-p "\\(/fireball\\)")
+        (when (ffip-current-full-filename-match-pattern-p "\\(HLMJ_js\\)")
           ;; set the root directory into "~/projs/PROJECT_DIR"
-          (setq-local ffip-project-root "~/Github/fireball")
+          (setq-local ffip-project-root "~/Github/HLMJ_js")
           ;; well, I'm not interested in concatenated BIG js file or file in dist/
           (setq-local ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
           ;; do NOT search files in below directories, the default value is better.
-          (dolist (item '("*/docs/html/*" "*.meta" "*/cocos2d-x/*" "*.asset" "*/visual-tests/res/*"))
-            (push item  ffip-prune-patterns)))
-        (when (ffip-current-full-filename-match-pattern-p "\\(/cocos2d-x\\)")
-          ;; set the root directory into "~/projs/PROJECT_DIR"
-          (setq-local ffip-project-root "~/cocos2d-x")
-          ;; well, I'm not interested in concatenated BIG js file or file in dist/
-          (setq-local ffip-find-options "-not -size +64k -not -iwholename '*/bin/*'")
-          ;; do NOT search files in below directories, the default value is better.
-          ;; (setq-default ffip-prune-patterns '(".git" ".hg" "*.svn" "node_modules" "bower_components" "obj"))
-          ))
+          (setq-default ffip-prune-patterns '(".git" ".hg" "*.svn" "node_modules" "bower_components" "temp"))))
       (ad-activate 'find-file-in-project))))
 
 
