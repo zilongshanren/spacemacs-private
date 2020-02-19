@@ -333,13 +333,33 @@ e.g. Sunday, September 17, 2000."
   (interactive)
   (insert (zilongshanren/retrieve-chrome-current-tab-url)))
 
+(defun zilongshanren/list-all-tabs ()
+  (interactive)
+  (ivy-read
+   "links:" (split-string (do-applescript "set titleString to \"\"
+tell application \"$1\"
+	set window_list to every window # get the windows
+	repeat with the_window in window_list # for every window
+		set tab_list to every tab in the_window # get the tabs
+		repeat with the_tab in tab_list # for every tab
+			set the_url to the URL of the_tab # grab the URL
+			set titleString to titleString & the_url & \"
+\"
+		end repeat
+	end repeat
+	return titleString
+end tell
+") "\n")
+   :action 'insert
+   :initial-input (ivy-thing-at-point)))
+
 (defun zilongshanren/retrieve-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
   (interactive)
   (let ((result (do-applescript
                  (concat
                   "set frontmostApplication to path to frontmost application\n"
-                  "tell application \"Google Chrome\"\n"
+                  "tell application \"$1\"\n"
                   "	set theUrl to get URL of active tab of first window\n"
                   "	set theResult to (get theUrl) \n"
                   "end tell\n"
