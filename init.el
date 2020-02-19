@@ -525,6 +525,9 @@ dump."
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
+  ;; enable org-protocol
+  (server-start)
+  (require 'org-protocol)
 
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
