@@ -85,6 +85,16 @@
       (spacemacs|disable-company org-mode)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "," 'org-priority)
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
+        "r" 'avy-org-refile-as-child)
+
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
+        "it" 'counsel-org-tag)
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
+        "il" 'zilongshanren/list-all-tabs)
+
+      (setq org-complete-tags-always-offer-all-agenda-tags t)
+      
       (require 'org-compat)
       (require 'org)
       ;; (add-to-list 'org-modules "org-habit")
@@ -331,6 +341,10 @@
               ("w" "work" entry (file+headline org-agenda-file-gtd "Work")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
+              ("p" "Protocol" entry (file+headline org-agenda-file-note "Inbox")
+               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+	("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
+     "* %? [[%:link][%:description]] \nCaptured On: %U")
               ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
                "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
                :empty-lines 1)
