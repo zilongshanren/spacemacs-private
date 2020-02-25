@@ -341,6 +341,9 @@
               ("w" "work" entry (file+headline org-agenda-file-gtd "Work")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
+              ("x" "Web Collections" entry
+               (file+headline org-agenda-file-note "Web")
+               "* %U %:annotation\n\n%:initial\n\n%?")
               ("p" "Protocol" entry (file+headline org-agenda-file-note "Inbox")
                "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
 	          ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
