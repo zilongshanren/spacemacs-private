@@ -1004,31 +1004,32 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
 
     (advice-add 'evil-insert :after 'display-current-input-method-title)
 
-    (when (functionp 'module-load)
-      (progn
-        (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
-        (require 'liberime)
-        (require 'posframe)
+    (when (spacemacs/system-is-mac)
+      (when (functionp 'module-load)
+        (progn
+          (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
+          (require 'liberime)
+          (require 'posframe)
 
-        (setq default-input-method "pyim")
-        (setq pyim-page-tooltip 'posframe)
-        (setq pyim-page-length 9)
+          (setq default-input-method "pyim")
+          (setq pyim-page-tooltip 'posframe)
+          (setq pyim-page-length 9)
 
-        (setq-default pyim-english-input-switch-functions
-                      '(pyim-probe-program-mode
-                        ;; pyim-probe-auto-english
-                        pyim-probe-org-structure-template))
+          (setq-default pyim-english-input-switch-functions
+                        '(pyim-probe-program-mode
+                          ;; pyim-probe-auto-english
+                          pyim-probe-org-structure-template))
 
 
-        ;; 不用频率切换输入法了。这个东西太好使了
-        (bind-key* "s-j" 'pyim-convert-code-at-point)
+          ;; 不用频率切换输入法了。这个东西太好使了
+          (bind-key* "s-j" 'pyim-convert-code-at-point)
 
-        (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
-        ;; 使用这个来查看当前输入法有哪些，不错
-        ;; (liberime-get-schema-list)
+          (liberime-start "/Library/Input Methods/Squirrel.app/Contents/SharedSupport" (file-truename "~/Library/Rime"))
+          ;; 使用这个来查看当前输入法有哪些，不错
+          ;; (liberime-get-schema-list)
 
-        (liberime-select-schema "wubi_pinyin")
-        (setq pyim-default-scheme 'rime)))))
+          (liberime-select-schema "wubi_pinyin")
+          (setq pyim-default-scheme 'rime))))))
 
 ;; deprecated
 (defun zilongshanren-misc/post-init-chinese-wbim ()
