@@ -1,3 +1,4 @@
+; -*- lexical-binding: t -*-
 ;;; keybindings.el --- zilongshanren Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2015-2016 zilongshanren
