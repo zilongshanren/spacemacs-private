@@ -1,3 +1,4 @@
+; -*- lexical-binding: t -*-
 ;;; packages.el --- zilongshanren Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2014-2016 zilongshanren
@@ -47,7 +48,7 @@
         ;; browse-at-remote
         chinese-conv
         ;; chinese-wbim
-        pyim
+        ;; pyim
         lispyville
         popup
         ))

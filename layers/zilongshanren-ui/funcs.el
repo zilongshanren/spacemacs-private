@@ -1,3 +1,4 @@
+; -*- lexical-binding: t -*-
 
 ;;; funcs.el --- zilongshanren Layer packages File for Spacemacs
 ;;
