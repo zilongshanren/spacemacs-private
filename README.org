@@ -22,5 +22,6 @@ The forked version is only a few commits behind the original repo, becuase somet
 
 ** Optional    
 *** Install Imagemagick 
+*** Add ispell support: https://lists.gnu.org/archive/html/help-gnu-emacs/2014-04/msg00030.html
 
 ** Happing Hacking
