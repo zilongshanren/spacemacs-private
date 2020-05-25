@@ -633,6 +633,11 @@ dump."
 
                (setq exec-path (cons emax-mingw64 exec-path))
                (setenv "PATH" (concat emax-mingw64 ";" (getenv "PATH")))
+
+               (add-to-list 'exec-path "C:/msys64/mingw64/bin/")
+               (setq ispell-program-name "aspell")
+               (setq ispell-personal-dictionary "c:/msys64/mingw64/lib/aspell-0.60/en_GB")
+
                ))
 
            (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
