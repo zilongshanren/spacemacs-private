@@ -634,6 +634,7 @@ dump."
                (setq exec-path (cons emax-mingw64 exec-path))
                (setenv "PATH" (concat emax-mingw64 ";" (getenv "PATH")))
 
+               ;; install aspell: https://sheishe.xyz/post/using-aspell-in-windows-10-and-emacs-26-above/
                (add-to-list 'exec-path "C:/msys64/mingw64/bin/")
                (setq ispell-program-name "aspell")
                (setq ispell-personal-dictionary "c:/msys64/mingw64/lib/aspell-0.60/en_GB")
