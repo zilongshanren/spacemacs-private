@@ -10,9 +10,9 @@
 
 (if (spacemacs/system-is-mswindows)
     (setq
-     org-agenda-dir "f:/org-notes"
-     deft-dir "f:/org-notes"
-     blog-admin-dir "f:/zilongshanren.com")
+     org-agenda-dir "d:/org-notes"
+     deft-dir "d:/org-notes"
+     blog-admin-dir "d:/zilongshanren.com")
   (setq
    org-agenda-dir "~/org-notes"
    deft-dir "~/org-notes"
