@@ -21,6 +21,7 @@
     sound-wav
     ob-typescript
     evil-org
+    org-superstar
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -28,6 +29,12 @@
     ;; plain-org-wiki
     )
   )
+
+(defun zilongshanren/post-init-org-superstar ()
+  (progn
+    (setq org-superstar-headline-bullets-list '("☰" "☷" "☯" "☭"))
+    (setq org-ellipsis " ▼ ")
+    ))
 
 (defun zilongshanren-org/post-init-evil-org ()
   (defun evil-org--populate-navigation-bindings ()
