@@ -30,7 +30,7 @@
     )
   )
 
-(defun zilongshanren/post-init-org-superstar ()
+(defun zilongshanren-org/post-init-org-superstar ()
   (progn
     (setq org-superstar-headline-bullets-list '("☰" "☷" "☯" "☭"))
     (setq org-ellipsis " ▼ ")
