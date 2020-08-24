@@ -307,7 +307,9 @@
 
       (spacemacs|hide-lighter lispy-mode)
       (define-key lispy-mode-map (kbd "M-s") 'lispy-splice)
+      (define-key lispy-mode-map (kbd "DEL") 'lispy-delete-backward)
       (define-key lispy-mode-map (kbd "s-k") 'paredit-splice-sexp-killing-backward)
+
 
       (with-eval-after-load 'cider-repl
         (define-key cider-repl-mode-map (kbd "C-s-j") 'cider-repl-newline-and-indent))
