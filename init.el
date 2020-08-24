@@ -647,13 +647,7 @@ dump."
   (setq exec-path (cons "/Users/lionqu/.nvm/versions/node/v10.16.0/bin/" exec-path))
   (setenv "PATH" (concat "/Users/lionqu/.nvm/versions/node/v10.16.0/bin:" (getenv "PATH")))
 
-  (defun counsel-locate-cmd-es (input)
-    "Return a shell command based on INPUT."
-    (counsel-require-program "es.exe")
-    (encode-coding-string (format "es.exe -i -r -p %s"
-                                  (counsel-unquote-regex-parens
-                                   (ivy--regex input t)))
-                          'gbk))
+
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   (add-hook 'org-mode-hook 'emojify-mode)
