@@ -493,6 +493,7 @@ dump."
 
 (defun dotspacemacs/user-init ()
 
+  (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
   (setq-default configuration-layer-elpa-archives
                 '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
                   ("org-cn"   . "http://elpa.emacs-china.org/org/")
