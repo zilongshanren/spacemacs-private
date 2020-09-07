@@ -22,14 +22,6 @@
                     'face 'font-lock-preprocessor-face
                     'help-echo "Current Layout name.")))))
 
-(defun zilongshanren/modeline-winum-mode ()
-  "update winum mode line"
-  (when (bound-and-true-p winum-mode)
-    (propertize
-     (window-number-mode-line)
-     'face
-     'font-lock-type-face))
-  "")
 
 (defun zilong/modeline--evil-substitute ()
   "Show number of matches for evil-ex substitutions and highlights in real time."

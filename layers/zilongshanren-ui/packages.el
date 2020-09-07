@@ -77,7 +77,7 @@
   (setq-default mode-line-format
                 (list
                  " %1"
-                 '(:eval (zilongshanren/modeline-winum-mode))
+                 '(:eval (window-number-mode-line))
                  " "
                  '(:eval (zilong/modeline--evil-substitute))
                  '(:eval (zilongshanren/update-persp-name))
