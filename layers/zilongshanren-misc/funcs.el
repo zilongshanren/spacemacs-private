@@ -230,6 +230,7 @@ org-files and bookmarks"
                    ("Search" . (lambda () (call-interactively #'engine/search-google)))
                    ("Random Todo" . org-random-entry)
                    ("Github" . (lambda() (helm-github-stars)))
+                   ("Prodigy" . (lambda() (prodigy)))
                    ("Calculator" . (lambda () (helm-calcul-expression)))
                    ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
                    ("Agenda" . (lambda () (org-agenda "" "a")))

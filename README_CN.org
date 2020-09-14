@@ -14,7 +14,7 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 注： =--with-gnutls= 是用来支持 ssl 的
 
-** Windows 平台推荐安装 Emacs方法
+** Windows 平台推荐安装 Emacs 方法
 1. 使用 https://sourceforge.net/projects/emacsbinw64/files/release/ 上面的 Emacs 版本，我目前使用的 Emacs 25.1
 
 2. 安装 pt, 这样 helm-ag 也可以使用 pt 来搜索 。pt 的下载地址： https://github.com/monochromegane/the_platinum_searcher
@@ -39,6 +39,17 @@ brew install emacs-mac --with-spacemacs-icon --HEAD --with-gnutls
 
 ** 安装 SourceCodePro 字体
 下载地址：https://github.com/adobe-fonts/source-code-pro/releases
+
+** 配置博客
+1. install hugo
+brew install hugo 或者直接从 github 下载 binary:
+https://github.com/gohugoio/hugo/tags
+
+2. clone 博客仓库
+git clone git@github.com:zilongshanren/zilongshanren.com.git
+clonep 以后运行 git submodule update --init
+
+3. 使用 hugo server 来预览博客或者使用 SPC a t p 的 prodigy
 
 ** 配置说明
 1. 我的配置主要分成 5 个 layer
