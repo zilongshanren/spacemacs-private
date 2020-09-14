@@ -139,6 +139,8 @@
 
                  " "
 
+                 '(:eval (rime-lighter))
+
                  ;; global-mode-string goes in mode-line-misc-info
                  '(:eval (when (> (window-width) 120)
                            mode-line-misc-info))
