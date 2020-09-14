@@ -78,16 +78,6 @@
 
       (setq org-agenda-log-mode-items '(clock closed state))
 
-      (add-to-list 'org-agenda-custom-commands
-             '("r" "Daily Agenda Review"
-               ((agenda "" ((org-agenda-overriding-header "今日记录")
-                            (org-agenda-span 'day)
-                            (org-agenda-show-log 'clockcheck)
-                            (org-agenda-start-with-log-mode nil)
-                            (org-agenda-log-mode-items '(closed clock))
-                            (org-agenda-clockreport-mode t)
-                            )))
-                ))
       
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
@@ -422,6 +412,16 @@ See `org-capture-templates' for more information."
                ((stuck "") ;; review stuck projects as designated by org-stuck-projects
                 (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
                 ))))
+
+      (add-to-list 'org-agenda-custom-commands
+                   '("r" "Daily Agenda Review"
+                     ((agenda "" ((org-agenda-overriding-header "今日记录")
+                                  (org-agenda-span 'day)
+                                  (org-agenda-show-log 'clockcheck)
+                                  (org-agenda-start-with-log-mode nil)
+                                  (org-agenda-log-mode-items '(closed clock state))
+                                  (org-agenda-clockreport-mode t))))))
+
 
       (defvar zilongshanren-website-html-preamble
         "<div class='nav'>
