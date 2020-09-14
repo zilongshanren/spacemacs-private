@@ -997,7 +997,8 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       )
     :config
     (progn
-      (define-key rime-active-mode-map (kbd "s-j") 'rime-inline-ascii)
+      (define-key rime-mode-map (kbd "s-j") 'rime-force-enable)
+
       )))
 
 (defun zilongshanren-misc/post-init-pyim ()
