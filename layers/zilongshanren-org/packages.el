@@ -56,7 +56,7 @@
 (defun zilongshanren-org/post-init-evil-org ()
   (defun evil-org--populate-navigation-bindings ()
     "Configures gj/gk/gh/gl for navigation."
-    (let-alist evil-org-movement-bindingsj
+    (let-alist evil-org-movement-bindings
       (evil-define-key 'motion evil-org-mode-map
         (kbd (concat "g" .left)) 'org-previous-visible-heading
         (kbd (concat "g" .right)) 'org-next-visible-heading
