@@ -85,6 +85,7 @@
       (advice-add 'org-schedule :after 'org-save-all-org-buffers)
       (advice-add 'org-deadline :after 'org-save-all-org-buffers)
       (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
+      (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
      
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
