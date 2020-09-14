@@ -51,6 +51,10 @@ clonep 以后运行 git submodule update --init
 
 3. 使用 hugo server 来预览博客或者使用 SPC a t p 的 prodigy
 
+*** 配置输入法
+1. mac 面安装管须鼠
+2. clone 仓库 https://github.com/zilongshanren/rime-wubi86-jidian 并且 copy 到 ~/Library/Rime/
+
 ** 配置说明
 1. 我的配置主要分成 5 个 layer
   - zilongshanren-ui: 定制 mode-line，font face 等配置。

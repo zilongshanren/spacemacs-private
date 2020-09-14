@@ -988,7 +988,9 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
       (setq rime-disable-predicates
             '(rime-predicate-evil-mode-p
               rime-predicate-after-alphabet-char-p
+              rime-predicate-punctuation-line-begin-p
               rime-predicate-punctuation-after-space-cc-p
+              rime-predicate-punctuation-after-ascii-p
               rime-predicate-space-after-cc-p
               rime-predicate-prog-in-code-p
               +rime-predicate-in-code-string))
