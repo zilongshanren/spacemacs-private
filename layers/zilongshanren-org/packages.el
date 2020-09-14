@@ -140,6 +140,9 @@
       (add-to-list 'org-modules 'org-habit)
       (require 'org-habit)
 
+      ;; 调整orghabit 的显示长度
+      (setq org-habit-graph-column 60)
+
       (setq org-refile-use-outline-path 'file)
       (setq org-outline-path-complete-in-steps nil)
       (setq org-refile-targets
