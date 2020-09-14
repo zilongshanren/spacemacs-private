@@ -22,12 +22,29 @@
     ob-typescript
     evil-org
     org-superstar
+    org-super-agenda
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
     ;; org-download
     ;; plain-org-wiki
     )
+  )
+
+(defun zilongshanren-org/init-org-super-agenda ()
+  (use-package org-super-agenda
+    :init
+    (setq org-super-agenda-groups
+          '((:name "Important"
+                   :priority "A")
+            (:name "Quick Picks"
+                   :effort< "0:30")
+            (:name "Next Items"
+                   :tag ("NEXT" "outbox"))
+            (:priority<= "B"
+                         :scheduled future)))
+  
+    (add-hook 'org-mode-hook 'org-super-agenda-mode))
   )
 
 (defun zilongshanren-org/post-init-org-superstar ()
@@ -39,7 +56,7 @@
 (defun zilongshanren-org/post-init-evil-org ()
   (defun evil-org--populate-navigation-bindings ()
     "Configures gj/gk/gh/gl for navigation."
-    (let-alist evil-org-movement-bindings
+    (let-alist evil-org-movement-bindingsj
       (evil-define-key 'motion evil-org-mode-map
         (kbd (concat "g" .left)) 'org-previous-visible-heading
         (kbd (concat "g" .right)) 'org-next-visible-heading
@@ -86,6 +103,8 @@
       (advice-add 'org-deadline :after 'org-save-all-org-buffers)
       (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
       (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
+      (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
+      (advice-add 'org-priority :after 'org-save-all-org-buffers)
      
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
