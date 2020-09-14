@@ -78,7 +78,14 @@
 
       (setq org-agenda-log-mode-items '(clock closed state))
 
-      
+      ;; 当操作org agenda的buffer的时候自动保存，也可以直接在agenda buffer按save
+      (advice-add 'org-agenda-clock-in :after 'org-save-all-org-buffers)
+      (advice-add 'org-agenda-clock-out :after 'org-save-all-org-buffers)
+      (advice-add 'org-todo :after 'org-save-all-org-buffers)
+      (advice-add 'org-schedule :after 'org-save-all-org-buffers)
+      (advice-add 'org-deadline :after 'org-save-all-org-buffers)
+      (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
+     
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
       ;; ;; Some usages
