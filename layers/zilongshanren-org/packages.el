@@ -76,6 +76,19 @@
       ;; settings from above.
       (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
 
+      (setq org-agenda-log-mode-items '(clock closed state))
+
+      (add-to-list 'org-agenda-custom-commands
+             '("r" "Daily Agenda Review"
+               ((agenda "" ((org-agenda-overriding-header "今日记录")
+                            (org-agenda-span 'day)
+                            (org-agenda-show-log 'clockcheck)
+                            (org-agenda-start-with-log-mode nil)
+                            (org-agenda-log-mode-items '(closed clock))
+                            (org-agenda-clockreport-mode t)
+                            )))
+                ))
+      
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
       ;; ;; Some usages
