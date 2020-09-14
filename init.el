@@ -648,15 +648,15 @@ dump."
   (setenv "PATH" (concat "/Users/lionqu/.nvm/versions/node/v10.16.0/bin:" (getenv "PATH")))
 
   ;;Report time every half hour
-(defun announce-time ()
-  (message-box (format "It's %s" (format-time-string "%I:%M %p" (current-time)))))
+;; (defun announce-time ()
+;;   (message-box (format "It's %s" (format-time-string "%I:%M %p" (current-time)))))
 
-(let ((next-hour
-       (number-to-string
-        (+ (string-to-number
-            (format-time-string "%H" (current-time)))
-           1))))
-  (run-at-time (concat next-hour ":00") 1800 #'announce-time))
+;; (let ((next-hour
+;;        (number-to-string
+;;         (+ (string-to-number
+;;             (format-time-string "%H" (current-time)))
+;;            1))))
+;;   (run-at-time (concat next-hour ":00") 1800 #'announce-time))
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
