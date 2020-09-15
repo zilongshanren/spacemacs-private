@@ -23,6 +23,7 @@
     evil-org
     org-superstar
     org-super-agenda
+    cal-china-x
     ;; org-tree-slide
     ;; ox-reveal
     ;; worf
@@ -30,6 +31,19 @@
     ;; plain-org-wiki
     )
   )
+
+(defun zilongshanren-org/init-cal-china-x ()
+  (use-package cal-china-x
+    :config
+    (progn
+      (setq mark-holidays-in-calendar t)
+      (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
+      (setq cal-china-x-general-holidays '((holiday-lunar 1 15 "元宵节")))
+      (setq calendar-holidays
+            (append cal-china-x-important-holidays
+                    cal-china-x-general-holidays
+                    ))
+      )))
 
 (defun zilongshanren-org/init-org-super-agenda ()
   (use-package org-super-agenda
@@ -378,6 +392,8 @@
           "." 'spacemacs/org-agenda-transient-state/body)
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
           "p" 'org-agenda-priority)
+        ;; 默认显示节假日
+        (setq org-agenda-include-diary t)
         )
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
