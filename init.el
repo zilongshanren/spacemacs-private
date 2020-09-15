@@ -520,6 +520,10 @@ dump."
   )
 
 (defun dotspacemacs/user-config ()
+  ;; 重新编译一个新包，从 org elpa 上面下载对应的org-plus-congrib 版本
+  ;; SPC u byte-recompile-directory 来编译这个目录
+  ;; (package-generate-autoloads "org-plus-congrib" "~/.emacs.d/elpa/27.1/develop/org-plus-contrib-20191230/")
+
    
   ;;解决org表格里面中英文对齐的问题 
   (when (configuration-layer/layer-usedp 'chinese)
@@ -648,15 +652,15 @@ dump."
   (setenv "PATH" (concat "/Users/lionqu/.nvm/versions/node/v10.16.0/bin:" (getenv "PATH")))
 
   ;;Report time every half hour
-;; (defun announce-time ()
-;;   (message-box (format "It's %s" (format-time-string "%I:%M %p" (current-time)))))
+  ;; (defun announce-time ()
+  ;;   (message-box (format "It's %s" (format-time-string "%I:%M %p" (current-time)))))
 
-;; (let ((next-hour
-;;        (number-to-string
-;;         (+ (string-to-number
-;;             (format-time-string "%H" (current-time)))
-;;            1))))
-;;   (run-at-time (concat next-hour ":00") 1800 #'announce-time))
+  ;; (let ((next-hour
+  ;;        (number-to-string
+  ;;         (+ (string-to-number
+  ;;             (format-time-string "%H" (current-time)))
+  ;;            1))))
+  ;;   (run-at-time (concat next-hour ":00") 1800 #'announce-time))
 
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
