@@ -363,8 +363,7 @@
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
           "." 'spacemacs/org-agenda-transient-state/body)
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
-          ",p" 'org-agenda-priority)
-
+          "p" 'org-agenda-priority)
         )
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
