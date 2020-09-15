@@ -176,7 +176,21 @@
       ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
       (setq org-crypt-key nil)
 
-      ;; (add-to-list 'auto-mode-alist '("\.org\\'" . org-mode))
+      (require 'cal-china)
+      ;; diary for chinese birthday
+      ;; https://emacs-china.org/t/topic/2119/14
+      (defun my--diary-chinese-anniversary (lunar-month lunar-day &optional year mark)
+        (if year
+            (let* ((d-date (diary-make-date lunar-month lunar-day year))
+                   (a-date (calendar-absolute-from-gregorian d-date))
+                   (c-date (calendar-chinese-from-absolute a-date))
+                   (date a-date)
+                   (cycle (car c-date))
+                   (yy (cadr c-date))
+                   (y (+ (* 100 cycle) yy)))
+              (diary-chinese-anniversary lunar-month lunar-day y mark))
+          (diary-chinese-anniversary lunar-month lunar-day year mark)))
+
 
       (setq org-todo-keywords
             (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
