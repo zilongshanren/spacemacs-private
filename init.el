@@ -522,7 +522,8 @@ dump."
 (defun dotspacemacs/user-config ()
   ;; 重新编译一个新包，从 org elpa 上面下载对应的org-plus-congrib 版本
   ;; SPC u byte-recompile-directory 来编译这个目录
-  ;; (package-generate-autoloads "org-plus-congrib" "~/.emacs.d/elpa/27.1/develop/org-plus-contrib-20191230/")
+  ;; 下面这个函数的第一个参数是包名，一定不能出错！
+  ;; (package-generate-autoloads "org-plus-contrib" "~/.emacs.d/elpa/27.1/develop/org-plus-contrib-20191230/")
 
    
   ;;解决org表格里面中英文对齐的问题 
