@@ -98,13 +98,12 @@
       ;; 当操作org agenda的buffer的时候自动保存，也可以直接在agenda buffer按save
       (advice-add 'org-agenda-clock-in :after 'org-save-all-org-buffers)
       (advice-add 'org-agenda-clock-out :after 'org-save-all-org-buffers)
-      (advice-add 'org-todo :after 'org-save-all-org-buffers)
-      (advice-add 'org-schedule :after 'org-save-all-org-buffers)
-      (advice-add 'org-deadline :after 'org-save-all-org-buffers)
+      (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
+      (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
       (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
       (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
       (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
-      (advice-add 'org-priority :after 'org-save-all-org-buffers)
+      (advice-add 'org-agenda-priority :after 'org-save-all-org-buffers)
      
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
@@ -363,6 +362,9 @@
         (define-key org-agenda-mode-map (kbd "P") 'org-pomodoro)
         (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
           "." 'spacemacs/org-agenda-transient-state/body)
+        (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+          ",p" 'org-agenda-priority)
+
         )
       ;; the %i would copy the selected text into the template
       ;;http://www.howardism.org/Technical/Emacs/journaling-org.html
