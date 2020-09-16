@@ -243,29 +243,44 @@ with options to run in the shell.")
 
 
 ;; https://emacs-china.org/t/advice/7566
-(defun chunyang-advice-remove-button (function)
+(defun function-advices (function)
+  "Return FUNCTION's advices."
+  (let ((flist (indirect-function function)) advices)
+    (while (advice--p flist)
+      (setq advices `(,@advices ,(advice--car flist)))
+      (setq flist (advice--cdr flist)))
+    advices))
+
+;; Modified from the original function written by @xuchunyang (https://emacs-china.org/t/advice/7566/)
+(define-advice describe-function-1 (:after (function) advice-remove-button)
   "Add a button to remove advice."
   (when (get-buffer "*Help*")
     (with-current-buffer "*Help*"
       (save-excursion
         (goto-char (point-min))
-        ;; :around advice: ‘shell-command--shell-command-with-editor-mode’
-        (while (re-search-forward "^:[-a-z]+ advice: [‘'`]\\(.+\\)[’'']$" nil t)
-          (let ((advice (intern-soft (match-string 1))))
-            (when (and advice (fboundp advice))
-              (let ((inhibit-read-only t))
-                (insert " » ")
-                (insert-text-button
-                 "Remove"
-                 'action
-                 ;; In case lexical-binding is off
-                 `(lambda (_)
-                    (message "Removing %s of advice from %s" ',function ',advice)
-                    (advice-remove ',function #',advice)
-                    (revert-buffer nil t))
-                 'follow-link t)))))))))
-
-(advice-add 'describe-function-1 :after #'chunyang-advice-remove-button)
+        (let ((ad-list (function-advices function)))
+          (while (re-search-forward "^\\(?:This function has \\)?:[-a-z]+ advice: \\(.+\\)\\.?$" nil t)
+            (let* ((name (string-trim (match-string 1) "[‘'`]" "[’']"))
+                   (symbol (intern-soft name))
+                   (advice (or symbol (car ad-list))))
+              (when advice
+                (when symbol
+                  (cl-assert (eq symbol (car ad-list))))
+                (let ((inhibit-read-only t))
+                  (insert " » ")
+                  (insert-text-button
+                   "Remove"
+                   'cursor-sensor-functions `((lambda (&rest _) (message "%s" ',advice)))
+                   'help-echo (format "%s" advice)
+                   'action
+                   ;; In case lexical-binding is off
+                   `(lambda (_)
+                      (when (yes-or-no-p (format "Remove %s ? " ',advice))
+                        (message "Removing %s of advice from %s" ',function ',advice)
+                        (advice-remove ',function ',advice)
+                        (revert-buffer nil t)))
+                   'follow-link t))))
+            (setq ad-list (cdr ad-list))))))))
 
 (defun zilong-ag-edit (function)
   (when (get-buffer "*helm-ag-edit*")

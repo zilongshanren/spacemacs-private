@@ -110,14 +110,15 @@
       (setq org-agenda-log-mode-items '(clock closed state))
 
       ;; 当操作org agenda的buffer的时候自动保存，也可以直接在agenda buffer按save
-      (advice-add 'org-agenda-clock-in :after 'org-save-all-org-buffers)
-      (advice-add 'org-agenda-clock-out :after 'org-save-all-org-buffers)
-      (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
-      (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
-      (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
-      (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
-      (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
-      (advice-add 'org-agenda-priority :after 'org-save-all-org-buffers)
+      ;; 会有bug, 导致org 报错
+      ;; (advice-add 'org-agenda-clock-in :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-agenda-clock-out :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
+      ;; (advice-add 'org-agenda-priority :after 'org-save-all-org-buffers)
      
       ;; (defun th/org-outline-context-p ()
       ;;   (re-search-backward org-outline-regexp))
