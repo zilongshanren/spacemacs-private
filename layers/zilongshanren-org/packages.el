@@ -378,6 +378,7 @@
       ;; define the refile targets
       (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
       (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+      (setq org-agenda-file-work (expand-file-name "work.org" org-agenda-dir))
       (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
       (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
       (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
@@ -412,7 +413,7 @@
               ("s" "Code Snippet" entry
                (file org-agenda-file-code-snippet)
                "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-              ("w" "work" entry (file+headline org-agenda-file-gtd "Work")
+              ("w" "work" entry (file+headline org-agenda-file-work "Work")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1)
               ("x" "Web Collections" entry
