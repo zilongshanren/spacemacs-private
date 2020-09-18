@@ -52,7 +52,15 @@
         lispyville
         popup
         rime
+        alert
         ))
+
+(defun zilongshanren-misc/init-alert ()
+  (use-package alert
+    :config
+    (setq alert-default-style 'osx-notifier)
+    ;; (setq alert-default-style 'growl)
+    ))
 
 (defun zilongshanren-misc/post-init-popup ()
   (use-package popup
