@@ -135,6 +135,95 @@
 	  ;;                                   (TeX-current-macro))
 	  ;;                          #'th/TeX-goto-macro-end)))
       
+      (defun zilong/org-return (&optional indent)
+        "Goto next table row or insert a newline.
+
+Calls `org-table-next-row' or `newline', depending on context.
+
+When optional INDENT argument is non-nil, call
+`newline-and-indent' instead of `newline'.
+
+When `org-return-follows-link' is non-nil and point is on
+a timestamp or a link, call `org-open-at-point'.  However, it
+will not happen if point is in a table or on a \"dead\"
+object (e.g., within a comment).  In these case, you need to use
+`org-open-at-point' directly."
+        (interactive)
+        (let ((context (if org-return-follows-link (org-element-context)
+                         (org-element-at-point))))
+          (cond
+           ;; In a table, call `org-table-next-row'.  However, before first
+           ;; column or after last one, split the table.
+           ((or (and (eq 'table (org-element-type context))
+                     (not (eq 'table.el (org-element-property :type context)))
+                     (>= (point) (org-element-property :contents-begin context))
+                     (< (point) (org-element-property :contents-end context)))
+                (org-element-lineage context '(table-row table-cell) t))
+            (if (or (looking-at-p "[ \t]*$")
+                    (save-excursion (skip-chars-backward " \t") (bolp)))
+                (insert "\n")
+              (org-table-justify-field-maybe)
+              (call-interactively #'org-table-next-row)))
+           ;; On a link or a timestamp, call `org-open-at-point' if
+           ;; `org-return-follows-link' allows it.  Tolerate fuzzy
+           ;; locations, e.g., in a comment, as `org-open-at-point'.
+           ((and org-return-follows-link
+                 (or (and (eq 'link (org-element-type context))
+                          ;; Ensure point is not on the white spaces after
+                          ;; the link.
+                          (let ((origin (point)))
+                            (org-with-point-at (org-element-property :end context)
+                              (skip-chars-backward " \t")
+                              (> (point) origin))))
+                     (org-in-regexp org-ts-regexp-both nil t)
+                     (org-in-regexp org-tsr-regexp-both nil t)
+                     (org-in-regexp org-any-link-re nil t)))
+            (call-interactively #'org-open-at-point))
+           ;; Insert newline in heading, but preserve tags.
+           ((and (not (bolp))
+                 (let ((case-fold-search nil))
+                   (org-match-line org-complex-heading-regexp)))
+            ;; At headline.  Split line.  However, if point is on keyword,
+            ;; priority cookie or tags, do not break any of them: add
+            ;; a newline after the headline instead.
+            (let ((tags-column (and (match-beginning 5)
+                                    (save-excursion (goto-char (match-beginning 5))
+                                                    (current-column))))
+                  (string
+                   (when (and (match-end 4) (org-point-in-group (point) 4))
+                     (delete-and-extract-region (point) (match-end 4)))))
+              ;; Adjust tag alignment.
+              (cond
+               ((not (and tags-column string)))
+               (org-auto-align-tags (org-align-tags))
+               (t (org--align-tags-here tags-column))) ;preserve tags column
+              (end-of-line)
+              (org-show-entry)
+              (if indent (newline-and-indent) (newline))
+              (when string (save-excursion (insert (org-trim string))))))
+           ;; In a list, make sure indenting keeps trailing text within.
+           ((and indent
+                 (not (eolp))
+                 (org-element-lineage context '(item)))
+            (let ((trailing-data
+                   (delete-and-extract-region (point) (line-end-position))))
+              (newline-and-indent)
+              (save-excursion (insert trailing-data))))
+           ((and (eolp) (org-at-item-p))
+            (end-of-visible-line)
+            (org-insert-item (org-at-item-checkbox-p)))
+           (t
+            ;; Do not auto-fill when point is in an Org property drawer.
+            (let ((auto-fill-function (and (not (org-at-property-p))
+                                           auto-fill-function)))
+              (if indent
+                  (newline-and-indent)
+                (newline)))))))
+
+
+(define-key org-mode-map (kbd "RET")
+  'zilong/org-return)
+      
       (spacemacs|disable-company org-mode)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "," 'org-priority)
