@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      ;; dap
      colors
      prodigy
+     epub
      ;; github
      search-engine
      graphviz
