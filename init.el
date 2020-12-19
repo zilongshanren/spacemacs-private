@@ -36,12 +36,13 @@ This function should only modify configuration layer settings."
      ranger
      emoji
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
-     ;; lsp
-     ;; dap
+     (lsp :variables lsp-rust-server 'rust-analyzer)
+     dap
      colors
      prodigy
      epub
-     ;; github
+     (rust :variables rust-backend 'lsp)
+     github
      search-engine
      graphviz
      (haskell :variables haskell-enable-hindent t
