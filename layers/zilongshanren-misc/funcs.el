@@ -229,6 +229,7 @@ org-files and bookmarks"
                    ("Blog" . browse-hugo-maybe)
                    ("Search" . (lambda () (call-interactively #'engine/search-google)))
                    ("Random Todo" . org-random-entry)
+                   ("Org Roam" . org-roam-find-file)
                    ("Github" . (lambda() (helm-github-stars)))
                    ("Prodigy" . (lambda() (prodigy)))
                    ("Calculator" . (lambda () (helm-calcul-expression)))

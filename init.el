@@ -74,7 +74,7 @@ This function should only modify configuration layer settings."
      ;; docker
      latex
      deft
-     markdown
+     ;; markdown
      (org :variables org-want-todo-bindings t
           org-enable-hugo-support t
           org-enable-valign t

@@ -90,6 +90,28 @@
     (progn
       ;; disable < auto pair for org mode
       ;; disable {} auto pairing in electric-pair-mode for web-mode
+
+      (defvar my-intercept-mode-map (make-sparse-keymap)
+        "High precedence keymap.")
+
+      (define-minor-mode my-intercept-mode
+        "Global minor mode for higher precedence evil keybindings."
+        :global t)
+
+      (my-intercept-mode)
+
+      (dolist (state '(normal visual insert))
+        (evil-make-intercept-map
+         ;; NOTE: This requires an evil version from 2018-03-20 or later
+         (evil-get-auxiliary-keymap my-intercept-mode-map state t t)
+         state))
+
+      (evil-define-key 'normal my-intercept-mode-map
+        (kbd "]l") 'org-next-link)
+      
+      (evil-define-key 'normal my-intercept-mode-map
+        (kbd "[l") 'org-previous-link)
+      
       (add-hook
        'org-mode-hook
        (lambda ()
@@ -219,8 +241,8 @@ object (e.g., within a comment).  In these case, you need to use
                 (newline)))))))
 
 
-(define-key org-mode-map (kbd "RET")
-  'zilong/org-return)
+      (define-key org-mode-map (kbd "RET")
+        'zilong/org-return)
       
       (spacemacs|disable-company org-mode)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
@@ -468,7 +490,16 @@ object (e.g., within a comment).  In these case, you need to use
       (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
       (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
       (setq org-agenda-file-blogposts (expand-file-name "all-posts.org" org-agenda-dir))
-      (setq org-agenda-files (list org-agenda-dir))
+      (setq org-agenda-files (directory-files-recursively org-agenda-dir "org$"))
+
+      (setq org-link-frame-setup '((vm . vm-visit-folder-other-frame)
+                                   (vm-imap . vm-visit-imap-folder-other-frame)
+                                   (gnus . org-gnus-no-new-news)
+                                   (file . find-file)
+                                   (wl . wl-other-frame)))
+
+
+      
 
       ;; C-n for the next org agenda item
       (define-key org-agenda-mode-map (kbd "C-p") 'org-agenda-previous-item)
@@ -710,7 +741,7 @@ holding contextual information."
     (progn
       (add-hook 'org-mode-hook
                 (lambda ()
-                  (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link))))
+                        (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link))))
     :defer t))
 
 (defun zilongshanren-org/post-init-ox-reveal ()
