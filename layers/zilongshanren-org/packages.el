@@ -225,8 +225,6 @@ object (e.g., within a comment).  In these case, you need to use
       (spacemacs|disable-company org-mode)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "," 'org-priority)
-      (spacemacs/set-leader-keys-for-major-mode 'org-mode
-        "r" 'avy-org-refile-as-child)
 
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "it" 'counsel-org-tag)

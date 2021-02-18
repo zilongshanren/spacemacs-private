@@ -76,7 +76,9 @@ This function should only modify configuration layer settings."
      deft
      markdown
      (org :variables org-want-todo-bindings t
-          org-enable-hugo-support t)
+          org-enable-hugo-support t
+          org-enable-valign t
+          org-enable-roam-support t)
      gpu
      yaml
      react
@@ -528,6 +530,7 @@ dump."
   ;; (package-generate-autoloads "org-plus-contrib" "~/.emacs.d/elpa/27.1/develop/org-plus-contrib-20190902/")
   
   (setq rust-format-on-save t)
+  (setq rime-emacs-module-header-root nil)
   
   ;;解决org表格里面中英文对齐的问题 
   (when (configuration-layer/layer-usedp 'chinese)
