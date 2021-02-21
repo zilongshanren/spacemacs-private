@@ -35,6 +35,7 @@ This function should only modify configuration layer settings."
      better-defaults
      ranger
      emoji
+     pdf
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
      (lsp :variables lsp-rust-server 'rust-analyzer)
      dap
@@ -123,7 +124,7 @@ This function should only modify configuration layer settings."
                     evil-indent-plus volatile-highlights smartparens
                     spaceline holy-mode skewer-mode rainbow-delimiters
                     highlight-indentation vi-tilde-fringe eyebrowse ws-butler
-                    smooth-scrolling org-repo-todo org-download org-timer
+                    smooth-scrolling org-repo-todo org-timer
                     livid-mode git-gutter git-gutter-fringe  evil-escape
                     leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
                     ac-ispell ace-jump-mode auto-complete auto-dictionary
