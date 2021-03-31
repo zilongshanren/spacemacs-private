@@ -36,12 +36,13 @@ This function should only modify configuration layer settings."
      ranger
      emoji
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
-     ;; lsp
-     ;; dap
+     (lsp :variables lsp-rust-server 'rust-analyzer)
+     dap
      colors
      prodigy
      epub
-     ;; github
+     (rust :variables rust-backend 'racer)
+     github
      search-engine
      graphviz
      (haskell :variables haskell-enable-hindent t
@@ -525,8 +526,9 @@ dump."
   ;; SPC u 0 byte-recompile-directory 来编译这个目录
   ;; 下面这个函数的第一个参数是包名，一定不能出错！
   ;; (package-generate-autoloads "org-plus-contrib" "~/.emacs.d/elpa/27.1/develop/org-plus-contrib-20190902/")
-
-   
+  
+  (setq rust-format-on-save t)
+  
   ;;解决org表格里面中英文对齐的问题 
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)

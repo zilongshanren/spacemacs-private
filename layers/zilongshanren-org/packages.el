@@ -88,8 +88,6 @@
   (add-hook 'org-mode-hook (lambda () (spacemacs/toggle-line-numbers-off)) 'append)
   (with-eval-after-load 'org
     (progn
-      (require 'valign)
-      (add-hook 'org-mode-hook #'valign-mode)
       ;; disable < auto pair for org mode
       ;; disable {} auto pairing in electric-pair-mode for web-mode
       (add-hook
