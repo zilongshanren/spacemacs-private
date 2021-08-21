@@ -35,10 +35,10 @@ This function should only modify configuration layer settings."
      better-defaults
      ranger
      emoji
-     pdf
-     (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
+     ;; pdf
+     ;; (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
      (lsp :variables lsp-rust-server 'rust-analyzer)
-     dap
+     ;; dap
      colors
      prodigy
      epub
@@ -79,7 +79,8 @@ This function should only modify configuration layer settings."
      (org :variables org-want-todo-bindings t
           org-enable-hugo-support t
           org-enable-valign t
-          org-enable-roam-support t)
+          org-enable-org-journal-support t
+          org-enable-roam-support nil)
      gpu
      yaml
      react
@@ -88,8 +89,8 @@ This function should only modify configuration layer settings."
              python-backend 'lsp
              python-lsp-server 'mspyls
              python-lsp-git-root "~/Github/python-language-server")
-     ;; (ruby :variables ruby-version-manager 'chruby)
-     ;; ruby-on-rails
+     (ruby :variables ruby-version-manager 'chruby)
+     ruby-on-rails
      lua
      html
      (javascript :variables javascript-backend 'lsp)
@@ -114,7 +115,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(sicp ssh-agency anki-editor)
+   dotspacemacs-additional-packages '(sicp ssh-agency anki-editor org-noter org-pdftools)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -499,10 +500,10 @@ dump."
 (defun dotspacemacs/user-init ()
 
   (setq load-path (cons (file-truename "~/.spacemacs.d/") load-path))
-  (setq-default configuration-layer-elpa-archives
-                '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-                  ("org-cn"   . "http://elpa.emacs-china.org/org/")
-                  ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; (setq-default configuration-layer-elpa-archives
+  ;;               '(("melpa-cn" . "https://elpa.emacs-china.org/melpa/")
+  ;;                 ("org-cn"   . "https://elpa.emacs-china.org/org/")
+  ;;                 ("gnu-cn"   . "https://elpa.emacs-china.org/gnu/")))
 
   
   (setq term-char-mode-point-at-process-mark nil)
@@ -532,6 +533,7 @@ dump."
   
   (setq rust-format-on-save t)
   (setq rime-emacs-module-header-root nil)
+  (setq org-roam-v2-ack t)
   
   ;;解决org表格里面中英文对齐的问题 
   (when (configuration-layer/layer-usedp 'chinese)
