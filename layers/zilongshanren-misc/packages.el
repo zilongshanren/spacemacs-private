@@ -835,6 +835,7 @@ Search for a search tool in the order provided by `dotspacemacs-search-tools'."
     ;; Don't move back the cursor one position when exiting insert mode
     (setq evil-move-cursor-back nil)
 
+
     ;; (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
     (define-key evil-emacs-state-map (kbd "C-w") 'evil-delete-backward-word)
     ;; (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)
